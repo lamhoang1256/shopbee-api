@@ -1,5 +1,5 @@
 const { responseSuccess, createError } = require("../utils/response");
-const Product = require("./product.model");
+const Product = require("../models/product.model");
 
 const productControllers = {
   addNewProduct: async (req, res, next) => {
@@ -12,7 +12,7 @@ const productControllers = {
       };
       responseSuccess(res, response);
     } catch (error) {
-      next();
+      next(error);
     }
   },
   getAllProductWithConditional: async (req, res, next) => {
@@ -38,7 +38,7 @@ const productControllers = {
       };
       responseSuccess(res, response);
     } catch (error) {
-      next();
+      next(err);
     }
   },
   getAllProduct: async (req, res, next) => {
@@ -50,20 +50,19 @@ const productControllers = {
       };
       responseSuccess(res, response);
     } catch (error) {
-      next();
+      next(err);
     }
   },
   getSingleProduct: async (req, res, next) => {
     try {
       const product = await Product.findById(req.params.id);
-      if (!product) next(createError(404, "Sản phẩm này không tồn tại!"));
       const response = {
         message: "Lấy sản phẩm thành công!",
         data: product,
       };
       responseSuccess(res, response);
     } catch (error) {
-      next();
+      next(createError(404, "Sản phẩm này không tồn tại!"));
     }
   },
   deleteProduct: async (req, res, next) => {
@@ -77,14 +76,13 @@ const productControllers = {
   updateProduct: async (req, res, next) => {
     try {
       const product = Product.findById(req.params.id);
-      if (!product) next(createError(404, "Sản phẩm này không tồn tại!"));
       await product.updateOne({ $set: req.body });
       const response = {
         message: "Cập nhật sản phẩm thành công!",
       };
       responseSuccess(res, response);
     } catch (error) {
-      next();
+      next(createError(404, "Sản phẩm này không tồn tại!"));
     }
   },
 };

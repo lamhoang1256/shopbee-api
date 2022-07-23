@@ -1,5 +1,5 @@
 const { createError, responseSuccess } = require("../utils/response");
-const Banner = require("./banner.model");
+const Banner = require("../models/banner.model");
 
 const bannerControllers = {
   getAllBanner: async (req, res, next) => {
@@ -11,20 +11,19 @@ const bannerControllers = {
       };
       responseSuccess(res, response);
     } catch (error) {
-      next();
+      next(error);
     }
   },
   getSingleBanner: async (req, res, next) => {
     try {
       const banner = await Banner.findById(req.params.id);
-      next(createError(404, "Banner này không tồn tại!"));
       const response = {
         message: "Lấy banner thành công!",
         data: banner,
       };
       responseSuccess(res, response);
     } catch (error) {
-      next();
+      next(createError(404, "Banner này không tồn tại!"));
     }
   },
   addNewBanner: async (req, res, next) => {
@@ -39,7 +38,7 @@ const bannerControllers = {
       };
       responseSuccess(res, response);
     } catch (error) {
-      next();
+      next(error);
     }
   },
   deleteBanner: async (req, res, next) => {
@@ -50,7 +49,7 @@ const bannerControllers = {
       };
       responseSuccess(res, response);
     } catch (error) {
-      next();
+      next(createError(404, "Banner này không tồn tại!"));
     }
   },
   updateBanner: async (req, res, next) => {
@@ -63,7 +62,7 @@ const bannerControllers = {
       };
       responseSuccess(res, response);
     } catch (error) {
-      next();
+      next(createError(404, "Banner này không tồn tại!"));
     }
   },
 };

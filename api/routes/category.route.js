@@ -1,4 +1,4 @@
-const categoryControllers = require("./category.controller");
+const categoryControllers = require("../controllers/category.controller");
 const categoryRouter = require("express").Router();
 
 categoryRouter.post("/", categoryControllers.addNewCategory);

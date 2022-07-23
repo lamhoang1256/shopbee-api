@@ -1,5 +1,5 @@
 const { createError, responseSuccess } = require("../utils/response");
-const Category = require("./category.model");
+const Category = require("../models/category.model");
 
 const categoryControllers = {
   addNewCategory: async (req, res, next) => {
@@ -12,7 +12,7 @@ const categoryControllers = {
       };
       responseSuccess(res, response);
     } catch (error) {
-      next();
+      next(error);
     }
   },
   getAllCategory: async (req, res, next) => {
@@ -24,20 +24,19 @@ const categoryControllers = {
       };
       responseSuccess(res, response);
     } catch (error) {
-      next();
+      next(error);
     }
   },
   getSingleCategory: async (req, res, next) => {
     try {
       const category = await Category.findById(req.params.id);
-      if (!category) next(createError(404, "Danh mục này không tồn tại!"));
       const response = {
         message: "Lấy danh mục thành công!",
         data: category,
       };
       responseSuccess(res, response);
     } catch (error) {
-      next();
+      next(createError(404, "Danh mục này không tồn tại!"));
     }
   },
   deleteCategory: async (req, res, next) => {
