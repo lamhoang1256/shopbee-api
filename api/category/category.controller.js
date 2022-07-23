@@ -5,7 +5,13 @@ const categoryControllers = {
     try {
       const newCategory = new Category(req.body);
       const savedCategory = await newCategory.save();
-      res.status(200).json(savedCategory);
+      res
+        .status(200)
+        .json({
+          status: "success",
+          message: "Add new category successfully!",
+          data: savedCategory,
+        });
     } catch (error) {
       res.status(500).json(error);
     }
@@ -13,7 +19,9 @@ const categoryControllers = {
   getAllCategory: async (req, res) => {
     try {
       const categories = await Category.find();
-      res.status(200).json(categories);
+      res
+        .status(200)
+        .json({ status: "success", message: "Get all categories successfully!", data: categories });
     } catch (error) {
       res.status(500).json(error);
     }
@@ -21,7 +29,9 @@ const categoryControllers = {
   getSingleCategory: async (req, res) => {
     try {
       const category = await Category.findById(req.params.id);
-      res.status(200).json(category);
+      res
+        .status(200)
+        .json({ status: "success", message: "Get a category successfully!", data: category });
     } catch (error) {
       res.status(500).json(error);
     }
@@ -29,7 +39,7 @@ const categoryControllers = {
   deleteCategory: async (req, res) => {
     try {
       await Category.findByIdAndDelete(req.params.id);
-      res.status(200).json("Category delected successfully!");
+      res.status(200).json({ status: "success", message: "Category deleted successfully!" });
     } catch (error) {
       res.status(500).json(error);
     }
@@ -38,7 +48,7 @@ const categoryControllers = {
     try {
       const category = Category.findById(req.params.id);
       await category.updateOne({ $set: req.body });
-      res.status(200).json("Category updated successfully!");
+      res.status(200).json({ status: "success", message: "Category updated successfully!" });
     } catch (error) {
       res.status(500).json(error);
     }

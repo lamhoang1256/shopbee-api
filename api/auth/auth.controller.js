@@ -18,7 +18,7 @@ const authControllers = {
         isAdmin: req.body.isAdmin,
       });
       const savedUser = await newUser.save();
-      res.status(200).json(savedUser);
+      res.status(200).json({ status: "success", message: "Sign up success", data: savedUser });
     } catch (error) {
       console.log("error: ", error);
       res.status(500).json(error);
@@ -31,7 +31,8 @@ const authControllers = {
       if (!user) res.status(404).json("Wrong username");
       const validPassword = await bcrypt.compare(req.body.password, user.password);
       if (!validPassword) res.status(404).json("Wrong password");
-      if (user && validPassword) res.status(200).json(user);
+      if (user && validPassword)
+        res.status(200).json({ status: "success", message: "Sign in success", data: user });
     } catch (error) {
       res.status(500).json(err);
     }

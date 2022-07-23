@@ -5,7 +5,9 @@ const productControllers = {
     try {
       const newProduct = new Product(req.body);
       const savedProduct = await newProduct.save();
-      res.status(200).json(savedProduct);
+      res
+        .status(200)
+        .json({ status: "success", message: "Add new product successfully!", data: savedProduct });
     } catch (error) {
       res.status(500).json(error);
     }
@@ -27,7 +29,11 @@ const productControllers = {
         .limit(pageSize)
         .skip(pageSize * (page - 1))
         .sort({ _id: -1 });
-      res.json({ products, page, pages: Math.ceil(countProducts / pageSize) });
+      res.status(200).json({
+        status: "success",
+        message: "Get all products successfully!",
+        data: { products, page, pages: Math.ceil(countProducts / pageSize) },
+      });
     } catch (error) {
       res.status(500).json(error);
     }
@@ -35,7 +41,9 @@ const productControllers = {
   getAllProduct: async (req, res) => {
     try {
       const products = await Product.find().sort({ createdAt: -1 });
-      res.status(200).json(products);
+      res
+        .status(200)
+        .json({ status: "success", message: "Get all products successfully!", data: products });
     } catch (error) {
       res.status(500).json(error);
     }
@@ -43,7 +51,9 @@ const productControllers = {
   getSingleProduct: async (req, res) => {
     try {
       const product = await Product.findById(req.params.id);
-      res.status(200).json(product);
+      res
+        .status(200)
+        .json({ status: "success", message: "Get a product successfully!", data: product });
     } catch (error) {
       res.status(500).json(error);
     }
@@ -51,7 +61,7 @@ const productControllers = {
   deleteProduct: async (req, res) => {
     try {
       await Product.findByIdAndDelete(req.params.id);
-      res.status(200).json("Product delected successfully!");
+      res.status(200).json({ status: "success", message: "Product deleted successfully!" });
     } catch (error) {
       res.status(500).json(error);
     }
@@ -60,7 +70,7 @@ const productControllers = {
     try {
       const product = Product.findById(req.params.id);
       await product.updateOne({ $set: req.body });
-      res.status(200).json("Product updated successfully!");
+      res.status(200).json({ status: "success", message: "Product updated successfully!" });
     } catch (error) {
       res.status(500).json(error);
     }
