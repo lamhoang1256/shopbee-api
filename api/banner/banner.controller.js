@@ -1,58 +1,69 @@
+const { createError, responseSuccess } = require("../utils/response");
 const Banner = require("./banner.model");
 
 const bannerControllers = {
-  getAllBanner: async (req, res) => {
+  getAllBanner: async (req, res, next) => {
     try {
       const banners = await Banner.find();
-      res
-        .status(200)
-        .json({ status: "success", message: "Get all banners successfully!", data: banners });
+      const response = {
+        message: "Lấy tất cả banner thành công!",
+        data: banners,
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next();
     }
   },
-  getSingleBanner: async (req, res) => {
+  getSingleBanner: async (req, res, next) => {
     try {
       const banner = await Banner.findById(req.params.id);
-      res
-        .status(200)
-        .json({ status: "success", message: "Get a banner successfully!", data: banner });
+      next(createError(404, "Banner này không tồn tại!"));
+      const response = {
+        message: "Lấy banner thành công!",
+        data: banner,
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next();
     }
   },
-  addNewBanner: async (req, res) => {
+  addNewBanner: async (req, res, next) => {
     try {
       const countBanners = await Banner.find().countDocuments();
-      if (countBanners >= 6) {
-        return res
-          .status(500)
-          .json({ status: "error", message: "The maximum number of banners is 6" });
-      }
+      if (countBanners >= 6) return next(createError(500, "Số lượng banner tối đa là 6!"));
       const newBanner = new Banner(req.body);
       const savedBanner = await newBanner.save();
-      res
-        .status(200)
-        .json({ status: "success", message: "Add new banner successfully!", data: savedBanner });
+      const response = {
+        message: "Thêm mới banner thành công!",
+        data: savedBanner,
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next();
     }
   },
-  deleteBanner: async (req, res) => {
+  deleteBanner: async (req, res, next) => {
     try {
       await Banner.findByIdAndDelete(req.params.id);
-      res.status(200).json({ status: "success", message: "Banner deleted successfully!" });
+      const response = {
+        message: "Xóa banner thành công!",
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next();
     }
   },
-  updateBanner: async (req, res) => {
+  updateBanner: async (req, res, next) => {
     try {
       const banner = Banner.findById(req.params.id);
+      next(createError(404, "Banner này không tồn tại!"));
       await banner.updateOne({ $set: req.body });
-      res.status(200).json({ status: "success", message: "Banner updated successfully!" });
+      const response = {
+        message: "Cập nhật banner thành công!",
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next();
     }
   },
 };

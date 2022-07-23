@@ -1,56 +1,67 @@
+const { createError, responseSuccess } = require("../utils/response");
 const Category = require("./category.model");
 
 const categoryControllers = {
-  addNewCategory: async (req, res) => {
+  addNewCategory: async (req, res, next) => {
     try {
       const newCategory = new Category(req.body);
       const savedCategory = await newCategory.save();
-      res
-        .status(200)
-        .json({
-          status: "success",
-          message: "Add new category successfully!",
-          data: savedCategory,
-        });
+      const response = {
+        message: "Thêm mới sản phẩm thành công!",
+        data: savedCategory,
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next();
     }
   },
-  getAllCategory: async (req, res) => {
+  getAllCategory: async (req, res, next) => {
     try {
       const categories = await Category.find();
-      res
-        .status(200)
-        .json({ status: "success", message: "Get all categories successfully!", data: categories });
+      const response = {
+        message: "Lấy tất cả danh mục thành công!",
+        data: categories,
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next();
     }
   },
-  getSingleCategory: async (req, res) => {
+  getSingleCategory: async (req, res, next) => {
     try {
       const category = await Category.findById(req.params.id);
-      res
-        .status(200)
-        .json({ status: "success", message: "Get a category successfully!", data: category });
+      if (!category) next(createError(404, "Danh mục này không tồn tại!"));
+      const response = {
+        message: "Lấy danh mục thành công!",
+        data: category,
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next();
     }
   },
-  deleteCategory: async (req, res) => {
+  deleteCategory: async (req, res, next) => {
     try {
       await Category.findByIdAndDelete(req.params.id);
-      res.status(200).json({ status: "success", message: "Category deleted successfully!" });
+      const response = {
+        message: "Xóa danh mục thành công!",
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next(createError(404, "Danh mục này không tồn tại!"));
     }
   },
-  updateCategory: async (req, res) => {
+  updateCategory: async (req, res, next) => {
     try {
       const category = Category.findById(req.params.id);
+      if (!category) next(createError(404, "Danh mục này không tồn tại!"));
       await category.updateOne({ $set: req.body });
-      res.status(200).json({ status: "success", message: "Category updated successfully!" });
+      const response = {
+        message: "Cập nhật danh mục thành công!",
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next(createError(404, "Danh mục này không tồn tại!"));
     }
   },
 };

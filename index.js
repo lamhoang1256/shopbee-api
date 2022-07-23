@@ -8,6 +8,7 @@ const authRoutes = require("./api/auth/auth.route");
 const categoryRoutes = require("./api/category/category.route");
 const productRoutes = require("./api/product/product.route");
 const bannerRoutes = require("./api/banner/banner.route");
+const { responseError } = require("./api/utils/response");
 
 const app = express();
 dotenv.config();
@@ -25,6 +26,16 @@ app.use("/api/auth", authRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/banner", bannerRoutes);
+
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  const message = err.message || "Something went wrong!";
+  return res.status(status).json({
+    status,
+    success: false,
+    message,
+  });
+});
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {

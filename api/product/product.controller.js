@@ -1,18 +1,21 @@
+const { responseSuccess, createError } = require("../utils/response");
 const Product = require("./product.model");
 
 const productControllers = {
-  addNewProduct: async (req, res) => {
+  addNewProduct: async (req, res, next) => {
     try {
       const newProduct = new Product(req.body);
       const savedProduct = await newProduct.save();
-      res
-        .status(200)
-        .json({ status: "success", message: "Add new product successfully!", data: savedProduct });
+      const response = {
+        message: "Thêm sản phẩm thành công!",
+        data: savedProduct,
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next();
     }
   },
-  getAllProductWithConditional: async (req, res) => {
+  getAllProductWithConditional: async (req, res, next) => {
     try {
       const pageSize = 1;
       const page = Number(req.query.page) || 1;
@@ -29,50 +32,59 @@ const productControllers = {
         .limit(pageSize)
         .skip(pageSize * (page - 1))
         .sort({ _id: -1 });
-      res.status(200).json({
-        status: "success",
-        message: "Get all products successfully!",
+      const response = {
+        message: "Lấy các sản phẩm thành công!",
         data: { products, page, pages: Math.ceil(countProducts / pageSize) },
-      });
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next();
     }
   },
-  getAllProduct: async (req, res) => {
+  getAllProduct: async (req, res, next) => {
     try {
       const products = await Product.find().sort({ createdAt: -1 });
-      res
-        .status(200)
-        .json({ status: "success", message: "Get all products successfully!", data: products });
+      const response = {
+        message: "Lấy tất cả sản phẩm thành công!",
+        data: products,
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next();
     }
   },
-  getSingleProduct: async (req, res) => {
+  getSingleProduct: async (req, res, next) => {
     try {
       const product = await Product.findById(req.params.id);
-      res
-        .status(200)
-        .json({ status: "success", message: "Get a product successfully!", data: product });
+      if (!product) next(createError(404, "Sản phẩm này không tồn tại!"));
+      const response = {
+        message: "Lấy sản phẩm thành công!",
+        data: product,
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next();
     }
   },
-  deleteProduct: async (req, res) => {
+  deleteProduct: async (req, res, next) => {
     try {
       await Product.findByIdAndDelete(req.params.id);
-      res.status(200).json({ status: "success", message: "Product deleted successfully!" });
+      responseSuccess(res, { message: "Xóa sản phẩm thành công!" });
     } catch (error) {
-      res.status(500).json(error);
+      next(createError(404, "Sản phẩm này không tồn tại!"));
     }
   },
-  updateProduct: async (req, res) => {
+  updateProduct: async (req, res, next) => {
     try {
       const product = Product.findById(req.params.id);
+      if (!product) next(createError(404, "Sản phẩm này không tồn tại!"));
       await product.updateOne({ $set: req.body });
-      res.status(200).json({ status: "success", message: "Product updated successfully!" });
+      const response = {
+        message: "Cập nhật sản phẩm thành công!",
+      };
+      responseSuccess(res, response);
     } catch (error) {
-      res.status(500).json(error);
+      next();
     }
   },
 };
