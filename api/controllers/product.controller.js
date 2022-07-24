@@ -5,7 +5,7 @@ const productControllers = {
   addNewProduct: async (req, res, next) => {
     try {
       const newProduct = new Product(req.body);
-      const savedProduct = await newProduct.save();
+      const savedProduct = await newProduct.save().populate("category");
       const response = {
         message: "Thêm sản phẩm thành công!",
         data: savedProduct,
@@ -17,7 +17,7 @@ const productControllers = {
   },
   getAllProductWithConditional: async (req, res, next) => {
     try {
-      const pageSize = 1;
+      const pageSize = 12;
       const page = Number(req.query.page) || 1;
       const keyword = req.query.keyword
         ? {
@@ -43,7 +43,7 @@ const productControllers = {
   },
   getAllProduct: async (req, res, next) => {
     try {
-      const products = await Product.find().sort({ createdAt: -1 });
+      const products = await Product.find().populate("category").sort({ createdAt: -1 });
       const response = {
         message: "Lấy tất cả sản phẩm thành công!",
         data: products,
@@ -55,7 +55,7 @@ const productControllers = {
   },
   getSingleProduct: async (req, res, next) => {
     try {
-      const product = await Product.findById(req.params.id);
+      const product = await Product.findById(req.params.id).populate("category");
       const response = {
         message: "Lấy sản phẩm thành công!",
         data: product,

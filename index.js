@@ -9,6 +9,7 @@ const authRoutes = require("./api/routes/auth.route");
 const categoryRoutes = require("./api/routes/category.route");
 const productRoutes = require("./api/routes/product.route");
 const bannerRoutes = require("./api/routes/banner.route");
+const purchaseRoutes = require("./api/routes/purchase.route");
 
 const app = express();
 dotenv.config();
@@ -26,6 +27,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/banner", bannerRoutes);
+app.use("/api/purchase", purchaseRoutes);
 app.use((err, req, res, next) => {
   const status = err.status || 500;
   const message = err.message || "Something went wrong!";
