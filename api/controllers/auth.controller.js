@@ -29,24 +29,32 @@ const authControllers = {
 
   signUp: async (req, res, next) => {
     try {
-      const salt = await bcrypt.genSalt(10);
-      const hashed = await bcrypt.hash(req.body.password, salt);
-      const newUser = new User({
-        username: req.body.username,
-        fullname: req.body.fullname,
-        avatar: req.body.avatar,
-        phone: req.body.phone,
-        email: req.body.email,
-        address: req.body.address,
-        city: req.body.city,
-        password: hashed,
-        isAdmin: req.body.isAdmin,
-      });
-      const savedUser = await newUser.save();
-      res.status(200).json({ success: true, message: "Sign up success", data: savedUser });
+      const userInDB = await User.findOne({ email: req.body.email }).exec();
+      if (!userInDB) {
+        const salt = await bcrypt.genSalt(10);
+        const hashed = await bcrypt.hash(req.body.password, salt);
+        const newUser = new User({
+          fullname: req.body.fullname,
+          avatar: req.body.avatar,
+          phone: req.body.phone,
+          email: req.body.email,
+          address: req.body.address,
+          city: req.body.city,
+          password: hashed,
+          isAdmin: req.body.isAdmin,
+        });
+        const savedUser = await newUser.save();
+        const response = {
+          message: "Đăng ký thành công",
+          data: savedUser,
+        };
+        responseSuccess(res, response);
+      } else {
+        next(createError(422, "Email đã tồn tại!"));
+      }
     } catch (error) {
       console.log("error: ", error);
-      res.status(500).json(error);
+      next(error);
     }
   },
 
