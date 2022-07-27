@@ -5,7 +5,7 @@ const productControllers = {
   addNewProduct: async (req, res, next) => {
     try {
       const newProduct = new Product(req.body);
-      const savedProduct = await newProduct.save().populate("category");
+      const savedProduct = await newProduct.save();
       const response = {
         message: "Thêm sản phẩm thành công!",
         data: savedProduct,
