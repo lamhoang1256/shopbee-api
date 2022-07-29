@@ -61,11 +61,7 @@ const purchaseControllers = {
         },
       });
       if (purchaseInDb) {
-        if (purchaseInDb.quantity + quantity > product.quantity) {
-          return next(createError(406, `Số lượng sản phẩm tối đa là ${product.quantity}!`));
-        }
-        const newQuantity = purchaseInDb.quantity + quantity;
-        savedPurchase = await purchaseControllers.updatePurchase(userId, productId, newQuantity);
+        savedPurchase = await purchaseControllers.updatePurchase(userId, productId, quantity);
       } else {
         savedPurchase = await purchaseControllers.createNewPurchase(userId, productId, quantity);
       }
