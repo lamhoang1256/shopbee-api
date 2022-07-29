@@ -72,7 +72,6 @@ const purchaseControllers = {
       };
       responseSuccess(res, response);
     } catch (error) {
-      console.log("error: ", error);
       next(createError(500, "Thêm sản phẩm thất bại!"));
     }
   },
@@ -104,6 +103,89 @@ const purchaseControllers = {
         data: purchases,
       };
       responseSuccess(res, response);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  deletePurchases: async (req, res, next) => {
+    const { purchaseIds, userId } = req.body;
+    try {
+      const deletedData = await Purchase.deleteMany({
+        user: userId,
+        status: STATUS_PURCHASE.IN_CART,
+        _id: { $in: purchaseIds },
+      });
+      const response = {
+        message: `Xoá ${deletedData.deletedCount} đơn thành công!`,
+        data: { deleted_count: deletedData.deletedCount },
+      };
+      responseSuccess(res, response);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  buyProducts: async (req, res, next) => {
+    try {
+      const purchases = [];
+      for (const item of req.body) {
+        const product = await Product.findById(item.productId).lean();
+        if (product) {
+          if (item.quantity > product.quantity) {
+            next(createError(STATUS.NOT_ACCEPTABLE, "Số lượng mua vượt quá số lượng sản phẩm"));
+          } else {
+            let data = await Purchase.findOneAndUpdate(
+              {
+                user: req.query.userId,
+                status: STATUS_PURCHASE.IN_CART,
+                product: {
+                  _id: item.productId,
+                },
+              },
+              {
+                quantity: item.quantity,
+                status: STATUS_PURCHASE.WAIT_FOR_CONFIRMATION,
+              },
+              {
+                new: true,
+              }
+            )
+              .populate({
+                path: "product",
+                populate: {
+                  path: "category",
+                },
+              })
+              .lean();
+            if (!data) {
+              const purchase = {
+                user: req.body.userId,
+                product: item.productId,
+                quantity: item.quantity,
+                price: product.price,
+                priceSale: product.priceSale,
+                status: STATUS_PURCHASE.WAIT_FOR_CONFIRMATION,
+              };
+              const addedPurchase = await new Purchase(purchase).save();
+              data = await Purchase.findById(addedPurchase._id).populate({
+                path: "product",
+                populate: {
+                  path: "category",
+                },
+              });
+            }
+            purchases.push(data);
+          }
+        } else {
+          next(createError(STATUS.NOT_FOUND, "Không tìm thấy sản phẩm"));
+        }
+      }
+      const response = {
+        message: "Mua thành công",
+        data: purchases,
+      };
+      return responseSuccess(res, response);
     } catch (error) {
       next(error);
     }
