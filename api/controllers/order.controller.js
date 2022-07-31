@@ -1,5 +1,6 @@
 const { createError, responseSuccess } = require("../utils/response");
 const Order = require("../models/order.model");
+const Cart = require("../models/cart.model");
 
 const orderControllers = {
   createNewOrder: async (req, res, next) => {
@@ -19,6 +20,9 @@ const orderControllers = {
           paidAt: Date.now(),
         });
         const savedOrder = await order.save();
+        await Cart.deleteMany({
+          user: req.body.userId,
+        });
         const response = {
           message: "Tạo đơn hàng thành công!",
           data: savedOrder,
