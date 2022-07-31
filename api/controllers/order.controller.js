@@ -58,7 +58,7 @@ const orderControllers = {
 
   getSingleOrder: async (req, res, next) => {
     try {
-      const order = await Order.findById(req.params.id).populate("user", "fullname email");
+      const order = await Order.findById(req.params.orderId).populate("user", "fullname email");
       if (order) {
         const response = {
           message: "Lấy đơn hàng thành công!",
