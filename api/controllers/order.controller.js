@@ -48,8 +48,11 @@ const orderControllers = {
   },
 
   getAllOrderByUser: async (req, res, next) => {
+    const { userId, status } = req.query;
+    let conditional = { user: userId };
+    if (status) conditional = { ...conditional, status };
     try {
-      const orders = await Order.find({ user: req.query.userId, status: req.query.status }).sort({
+      const orders = await Order.find(conditional).sort({
         _id: -1,
       });
       const response = {
