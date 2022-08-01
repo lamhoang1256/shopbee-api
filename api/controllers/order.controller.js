@@ -49,7 +49,9 @@ const orderControllers = {
 
   getAllOrderByUser: async (req, res, next) => {
     try {
-      const orders = await Order.find({ user: req.query.userId }).sort({ _id: -1 });
+      const orders = await Order.find({ user: req.query.userId, status: req.query.status }).sort({
+        _id: -1,
+      });
       const response = {
         message: "Lấy tất cả đơn hàng thành công!",
         data: orders,
