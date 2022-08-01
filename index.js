@@ -11,6 +11,7 @@ const productRoutes = require("./api/routes/product.route");
 const bannerRoutes = require("./api/routes/banner.route");
 const cartRoutes = require("./api/routes/cart.route");
 const orderRoutes = require("./api/routes/order.route");
+const userRoutes = require("./api/routes/user.route");
 
 const app = express();
 dotenv.config();
@@ -30,6 +31,7 @@ app.use("/api/product", productRoutes);
 app.use("/api/banner", bannerRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/order", orderRoutes);
+app.use("/api/user", userRoutes);
 app.use((err, req, res, next) => {
   const status = err.status || 500;
   const message = err.message || "Something went wrong!";
