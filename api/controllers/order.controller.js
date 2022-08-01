@@ -83,6 +83,7 @@ const orderControllers = {
       if (order) {
         order.isShipping = true;
         order.shippingAt = Date.now();
+        order.status = 2;
         const updatedOrder = await order.save();
         const response = {
           message: "Cập nhật trạng thái đang vận chuyển thành công!",
@@ -103,6 +104,7 @@ const orderControllers = {
       if (order) {
         order.isDelivered = true;
         order.deliveredAt = Date.now();
+        order.status = 3;
         const updatedOrder = await order.save();
         const response = {
           message: "Cập nhật trạng thái đã giao hàng thành công!",
