@@ -5,9 +5,9 @@ const User = require("../models/user.model");
 const userControllers = {
   updateProfile: async (req, res, next) => {
     try {
-      const user = await User.findById(req.body._id);
-      if (!user) return createError(404, "Không tìm thấy thông tin người dùng!");
-      const updatedUser = await user.updateOne({ $set: req.body });
+      const updatedUser = await User.findByIdAndUpdate(req.body._id, req.body, { new: true })
+        .select({ password: 0, __v: 0 })
+        .lean();
       const response = {
         message: "Cập nhật thông tin thành công!",
         data: updatedUser,
@@ -23,7 +23,7 @@ const userControllers = {
       const userDB = await User.findById(req.body._id);
       if (!userDB) return createError(404, "Không tìm thấy thông tin người dùng!");
       if (!req.body.currentPassword && !req.body.newPassword)
-        return createError(404, "Không tìm thấy mật khẩu và mật khẩu mới!");
+        return next(createError(404, "Không tìm thấy mật khẩu và mật khẩu mới!"));
       const validPassword = await bcrypt.compare(req.body.currentPassword, userDB.password);
       if (!validPassword) return next(createError(422, "Mật khẩu hiện tại không đúng"));
       const salt = await bcrypt.genSalt(10);
