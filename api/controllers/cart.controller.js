@@ -30,11 +30,8 @@ const cartControllers = {
         },
         {
           quantity,
-        },
-        {
-          new: true,
         }
-      ).lean();
+      );
       return updatedCart;
     } catch (error) {
       next(error);
@@ -55,15 +52,16 @@ const cartControllers = {
         product: {
           _id: productId,
         },
-      }).lean();
+      });
       if (cartInDb) {
         savedCart = await cartControllers.updateCart(userId, productId, quantity);
       } else {
         savedCart = await cartControllers.addNewProductToCart(userId, productId, quantity);
       }
+      savedCart.product = product;
       const response = {
         message: "Thêm sản phẩm vào giỏ hàng thành công",
-        data: { ...savedCart, product: product },
+        data: savedCart,
       };
       responseSuccess(res, response);
     } catch (error) {
