@@ -22,9 +22,9 @@ const userControllers = {
     try {
       const userDB = await User.findById(req.body._id);
       if (!userDB) return createError(404, "Không tìm thấy thông tin người dùng!");
-      if (!req.body.password && !req.body.newPassword)
+      if (!req.body.currentPassword && !req.body.newPassword)
         return createError(404, "Không tìm thấy mật khẩu và mật khẩu mới!");
-      const validPassword = await bcrypt.compare(req.body.password, userDB.password);
+      const validPassword = await bcrypt.compare(req.body.currentPassword, userDB.password);
       if (!validPassword) return next(createError(422, "Mật khẩu hiện tại không đúng"));
       const salt = await bcrypt.genSalt(10);
       const hashed = await bcrypt.hash(req.body.newPassword, salt);
