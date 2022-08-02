@@ -5,19 +5,17 @@ const Cart = require("../models/cart.model");
 const orderControllers = {
   createNewOrder: async (req, res, next) => {
     try {
-      const { orderItems, shippingAddress, shippingPrice, totalPriceProduct, totalDiscount } =
-        req.body;
-      if (orderItems && orderItems.length === 0) {
+      if (req.body.orderItems && req.body.orderItems.length === 0) {
         createError(400, "Không có sản phẩm");
       } else {
         const order = new Order({
-          orderItems,
           user: req.body.userId,
-          shippingAddress,
-          shippingPrice,
-          totalPriceProduct,
-          totalDiscount,
-          totalPayment,
+          orderItems: req.body.orderItems,
+          shippingAddress: req.body.shippingAddress,
+          shippingPrice: req.body.shippingPrice,
+          totalPriceProduct: req.body.totalPriceProduct,
+          totalDiscount: req.body.totalDiscount,
+          totalPayment: req.body.totalPayment,
           paidAt: Date.now(),
         });
         const savedOrder = await order.save();
