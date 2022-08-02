@@ -17,6 +17,7 @@ const orderControllers = {
           shippingPrice,
           totalPriceProduct,
           totalDiscount,
+          totalPayment,
           paidAt: Date.now(),
         });
         const savedOrder = await order.save();
