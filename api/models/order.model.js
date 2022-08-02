@@ -22,9 +22,6 @@ const orderSchema = mongoose.Schema(
       },
     ],
     shippingAddress: {
-      // address: { type: String, required: true },
-      // city: { type: String, required: true },
-      // country: { type: String, required: true },
       type: String,
     },
     shippingPrice: {
@@ -39,6 +36,11 @@ const orderSchema = mongoose.Schema(
     },
     totalDiscount: {
       type: Number,
+      default: 0,
+    },
+    totalPayment: {
+      type: Number,
+      required: true,
       default: 0,
     },
     isPaid: {
