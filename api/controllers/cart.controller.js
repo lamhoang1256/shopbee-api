@@ -63,8 +63,7 @@ const cartControllers = {
       }
       const response = {
         message: "Thêm sản phẩm vào giỏ hàng thành công",
-        cart: savedCart,
-        product,
+        data: { ...savedCart, ...product },
       };
       responseSuccess(res, response);
     } catch (error) {
