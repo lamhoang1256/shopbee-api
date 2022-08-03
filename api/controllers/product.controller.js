@@ -21,7 +21,6 @@ const productControllers = {
       page = 1,
       limit = 12,
       category,
-      exclude,
       sort_by,
       order,
       rating,
@@ -35,9 +34,6 @@ const productControllers = {
       let condition = {};
       if (category) {
         condition.category = category;
-      }
-      if (exclude) {
-        condition._id = { $ne: exclude };
       }
       if (rating) {
         condition.rating = { $gte: rating };
