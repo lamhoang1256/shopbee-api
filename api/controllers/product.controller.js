@@ -1,5 +1,6 @@
 const { responseSuccess, createError } = require("../utils/response");
 const Product = require("../models/product.model");
+const { ORDER, SORT_BY } = require("../constants/product");
 
 const productControllers = {
   addNewProduct: async (req, res, next) => {
@@ -15,44 +16,84 @@ const productControllers = {
       next(error);
     }
   },
-  getAllProductWithConditional: async (req, res, next) => {
-    try {
-      const pageSize = 12;
-      const page = Number(req.query.page) || 1;
-      const keyword = req.query.keyword
-        ? {
-            name: {
-              $regex: req.query.keyword,
-              $options: "i",
-            },
-          }
-        : {};
-      const countProducts = await Product.countDocuments({ ...keyword });
-      const products = await Product.find({ ...keyword })
-        .limit(pageSize)
-        .skip(pageSize * (page - 1))
-        .sort({ _id: -1 });
-      const response = {
-        message: "Lấy các sản phẩm thành công!",
-        data: { products, page, pages: Math.ceil(countProducts / pageSize) },
-      };
-      responseSuccess(res, response);
-    } catch (error) {
-      next(err);
-    }
-  },
   getAllProduct: async (req, res, next) => {
+    let {
+      page = 1,
+      limit = 12,
+      category,
+      exclude,
+      sort_by,
+      order,
+      rating,
+      price_max,
+      price_min,
+      name,
+    } = req.query;
     try {
-      const products = await Product.find().populate("category").sort({ createdAt: -1 });
+      page = Number(page);
+      limit = Number(limit);
+      let condition = {};
+      if (category) {
+        condition.category = category;
+      }
+      if (exclude) {
+        condition._id = { $ne: exclude };
+      }
+      if (rating) {
+        condition.rating = { $gte: rating };
+      }
+      if (price_max) {
+        condition.priceSale = {
+          $lte: price_max,
+        };
+      }
+      if (price_min) {
+        condition.priceSale = condition.priceSale
+          ? { ...condition.priceSale, $gte: price_min }
+          : { $gte: price_min };
+      }
+      if (!ORDER.includes(order)) {
+        order = ORDER[0];
+      }
+      if (!SORT_BY.includes(sort_by)) {
+        sort_by = SORT_BY[0];
+      }
+      if (name) {
+        condition.name = {
+          $regex: name,
+          $options: "i",
+        };
+      }
+      let [products, totalProducts] = await Promise.all([
+        Product.find(condition)
+          .populate({
+            path: "category",
+          })
+          .sort({ [sort_by]: order === "desc" ? -1 : 1 })
+          .skip(page * limit - limit)
+          .limit(limit)
+          .select({ __v: 0, description: 0 })
+          .lean(),
+        Product.find(condition).countDocuments().lean(),
+      ]);
+      const pageCount = Math.ceil(totalProducts / limit) || 1;
       const response = {
-        message: "Lấy tất cả sản phẩm thành công!",
-        data: products,
+        message: "Lấy các sản phẩm thành công",
+        data: {
+          products,
+          pagination: {
+            page,
+            limit,
+            pageCount,
+          },
+        },
       };
       responseSuccess(res, response);
     } catch (error) {
-      next(err);
+      next(error);
     }
   },
+
   getSingleProduct: async (req, res, next) => {
     try {
       const product = await Product.findById(req.params.id).populate("category");

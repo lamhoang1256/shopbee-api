@@ -2,8 +2,7 @@ const productControllers = require("../controllers/product.controller");
 const productRouter = require("express").Router();
 
 productRouter.post("/", productControllers.addNewProduct);
-productRouter.get("/", productControllers.getAllProductWithConditional);
-productRouter.get("/all", productControllers.getAllProduct);
+productRouter.get("/", productControllers.getAllProduct);
 productRouter.get("/:id", productControllers.getSingleProduct);
 productRouter.delete("/:id", productControllers.deleteProduct);
 productRouter.put("/:id", productControllers.updateProduct);

@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const productSchema = new mongoose.Schema({
   name: String,
   image: String,
-  images: [String],
   description: String,
   category: { type: mongoose.SchemaTypes.ObjectId, ref: "Category" },
   price: { type: Number, default: 0 },
