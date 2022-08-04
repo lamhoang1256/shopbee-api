@@ -18,9 +18,15 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, newUser);
 });
 
+const logOut = catchAsync(async (req: Request, res: Response) => {
+  const loggedOut = await authServices.logOut(req);
+  responseSuccess(res, loggedOut);
+});
+
 const authControllers = {
   signUp,
   signIn,
+  logOut,
   refreshToken,
 };
 export default authControllers;

@@ -80,9 +80,19 @@ const refreshToken = async (req: Request) => {
   });
 };
 
+const logOut = async (req: Request) => {
+  if (req.body.accessToken) throw new ApiError(403, "Không tìm thấy token!");
+  refreshTokens = refreshTokens.filter((token) => token !== req.body.refreshToken);
+  const response = {
+    message: "Đăng xuất thành công!",
+  };
+  return response;
+};
+
 const authServices = {
   signUp,
   signIn,
+  logOut,
   refreshToken,
 };
 export default authServices;
