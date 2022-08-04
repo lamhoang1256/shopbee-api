@@ -7,7 +7,7 @@ const env = {
   isTest: process.env.NODE_ENV === "test",
   isDevelopment: process.env.NODE_ENV === "development",
   app: {
-    port: process.env.APP_PORT || 8080,
+    port: process.env.PORT || 8080,
   },
   database: {
     mongoUrl: process.env.MONGODB_URL || "",
