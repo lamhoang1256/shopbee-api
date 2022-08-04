@@ -25,16 +25,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const env_1 = __importDefault(require("../../configs/env"));
 const user_model_1 = __importDefault(require("../models/user.model"));
 const api_error_1 = require("../utils/api-error");
-const accessKey = process.env.JWT_ACCESS_KEY || "";
 let refreshTokens = [];
 const generateAccessToken = (user) => {
-    const accessToken = jsonwebtoken_1.default.sign(user, accessKey, { expiresIn: "30s" });
+    const accessToken = jsonwebtoken_1.default.sign(user, env_1.default.passport.jwtSecretKey, {
+        expiresIn: env_1.default.passport.expiredAccessToken,
+    });
     return accessToken;
 };
 const generateRefreshToken = (user) => {
-    const refreshToken = jsonwebtoken_1.default.sign(user, accessKey, { expiresIn: "365d" });
+    const refreshToken = jsonwebtoken_1.default.sign(user, env_1.default.passport.jwtSecretKey, {
+        expiresIn: env_1.default.passport.expiredRefreshToken,
+    });
     return refreshToken;
 };
 const signUp = (req) => __awaiter(void 0, void 0, void 0, function* () {
@@ -58,7 +62,7 @@ const signUp = (req) => __awaiter(void 0, void 0, void 0, function* () {
         throw new api_error_1.ApiError(422, "Email đã tồn tại!");
     }
 });
-const signIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const signIn = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield user_model_1.default.findOne({ email: req.body.email });
     if (!user)
         throw new api_error_1.ApiError(422, "Sai địa chỉ email hoặc mật khẩu!");
@@ -76,11 +80,11 @@ const signIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return response;
     }
 });
-const refreshToken = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const refreshToken = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const { refreshToken } = req.body;
     if (!refreshToken)
         throw new api_error_1.ApiError(422, "Bạn chưa xác thực người dùng!");
-    jsonwebtoken_1.default.verify(refreshToken, accessKey, (err, user) => {
+    jsonwebtoken_1.default.verify(refreshToken, env_1.default.passport.jwtSecretKey, (err, user) => {
         if (err)
             throw new api_error_1.ApiError(500, "Tạo mới token thất bại!");
         refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
@@ -100,5 +104,6 @@ const refreshToken = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 const authServices = {
     signUp,
     signIn,
+    refreshToken,
 };
 exports.default = authServices;

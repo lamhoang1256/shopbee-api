@@ -1,21 +1,24 @@
 import bcrypt from "bcrypt";
 import { Request } from "express";
 import jwt from "jsonwebtoken";
+import env from "../../configs/env";
 import { IUserToken } from "../../types/auth";
 import { IUser } from "../../types/user";
 import User from "../models/user.model";
 import { ApiError } from "../utils/api-error";
-
-const accessKey = process.env.JWT_ACCESS_KEY || "";
 let refreshTokens: string[] = [];
 
 const generateAccessToken = (user: IUserToken) => {
-  const accessToken = jwt.sign(user, accessKey, { expiresIn: "30s" });
+  const accessToken = jwt.sign(user, env.passport.jwtSecretKey, {
+    expiresIn: env.passport.expiredAccessToken,
+  });
   return accessToken;
 };
 
 const generateRefreshToken = (user: IUserToken) => {
-  const refreshToken = jwt.sign(user, accessKey, { expiresIn: "365d" });
+  const refreshToken = jwt.sign(user, env.passport.jwtSecretKey, {
+    expiresIn: env.passport.expiredRefreshToken,
+  });
   return refreshToken;
 };
 
@@ -40,7 +43,7 @@ const signUp = async (req: Request) => {
   }
 };
 
-const signIn = async (req: Request, res: Response) => {
+const signIn = async (req: Request) => {
   const user: IUser | null = await User.findOne({ email: req.body.email });
   if (!user) throw new ApiError(422, "Sai địa chỉ email hoặc mật khẩu!");
   const validPassword = await bcrypt.compare(req.body.password, user.password);
@@ -57,10 +60,10 @@ const signIn = async (req: Request, res: Response) => {
   }
 };
 
-const refreshToken = async (req: Request, res: Response) => {
+const refreshToken = async (req: Request) => {
   const { refreshToken } = req.body;
   if (!refreshToken) throw new ApiError(422, "Bạn chưa xác thực người dùng!");
-  jwt.verify(refreshToken, accessKey, (err: any, user: any) => {
+  jwt.verify(refreshToken, env.passport.jwtSecretKey, (err: any, user: any) => {
     if (err) throw new ApiError(500, "Tạo mới token thất bại!");
     refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
     const newAccessToken = generateAccessToken(user);
@@ -80,5 +83,6 @@ const refreshToken = async (req: Request, res: Response) => {
 const authServices = {
   signUp,
   signIn,
+  refreshToken,
 };
 export default authServices;

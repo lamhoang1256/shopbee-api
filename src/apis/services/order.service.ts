@@ -47,7 +47,6 @@ const getAllOrderByAdmin = async () => {
 };
 
 const getAllOrderByUser = async (req: Request) => {
-  console.log("req: ", req.query);
   const { userId, status } = req.query;
   let conditional: any = { user: userId };
   if (status) conditional.status = status;
