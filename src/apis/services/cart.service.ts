@@ -4,7 +4,7 @@ import Cart from "../models/cart.model";
 import Product from "../models/product.model";
 import { ApiError } from "../utils/api-error";
 
-export const addNewProductToCart = async (payload: IPayloadProductCart) => {
+const addNewProductToCart = async (payload: IPayloadProductCart) => {
   const { userId, productId, quantity } = payload;
   const newCart = {
     user: userId,
@@ -17,7 +17,7 @@ export const addNewProductToCart = async (payload: IPayloadProductCart) => {
   return savedCart;
 };
 
-export const updateQuantityProductInCart = async (payload: IPayloadProductCart) => {
+const updateQuantityProductInCart = async (payload: IPayloadProductCart) => {
   const { userId, productId, quantity } = payload;
   const updatedCart = await Cart.findOneAndUpdate(
     {
@@ -33,7 +33,7 @@ export const updateQuantityProductInCart = async (payload: IPayloadProductCart) 
   return updatedCart;
 };
 
-export const addToCart = async (req: Request) => {
+const addToCart = async (req: Request) => {
   const { userId, productId, quantity } = req.body;
   const product = await Product.findById(productId);
   if (!product) throw new ApiError(404, "Không tìm thấy sản phẩm!");
@@ -60,7 +60,7 @@ export const addToCart = async (req: Request) => {
   return response;
 };
 
-export const getAllCart = async (req: Request) => {
+const getAllCart = async (req: Request) => {
   const carts = await Cart.find({ user: req.query.userId })
     .populate({
       path: "product",
@@ -78,7 +78,7 @@ export const getAllCart = async (req: Request) => {
   return response;
 };
 
-export const deleteSingleCart = async (req: Request) => {
+const deleteSingleCart = async (req: Request) => {
   const deletedData = await Cart.deleteMany({
     user: req.body.userId,
     _id: { $in: req.body.cartIds },
@@ -91,7 +91,7 @@ export const deleteSingleCart = async (req: Request) => {
   return response;
 };
 
-export const deleteCarts = async (req: Request) => {
+const deleteCarts = async (req: Request) => {
   const deletedData = await Cart.deleteMany({
     user: req.body.userId,
   });

@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateBanner = exports.deleteBanner = exports.addNewBanner = exports.getSingleBanner = exports.getAllBanner = void 0;
 const banner_model_1 = __importDefault(require("../models/banner.model"));
 const api_error_1 = require("../utils/api-error");
 const getAllBanner = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -23,7 +22,6 @@ const getAllBanner = () => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-exports.getAllBanner = getAllBanner;
 const getSingleBanner = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const banner = yield banner_model_1.default.findById(req.params.id);
     const response = {
@@ -32,7 +30,6 @@ const getSingleBanner = (req) => __awaiter(void 0, void 0, void 0, function* () 
     };
     return response;
 });
-exports.getSingleBanner = getSingleBanner;
 const addNewBanner = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const countBanners = yield banner_model_1.default.find().countDocuments();
     if (countBanners >= 6)
@@ -45,7 +42,6 @@ const addNewBanner = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-exports.addNewBanner = addNewBanner;
 const deleteBanner = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const bannerInDB = yield banner_model_1.default.findByIdAndDelete(req.params.id).lean();
     if (!bannerInDB)
@@ -55,7 +51,6 @@ const deleteBanner = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-exports.deleteBanner = deleteBanner;
 const updateBanner = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const banner = banner_model_1.default.findById(req.params.id);
     if (!banner)
@@ -66,12 +61,11 @@ const updateBanner = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-exports.updateBanner = updateBanner;
 const bannnerServices = {
-    getAllBanner: exports.getAllBanner,
-    getSingleBanner: exports.getSingleBanner,
-    addNewBanner: exports.addNewBanner,
-    updateBanner: exports.updateBanner,
-    deleteBanner: exports.deleteBanner,
+    getAllBanner,
+    getSingleBanner,
+    addNewBanner,
+    updateBanner,
+    deleteBanner,
 };
 exports.default = bannnerServices;

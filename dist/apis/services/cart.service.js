@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteCarts = exports.deleteSingleCart = exports.getAllCart = exports.addToCart = exports.updateQuantityProductInCart = exports.addNewProductToCart = void 0;
 const cart_model_1 = __importDefault(require("../models/cart.model"));
 const product_model_1 = __importDefault(require("../models/product.model"));
 const api_error_1 = require("../utils/api-error");
@@ -28,7 +27,6 @@ const addNewProductToCart = (payload) => __awaiter(void 0, void 0, void 0, funct
     const savedCart = yield new cart_model_1.default(newCart).save();
     return savedCart;
 });
-exports.addNewProductToCart = addNewProductToCart;
 const updateQuantityProductInCart = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId, productId, quantity } = payload;
     const updatedCart = yield cart_model_1.default.findOneAndUpdate({
@@ -41,7 +39,6 @@ const updateQuantityProductInCart = (payload) => __awaiter(void 0, void 0, void 
     });
     return updatedCart;
 });
-exports.updateQuantityProductInCart = updateQuantityProductInCart;
 const addToCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId, productId, quantity } = req.body;
     const product = yield product_model_1.default.findById(productId);
@@ -58,10 +55,10 @@ const addToCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
     });
     const payload = { userId, productId, quantity };
     if (cartInDb) {
-        savedCart = yield (0, exports.updateQuantityProductInCart)(payload);
+        savedCart = yield updateQuantityProductInCart(payload);
     }
     else {
-        savedCart = yield (0, exports.addNewProductToCart)(payload);
+        savedCart = yield addNewProductToCart(payload);
     }
     savedCart ? (savedCart.product = product) : savedCart;
     const response = {
@@ -70,7 +67,6 @@ const addToCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-exports.addToCart = addToCart;
 const getAllCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const carts = yield cart_model_1.default.find({ user: req.query.userId })
         .populate({
@@ -88,7 +84,6 @@ const getAllCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-exports.getAllCart = getAllCart;
 const deleteSingleCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const deletedData = yield cart_model_1.default.deleteMany({
         user: req.body.userId,
@@ -102,7 +97,6 @@ const deleteSingleCart = (req) => __awaiter(void 0, void 0, void 0, function* ()
     };
     return response;
 });
-exports.deleteSingleCart = deleteSingleCart;
 const deleteCarts = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const deletedData = yield cart_model_1.default.deleteMany({
         user: req.body.userId,
@@ -115,11 +109,10 @@ const deleteCarts = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-exports.deleteCarts = deleteCarts;
 const cartServices = {
-    getAllCart: exports.getAllCart,
-    addToCart: exports.addToCart,
-    deleteCarts: exports.deleteCarts,
-    deleteSingleCart: exports.deleteSingleCart,
+    getAllCart,
+    addToCart,
+    deleteCarts,
+    deleteSingleCart,
 };
 exports.default = cartServices;

@@ -11,5 +11,4 @@ const signUp = catchAsync(async (req: Request, res: Response) => {
 const authControllers = {
   signUp,
 };
-
 export default authControllers;

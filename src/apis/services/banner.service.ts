@@ -2,7 +2,7 @@ import { Request } from "express";
 import Banner from "../models/banner.model";
 import { ApiError } from "../utils/api-error";
 
-export const getAllBanner = async () => {
+const getAllBanner = async () => {
   const banners = await Banner.find();
   const response = {
     message: "Lấy tất cả banner thành công!",
@@ -11,7 +11,7 @@ export const getAllBanner = async () => {
   return response;
 };
 
-export const getSingleBanner = async (req: Request) => {
+const getSingleBanner = async (req: Request) => {
   const banner = await Banner.findById(req.params.id);
   const response = {
     message: "Lấy banner thành công!",
@@ -20,7 +20,7 @@ export const getSingleBanner = async (req: Request) => {
   return response;
 };
 
-export const addNewBanner = async (req: Request) => {
+const addNewBanner = async (req: Request) => {
   const countBanners = await Banner.find().countDocuments();
   if (countBanners >= 6) throw new ApiError(500, "Số lượng banner tối đa là 6!");
   const newBanner = new Banner(req.body);
@@ -32,7 +32,7 @@ export const addNewBanner = async (req: Request) => {
   return response;
 };
 
-export const deleteBanner = async (req: Request) => {
+const deleteBanner = async (req: Request) => {
   const bannerInDB = await Banner.findByIdAndDelete(req.params.id).lean();
   if (!bannerInDB) throw new ApiError(400, "Không tìm thấy banner!");
   const response = {
@@ -41,7 +41,7 @@ export const deleteBanner = async (req: Request) => {
   return response;
 };
 
-export const updateBanner = async (req: Request) => {
+const updateBanner = async (req: Request) => {
   const banner = Banner.findById(req.params.id);
   if (!banner) throw new ApiError(404, "Không tìm thấy banner!");
   await banner.updateOne({ $set: req.body });

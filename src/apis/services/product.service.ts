@@ -5,7 +5,7 @@ import { ApiError } from "../utils/api-error";
 const SORT_BY = ["createdAt", "view", "sold", "price"];
 const ORDER = ["desc", "asc"];
 
-export const addNewProduct = async (req: Request) => {
+const addNewProduct = async (req: Request) => {
   const newProduct = new Product(req.body);
   const savedProduct = await newProduct.save();
   const response = {
@@ -15,7 +15,7 @@ export const addNewProduct = async (req: Request) => {
   return response;
 };
 
-export const getSingleProduct = async (req: Request) => {
+const getSingleProduct = async (req: Request) => {
   const product = await Product.findById(req.params.id).populate("category");
   if (!product) throw new ApiError(404, "Không tìm thấy sản phẩm!");
   const response = {
@@ -25,7 +25,7 @@ export const getSingleProduct = async (req: Request) => {
   return response;
 };
 
-export const deleteProduct = async (req: Request) => {
+const deleteProduct = async (req: Request) => {
   const deletedProduct = await Product.findByIdAndDelete(req.params.id);
   if (!deletedProduct) throw new ApiError(404, "Không tìm thấy sản phẩm!");
   const response = {
@@ -35,7 +35,7 @@ export const deleteProduct = async (req: Request) => {
   return response;
 };
 
-export const updateProduct = async (req: Request) => {
+const updateProduct = async (req: Request) => {
   const product = Product.findById(req.params.id);
   if (!product) throw new ApiError(404, "Không tìm thấy sản phẩm!");
   await product.updateOne({ $set: req.body });
@@ -45,7 +45,7 @@ export const updateProduct = async (req: Request) => {
   return response;
 };
 
-export const getAllProduct = async (req: Request) => {
+const getAllProduct = async (req: Request) => {
   let {
     page = 1,
     limit = 12,

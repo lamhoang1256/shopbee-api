@@ -35,5 +35,4 @@ const bannerControllers = {
   updateBanner,
   deleteBanner,
 };
-
 export default bannerControllers;

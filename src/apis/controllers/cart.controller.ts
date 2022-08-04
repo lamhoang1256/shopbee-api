@@ -29,5 +29,4 @@ const bannerControllers = {
   deleteCarts,
   deleteSingleCart,
 };
-
 export default bannerControllers;
