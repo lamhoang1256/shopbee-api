@@ -16,12 +16,12 @@ const category_service_1 = __importDefault(require("../services/category.service
 const catch_async_1 = require("../utils/catch-async");
 const response_1 = require("../utils/response");
 const getAllCategory = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const banners = yield category_service_1.default.getAllCategory();
-    (0, response_1.responseSuccess)(res, banners);
+    const categorys = yield category_service_1.default.getAllCategory();
+    (0, response_1.responseSuccess)(res, categorys);
 }));
 const getSingleCategory = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const banner = yield category_service_1.default.getSingleCategory(req);
-    (0, response_1.responseSuccess)(res, banner);
+    const category = yield category_service_1.default.getSingleCategory(req);
+    (0, response_1.responseSuccess)(res, category);
 }));
 const addNewCategory = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const newCategory = yield category_service_1.default.addNewCategory(req);

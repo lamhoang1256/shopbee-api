@@ -4,13 +4,13 @@ import { catchAsync } from "../utils/catch-async";
 import { responseSuccess } from "../utils/response";
 
 const getAllCategory = catchAsync(async (req: Request, res: Response) => {
-  const banners = await categoryServices.getAllCategory();
-  responseSuccess(res, banners);
+  const categorys = await categoryServices.getAllCategory();
+  responseSuccess(res, categorys);
 });
 
 const getSingleCategory = catchAsync(async (req: Request, res: Response) => {
-  const banner = await categoryServices.getSingleCategory(req);
-  responseSuccess(res, banner);
+  const category = await categoryServices.getSingleCategory(req);
+  responseSuccess(res, category);
 });
 
 const addNewCategory = catchAsync(async (req: Request, res: Response) => {
