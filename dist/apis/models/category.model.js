@@ -1,8 +1,12 @@
 "use strict";
-const mongoose = require('mongoose');
-const categorySchema = new mongoose.Schema({
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = __importDefault(require("mongoose"));
+const categorySchema = new mongoose_1.default.Schema({
     name: String,
     slug: String,
     thumb: String,
 });
-module.exports = mongoose.model('Category', categorySchema);
+exports.default = mongoose_1.default.model("Category", categorySchema);

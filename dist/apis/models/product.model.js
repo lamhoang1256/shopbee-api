@@ -1,10 +1,14 @@
 "use strict";
-const mongoose = require('mongoose');
-const productSchema = new mongoose.Schema({
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = __importDefault(require("mongoose"));
+const productSchema = new mongoose_1.default.Schema({
     name: String,
     image: String,
     description: String,
-    category: { type: mongoose.SchemaTypes.ObjectId, ref: 'Category' },
+    category: { type: mongoose_1.default.SchemaTypes.ObjectId, ref: "Category" },
     price: { type: Number, default: 0 },
     priceSale: { type: Number, default: 0 },
     rating: { type: Number, default: 0 },
@@ -12,4 +16,4 @@ const productSchema = new mongoose.Schema({
     sold: { type: Number, default: 0 },
     view: { type: Number, default: 0 },
 });
-module.exports = mongoose.model('Product', productSchema);
+exports.default = mongoose_1.default.model("Product", productSchema);
