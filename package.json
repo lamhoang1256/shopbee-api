@@ -4,7 +4,7 @@
   "description": "This is api using NodeJS",
   "main": "app.js",
   "scripts": {
-    "start": "node ./dist/app.ts",
+    "start": "node ./dist/app.js",
     "dev": "nodemon ./src/app.ts",
     "lint:fix": "eslint --fix ./*.js",
     "lintfix": "eslint api --fix --cache"
