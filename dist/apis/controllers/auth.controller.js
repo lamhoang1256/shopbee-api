@@ -27,9 +27,14 @@ const refreshToken = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 
     const newUser = yield auth_service_1.default.refreshToken(req);
     (0, response_1.responseSuccess)(res, newUser);
 }));
+const logOut = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const loggedOut = yield auth_service_1.default.logOut(req);
+    (0, response_1.responseSuccess)(res, loggedOut);
+}));
 const authControllers = {
     signUp,
     signIn,
+    logOut,
     refreshToken,
 };
 exports.default = authControllers;

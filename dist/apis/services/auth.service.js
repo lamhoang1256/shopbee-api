@@ -101,9 +101,19 @@ const refreshToken = (req) => __awaiter(void 0, void 0, void 0, function* () {
         return response;
     });
 });
+const logOut = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    if (req.body.accessToken)
+        throw new api_error_1.ApiError(403, "Không tìm thấy token!");
+    refreshTokens = refreshTokens.filter((token) => token !== req.body.refreshToken);
+    const response = {
+        message: "Đăng xuất thành công!",
+    };
+    return response;
+});
 const authServices = {
     signUp,
     signIn,
+    logOut,
     refreshToken,
 };
 exports.default = authServices;
