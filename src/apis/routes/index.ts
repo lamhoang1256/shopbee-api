@@ -6,9 +6,11 @@ import productRoutes from "./v1/product.route";
 import cartRoutes from "./v1/cart.route";
 import orderRoutes from "./v1/order.route";
 import userRoutes from "./v1/user.route";
+import cors from "cors";
 import { responseError } from "../utils/response";
 
 const appRoutes = express();
+appRoutes.use(cors());
 appRoutes.get("/", (req, res) => {
   res.status(200).json("This is ecommerce api");
 });
