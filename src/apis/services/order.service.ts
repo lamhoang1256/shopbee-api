@@ -37,8 +37,13 @@ const createNewOrder = async (req: Request) => {
   return response;
 };
 
-const getAllOrderByAdmin = async () => {
-  const orders = await Order.find({}).sort({ _id: -1 }).populate("user", "id fullname email");
+const getAllOrderByAdmin = async (req: Request) => {
+  const { status } = req.query;
+  let conditional: any = {};
+  if (status) conditional.status = status;
+  const orders = await Order.find(conditional)
+    .sort({ _id: -1 })
+    .populate("user", "id fullname email");
   const response = {
     message: "Lấy tất cả đơn hàng thành công!",
     data: orders,
@@ -50,7 +55,6 @@ const getAllOrderByUser = async (req: Request) => {
   const { userId, status } = req.query;
   let conditional: any = { user: userId };
   if (status) conditional.status = status;
-  console.log("conditional: ", conditional);
   const orders = await Order.find(conditional).sort({
     _id: -1,
   });

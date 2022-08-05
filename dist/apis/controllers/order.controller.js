@@ -20,7 +20,7 @@ const createNewOrder = (0, catch_async_1.catchAsync)((req, res) => __awaiter(voi
     (0, response_1.responseSuccess)(res, newOrder);
 }));
 const getAllOrderByAdmin = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const orders = yield order_service_1.default.getAllOrderByAdmin();
+    const orders = yield order_service_1.default.getAllOrderByAdmin(req);
     (0, response_1.responseSuccess)(res, orders);
 }));
 const getAllOrderByUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {

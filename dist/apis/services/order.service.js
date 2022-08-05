@@ -40,8 +40,14 @@ const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-const getAllOrderByAdmin = () => __awaiter(void 0, void 0, void 0, function* () {
-    const orders = yield order_model_1.default.find({}).sort({ _id: -1 }).populate("user", "id fullname email");
+const getAllOrderByAdmin = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const { status } = req.query;
+    let conditional = {};
+    if (status)
+        conditional.status = status;
+    const orders = yield order_model_1.default.find(conditional)
+        .sort({ _id: -1 })
+        .populate("user", "id fullname email");
     const response = {
         message: "Lấy tất cả đơn hàng thành công!",
         data: orders,
@@ -53,7 +59,6 @@ const getAllOrderByUser = (req) => __awaiter(void 0, void 0, void 0, function* (
     let conditional = { user: userId };
     if (status)
         conditional.status = status;
-    console.log("conditional: ", conditional);
     const orders = yield order_model_1.default.find(conditional).sort({
         _id: -1,
     });

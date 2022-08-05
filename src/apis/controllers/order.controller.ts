@@ -9,7 +9,7 @@ const createNewOrder = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllOrderByAdmin = catchAsync(async (req: Request, res: Response) => {
-  const orders = await orderServices.getAllOrderByAdmin();
+  const orders = await orderServices.getAllOrderByAdmin(req);
   responseSuccess(res, orders);
 });
 
