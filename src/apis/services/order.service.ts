@@ -42,7 +42,9 @@ const getAllOrderByAdmin = async (req: Request) => {
   let conditional: any = {};
   if (status) conditional.status = status;
   const orders = await Order.find(conditional)
-    .sort({ _id: -1 })
+    .sort({
+      createdAt: -1,
+    })
     .populate("user", "id fullname email");
   const response = {
     message: "Lấy tất cả đơn hàng thành công!",

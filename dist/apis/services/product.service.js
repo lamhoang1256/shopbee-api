@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const product_model_1 = __importDefault(require("../models/product.model"));
 const api_error_1 = require("../utils/api-error");
-const SORT_BY = ["createdAt", "view", "sold", "price"];
+const SORT_BY = ["createdAt", "view", "sold", "priceSale"];
 const ORDER = ["desc", "asc"];
 const addNewProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const newProduct = new product_model_1.default(req.body);
@@ -56,7 +56,7 @@ const updateProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getAllProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    let { page = 1, limit = 12, category, sort_by, order, rating, price_max, price_min, name, } = req.query;
+    let { page = 1, limit = 12, category, sort_by, order, rating, Sale_max, Sale_min, name, } = req.query;
     page = Number(page);
     limit = Number(limit);
     let condition = {};
@@ -66,14 +66,14 @@ const getAllProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
     if (rating) {
         condition.rating = { $gte: rating };
     }
-    if (price_max) {
-        condition.priceSale = {
-            $lte: price_max,
+    if (Sale_max) {
+        condition.SaleSale = {
+            $lte: Sale_max,
         };
     }
-    if (price_min) {
-        condition.priceSale = condition.priceSale
-            ? Object.assign(Object.assign({}, condition.priceSale), { $gte: price_min }) : { $gte: price_min };
+    if (Sale_min) {
+        condition.SaleSale = condition.SaleSale
+            ? Object.assign(Object.assign({}, condition.SaleSale), { $gte: Sale_min }) : { $gte: Sale_min };
     }
     if (!ORDER.includes(order)) {
         order = ORDER[0];

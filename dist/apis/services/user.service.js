@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const user_model_1 = __importDefault(require("../models/user.model"));
 const order_model_1 = __importDefault(require("../models/order.model"));
+const user_model_1 = __importDefault(require("../models/user.model"));
 const api_error_1 = require("../utils/api-error");
 const userUpdateProfile = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedUser = yield user_model_1.default.findByIdAndUpdate(req.body._id, req.body, { new: true })
@@ -65,6 +65,9 @@ const userGetAll = (req) => __awaiter(void 0, void 0, void 0, function* () {
             .select("-password")
             .skip(page * limit - limit)
             .limit(limit)
+            .sort({
+            createdAt: -1,
+        })
             .select({ __v: 0, description: 0 })
             .lean(),
         user_model_1.default.find(condition).countDocuments().lean(),

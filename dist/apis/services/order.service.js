@@ -46,7 +46,9 @@ const getAllOrderByAdmin = (req) => __awaiter(void 0, void 0, void 0, function* 
     if (status)
         conditional.status = status;
     const orders = yield order_model_1.default.find(conditional)
-        .sort({ _id: -1 })
+        .sort({
+        createdAt: -1,
+    })
         .populate("user", "id fullname email");
     const response = {
         message: "Lấy tất cả đơn hàng thành công!",

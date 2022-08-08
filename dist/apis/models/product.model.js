@@ -15,5 +15,7 @@ const productSchema = new mongoose_1.default.Schema({
     quantity: { type: Number, default: 0 },
     sold: { type: Number, default: 0 },
     view: { type: Number, default: 0 },
+}, {
+    timestamps: true,
 });
 exports.default = mongoose_1.default.model("Product", productSchema);

@@ -2,7 +2,7 @@ import { Request } from "express";
 import Product from "../models/product.model";
 import { ApiError } from "../utils/api-error";
 
-const SORT_BY = ["createdAt", "view", "sold", "price"];
+const SORT_BY = ["createdAt", "view", "sold", "priceSale"];
 const ORDER = ["desc", "asc"];
 
 const addNewProduct = async (req: Request) => {
@@ -53,8 +53,8 @@ const getAllProduct = async (req: Request) => {
     sort_by,
     order,
     rating,
-    price_max,
-    price_min,
+    Sale_max,
+    Sale_min,
     name,
   } = req.query;
   page = Number(page);
@@ -66,15 +66,15 @@ const getAllProduct = async (req: Request) => {
   if (rating) {
     condition.rating = { $gte: rating };
   }
-  if (price_max) {
-    condition.priceSale = {
-      $lte: price_max,
+  if (Sale_max) {
+    condition.SaleSale = {
+      $lte: Sale_max,
     };
   }
-  if (price_min) {
-    condition.priceSale = condition.priceSale
-      ? { ...condition.priceSale, $gte: price_min }
-      : { $gte: price_min };
+  if (Sale_min) {
+    condition.SaleSale = condition.SaleSale
+      ? { ...condition.SaleSale, $gte: Sale_min }
+      : { $gte: Sale_min };
   }
   if (!ORDER.includes(order as string)) {
     order = ORDER[0];

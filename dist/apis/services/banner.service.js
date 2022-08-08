@@ -15,7 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const banner_model_1 = __importDefault(require("../models/banner.model"));
 const api_error_1 = require("../utils/api-error");
 const getAllBanner = () => __awaiter(void 0, void 0, void 0, function* () {
-    const banners = yield banner_model_1.default.find();
+    const banners = yield banner_model_1.default.find().sort({
+        createdAt: -1,
+    });
     const response = {
         message: "Lấy tất cả banner thành công!",
         data: banners,

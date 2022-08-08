@@ -6,5 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const bannerSchema = new mongoose_1.default.Schema({
     bannerUrl: String,
+}, {
+    timestamps: true,
 });
 exports.default = mongoose_1.default.model("Banner", bannerSchema);

@@ -1,9 +1,8 @@
 import bcrypt from "bcrypt";
 import { Request } from "express";
-import User from "../models/user.model";
 import Order from "../models/order.model";
+import User from "../models/user.model";
 import { ApiError } from "../utils/api-error";
-import { responseSuccess } from "../utils/response";
 
 const userUpdateProfile = async (req: Request) => {
   const updatedUser = await User.findByIdAndUpdate(req.body._id, req.body, { new: true })
@@ -52,6 +51,9 @@ const userGetAll = async (req: Request) => {
       .select("-password")
       .skip(page * limit - limit)
       .limit(limit)
+      .sort({
+        createdAt: -1,
+      })
       .select({ __v: 0, description: 0 })
       .lean(),
     User.find(condition).countDocuments().lean(),
