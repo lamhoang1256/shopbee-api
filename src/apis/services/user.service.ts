@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import { Request } from "express";
 import User from "../models/user.model";
 import { ApiError } from "../utils/api-error";
+import { responseSuccess } from "../utils/response";
 
 const userUpdateProfile = async (req: Request) => {
   const updatedUser = await User.findByIdAndUpdate(req.body._id, req.body, { new: true })
@@ -34,5 +35,68 @@ const userChangePassword = async (req: Request) => {
   return response;
 };
 
-const userServices = { userUpdateProfile, userChangePassword };
+const userGetAll = async (req: Request) => {
+  let { page = 1, limit = 12, email } = req.query;
+  page = Number(page);
+  limit = Number(limit);
+  let condition: any = {};
+  if (email) {
+    condition.email = {
+      $regex: email,
+      $options: "i",
+    };
+  }
+  const [users, totalUsers] = await Promise.all([
+    User.find(condition)
+      .select("-password")
+      .skip(page * limit - limit)
+      .limit(limit)
+      .select({ __v: 0, description: 0 })
+      .lean(),
+    User.find(condition).countDocuments().lean(),
+  ]);
+  if (!users) throw new ApiError(404, "Không tìm thấy người dùng!");
+  const pageCount = Math.ceil(totalUsers / limit) || 1;
+  const pagination = {
+    page,
+    limit,
+    pageCount,
+  };
+  const response = {
+    message: "Lấy tất cả người dùng thành công!",
+    data: {
+      users,
+      pagination,
+    },
+  };
+  return response;
+};
+
+const userGetSingle = async (req: Request) => {
+  const user = await User.findOne({ _id: req.params.id }).select("-password");
+  if (!user) throw new ApiError(404, "Không tìm thấy người dùng!");
+  const response = {
+    message: "Lấy thông tin người dùng thành công!",
+    data: user,
+  };
+  return response;
+};
+
+const userAddNew = async (req: Request) => {
+  const newUser = await User.create(req.body);
+  if (!newUser) throw new ApiError(404, "Không tìm thấy người dùng!");
+  const response = {
+    message: "Thêm người dùng mới thành công!",
+    data: newUser,
+  };
+  return response;
+};
+
+const userServices = {
+  userUpdateProfile,
+  userGetSingle,
+  userGetAll,
+  userAddNew,
+  userChangePassword,
+};
 export default userServices;

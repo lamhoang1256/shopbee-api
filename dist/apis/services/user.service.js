@@ -48,5 +48,68 @@ const userChangePassword = (req) => __awaiter(void 0, void 0, void 0, function* 
     };
     return response;
 });
-const userServices = { userUpdateProfile, userChangePassword };
+const userGetAll = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    let { page = 1, limit = 12, email } = req.query;
+    page = Number(page);
+    limit = Number(limit);
+    let condition = {};
+    if (email) {
+        condition.email = {
+            $regex: email,
+            $options: "i",
+        };
+    }
+    const [users, totalUsers] = yield Promise.all([
+        user_model_1.default.find(condition)
+            .select("-password")
+            .skip(page * limit - limit)
+            .limit(limit)
+            .select({ __v: 0, description: 0 })
+            .lean(),
+        user_model_1.default.find(condition).countDocuments().lean(),
+    ]);
+    if (!users)
+        throw new api_error_1.ApiError(404, "Không tìm thấy người dùng!");
+    const pageCount = Math.ceil(totalUsers / limit) || 1;
+    const pagination = {
+        page,
+        limit,
+        pageCount,
+    };
+    const response = {
+        message: "Lấy tất cả người dùng thành công!",
+        data: {
+            users,
+            pagination,
+        },
+    };
+    return response;
+});
+const userGetSingle = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield user_model_1.default.findOne({ _id: req.params.id }).select("-password");
+    if (!user)
+        throw new api_error_1.ApiError(404, "Không tìm thấy người dùng!");
+    const response = {
+        message: "Lấy thông tin người dùng thành công!",
+        data: user,
+    };
+    return response;
+});
+const userAddNew = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const newUser = yield user_model_1.default.create(req.body);
+    if (!newUser)
+        throw new api_error_1.ApiError(404, "Không tìm thấy người dùng!");
+    const response = {
+        message: "Thêm người dùng mới thành công!",
+        data: newUser,
+    };
+    return response;
+});
+const userServices = {
+    userUpdateProfile,
+    userGetSingle,
+    userGetAll,
+    userAddNew,
+    userChangePassword,
+};
 exports.default = userServices;
