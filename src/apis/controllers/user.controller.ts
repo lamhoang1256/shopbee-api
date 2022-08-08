@@ -28,9 +28,15 @@ const userAddNew = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, updatedUser);
 });
 
+const deleteUser = catchAsync(async (req: Request, res: Response) => {
+  const deletedUser = await userServices.deleteUser(req);
+  responseSuccess(res, deletedUser);
+});
+
 const userControllers = {
   userGetAll,
   userAddNew,
+  deleteUser,
   userUpdateProfile,
   userChangePassword,
   userGetSingle,

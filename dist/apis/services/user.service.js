@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const user_model_1 = __importDefault(require("../models/user.model"));
+const order_model_1 = __importDefault(require("../models/order.model"));
 const api_error_1 = require("../utils/api-error");
 const userUpdateProfile = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedUser = yield user_model_1.default.findByIdAndUpdate(req.body._id, req.body, { new: true })
@@ -105,11 +106,27 @@ const userAddNew = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
+const deleteUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const deletedUser = yield user_model_1.default.deleteOne({
+        _id: { $in: req.params.id },
+    });
+    if (!deletedUser)
+        throw new api_error_1.ApiError(404, "Không tìm thấy người dùng!");
+    const deletedOrderUser = yield order_model_1.default.deleteMany({
+        user: { $in: req.params.id },
+    });
+    const response = {
+        message: "Xóa người dùng thành công!",
+        data: deletedUser,
+    };
+    return response;
+});
 const userServices = {
     userUpdateProfile,
     userGetSingle,
     userGetAll,
     userAddNew,
     userChangePassword,
+    deleteUser,
 };
 exports.default = userServices;

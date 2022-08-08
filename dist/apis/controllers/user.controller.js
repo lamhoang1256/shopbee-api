@@ -35,9 +35,14 @@ const userAddNew = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0,
     const updatedUser = yield user_service_1.default.userAddNew(req);
     (0, response_1.responseSuccess)(res, updatedUser);
 }));
+const deleteUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const deletedUser = yield user_service_1.default.deleteUser(req);
+    (0, response_1.responseSuccess)(res, deletedUser);
+}));
 const userControllers = {
     userGetAll,
     userAddNew,
+    deleteUser,
     userUpdateProfile,
     userChangePassword,
     userGetSingle,

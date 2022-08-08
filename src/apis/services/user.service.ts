@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import { Request } from "express";
 import User from "../models/user.model";
+import Order from "../models/order.model";
 import { ApiError } from "../utils/api-error";
 import { responseSuccess } from "../utils/response";
 
@@ -92,11 +93,27 @@ const userAddNew = async (req: Request) => {
   return response;
 };
 
+const deleteUser = async (req: Request) => {
+  const deletedUser = await User.deleteOne({
+    _id: { $in: req.params.id },
+  });
+  if (!deletedUser) throw new ApiError(404, "Không tìm thấy người dùng!");
+  const deletedOrderUser = await Order.deleteMany({
+    user: { $in: req.params.id },
+  });
+  const response = {
+    message: "Xóa người dùng thành công!",
+    data: deletedUser,
+  };
+  return response;
+};
+
 const userServices = {
   userUpdateProfile,
   userGetSingle,
   userGetAll,
   userAddNew,
   userChangePassword,
+  deleteUser,
 };
 export default userServices;
