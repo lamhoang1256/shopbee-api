@@ -1,41 +1,49 @@
 import bcrypt from "bcrypt";
-import { Request } from "express";
+import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import env from "../../configs/env";
-import { IUserToken } from "../../@types/auth";
 import { IUser } from "../../@types/user";
+import env from "../../configs/env";
 import User from "../models/user.model";
+import Token from "../models/token.model";
 import { ApiError } from "../utils/api-error";
 let refreshTokens: string[] = [];
 
-const generateAccessToken = (user: IUser) => {
-  const accessToken = jwt.sign(user, env.passport.jwtSecretKey, {
-    expiresIn: env.passport.expiredAccessToken,
-  });
+const generateAccessToken = (user: any) => {
+  const accessToken = jwt.sign(
+    { _id: user._id, email: user.email, isAdmin: user.isAdmin },
+    env.passport.jwtSecretKey,
+    {
+      expiresIn: env.passport.expiredAccessToken,
+    },
+  );
   return accessToken;
 };
 
-const generateRefreshToken = (user: IUserToken) => {
-  const refreshToken = jwt.sign(user, env.passport.jwtSecretKey, {
-    expiresIn: env.passport.expiredRefreshToken,
-  });
+const generateRefreshToken = (user: any) => {
+  const refreshToken = jwt.sign(
+    { _id: user._id, email: user.email, isAdmin: user.isAdmin },
+    env.passport.jwtSecretKey,
+    {
+      expiresIn: env.passport.expiredRefreshToken,
+    },
+  );
   return refreshToken;
 };
 
 const signUp = async (req: Request) => {
-  const { email, password } = req.body;
-  const userInDB = await User.findOne({ email }).exec();
+  const userInDB = await User.findOne({ email: req.body.email }).exec();
   if (!userInDB) {
     const salt = await bcrypt.genSalt(10);
-    const hashed = await bcrypt.hash(password, salt);
+    const hashed = await bcrypt.hash(req.body.password, salt);
     const newUser = new User({
-      email,
+      email: req.body.email,
       password: hashed,
     });
-    const savedUser = await newUser.save();
+    const savedUser = (await newUser.save()).toObject();
+    const { password, ...user } = savedUser;
     const response = {
       message: "Đăng ký thành công",
-      data: savedUser,
+      data: user,
     };
     return response;
   } else {
@@ -51,6 +59,9 @@ const signIn = async (req: Request) => {
   if (user && validPassword) {
     const accessToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);
+    const refreshTokenDB = await Token.create({
+      refreshToken,
+    });
     const { password, ...others } = user;
     const response = {
       message: "Đăng nhập thành công!",
@@ -60,24 +71,29 @@ const signIn = async (req: Request) => {
   }
 };
 
-const refreshToken = async (req: Request) => {
-  const { refreshToken } = req.body;
-  if (!refreshToken) throw new ApiError(422, "Bạn chưa xác thực người dùng!");
-  jwt.verify(refreshToken, env.passport.jwtSecretKey, (err: any, user: any) => {
-    if (err) throw new ApiError(500, "Tạo mới token thất bại!");
-    refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
-    const newAccessToken = generateAccessToken(user);
-    const newRefreshToken = generateRefreshToken(user);
-    refreshTokens.push(newRefreshToken);
-    const response = {
-      message: "Tạo mới access token thành công!",
-      data: {
-        accessToken: newAccessToken,
-        refreshToken: newRefreshToken,
-      },
-    };
-    return response;
+const requestRefreshToken = async (req: Request) => {
+  const refreshToken = req.query.refreshToken as string;
+  if (!refreshToken) throw new ApiError(401, "Bạn cần đăng nhập lại!");
+  let newAccessToken;
+  let newRefreshToken;
+  await jwt.verify(refreshToken, env.passport.jwtSecretKey, async (err: any, user: any) => {
+    if (err) throw new ApiError(401, "Bạn cần đăng nhập lại!");
+    const deleteRefreshOld = await Token.findOneAndDelete({ refreshToken: refreshToken });
+    if (!deleteRefreshOld) throw new ApiError(401, "Bạn cần đăng nhập lại!");
+    newAccessToken = generateAccessToken(user);
+    newRefreshToken = generateRefreshToken(user);
+    const refreshTokenDB = await Token.create({
+      refreshToken: newRefreshToken,
+    });
   });
+  const response = {
+    message: "Tạo mới access token thành công!",
+    data: {
+      accessToken: newAccessToken,
+      refreshToken: newRefreshToken,
+    },
+  };
+  return response;
 };
 
 const logOut = async (req: Request) => {
@@ -93,6 +109,6 @@ const authServices = {
   signUp,
   signIn,
   logOut,
-  refreshToken,
+  requestRefreshToken,
 };
 export default authServices;

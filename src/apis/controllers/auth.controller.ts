@@ -13,9 +13,9 @@ const signIn = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, newUser);
 });
 
-const refreshToken = catchAsync(async (req: Request, res: Response) => {
-  const newUser = await authServices.refreshToken(req);
-  responseSuccess(res, newUser);
+const requestRefreshToken = catchAsync(async (req: Request, res: Response) => {
+  const newRefreshToken = await authServices.requestRefreshToken(req);
+  responseSuccess(res, newRefreshToken);
 });
 
 const logOut = catchAsync(async (req: Request, res: Response) => {
@@ -27,6 +27,6 @@ const authControllers = {
   signUp,
   signIn,
   logOut,
-  refreshToken,
+  requestRefreshToken,
 };
 export default authControllers;
