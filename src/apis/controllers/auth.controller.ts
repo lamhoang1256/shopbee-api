@@ -9,7 +9,7 @@ const signUp = catchAsync(async (req: Request, res: Response) => {
 });
 
 const signIn = catchAsync(async (req: Request, res: Response) => {
-  const newUser = await authServices.signUp(req);
+  const newUser = await authServices.signIn(req);
   responseSuccess(res, newUser);
 });
 

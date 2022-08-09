@@ -2,13 +2,13 @@ import bcrypt from "bcrypt";
 import { Request } from "express";
 import jwt from "jsonwebtoken";
 import env from "../../configs/env";
-import { IUserToken } from "../../types/auth";
-import { IUser } from "../../types/user";
+import { IUserToken } from "../../@types/auth";
+import { IUser } from "../../@types/user";
 import User from "../models/user.model";
 import { ApiError } from "../utils/api-error";
 let refreshTokens: string[] = [];
 
-const generateAccessToken = (user: IUserToken) => {
+const generateAccessToken = (user: IUser) => {
   const accessToken = jwt.sign(user, env.passport.jwtSecretKey, {
     expiresIn: env.passport.expiredAccessToken,
   });
@@ -44,7 +44,7 @@ const signUp = async (req: Request) => {
 };
 
 const signIn = async (req: Request) => {
-  const user: IUser | null = await User.findOne({ email: req.body.email });
+  const user: IUser | null = await User.findOne({ email: req.body.email }).lean();
   if (!user) throw new ApiError(422, "Sai địa chỉ email hoặc mật khẩu!");
   const validPassword = await bcrypt.compare(req.body.password, user.password);
   if (!validPassword) throw new ApiError(422, "Sai địa chỉ email hoặc mật khẩu!");

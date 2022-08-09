@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { IPayloadProductCart } from "../../types/cart";
+import { IPayloadProductCart } from "../../@types/cart";
 import Cart from "../models/cart.model";
 import Product from "../models/product.model";
 import { ApiError } from "../utils/api-error";
