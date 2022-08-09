@@ -1,11 +1,12 @@
 import { Router } from "express";
 import productControllers from "../controllers/product.controller";
+import tokenMiddleware from "../middlewares/tokenMiddleware";
 const productRoutes = Router();
 
-productRoutes.post("/", productControllers.addNewProduct);
 productRoutes.get("/", productControllers.getAllProduct);
 productRoutes.get("/:id", productControllers.getSingleProduct);
-productRoutes.delete("/:id", productControllers.deleteProduct);
-productRoutes.put("/:id", productControllers.updateProduct);
+productRoutes.post("/", tokenMiddleware.verifyTokenAndAdmin, productControllers.addNewProduct);
+productRoutes.delete("/:id", tokenMiddleware.verifyTokenAndAdmin, productControllers.deleteProduct);
+productRoutes.put("/:id", tokenMiddleware.verifyTokenAndAdmin, productControllers.updateProduct);
 
 export default productRoutes;

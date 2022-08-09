@@ -5,6 +5,18 @@ import User from "../models/user.model";
 import { ApiError } from "../utils/api-error";
 
 const updateProfileUser = async (req: Request) => {
+  const updatedProfile = await User.findByIdAndUpdate(req.body._id, req.body, { new: true })
+    .select({ password: 0, __v: 0 })
+    .lean();
+  if (!updatedProfile) throw new ApiError(404, "Không tìm thấy tài khoản người dùng!");
+  const response = {
+    message: "Cập nhật thông tin thành công!",
+    data: updatedProfile,
+  };
+  return response;
+};
+
+const updateUser = async (req: Request) => {
   const updatedUser = await User.findByIdAndUpdate(req.body._id, req.body, { new: true })
     .select({ password: 0, __v: 0 })
     .lean();
@@ -117,5 +129,6 @@ const userServices = {
   addNewUser,
   changePasswordUser,
   deleteUser,
+  updateUser,
 };
 export default userServices;

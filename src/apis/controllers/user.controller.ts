@@ -18,6 +18,11 @@ const updateProfileUser = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, updatedUser);
 });
 
+const updateUser = catchAsync(async (req: Request, res: Response) => {
+  const updatedUser = await userServices.updateUser(req);
+  responseSuccess(res, updatedUser);
+});
+
 const changePasswordUser = catchAsync(async (req: Request, res: Response) => {
   const updatedUser = await userServices.changePasswordUser(req);
   responseSuccess(res, updatedUser);
@@ -40,5 +45,6 @@ const userControllers = {
   updateProfileUser,
   changePasswordUser,
   getSingleUser,
+  updateUser,
 };
 export default userControllers;

@@ -13,7 +13,7 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
       req.user = decodedAccessToken;
       next();
     } catch (err) {
-      responseError(new ApiError(403, "Token không hợp lệ!"), res);
+      responseError(new ApiError(401, "Token không hợp lệ!"), res);
     }
   } else {
     responseError(new ApiError(401, "Bạn chưa đăng nhập!"), res);
@@ -25,7 +25,7 @@ const verifyTokenAndAdmin = (req: Request, res: Response, next: NextFunction) =>
     if (req.user.isAdmin === true) {
       next();
     } else {
-      return res.status(401).json("Bạn cần đăng nhập");
+      return res.status(403).json("Bạn không đủ quyền truy cập!");
     }
   });
 };

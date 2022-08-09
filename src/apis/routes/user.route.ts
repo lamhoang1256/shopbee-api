@@ -5,9 +5,10 @@ const userRoutes = Router();
 
 userRoutes.get("/", userControllers.getAllUser);
 userRoutes.get("/:id", userControllers.getSingleUser);
-userRoutes.post("/", userControllers.addNewUser);
-userRoutes.delete("/:id", userControllers.deleteUser);
-userRoutes.put("/", tokenMiddleware.verifyToken, userControllers.updateProfileUser);
+userRoutes.post("/", tokenMiddleware.verifyTokenAndAdmin, userControllers.addNewUser);
+userRoutes.delete("/:id", tokenMiddleware.verifyTokenAndAdmin, userControllers.deleteUser);
+userRoutes.put("/", tokenMiddleware.verifyTokenAndAdmin, userControllers.updateUser);
+userRoutes.put("/profile", tokenMiddleware.verifyToken, userControllers.updateProfileUser);
 userRoutes.put("/change-password", userControllers.changePasswordUser);
 
 export default userRoutes;
