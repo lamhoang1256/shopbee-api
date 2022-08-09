@@ -15,24 +15,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const user_service_1 = __importDefault(require("../services/user.service"));
 const catch_async_1 = require("../utils/catch-async");
 const response_1 = require("../utils/response");
-const userGetSingle = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const users = yield user_service_1.default.userGetSingle(req);
+const getSingleUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const users = yield user_service_1.default.getSingleUser(req);
     (0, response_1.responseSuccess)(res, users);
 }));
-const userGetAll = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const users = yield user_service_1.default.userGetAll(req);
+const getAllUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const users = yield user_service_1.default.getAllUser(req);
     (0, response_1.responseSuccess)(res, users);
 }));
-const userUpdateProfile = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const updatedUser = yield user_service_1.default.userUpdateProfile(req);
+const updateProfileUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedUser = yield user_service_1.default.updateProfileUser(req);
     (0, response_1.responseSuccess)(res, updatedUser);
 }));
-const userChangePassword = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const updatedUser = yield user_service_1.default.userChangePassword(req);
+const changePasswordUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedUser = yield user_service_1.default.changePasswordUser(req);
     (0, response_1.responseSuccess)(res, updatedUser);
 }));
-const userAddNew = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const updatedUser = yield user_service_1.default.userAddNew(req);
+const addNewUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedUser = yield user_service_1.default.addNewUser(req);
     (0, response_1.responseSuccess)(res, updatedUser);
 }));
 const deleteUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -40,11 +40,11 @@ const deleteUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0,
     (0, response_1.responseSuccess)(res, deletedUser);
 }));
 const userControllers = {
-    userGetAll,
-    userAddNew,
+    getAllUser,
+    addNewUser,
     deleteUser,
-    userUpdateProfile,
-    userChangePassword,
-    userGetSingle,
+    updateProfileUser,
+    changePasswordUser,
+    getSingleUser,
 };
 exports.default = userControllers;

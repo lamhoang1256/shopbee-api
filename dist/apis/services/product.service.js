@@ -56,7 +56,7 @@ const updateProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getAllProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    let { page = 1, limit = 12, category, sort_by, order, rating, Sale_max, Sale_min, name, } = req.query;
+    let { page = 1, limit = 30, category, sort_by, order, rating, Sale_max, Sale_min, name, } = req.query;
     page = Number(page);
     limit = Number(limit);
     let condition = {};

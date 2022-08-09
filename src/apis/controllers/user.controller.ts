@@ -3,28 +3,28 @@ import userServices from "../services/user.service";
 import { catchAsync } from "../utils/catch-async";
 import { responseSuccess } from "../utils/response";
 
-const userGetSingle = catchAsync(async (req: Request, res: Response) => {
-  const users = await userServices.userGetSingle(req);
+const getSingleUser = catchAsync(async (req: Request, res: Response) => {
+  const users = await userServices.getSingleUser(req);
   responseSuccess(res, users);
 });
 
-const userGetAll = catchAsync(async (req: Request, res: Response) => {
-  const users = await userServices.userGetAll(req);
+const getAllUser = catchAsync(async (req: Request, res: Response) => {
+  const users = await userServices.getAllUser(req);
   responseSuccess(res, users);
 });
 
-const userUpdateProfile = catchAsync(async (req: Request, res: Response) => {
-  const updatedUser = await userServices.userUpdateProfile(req);
+const updateProfileUser = catchAsync(async (req: Request, res: Response) => {
+  const updatedUser = await userServices.updateProfileUser(req);
   responseSuccess(res, updatedUser);
 });
 
-const userChangePassword = catchAsync(async (req: Request, res: Response) => {
-  const updatedUser = await userServices.userChangePassword(req);
+const changePasswordUser = catchAsync(async (req: Request, res: Response) => {
+  const updatedUser = await userServices.changePasswordUser(req);
   responseSuccess(res, updatedUser);
 });
 
-const userAddNew = catchAsync(async (req: Request, res: Response) => {
-  const updatedUser = await userServices.userAddNew(req);
+const addNewUser = catchAsync(async (req: Request, res: Response) => {
+  const updatedUser = await userServices.addNewUser(req);
   responseSuccess(res, updatedUser);
 });
 
@@ -34,11 +34,11 @@ const deleteUser = catchAsync(async (req: Request, res: Response) => {
 });
 
 const userControllers = {
-  userGetAll,
-  userAddNew,
+  getAllUser,
+  addNewUser,
   deleteUser,
-  userUpdateProfile,
-  userChangePassword,
-  userGetSingle,
+  updateProfileUser,
+  changePasswordUser,
+  getSingleUser,
 };
 export default userControllers;

@@ -13,7 +13,9 @@ const addNewCategory = async (req: Request) => {
 };
 
 const getAllCategory = async () => {
-  const categories = await Category.find();
+  const categories = await Category.find().sort({
+    createdAt: -1,
+  });
   const response = {
     message: "Lấy tất cả danh mục thành công!",
     data: categories,

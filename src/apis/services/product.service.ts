@@ -48,7 +48,7 @@ const updateProduct = async (req: Request) => {
 const getAllProduct = async (req: Request) => {
   let {
     page = 1,
-    limit = 12,
+    limit = 30,
     category,
     sort_by,
     order,

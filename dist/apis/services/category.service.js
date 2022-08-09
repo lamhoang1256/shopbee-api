@@ -24,7 +24,9 @@ const addNewCategory = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getAllCategory = () => __awaiter(void 0, void 0, void 0, function* () {
-    const categories = yield category_model_1.default.find();
+    const categories = yield category_model_1.default.find().sort({
+        createdAt: -1,
+    });
     const response = {
         message: "Lấy tất cả danh mục thành công!",
         data: categories,

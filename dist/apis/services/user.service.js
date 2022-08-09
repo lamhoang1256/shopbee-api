@@ -16,7 +16,7 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const order_model_1 = __importDefault(require("../models/order.model"));
 const user_model_1 = __importDefault(require("../models/user.model"));
 const api_error_1 = require("../utils/api-error");
-const userUpdateProfile = (req) => __awaiter(void 0, void 0, void 0, function* () {
+const updateProfileUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedUser = yield user_model_1.default.findByIdAndUpdate(req.body._id, req.body, { new: true })
         .select({ password: 0, __v: 0 })
         .lean();
@@ -28,7 +28,7 @@ const userUpdateProfile = (req) => __awaiter(void 0, void 0, void 0, function* (
     };
     return response;
 });
-const userChangePassword = (req) => __awaiter(void 0, void 0, void 0, function* () {
+const changePasswordUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const { _id, currentPassword, newPassword } = req.body;
     const userDB = yield user_model_1.default.findById(_id);
     if (!userDB)
@@ -49,7 +49,7 @@ const userChangePassword = (req) => __awaiter(void 0, void 0, void 0, function* 
     };
     return response;
 });
-const userGetAll = (req) => __awaiter(void 0, void 0, void 0, function* () {
+const getAllUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     let { page = 1, limit = 12, email } = req.query;
     page = Number(page);
     limit = Number(limit);
@@ -89,7 +89,7 @@ const userGetAll = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-const userGetSingle = (req) => __awaiter(void 0, void 0, void 0, function* () {
+const getSingleUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield user_model_1.default.findOne({ _id: req.params.id }).select("-password");
     if (!user)
         throw new api_error_1.ApiError(404, "Không tìm thấy người dùng!");
@@ -99,7 +99,7 @@ const userGetSingle = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-const userAddNew = (req) => __awaiter(void 0, void 0, void 0, function* () {
+const addNewUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const newUser = yield user_model_1.default.create(req.body);
     if (!newUser)
         throw new api_error_1.ApiError(404, "Không tìm thấy người dùng!");
@@ -125,11 +125,11 @@ const deleteUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const userServices = {
-    userUpdateProfile,
-    userGetSingle,
-    userGetAll,
-    userAddNew,
-    userChangePassword,
+    updateProfileUser,
+    getSingleUser,
+    getAllUser,
+    addNewUser,
+    changePasswordUser,
     deleteUser,
 };
 exports.default = userServices;

@@ -1,11 +1,11 @@
 import express, { NextFunction, Request, Response } from "express";
-import authRoutes from "./v1/auth.route";
-import bannerRoutes from "./v1/banner.route";
-import categoryRoutes from "./v1/category.route";
-import productRoutes from "./v1/product.route";
-import cartRoutes from "./v1/cart.route";
-import orderRoutes from "./v1/order.route";
-import userRoutes from "./v1/user.route";
+import authRoutes from "./auth.route";
+import bannerRoutes from "./banner.route";
+import categoryRoutes from "./category.route";
+import productRoutes from "./product.route";
+import cartRoutes from "./cart.route";
+import orderRoutes from "./order.route";
+import userRoutes from "./user.route";
 import { responseError } from "../utils/response";
 
 const appRoutes = express();

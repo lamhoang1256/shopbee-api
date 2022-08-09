@@ -4,7 +4,7 @@ import Order from "../models/order.model";
 import User from "../models/user.model";
 import { ApiError } from "../utils/api-error";
 
-const userUpdateProfile = async (req: Request) => {
+const updateProfileUser = async (req: Request) => {
   const updatedUser = await User.findByIdAndUpdate(req.body._id, req.body, { new: true })
     .select({ password: 0, __v: 0 })
     .lean();
@@ -16,7 +16,7 @@ const userUpdateProfile = async (req: Request) => {
   return response;
 };
 
-const userChangePassword = async (req: Request) => {
+const changePasswordUser = async (req: Request) => {
   const { _id, currentPassword, newPassword } = req.body;
   const userDB = await User.findById(_id);
   if (!userDB) throw new ApiError(404, "Không tìm thấy tài khoản người dùng!");
@@ -35,7 +35,7 @@ const userChangePassword = async (req: Request) => {
   return response;
 };
 
-const userGetAll = async (req: Request) => {
+const getAllUser = async (req: Request) => {
   let { page = 1, limit = 12, email } = req.query;
   page = Number(page);
   limit = Number(limit);
@@ -75,7 +75,7 @@ const userGetAll = async (req: Request) => {
   return response;
 };
 
-const userGetSingle = async (req: Request) => {
+const getSingleUser = async (req: Request) => {
   const user = await User.findOne({ _id: req.params.id }).select("-password");
   if (!user) throw new ApiError(404, "Không tìm thấy người dùng!");
   const response = {
@@ -85,7 +85,7 @@ const userGetSingle = async (req: Request) => {
   return response;
 };
 
-const userAddNew = async (req: Request) => {
+const addNewUser = async (req: Request) => {
   const newUser = await User.create(req.body);
   if (!newUser) throw new ApiError(404, "Không tìm thấy người dùng!");
   const response = {
@@ -111,11 +111,11 @@ const deleteUser = async (req: Request) => {
 };
 
 const userServices = {
-  userUpdateProfile,
-  userGetSingle,
-  userGetAll,
-  userAddNew,
-  userChangePassword,
+  updateProfileUser,
+  getSingleUser,
+  getAllUser,
+  addNewUser,
+  changePasswordUser,
   deleteUser,
 };
 export default userServices;
