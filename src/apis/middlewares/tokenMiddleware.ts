@@ -12,8 +12,11 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
       const decodedAccessToken = await jwt.verify(accessToken, env.passport.jwtSecretKey);
       req.user = decodedAccessToken;
       next();
-    } catch (err) {
-      responseError(new ApiError(401, "Token không hợp lệ!"), res);
+    } catch (err: any) {
+      if (err?.message === "jwt expired") {
+        return responseError(new ApiError(401, "Token đã hết hạn!", err), res);
+      }
+      responseError(new ApiError(401, "Token không hợp lệ!", err), res);
     }
   } else {
     responseError(new ApiError(401, "Bạn chưa đăng nhập!"), res);

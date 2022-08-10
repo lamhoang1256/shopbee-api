@@ -26,7 +26,10 @@ const verifyToken = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
             next();
         }
         catch (err) {
-            (0, response_1.responseError)(new api_error_1.ApiError(401, "Token không hợp lệ!"), res);
+            if ((err === null || err === void 0 ? void 0 : err.message) === "jwt expired") {
+                return (0, response_1.responseError)(new api_error_1.ApiError(401, "Token đã hết hạn!", err), res);
+            }
+            (0, response_1.responseError)(new api_error_1.ApiError(401, "Token không hợp lệ!", err), res);
         }
     }
     else {

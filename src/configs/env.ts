@@ -14,7 +14,7 @@ const env = {
   },
   passport: {
     jwtSecretKey: process.env.JWT_SECRET_KEY || "SECRET_KEY",
-    expiredAccessToken: process.env.EXPIRE_ACCESS_TOKEN || "30d",
+    expiredAccessToken: process.env.EXPIRED_ACCESS_TOKEN || "30d",
     expiredRefreshToken: process.env.EXPIRED_REFRESH_TOKEN || "365d",
   },
 };
