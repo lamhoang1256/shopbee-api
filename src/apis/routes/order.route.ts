@@ -4,7 +4,7 @@ import tokenMiddleware from "../middlewares/tokenMiddleware";
 const orderRoutes = Router();
 
 orderRoutes.post("/", orderControllers.createNewOrder);
-orderRoutes.get("/user", orderControllers.getAllOrderByUser);
+orderRoutes.get("/user", orderControllers.getAllOrderMe);
 orderRoutes.get("/admin", tokenMiddleware.verifyTokenAndAdmin, orderControllers.getAllOrderByAdmin);
 orderRoutes.get("/", orderControllers.getSingleOrder);
 orderRoutes.put(

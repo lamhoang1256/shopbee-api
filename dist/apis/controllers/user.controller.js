@@ -23,16 +23,16 @@ const getAllUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0,
     const users = yield user_service_1.default.getAllUser(req);
     (0, response_1.responseSuccess)(res, users);
 }));
-const updateProfileUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const updatedUser = yield user_service_1.default.updateProfileUser(req);
+const updateProfileMe = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedUser = yield user_service_1.default.updateProfileMe(req);
     (0, response_1.responseSuccess)(res, updatedUser);
 }));
 const updateUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedUser = yield user_service_1.default.updateUser(req);
     (0, response_1.responseSuccess)(res, updatedUser);
 }));
-const changePasswordUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const updatedUser = yield user_service_1.default.changePasswordUser(req);
+const changePasswordMe = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedUser = yield user_service_1.default.changePasswordMe(req);
     (0, response_1.responseSuccess)(res, updatedUser);
 }));
 const addNewUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -47,8 +47,8 @@ const userControllers = {
     getAllUser,
     addNewUser,
     deleteUser,
-    updateProfileUser,
-    changePasswordUser,
+    updateProfileMe,
+    changePasswordMe,
     getSingleUser,
     updateUser,
 };

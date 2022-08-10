@@ -4,8 +4,8 @@ import Order from "../models/order.model";
 import User from "../models/user.model";
 import { ApiError } from "../utils/api-error";
 
-const updateProfileUser = async (req: Request) => {
-  const updatedProfile = await User.findByIdAndUpdate(req.body._id, req.body, { new: true })
+const updateProfileMe = async (req: Request) => {
+  const updatedProfile = await User.findByIdAndUpdate(req.user._id, req.body, { new: true })
     .select({ password: 0, __v: 0 })
     .lean();
   if (!updatedProfile) throw new ApiError(404, "Không tìm thấy tài khoản người dùng!");
@@ -17,7 +17,7 @@ const updateProfileUser = async (req: Request) => {
 };
 
 const updateUser = async (req: Request) => {
-  const updatedUser = await User.findByIdAndUpdate(req.body._id, req.body, { new: true })
+  const updatedUser = await User.findByIdAndUpdate(req.params._id, req.body, { new: true })
     .select({ password: 0, __v: 0 })
     .lean();
   if (!updatedUser) throw new ApiError(404, "Không tìm thấy tài khoản người dùng!");
@@ -28,9 +28,9 @@ const updateUser = async (req: Request) => {
   return response;
 };
 
-const changePasswordUser = async (req: Request) => {
-  const { _id, currentPassword, newPassword } = req.body;
-  const userDB = await User.findById(_id);
+const changePasswordMe = async (req: Request) => {
+  const { currentPassword, newPassword } = req.body;
+  const userDB = await User.findById(req.user._id);
   if (!userDB) throw new ApiError(404, "Không tìm thấy tài khoản người dùng!");
   if (!currentPassword && !newPassword)
     throw new ApiError(404, "Vui lòng nhập mật khẩu hiện tại và mật khẩu mới!");
@@ -123,11 +123,11 @@ const deleteUser = async (req: Request) => {
 };
 
 const userServices = {
-  updateProfileUser,
+  updateProfileMe,
   getSingleUser,
   getAllUser,
   addNewUser,
-  changePasswordUser,
+  changePasswordMe,
   deleteUser,
   updateUser,
 };

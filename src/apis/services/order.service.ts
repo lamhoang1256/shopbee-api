@@ -4,8 +4,8 @@ import Cart from "../models/cart.model";
 import { ApiError } from "../utils/api-error";
 
 const createNewOrder = async (req: Request) => {
+  const userId = req.user._id;
   const {
-    userId,
     orderItems,
     shippingAddress,
     shippingPrice,
@@ -53,10 +53,9 @@ const getAllOrderByAdmin = async (req: Request) => {
   return response;
 };
 
-const getAllOrderByUser = async (req: Request) => {
-  const { userId, status } = req.query;
-  let conditional: any = { user: userId };
-  if (status) conditional.status = status;
+const getAllOrderMe = async (req: Request) => {
+  let conditional: any = { user: req.user._id };
+  if (req.query.status) conditional.status = req.query.status;
   const orders = await Order.find(conditional).sort({
     _id: -1,
   });
@@ -108,7 +107,7 @@ const updateStatusOrderToDelivered = async (req: Request) => {
 const orderServices = {
   createNewOrder,
   getAllOrderByAdmin,
-  getAllOrderByUser,
+  getAllOrderMe,
   getSingleOrder,
   updateStatusOrderToShipping,
   updateStatusOrderToDelivered,

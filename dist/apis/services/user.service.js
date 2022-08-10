@@ -16,8 +16,8 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const order_model_1 = __importDefault(require("../models/order.model"));
 const user_model_1 = __importDefault(require("../models/user.model"));
 const api_error_1 = require("../utils/api-error");
-const updateProfileUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const updatedProfile = yield user_model_1.default.findByIdAndUpdate(req.body._id, req.body, { new: true })
+const updateProfileMe = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedProfile = yield user_model_1.default.findByIdAndUpdate(req.user._id, req.body, { new: true })
         .select({ password: 0, __v: 0 })
         .lean();
     if (!updatedProfile)
@@ -29,7 +29,7 @@ const updateProfileUser = (req) => __awaiter(void 0, void 0, void 0, function* (
     return response;
 });
 const updateUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const updatedUser = yield user_model_1.default.findByIdAndUpdate(req.body._id, req.body, { new: true })
+    const updatedUser = yield user_model_1.default.findByIdAndUpdate(req.params._id, req.body, { new: true })
         .select({ password: 0, __v: 0 })
         .lean();
     if (!updatedUser)
@@ -40,9 +40,9 @@ const updateUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-const changePasswordUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { _id, currentPassword, newPassword } = req.body;
-    const userDB = yield user_model_1.default.findById(_id);
+const changePasswordMe = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const { currentPassword, newPassword } = req.body;
+    const userDB = yield user_model_1.default.findById(req.user._id);
     if (!userDB)
         throw new api_error_1.ApiError(404, "Không tìm thấy tài khoản người dùng!");
     if (!currentPassword && !newPassword)
@@ -137,11 +137,11 @@ const deleteUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const userServices = {
-    updateProfileUser,
+    updateProfileMe,
     getSingleUser,
     getAllUser,
     addNewUser,
-    changePasswordUser,
+    changePasswordMe,
     deleteUser,
     updateUser,
 };

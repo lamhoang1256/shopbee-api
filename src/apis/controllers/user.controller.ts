@@ -13,8 +13,8 @@ const getAllUser = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, users);
 });
 
-const updateProfileUser = catchAsync(async (req: Request, res: Response) => {
-  const updatedUser = await userServices.updateProfileUser(req);
+const updateProfileMe = catchAsync(async (req: Request, res: Response) => {
+  const updatedUser = await userServices.updateProfileMe(req);
   responseSuccess(res, updatedUser);
 });
 
@@ -23,8 +23,8 @@ const updateUser = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, updatedUser);
 });
 
-const changePasswordUser = catchAsync(async (req: Request, res: Response) => {
-  const updatedUser = await userServices.changePasswordUser(req);
+const changePasswordMe = catchAsync(async (req: Request, res: Response) => {
+  const updatedUser = await userServices.changePasswordMe(req);
   responseSuccess(res, updatedUser);
 });
 
@@ -42,8 +42,8 @@ const userControllers = {
   getAllUser,
   addNewUser,
   deleteUser,
-  updateProfileUser,
-  changePasswordUser,
+  updateProfileMe,
+  changePasswordMe,
   getSingleUser,
   updateUser,
 };

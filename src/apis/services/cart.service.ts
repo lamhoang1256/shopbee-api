@@ -34,7 +34,8 @@ const updateQuantityProductInCart = async (payload: IPayloadProductCart) => {
 };
 
 const addToCart = async (req: Request) => {
-  const { userId, productId, quantity } = req.body;
+  const userId = req.user._id;
+  const { productId, quantity } = req.body;
   const product = await Product.findById(productId);
   if (!product) throw new ApiError(404, "Không tìm thấy sản phẩm!");
   if (quantity > product.quantity)
@@ -61,7 +62,7 @@ const addToCart = async (req: Request) => {
 };
 
 const getAllCart = async (req: Request) => {
-  const carts = await Cart.find({ user: req.query.userId })
+  const carts = await Cart.find({ user: req.user._id })
     .populate({
       path: "product",
       populate: {
@@ -80,7 +81,7 @@ const getAllCart = async (req: Request) => {
 
 const deleteSingleCart = async (req: Request) => {
   const deletedData = await Cart.deleteMany({
-    user: req.body.userId,
+    user: req.user._id,
     _id: { $in: req.body.cartIds },
   });
   if (!deletedData) throw new ApiError(404, "Sản phẩm bạn muốn xóa không tồn tại!");
@@ -93,7 +94,7 @@ const deleteSingleCart = async (req: Request) => {
 
 const deleteCarts = async (req: Request) => {
   const deletedData = await Cart.deleteMany({
-    user: req.body.userId,
+    user: req.user._id,
   });
   if (!deletedData) throw new ApiError(404, "Tất cả sản phẩm bạn muốn xóa không tồn tại!");
   const response = {

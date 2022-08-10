@@ -13,8 +13,8 @@ const getAllOrderByAdmin = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, orders);
 });
 
-const getAllOrderByUser = catchAsync(async (req: Request, res: Response) => {
-  const orders = await orderServices.getAllOrderByUser(req);
+const getAllOrderMe = catchAsync(async (req: Request, res: Response) => {
+  const orders = await orderServices.getAllOrderMe(req);
   responseSuccess(res, orders);
 });
 
@@ -36,7 +36,7 @@ const updateStatusOrderToDelivered = catchAsync(async (req: Request, res: Respon
 const categoryControllers = {
   createNewOrder,
   getAllOrderByAdmin,
-  getAllOrderByUser,
+  getAllOrderMe,
   getSingleOrder,
   updateStatusOrderToShipping,
   updateStatusOrderToDelivered,

@@ -1,10 +1,10 @@
 import bcrypt from "bcrypt";
-import { Request, Response } from "express";
+import { Request } from "express";
 import jwt from "jsonwebtoken";
 import { IUser } from "../../@types/user";
 import env from "../../configs/env";
-import User from "../models/user.model";
 import Token from "../models/token.model";
+import User from "../models/user.model";
 import { ApiError } from "../utils/api-error";
 let refreshTokens: string[] = [];
 

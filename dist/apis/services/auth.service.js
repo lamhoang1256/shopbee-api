@@ -26,8 +26,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const env_1 = __importDefault(require("../../configs/env"));
-const user_model_1 = __importDefault(require("../models/user.model"));
 const token_model_1 = __importDefault(require("../models/token.model"));
+const user_model_1 = __importDefault(require("../models/user.model"));
 const api_error_1 = require("../utils/api-error");
 let refreshTokens = [];
 const generateAccessToken = (user) => {

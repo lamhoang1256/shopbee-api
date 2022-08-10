@@ -16,7 +16,8 @@ const order_model_1 = __importDefault(require("../models/order.model"));
 const cart_model_1 = __importDefault(require("../models/cart.model"));
 const api_error_1 = require("../utils/api-error");
 const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { userId, orderItems, shippingAddress, shippingPrice, totalPriceProduct, totalDiscount, totalPayment, } = req.body;
+    const userId = req.user._id;
+    const { orderItems, shippingAddress, shippingPrice, totalPriceProduct, totalDiscount, totalPayment, } = req.body;
     if (orderItems && orderItems.length === 0) {
         throw new api_error_1.ApiError(404, "Giỏ hàng đang trống!");
     }
@@ -56,11 +57,10 @@ const getAllOrderByAdmin = (req) => __awaiter(void 0, void 0, void 0, function* 
     };
     return response;
 });
-const getAllOrderByUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { userId, status } = req.query;
-    let conditional = { user: userId };
-    if (status)
-        conditional.status = status;
+const getAllOrderMe = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    let conditional = { user: req.user._id };
+    if (req.query.status)
+        conditional.status = req.query.status;
     const orders = yield order_model_1.default.find(conditional).sort({
         _id: -1,
     });
@@ -111,7 +111,7 @@ const updateStatusOrderToDelivered = (req) => __awaiter(void 0, void 0, void 0, 
 const orderServices = {
     createNewOrder,
     getAllOrderByAdmin,
-    getAllOrderByUser,
+    getAllOrderMe,
     getSingleOrder,
     updateStatusOrderToShipping,
     updateStatusOrderToDelivered,
