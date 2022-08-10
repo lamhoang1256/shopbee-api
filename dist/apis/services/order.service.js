@@ -58,7 +58,6 @@ const getAllOrderAdmin = (req) => __awaiter(void 0, void 0, void 0, function* ()
     return response;
 });
 const getAllOrderMe = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    // console.log("req: ", req);
     let conditional = { user: req.user._id };
     if (req.query.status)
         conditional.status = req.query.status;

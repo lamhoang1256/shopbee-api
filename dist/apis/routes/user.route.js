@@ -13,5 +13,5 @@ userRoutes.post("/", tokenMiddleware_1.default.verifyTokenAndAdmin, user_control
 userRoutes.delete("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.deleteUser);
 userRoutes.put("/", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.updateUser);
 userRoutes.put("/profile", tokenMiddleware_1.default.verifyToken, user_controller_1.default.updateProfileMe);
-userRoutes.put("/change-password", user_controller_1.default.changePasswordMe);
+userRoutes.put("/change-password", tokenMiddleware_1.default.verifyToken, user_controller_1.default.changePasswordMe);
 exports.default = userRoutes;
