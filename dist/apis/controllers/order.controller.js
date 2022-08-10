@@ -19,8 +19,8 @@ const createNewOrder = (0, catch_async_1.catchAsync)((req, res) => __awaiter(voi
     const newOrder = yield order_service_1.default.createNewOrder(req);
     (0, response_1.responseSuccess)(res, newOrder);
 }));
-const getAllOrderByAdmin = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const orders = yield order_service_1.default.getAllOrderByAdmin(req);
+const getAllOrderAdmin = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const orders = yield order_service_1.default.getAllOrderAdmin(req);
     (0, response_1.responseSuccess)(res, orders);
 }));
 const getAllOrderMe = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -41,7 +41,7 @@ const updateStatusOrderToDelivered = (0, catch_async_1.catchAsync)((req, res) =>
 }));
 const categoryControllers = {
     createNewOrder,
-    getAllOrderByAdmin,
+    getAllOrderAdmin,
     getAllOrderMe,
     getSingleOrder,
     updateStatusOrderToShipping,

@@ -3,9 +3,9 @@ import orderControllers from "../controllers/order.controller";
 import tokenMiddleware from "../middlewares/tokenMiddleware";
 const orderRoutes = Router();
 
-orderRoutes.post("/", orderControllers.createNewOrder);
-orderRoutes.get("/user", orderControllers.getAllOrderMe);
-orderRoutes.get("/admin", tokenMiddleware.verifyTokenAndAdmin, orderControllers.getAllOrderByAdmin);
+orderRoutes.post("/", tokenMiddleware.verifyToken, orderControllers.createNewOrder);
+orderRoutes.get("/me", tokenMiddleware.verifyToken, orderControllers.getAllOrderMe);
+orderRoutes.get("/admin", tokenMiddleware.verifyTokenAndAdmin, orderControllers.getAllOrderAdmin);
 orderRoutes.get("/", orderControllers.getSingleOrder);
 orderRoutes.put(
   "/:id/shipping",

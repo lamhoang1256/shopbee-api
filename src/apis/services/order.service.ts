@@ -37,7 +37,7 @@ const createNewOrder = async (req: Request) => {
   return response;
 };
 
-const getAllOrderByAdmin = async (req: Request) => {
+const getAllOrderAdmin = async (req: Request) => {
   const { status } = req.query;
   let conditional: any = {};
   if (status) conditional.status = status;
@@ -54,6 +54,7 @@ const getAllOrderByAdmin = async (req: Request) => {
 };
 
 const getAllOrderMe = async (req: Request) => {
+  // console.log("req: ", req);
   let conditional: any = { user: req.user._id };
   if (req.query.status) conditional.status = req.query.status;
   const orders = await Order.find(conditional).sort({
@@ -106,7 +107,7 @@ const updateStatusOrderToDelivered = async (req: Request) => {
 
 const orderServices = {
   createNewOrder,
-  getAllOrderByAdmin,
+  getAllOrderAdmin,
   getAllOrderMe,
   getSingleOrder,
   updateStatusOrderToShipping,

@@ -41,7 +41,7 @@ const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-const getAllOrderByAdmin = (req) => __awaiter(void 0, void 0, void 0, function* () {
+const getAllOrderAdmin = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const { status } = req.query;
     let conditional = {};
     if (status)
@@ -58,6 +58,7 @@ const getAllOrderByAdmin = (req) => __awaiter(void 0, void 0, void 0, function* 
     return response;
 });
 const getAllOrderMe = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    // console.log("req: ", req);
     let conditional = { user: req.user._id };
     if (req.query.status)
         conditional.status = req.query.status;
@@ -110,7 +111,7 @@ const updateStatusOrderToDelivered = (req) => __awaiter(void 0, void 0, void 0, 
 });
 const orderServices = {
     createNewOrder,
-    getAllOrderByAdmin,
+    getAllOrderAdmin,
     getAllOrderMe,
     getSingleOrder,
     updateStatusOrderToShipping,
