@@ -20,12 +20,12 @@ const signUp = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, voi
     (0, response_1.responseSuccess)(res, newUser);
 }));
 const signIn = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const newUser = yield auth_service_1.default.signUp(req);
+    const newUser = yield auth_service_1.default.signIn(req);
     (0, response_1.responseSuccess)(res, newUser);
 }));
-const refreshToken = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const newUser = yield auth_service_1.default.refreshToken(req);
-    (0, response_1.responseSuccess)(res, newUser);
+const requestRefreshToken = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const newRefreshToken = yield auth_service_1.default.requestRefreshToken(req);
+    (0, response_1.responseSuccess)(res, newRefreshToken);
 }));
 const logOut = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const loggedOut = yield auth_service_1.default.logOut(req);
@@ -35,6 +35,6 @@ const authControllers = {
     signUp,
     signIn,
     logOut,
-    refreshToken,
+    requestRefreshToken,
 };
 exports.default = authControllers;

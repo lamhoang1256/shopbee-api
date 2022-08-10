@@ -27,6 +27,10 @@ const updateProfileUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(
     const updatedUser = yield user_service_1.default.updateProfileUser(req);
     (0, response_1.responseSuccess)(res, updatedUser);
 }));
+const updateUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedUser = yield user_service_1.default.updateUser(req);
+    (0, response_1.responseSuccess)(res, updatedUser);
+}));
 const changePasswordUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedUser = yield user_service_1.default.changePasswordUser(req);
     (0, response_1.responseSuccess)(res, updatedUser);
@@ -46,5 +50,6 @@ const userControllers = {
     updateProfileUser,
     changePasswordUser,
     getSingleUser,
+    updateUser,
 };
 exports.default = userControllers;

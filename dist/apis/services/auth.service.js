@@ -27,34 +27,35 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const env_1 = __importDefault(require("../../configs/env"));
 const user_model_1 = __importDefault(require("../models/user.model"));
+const token_model_1 = __importDefault(require("../models/token.model"));
 const api_error_1 = require("../utils/api-error");
 let refreshTokens = [];
 const generateAccessToken = (user) => {
-    const accessToken = jsonwebtoken_1.default.sign(user, env_1.default.passport.jwtSecretKey, {
+    const accessToken = jsonwebtoken_1.default.sign({ _id: user._id, email: user.email, isAdmin: user.isAdmin }, env_1.default.passport.jwtSecretKey, {
         expiresIn: env_1.default.passport.expiredAccessToken,
     });
     return accessToken;
 };
 const generateRefreshToken = (user) => {
-    const refreshToken = jsonwebtoken_1.default.sign(user, env_1.default.passport.jwtSecretKey, {
+    const refreshToken = jsonwebtoken_1.default.sign({ _id: user._id, email: user.email, isAdmin: user.isAdmin }, env_1.default.passport.jwtSecretKey, {
         expiresIn: env_1.default.passport.expiredRefreshToken,
     });
     return refreshToken;
 };
 const signUp = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email, password } = req.body;
-    const userInDB = yield user_model_1.default.findOne({ email }).exec();
+    const userInDB = yield user_model_1.default.findOne({ email: req.body.email }).exec();
     if (!userInDB) {
         const salt = yield bcrypt_1.default.genSalt(10);
-        const hashed = yield bcrypt_1.default.hash(password, salt);
+        const hashed = yield bcrypt_1.default.hash(req.body.password, salt);
         const newUser = new user_model_1.default({
-            email,
+            email: req.body.email,
             password: hashed,
         });
-        const savedUser = yield newUser.save();
+        const savedUser = (yield newUser.save()).toObject();
+        const { password } = savedUser, user = __rest(savedUser, ["password"]);
         const response = {
             message: "Đăng ký thành công",
-            data: savedUser,
+            data: user,
         };
         return response;
     }
@@ -63,7 +64,7 @@ const signUp = (req) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 const signIn = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield user_model_1.default.findOne({ email: req.body.email });
+    const user = yield user_model_1.default.findOne({ email: req.body.email }).lean();
     if (!user)
         throw new api_error_1.ApiError(422, "Sai địa chỉ email hoặc mật khẩu!");
     const validPassword = yield bcrypt_1.default.compare(req.body.password, user.password);
@@ -72,6 +73,9 @@ const signIn = (req) => __awaiter(void 0, void 0, void 0, function* () {
     if (user && validPassword) {
         const accessToken = generateAccessToken(user);
         const refreshToken = generateRefreshToken(user);
+        const refreshTokenDB = yield token_model_1.default.create({
+            refreshToken,
+        });
         const { password } = user, others = __rest(user, ["password"]);
         const response = {
             message: "Đăng nhập thành công!",
@@ -80,26 +84,32 @@ const signIn = (req) => __awaiter(void 0, void 0, void 0, function* () {
         return response;
     }
 });
-const refreshToken = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { refreshToken } = req.body;
+const requestRefreshToken = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const refreshToken = req.query.refreshToken;
     if (!refreshToken)
-        throw new api_error_1.ApiError(422, "Bạn chưa xác thực người dùng!");
-    jsonwebtoken_1.default.verify(refreshToken, env_1.default.passport.jwtSecretKey, (err, user) => {
+        throw new api_error_1.ApiError(401, "Bạn cần đăng nhập lại!");
+    let newAccessToken;
+    let newRefreshToken;
+    yield jsonwebtoken_1.default.verify(refreshToken, env_1.default.passport.jwtSecretKey, (err, user) => __awaiter(void 0, void 0, void 0, function* () {
         if (err)
-            throw new api_error_1.ApiError(500, "Tạo mới token thất bại!");
-        refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
-        const newAccessToken = generateAccessToken(user);
-        const newRefreshToken = generateRefreshToken(user);
-        refreshTokens.push(newRefreshToken);
-        const response = {
-            message: "Tạo mới access token thành công!",
-            data: {
-                accessToken: newAccessToken,
-                refreshToken: newRefreshToken,
-            },
-        };
-        return response;
-    });
+            throw new api_error_1.ApiError(401, "Bạn cần đăng nhập lại!");
+        const deleteRefreshOld = yield token_model_1.default.findOneAndDelete({ refreshToken: refreshToken });
+        if (!deleteRefreshOld)
+            throw new api_error_1.ApiError(401, "Bạn cần đăng nhập lại!");
+        newAccessToken = generateAccessToken(user);
+        newRefreshToken = generateRefreshToken(user);
+        const refreshTokenDB = yield token_model_1.default.create({
+            refreshToken: newRefreshToken,
+        });
+    }));
+    const response = {
+        message: "Tạo mới access token thành công!",
+        data: {
+            accessToken: newAccessToken,
+            refreshToken: newRefreshToken,
+        },
+    };
+    return response;
 });
 const logOut = (req) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.body.accessToken)
@@ -114,6 +124,6 @@ const authServices = {
     signUp,
     signIn,
     logOut,
-    refreshToken,
+    requestRefreshToken,
 };
 exports.default = authServices;
