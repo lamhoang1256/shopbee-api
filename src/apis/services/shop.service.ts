@@ -35,7 +35,7 @@ const getAllShopAddress = async (req: Request) => {
 };
 
 const updateShopAddress = async (req: Request) => {
-  const updatedAddress = await Shop.findByIdAndUpdate(req.params._id, req.body);
+  const updatedAddress = await Shop.findByIdAndUpdate(req.params.id, req.body);
   if (!updatedAddress) throw new ApiError(404, "Không tìm thấy địa chỉ shop!");
   const response = {
     message: "Cập nhật địa chỉ shop thành công!",

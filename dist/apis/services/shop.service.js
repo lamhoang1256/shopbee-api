@@ -47,7 +47,7 @@ const getAllShopAddress = (req) => __awaiter(void 0, void 0, void 0, function* (
     return response;
 });
 const updateShopAddress = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const updatedAddress = yield shop_model_1.default.findByIdAndUpdate(req.params._id, req.body);
+    const updatedAddress = yield shop_model_1.default.findByIdAndUpdate(req.params.id, req.body);
     if (!updatedAddress)
         throw new api_error_1.ApiError(404, "Không tìm thấy địa chỉ shop!");
     const response = {
