@@ -54,8 +54,9 @@ const getAllOrderAdmin = async (req: Request) => {
 };
 
 const getAllOrderMe = async (req: Request) => {
+  const { status } = req.query;
   let conditional: any = { user: req.user._id };
-  if (req.query.status) conditional.status = req.query.status;
+  if (status) conditional.status = status;
   const orders = await Order.find(conditional).sort({
     _id: -1,
   });

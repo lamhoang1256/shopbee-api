@@ -58,9 +58,10 @@ const getAllOrderAdmin = (req) => __awaiter(void 0, void 0, void 0, function* ()
     return response;
 });
 const getAllOrderMe = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const { status } = req.query;
     let conditional = { user: req.user._id };
-    if (req.query.status)
-        conditional.status = req.query.status;
+    if (status)
+        conditional.status = status;
     const orders = yield order_model_1.default.find(conditional).sort({
         _id: -1,
     });

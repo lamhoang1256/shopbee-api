@@ -15,6 +15,7 @@ const getAllBanner = async () => {
 
 const getSingleBanner = async (req: Request) => {
   const banner = await Banner.findById(req.params.id);
+  if (!banner) throw new ApiError(404, "Không tìm thấy banner!");
   const response = {
     message: "Lấy banner thành công!",
     data: banner,

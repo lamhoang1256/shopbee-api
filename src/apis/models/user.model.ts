@@ -9,6 +9,9 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     addressHome: String,
     addressAdministrative: String,
+    addressIdProvince: { type: String, default: "" },
+    addressIdDistrict: { type: String, default: "" },
+    addressIdCommune: { type: String, default: "" },
     isAdmin: {
       type: Boolean,
       default: false,

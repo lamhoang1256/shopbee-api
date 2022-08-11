@@ -26,6 +26,8 @@ const getAllBanner = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 const getSingleBanner = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const banner = yield banner_model_1.default.findById(req.params.id);
+    if (!banner)
+        throw new api_error_1.ApiError(404, "Không tìm thấy banner!");
     const response = {
         message: "Lấy banner thành công!",
         data: banner,

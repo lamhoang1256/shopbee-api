@@ -11,6 +11,7 @@ const product_route_1 = __importDefault(require("./product.route"));
 const cart_route_1 = __importDefault(require("./cart.route"));
 const order_route_1 = __importDefault(require("./order.route"));
 const user_route_1 = __importDefault(require("./user.route"));
+const shop_route_1 = __importDefault(require("./shop.route"));
 const response_1 = require("../utils/response");
 const appRoutes = (0, express_1.default)();
 appRoutes.use("/api/auth", auth_route_1.default);
@@ -20,6 +21,7 @@ appRoutes.use("/api/banner", banner_route_1.default);
 appRoutes.use("/api/cart", cart_route_1.default);
 appRoutes.use("/api/order", order_route_1.default);
 appRoutes.use("/api/user", user_route_1.default);
+appRoutes.use("/api/shop", shop_route_1.default);
 appRoutes.use((err, req, res, next) => {
     (0, response_1.responseError)(err, res);
 });

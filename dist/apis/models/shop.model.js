@@ -4,20 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
-const userSchema = new mongoose_1.default.Schema({
-    email: { type: String, unique: true },
-    fullname: String,
-    avatar: String,
-    phone: String,
-    password: { type: String, required: true },
-    addressHome: String,
-    addressAdministrative: String,
+const shopSchema = new mongoose_1.default.Schema({
+    addressAdministrative: { type: String, default: "" },
     addressIdProvince: { type: String, default: "" },
     addressIdDistrict: { type: String, default: "" },
     addressIdCommune: { type: String, default: "" },
-    isAdmin: {
-        type: Boolean,
-        default: false,
-    },
 }, { timestamps: true });
-exports.default = mongoose_1.default.model("User", userSchema);
+exports.default = mongoose_1.default.model("Shop", shopSchema);
