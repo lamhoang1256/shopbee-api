@@ -17,7 +17,6 @@ const updateProfileMe = async (req: Request) => {
 };
 
 const updateUser = async (req: Request) => {
-  console.log("req.params._id: ", req.params._id);
   const updatedUser = await User.findByIdAndUpdate(req.params._id, req.body, { new: true })
     .select({ password: 0, __v: 0 })
     .lean();
