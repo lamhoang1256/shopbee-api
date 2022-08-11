@@ -29,6 +29,7 @@ const updateProfileMe = (req) => __awaiter(void 0, void 0, void 0, function* () 
     return response;
 });
 const updateUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("req.params._id: ", req.params._id);
     const updatedUser = yield user_model_1.default.findByIdAndUpdate(req.params._id, req.body, { new: true })
         .select({ password: 0, __v: 0 })
         .lean();
