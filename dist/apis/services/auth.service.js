@@ -29,7 +29,6 @@ const env_1 = __importDefault(require("../../configs/env"));
 const token_model_1 = __importDefault(require("../models/token.model"));
 const user_model_1 = __importDefault(require("../models/user.model"));
 const api_error_1 = require("../utils/api-error");
-let refreshTokens = [];
 const generateAccessToken = (user) => {
     const accessToken = jsonwebtoken_1.default.sign({ _id: user._id, email: user.email, isAdmin: user.isAdmin }, env_1.default.passport.jwtSecretKey, {
         expiresIn: env_1.default.passport.expiredAccessToken,
@@ -112,9 +111,13 @@ const requestRefreshToken = (req) => __awaiter(void 0, void 0, void 0, function*
     return response;
 });
 const logOut = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    if (req.body.accessToken)
-        throw new api_error_1.ApiError(403, "Không tìm thấy token!");
-    refreshTokens = refreshTokens.filter((token) => token !== req.body.refreshToken);
+    if (!req.body.refreshToken)
+        throw new api_error_1.ApiError(404, "Không tìm thấy refresh token!");
+    const deleteRefreshToken = yield token_model_1.default.findOneAndDelete({
+        refreshToken: req.body.refreshToken,
+    }).exec();
+    if (!deleteRefreshToken)
+        throw new api_error_1.ApiError(401, "Refresh token không hợp lệ!");
     const response = {
         message: "Đăng xuất thành công!",
     };

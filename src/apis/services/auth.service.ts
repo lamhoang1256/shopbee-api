@@ -6,7 +6,6 @@ import env from "../../configs/env";
 import Token from "../models/token.model";
 import User from "../models/user.model";
 import { ApiError } from "../utils/api-error";
-let refreshTokens: string[] = [];
 
 const generateAccessToken = (user: any) => {
   const accessToken = jwt.sign(
@@ -97,8 +96,11 @@ const requestRefreshToken = async (req: Request) => {
 };
 
 const logOut = async (req: Request) => {
-  if (req.body.accessToken) throw new ApiError(403, "Không tìm thấy token!");
-  refreshTokens = refreshTokens.filter((token) => token !== req.body.refreshToken);
+  if (!req.body.refreshToken) throw new ApiError(404, "Không tìm thấy refresh token!");
+  const deleteRefreshToken = await Token.findOneAndDelete({
+    refreshToken: req.body.refreshToken,
+  }).exec();
+  if (!deleteRefreshToken) throw new ApiError(401, "Refresh token không hợp lệ!");
   const response = {
     message: "Đăng xuất thành công!",
   };
