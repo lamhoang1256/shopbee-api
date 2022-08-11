@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const shopSchema = new mongoose.Schema(
   {
+    addressDetail: { type: String, default: "" },
     addressAdministrative: { type: String, default: "" },
     addressIdProvince: { type: String, default: "" },
     addressIdDistrict: { type: String, default: "" },
