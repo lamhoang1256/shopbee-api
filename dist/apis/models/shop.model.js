@@ -9,5 +9,6 @@ const shopSchema = new mongoose_1.default.Schema({
     addressIdProvince: { type: String, default: "" },
     addressIdDistrict: { type: String, default: "" },
     addressIdCommune: { type: String, default: "" },
+    settingDefault: { type: Boolean, default: false },
 }, { timestamps: true });
 exports.default = mongoose_1.default.model("Shop", shopSchema);

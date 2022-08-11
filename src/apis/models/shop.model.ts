@@ -6,6 +6,7 @@ const shopSchema = new mongoose.Schema(
     addressIdProvince: { type: String, default: "" },
     addressIdDistrict: { type: String, default: "" },
     addressIdCommune: { type: String, default: "" },
+    settingDefault: { type: Boolean, default: false },
   },
   { timestamps: true },
 );
