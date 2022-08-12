@@ -19,6 +19,11 @@ shopRoutes.put(
   tokenMiddleware.verifyTokenAndAdmin,
   shopControllers.updateShopAddress,
 );
+shopRoutes.put(
+  "/address/:id/default",
+  tokenMiddleware.verifyTokenAndAdmin,
+  shopControllers.changeShopAddressDefault,
+);
 shopRoutes.delete(
   "/address/:id",
   tokenMiddleware.verifyTokenAndAdmin,

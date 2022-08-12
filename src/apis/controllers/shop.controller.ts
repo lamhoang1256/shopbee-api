@@ -23,6 +23,11 @@ const updateShopAddress = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, updatedAddress);
 });
 
+const changeShopAddressDefault = catchAsync(async (req: Request, res: Response) => {
+  const updatedAddress = await shopServices.changeShopAddressDefault(req);
+  responseSuccess(res, updatedAddress);
+});
+
 const deleteShopAddress = catchAsync(async (req: Request, res: Response) => {
   const deletedAddress = await shopServices.deleteShopAddress(req);
   responseSuccess(res, deletedAddress);
@@ -34,5 +39,6 @@ const shopControllers = {
   addNewShopAddress,
   updateShopAddress,
   deleteShopAddress,
+  changeShopAddressDefault,
 };
 export default shopControllers;

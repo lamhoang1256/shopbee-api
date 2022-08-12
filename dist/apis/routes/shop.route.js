@@ -11,5 +11,6 @@ shopRoutes.get("/address", tokenMiddleware_1.default.verifyTokenAndAdmin, shop_c
 shopRoutes.get("/address/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.getSingleShopAddress);
 shopRoutes.post("/address/", tokenMiddleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.addNewShopAddress);
 shopRoutes.put("/address/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.updateShopAddress);
+shopRoutes.put("/address/:id/default", tokenMiddleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.changeShopAddressDefault);
 shopRoutes.delete("/address/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.deleteShopAddress);
 exports.default = shopRoutes;

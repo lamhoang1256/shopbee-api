@@ -43,6 +43,21 @@ const getAllShopAddress = () => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
+const changeShopAddressDefault = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const shopAddress = yield shop_model_1.default.findById(req.params.id);
+    if (!shopAddress)
+        throw new api_error_1.ApiError(404, "Không tìm thấy địa chỉ shop!");
+    const shopAddressDefault = yield shop_model_1.default.findOne({ settingDefault: true });
+    if (shopAddressDefault) {
+        yield shopAddressDefault.updateOne({ $set: { settingDefault: false } });
+    }
+    yield shopAddress.updateOne({ $set: { settingDefault: true } });
+    const response = {
+        message: "Thay đổi địa chỉ mặc định thành công!",
+        data: shopAddress,
+    };
+    return response;
+});
 const updateShopAddress = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedAddress = yield shop_model_1.default.findByIdAndUpdate(req.params.id, req.body);
     if (!updatedAddress)
@@ -68,5 +83,6 @@ const shopServices = {
     getAllShopAddress,
     updateShopAddress,
     deleteShopAddress,
+    changeShopAddressDefault,
 };
 exports.default = shopServices;

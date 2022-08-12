@@ -31,6 +31,10 @@ const updateShopAddress = (0, catch_async_1.catchAsync)((req, res) => __awaiter(
     const updatedAddress = yield shop_service_1.default.updateShopAddress(req);
     (0, response_1.responseSuccess)(res, updatedAddress);
 }));
+const changeShopAddressDefault = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedAddress = yield shop_service_1.default.changeShopAddressDefault(req);
+    (0, response_1.responseSuccess)(res, updatedAddress);
+}));
 const deleteShopAddress = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const deletedAddress = yield shop_service_1.default.deleteShopAddress(req);
     (0, response_1.responseSuccess)(res, deletedAddress);
@@ -41,5 +45,6 @@ const shopControllers = {
     addNewShopAddress,
     updateShopAddress,
     deleteShopAddress,
+    changeShopAddressDefault,
 };
 exports.default = shopControllers;
