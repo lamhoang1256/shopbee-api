@@ -13,18 +13,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const order_model_1 = __importDefault(require("../models/order.model"));
+const shop_model_1 = __importDefault(require("../models/shop.model"));
 const cart_model_1 = __importDefault(require("../models/cart.model"));
 const api_error_1 = require("../utils/api-error");
 const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = req.user._id;
-    const { orderItems, shippingAddress, shippingPrice, totalPriceProduct, totalDiscount, totalPayment, } = req.body;
+    const { orderItems, shippingTo, shippingPrice, totalPriceProduct, totalDiscount, totalPayment } = req.body;
     if (orderItems && orderItems.length === 0) {
         throw new api_error_1.ApiError(404, "Giỏ hàng đang trống!");
     }
+    const shopAddress = yield shop_model_1.default.findOne({ settingDefault: true }).lean();
     const order = new order_model_1.default({
         user: userId,
         orderItems,
-        shippingAddress,
+        shippingTo,
+        shippingFrom: (shopAddress === null || shopAddress === void 0 ? void 0 : shopAddress.addressDetail) + (shopAddress === null || shopAddress === void 0 ? void 0 : shopAddress.addressAdministrative),
         shippingPrice,
         totalPriceProduct,
         totalDiscount,

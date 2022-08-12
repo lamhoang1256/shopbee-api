@@ -24,7 +24,10 @@ const orderSchema = new mongoose_1.default.Schema({
             },
         },
     ],
-    shippingAddress: {
+    shippingFrom: {
+        type: String,
+    },
+    shippingTo: {
         type: String,
     },
     shippingPrice: {
