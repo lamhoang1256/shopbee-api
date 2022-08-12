@@ -17,7 +17,7 @@ const updateProfileMe = async (req: Request) => {
 };
 
 const updateUser = async (req: Request) => {
-  const updatedUser = await User.findByIdAndUpdate(req.params._id, req.body, { new: true })
+  const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .select({ password: 0, __v: 0 })
     .lean();
   if (!updatedUser) throw new ApiError(404, "Không tìm thấy tài khoản người dùng!");
