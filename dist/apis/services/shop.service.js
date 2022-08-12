@@ -15,9 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const shop_model_1 = __importDefault(require("../models/shop.model"));
 const api_error_1 = require("../utils/api-error");
 const addNewShopAddress = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const countAddress = yield shop_model_1.default.find().countDocuments();
-    if (countAddress >= 4)
-        throw new api_error_1.ApiError(500, "Số lượng địa chỉ tối đa là 4!");
     const newAddress = new shop_model_1.default(req.body);
     const savedAddress = yield newAddress.save();
     const response = {
@@ -36,7 +33,7 @@ const getSingleShopAddress = (req) => __awaiter(void 0, void 0, void 0, function
     };
     return response;
 });
-const getAllShopAddress = (req) => __awaiter(void 0, void 0, void 0, function* () {
+const getAllShopAddress = () => __awaiter(void 0, void 0, void 0, function* () {
     const shopAddress = yield shop_model_1.default.find({});
     if (!shopAddress)
         throw new api_error_1.ApiError(404, "Không tìm thấy địa chỉ shop!");

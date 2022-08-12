@@ -20,7 +20,7 @@ const getSingleShopAddress = (0, catch_async_1.catchAsync)((req, res) => __await
     (0, response_1.responseSuccess)(res, shopAddress);
 }));
 const getAllShopAddress = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const shopAddressList = yield shop_service_1.default.getAllShopAddress(req);
+    const shopAddressList = yield shop_service_1.default.getAllShopAddress();
     (0, response_1.responseSuccess)(res, shopAddressList);
 }));
 const addNewShopAddress = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {

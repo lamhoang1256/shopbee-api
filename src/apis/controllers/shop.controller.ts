@@ -9,7 +9,7 @@ const getSingleShopAddress = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllShopAddress = catchAsync(async (req: Request, res: Response) => {
-  const shopAddressList = await shopServices.getAllShopAddress(req);
+  const shopAddressList = await shopServices.getAllShopAddress();
   responseSuccess(res, shopAddressList);
 });
 
