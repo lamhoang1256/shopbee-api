@@ -73,7 +73,12 @@ const getAllOrderMe = (req) => __awaiter(void 0, void 0, void 0, function* () {
     let conditional = { user: req.user._id };
     if (status)
         conditional.status = status;
-    const orders = yield order_model_1.default.find(conditional).populate("product").sort({
+    const orders = yield order_model_1.default.find(conditional)
+        .populate({
+        path: "orderItems",
+        populate: { path: "product" },
+    })
+        .sort({
         _id: -1,
     });
     const response = {

@@ -65,9 +65,14 @@ const getAllOrderMe = async (req: Request) => {
   const { status } = req.query;
   let conditional: any = { user: req.user._id };
   if (status) conditional.status = status;
-  const orders = await Order.find(conditional).populate("product").sort({
-    _id: -1,
-  });
+  const orders = await Order.find(conditional)
+    .populate({
+      path: "orderItems",
+      populate: { path: "product" },
+    })
+    .sort({
+      _id: -1,
+    });
   const response = {
     message: "Lấy tất cả đơn hàng thành công!",
     data: orders,
