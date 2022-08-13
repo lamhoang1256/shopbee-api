@@ -33,6 +33,11 @@ const updateStatusOrderToDelivered = catchAsync(async (req: Request, res: Respon
   responseSuccess(res, updatedOrder);
 });
 
+const updateStatusOrderToCancel = catchAsync(async (req: Request, res: Response) => {
+  const updatedOrder = await orderServices.updateStatusOrderToCancel(req);
+  responseSuccess(res, updatedOrder);
+});
+
 const categoryControllers = {
   createNewOrder,
   getAllOrderAdmin,
@@ -40,5 +45,6 @@ const categoryControllers = {
   getSingleOrder,
   updateStatusOrderToShipping,
   updateStatusOrderToDelivered,
+  updateStatusOrderToCancel,
 };
 export default categoryControllers;

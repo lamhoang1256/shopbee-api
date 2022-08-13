@@ -9,10 +9,10 @@ const productSchema = new mongoose_1.default.Schema({
     image: String,
     description: String,
     category: { type: mongoose_1.default.SchemaTypes.ObjectId, ref: "Category" },
+    oldPrice: { type: Number, default: 0 },
     price: { type: Number, default: 0 },
-    priceSale: { type: Number, default: 0 },
     rating: { type: Number, default: 0 },
-    quantity: { type: Number, default: 0 },
+    stock: { type: Number, default: 0 },
     sold: { type: Number, default: 0 },
     view: { type: Number, default: 0 },
 }, {

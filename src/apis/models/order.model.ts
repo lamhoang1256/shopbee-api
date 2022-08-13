@@ -9,11 +9,7 @@ const orderSchema = new mongoose.Schema(
     },
     orderItems: [
       {
-        name: { type: String, required: true },
         quantity: { type: Number, required: true },
-        image: { type: String, required: true },
-        price: { type: Number, required: true },
-        priceSale: { type: Number, required: true },
         product: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
@@ -27,42 +23,29 @@ const orderSchema = new mongoose.Schema(
     shippingTo: {
       type: String,
     },
-    shippingPrice: {
+    shippingFee: {
       type: Number,
       required: true,
       default: 0,
     },
-    totalPriceProduct: {
+    price: {
       type: Number,
       required: true,
       default: 0,
     },
-    totalDiscount: {
+    promotion: {
       type: Number,
       default: 0,
     },
-    totalPayment: {
+    total: {
       type: Number,
       required: true,
       default: 0,
     },
-    isPaid: {
-      type: Boolean,
-      required: true,
-      default: true,
-    },
-    isDelivered: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    isShipping: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    paidAt: {
-      type: Date,
+    status: {
+      type: String,
+      enum: ["waiting", "processing", "shipping", "delivered", "canceled"],
+      default: "processing",
     },
     shippingAt: {
       type: Date,
@@ -70,9 +53,8 @@ const orderSchema = new mongoose.Schema(
     deliveredAt: {
       type: Date,
     },
-    status: {
-      type: Number,
-      default: 1,
+    canceledAt: {
+      type: Date,
     },
   },
   {

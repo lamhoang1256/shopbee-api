@@ -38,8 +38,9 @@ const addToCart = async (req: Request) => {
   const { productId, quantity } = req.body;
   const product = await Product.findById(productId);
   if (!product) throw new ApiError(404, "Không tìm thấy sản phẩm!");
-  if (quantity > product.quantity)
-    throw new ApiError(406, `Số lượng sản phẩm tối đa là ${product.quantity}!`);
+  if (product.stock <= 0) throw new ApiError(404, "Sản phẩm đã hết hàng!");
+  if (quantity > product.stock)
+    throw new ApiError(406, `Số lượng sản phẩm tối đa là ${product.stock}!`);
   let savedCart;
   const cartInDb = await Cart.findOne({
     user: userId,

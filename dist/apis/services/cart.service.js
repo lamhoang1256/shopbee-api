@@ -45,8 +45,10 @@ const addToCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const product = yield product_model_1.default.findById(productId);
     if (!product)
         throw new api_error_1.ApiError(404, "Không tìm thấy sản phẩm!");
-    if (quantity > product.quantity)
-        throw new api_error_1.ApiError(406, `Số lượng sản phẩm tối đa là ${product.quantity}!`);
+    if (product.stock <= 0)
+        throw new api_error_1.ApiError(404, "Sản phẩm đã hết hàng!");
+    if (quantity > product.stock)
+        throw new api_error_1.ApiError(406, `Số lượng sản phẩm tối đa là ${product.stock}!`);
     let savedCart;
     const cartInDb = yield cart_model_1.default.findOne({
         user: userId,

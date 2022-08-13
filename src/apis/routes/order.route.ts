@@ -6,7 +6,7 @@ const orderRoutes = Router();
 orderRoutes.post("/", tokenMiddleware.verifyToken, orderControllers.createNewOrder);
 orderRoutes.get("/me", tokenMiddleware.verifyToken, orderControllers.getAllOrderMe);
 orderRoutes.get("/admin", tokenMiddleware.verifyTokenAndAdmin, orderControllers.getAllOrderAdmin);
-orderRoutes.get("/", orderControllers.getSingleOrder);
+orderRoutes.get("/:id", orderControllers.getSingleOrder);
 orderRoutes.put(
   "/:id/shipping",
   tokenMiddleware.verifyTokenAndAdmin,
@@ -16,6 +16,11 @@ orderRoutes.put(
   "/:id/delivered",
   tokenMiddleware.verifyTokenAndAdmin,
   orderControllers.updateStatusOrderToDelivered,
+);
+orderRoutes.put(
+  "/:id/canceled",
+  tokenMiddleware.verifyToken,
+  orderControllers.updateStatusOrderToCancel,
 );
 
 export default orderRoutes;

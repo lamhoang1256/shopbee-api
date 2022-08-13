@@ -1,14 +1,14 @@
 import { Request } from "express";
 import Order from "../models/order.model";
 import Shop from "../models/shop.model";
+import Product from "../models/product.model";
 import Cart from "../models/cart.model";
 import { ApiError } from "../utils/api-error";
 import { IAddressShop } from "../../@types/address";
 
 const createNewOrder = async (req: Request) => {
   const userId = req.user._id;
-  const { orderItems, shippingTo, shippingPrice, totalPriceProduct, totalDiscount, totalPayment } =
-    req.body;
+  const { orderItems, shippingTo, shippingFee, oldPrice, promotion, total } = req.body;
   if (orderItems && orderItems.length === 0) {
     throw new ApiError(404, "Giỏ hàng đang trống!");
   }
@@ -18,13 +18,23 @@ const createNewOrder = async (req: Request) => {
     orderItems,
     shippingTo,
     shippingFrom: shopAddress?.street + ", " + shopAddress?.address,
-    shippingPrice,
-    totalPriceProduct,
-    totalDiscount,
-    totalPayment,
-    paidAt: Date.now(),
+    shippingFee,
+    oldPrice,
+    promotion,
+    total,
   });
   const savedOrder = await order.save();
+  for (let i = 0; i < orderItems.length; i++) {
+    await Product.findOneAndUpdate(
+      { _id: orderItems[i].product },
+      {
+        $inc: {
+          sold: parseInt(orderItems[i].quantity),
+          stock: -parseInt(orderItems[i].quantity),
+        },
+      },
+    );
+  }
   await Cart.deleteMany({
     user: userId,
   });
@@ -66,7 +76,12 @@ const getAllOrderMe = async (req: Request) => {
 };
 
 const getSingleOrder = async (req: Request) => {
-  const order = await Order.findById(req.query.orderId).populate("user", "fullname email");
+  const order = await Order.findById(req.params.id)
+    .populate("user", "fullname email")
+    .populate({
+      path: "orderItems",
+      populate: { path: "product" },
+    });
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   const response = {
     message: "Lấy đơn hàng thành công!",
@@ -78,9 +93,8 @@ const getSingleOrder = async (req: Request) => {
 const updateStatusOrderToShipping = async (req: Request) => {
   const order: any = await Order.findById(req.params.id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
-  order.isShipping = true;
   order.shippingAt = Date.now();
-  order.status = 2;
+  order.status = "shipping";
   const updatedOrder = await order.save();
   const response = {
     message: "Cập nhật trạng thái đang vận chuyển thành công!",
@@ -92,12 +106,24 @@ const updateStatusOrderToShipping = async (req: Request) => {
 const updateStatusOrderToDelivered = async (req: Request) => {
   const order: any = await Order.findById(req.params.id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
-  order.isDelivered = true;
   order.deliveredAt = Date.now();
-  order.status = 3;
+  order.status = "delivered";
   const updatedOrder = await order.save();
   const response = {
     message: "Cập nhật trạng thái đã giao hàng thành công!",
+    data: updatedOrder,
+  };
+  return response;
+};
+
+const updateStatusOrderToCancel = async (req: Request) => {
+  const order: any = await Order.findById(req.params.id);
+  if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
+  order.canceledAt = Date.now();
+  order.status = "canceled";
+  const updatedOrder = await order.save();
+  const response = {
+    message: "Hủy đơn hàng thành công!",
     data: updatedOrder,
   };
   return response;
@@ -110,5 +136,6 @@ const orderServices = {
   getSingleOrder,
   updateStatusOrderToShipping,
   updateStatusOrderToDelivered,
+  updateStatusOrderToCancel,
 };
 export default orderServices;

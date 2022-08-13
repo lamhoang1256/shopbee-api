@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const product_model_1 = __importDefault(require("../models/product.model"));
 const api_error_1 = require("../utils/api-error");
-const SORT_BY = ["createdAt", "view", "sold", "priceSale"];
+const SORT_BY = ["createdAt", "view", "sold", "price"];
 const ORDER = ["desc", "asc"];
 const addNewProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const newProduct = new product_model_1.default(req.body);
@@ -67,13 +67,13 @@ const getAllProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
         condition.rating = { $gte: rating };
     }
     if (price_max) {
-        condition.priceSale = {
+        condition.price = {
             $lte: price_max,
         };
     }
     if (price_min) {
-        condition.priceSale = condition.priceSale
-            ? Object.assign(Object.assign({}, condition.priceSale), { $gte: price_min }) : { $gte: price_min };
+        condition.price = condition.price
+            ? Object.assign(Object.assign({}, condition.price), { $gte: price_min }) : { $gte: price_min };
     }
     if (!ORDER.includes(order)) {
         order = ORDER[0];

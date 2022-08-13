@@ -39,6 +39,10 @@ const updateStatusOrderToDelivered = (0, catch_async_1.catchAsync)((req, res) =>
     const updatedOrder = yield order_service_1.default.updateStatusOrderToDelivered(req);
     (0, response_1.responseSuccess)(res, updatedOrder);
 }));
+const updateStatusOrderToCancel = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedOrder = yield order_service_1.default.updateStatusOrderToCancel(req);
+    (0, response_1.responseSuccess)(res, updatedOrder);
+}));
 const categoryControllers = {
     createNewOrder,
     getAllOrderAdmin,
@@ -46,5 +50,6 @@ const categoryControllers = {
     getSingleOrder,
     updateStatusOrderToShipping,
     updateStatusOrderToDelivered,
+    updateStatusOrderToCancel,
 };
 exports.default = categoryControllers;

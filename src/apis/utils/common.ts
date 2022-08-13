@@ -1,5 +1,5 @@
 export interface ISearchParams {
-  priceSale: any;
+  price: any;
   page: string | number;
   limit: string | number;
   category: string;
