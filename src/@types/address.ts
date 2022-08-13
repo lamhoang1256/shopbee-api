@@ -1,8 +1,8 @@
 export interface IAddressShop {
-  addressDetail: string;
-  addressAdministrative: string;
-  addressIdProvince: string;
-  addressIdDistrict: string;
-  addressIdCommune: string;
-  settingDefault: boolean;
+  street: string;
+  address: string;
+  cityId: string;
+  districtId: string;
+  wardId: string;
+  default: boolean;
 }

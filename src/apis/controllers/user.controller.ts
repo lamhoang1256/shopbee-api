@@ -13,8 +13,8 @@ const getAllUser = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, users);
 });
 
-const updateProfileMe = catchAsync(async (req: Request, res: Response) => {
-  const updatedUser = await userServices.updateProfileMe(req);
+const updateMe = catchAsync(async (req: Request, res: Response) => {
+  const updatedUser = await userServices.updateMe(req);
   responseSuccess(res, updatedUser);
 });
 
@@ -42,7 +42,7 @@ const userControllers = {
   getAllUser,
   addNewUser,
   deleteUser,
-  updateProfileMe,
+  updateMe,
   changePasswordMe,
   getSingleUser,
   updateUser,

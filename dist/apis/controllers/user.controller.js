@@ -23,8 +23,8 @@ const getAllUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0,
     const users = yield user_service_1.default.getAllUser(req);
     (0, response_1.responseSuccess)(res, users);
 }));
-const updateProfileMe = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const updatedUser = yield user_service_1.default.updateProfileMe(req);
+const updateMe = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedUser = yield user_service_1.default.updateMe(req);
     (0, response_1.responseSuccess)(res, updatedUser);
 }));
 const updateUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -47,7 +47,7 @@ const userControllers = {
     getAllUser,
     addNewUser,
     deleteUser,
-    updateProfileMe,
+    updateMe,
     changePasswordMe,
     getSingleUser,
     updateUser,

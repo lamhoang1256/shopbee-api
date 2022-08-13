@@ -22,12 +22,12 @@ const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     if (orderItems && orderItems.length === 0) {
         throw new api_error_1.ApiError(404, "Giỏ hàng đang trống!");
     }
-    const shopAddress = yield shop_model_1.default.findOne({ settingDefault: true }).lean();
+    const shopAddress = yield shop_model_1.default.findOne({ default: true }).lean();
     const order = new order_model_1.default({
         user: userId,
         orderItems,
         shippingTo,
-        shippingFrom: (shopAddress === null || shopAddress === void 0 ? void 0 : shopAddress.addressDetail) + (shopAddress === null || shopAddress === void 0 ? void 0 : shopAddress.addressAdministrative),
+        shippingFrom: (shopAddress === null || shopAddress === void 0 ? void 0 : shopAddress.street) + ", " + (shopAddress === null || shopAddress === void 0 ? void 0 : shopAddress.address),
         shippingPrice,
         totalPriceProduct,
         totalDiscount,

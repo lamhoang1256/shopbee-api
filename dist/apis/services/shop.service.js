@@ -47,11 +47,11 @@ const changeShopAddressDefault = (req) => __awaiter(void 0, void 0, void 0, func
     const shopAddress = yield shop_model_1.default.findById(req.params.id);
     if (!shopAddress)
         throw new api_error_1.ApiError(404, "Không tìm thấy địa chỉ shop!");
-    const shopAddressDefault = yield shop_model_1.default.findOne({ settingDefault: true });
+    const shopAddressDefault = yield shop_model_1.default.findOne({ default: true });
     if (shopAddressDefault) {
-        yield shopAddressDefault.updateOne({ $set: { settingDefault: false } });
+        yield shopAddressDefault.updateOne({ $set: { default: false } });
     }
-    yield shopAddress.updateOne({ $set: { settingDefault: true } });
+    yield shopAddress.updateOne({ $set: { default: true } });
     const response = {
         message: "Thay đổi địa chỉ mặc định thành công!",
         data: shopAddress,

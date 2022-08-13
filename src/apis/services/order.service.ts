@@ -12,12 +12,12 @@ const createNewOrder = async (req: Request) => {
   if (orderItems && orderItems.length === 0) {
     throw new ApiError(404, "Giỏ hàng đang trống!");
   }
-  const shopAddress: IAddressShop = await Shop.findOne({ settingDefault: true }).lean();
+  const shopAddress: IAddressShop = await Shop.findOne({ default: true }).lean();
   const order = new Order({
     user: userId,
     orderItems,
     shippingTo,
-    shippingFrom: shopAddress?.addressDetail + shopAddress?.addressAdministrative,
+    shippingFrom: shopAddress?.street + ", " + shopAddress?.address,
     shippingPrice,
     totalPriceProduct,
     totalDiscount,

@@ -8,7 +8,7 @@ userRoutes.get("/", tokenMiddleware.verifyTokenAndAdmin, userControllers.getAllU
 userRoutes.post("/", tokenMiddleware.verifyTokenAndAdmin, userControllers.addNewUser);
 userRoutes.delete("/:id", tokenMiddleware.verifyTokenAndAdmin, userControllers.deleteUser);
 userRoutes.put("/", tokenMiddleware.verifyTokenAndAdmin, userControllers.updateUser);
-userRoutes.put("/profile", tokenMiddleware.verifyToken, userControllers.updateProfileMe);
+userRoutes.put("/me", tokenMiddleware.verifyToken, userControllers.updateMe);
 userRoutes.put("/change-password", tokenMiddleware.verifyToken, userControllers.changePasswordMe);
 
 export default userRoutes;

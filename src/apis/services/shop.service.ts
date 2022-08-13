@@ -35,11 +35,11 @@ const getAllShopAddress = async () => {
 const changeShopAddressDefault = async (req: Request) => {
   const shopAddress = await Shop.findById(req.params.id);
   if (!shopAddress) throw new ApiError(404, "Không tìm thấy địa chỉ shop!");
-  const shopAddressDefault = await Shop.findOne({ settingDefault: true });
+  const shopAddressDefault = await Shop.findOne({ default: true });
   if (shopAddressDefault) {
-    await shopAddressDefault.updateOne({ $set: { settingDefault: false } });
+    await shopAddressDefault.updateOne({ $set: { default: false } });
   }
-  await shopAddress.updateOne({ $set: { settingDefault: true } });
+  await shopAddress.updateOne({ $set: { default: true } });
   const response = {
     message: "Thay đổi địa chỉ mặc định thành công!",
     data: shopAddress,

@@ -4,7 +4,7 @@ import Order from "../models/order.model";
 import User from "../models/user.model";
 import { ApiError } from "../utils/api-error";
 
-const updateProfileMe = async (req: Request) => {
+const updateMe = async (req: Request) => {
   const updatedProfile = await User.findByIdAndUpdate(req.user._id, req.body, { new: true })
     .select({ password: 0, __v: 0 })
     .lean();
@@ -123,7 +123,7 @@ const deleteUser = async (req: Request) => {
 };
 
 const userServices = {
-  updateProfileMe,
+  updateMe,
   getSingleUser,
   getAllUser,
   addNewUser,

@@ -1,7 +1,7 @@
 export interface IUser {
   accessToken: string;
-  addressDetail: string;
-  addressAdministrative: string;
+  street: string;
+  address: string;
   createdAt: string;
   email: string;
   fullname: string;
