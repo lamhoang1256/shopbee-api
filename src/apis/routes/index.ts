@@ -7,9 +7,11 @@ import cartRoutes from "./cart.route";
 import orderRoutes from "./order.route";
 import userRoutes from "./user.route";
 import shopRoutes from "./shop.route";
+import importRoutes from "./import.route";
 import { responseError } from "../utils/response";
 
 const appRoutes = express();
+appRoutes.use("/api/import", importRoutes);
 appRoutes.use("/api/auth", authRoutes);
 appRoutes.use("/api/category", categoryRoutes);
 appRoutes.use("/api/product", productRoutes);

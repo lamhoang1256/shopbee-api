@@ -35,5 +35,4 @@ const productControllers = {
   deleteProduct,
   updateProduct,
 };
-
 export default productControllers;
