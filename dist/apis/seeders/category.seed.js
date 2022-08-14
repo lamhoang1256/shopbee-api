@@ -51,9 +51,9 @@ const categories = [
     },
     {
         _id: "62f741b7a2ae57a2d58faff2",
-        name: "Chăm sóc thú cưng",
-        slug: "cham-soc-thu-cung",
-        thumb: "https://cf.shopee.vn/file/cdf21b1bf4bfff257efe29054ecea1ec_tn",
+        name: "Đồng hồ",
+        slug: "dong-ho",
+        thumb: "https://cf.shopee.vn/file/86c294aae72ca1db5f541790f7796260_tn",
     },
     {
         _id: "62f741b7a2ae57a2d58faff1",
