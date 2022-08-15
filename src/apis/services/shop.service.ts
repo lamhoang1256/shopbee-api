@@ -22,7 +22,9 @@ const getSingleShopAddress = async (req: Request) => {
   return response;
 };
 
-const getAllShopAddress = async () => {
+const getAllShopAddress = async (req: Request) => {
+  let condition: any = {};
+  if (req.query.default) condition.default = req.query.default;
   const shopAddress = await Shop.find({});
   if (!shopAddress) throw new ApiError(404, "Không tìm thấy địa chỉ shop!");
   const response = {

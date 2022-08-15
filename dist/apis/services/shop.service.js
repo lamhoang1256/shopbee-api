@@ -33,7 +33,10 @@ const getSingleShopAddress = (req) => __awaiter(void 0, void 0, void 0, function
     };
     return response;
 });
-const getAllShopAddress = () => __awaiter(void 0, void 0, void 0, function* () {
+const getAllShopAddress = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    let condition = {};
+    if (req.query.default)
+        condition.default = req.query.default;
     const shopAddress = yield shop_model_1.default.find({});
     if (!shopAddress)
         throw new api_error_1.ApiError(404, "Không tìm thấy địa chỉ shop!");
