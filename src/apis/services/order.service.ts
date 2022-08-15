@@ -62,9 +62,10 @@ const getAllOrderAdmin = async (req: Request) => {
 };
 
 const getAllOrderMe = async (req: Request) => {
-  const { status } = req.query;
+  const { status, id } = req.query;
   let conditional: any = { user: req.user._id };
   if (status) conditional.status = status;
+  if (id) conditional.id = id;
   const orders = await Order.find(conditional)
     .populate({
       path: "orderItems",

@@ -69,10 +69,12 @@ const getAllOrderAdmin = (req) => __awaiter(void 0, void 0, void 0, function* ()
     return response;
 });
 const getAllOrderMe = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { status } = req.query;
+    const { status, id } = req.query;
     let conditional = { user: req.user._id };
     if (status)
         conditional.status = status;
+    if (id)
+        conditional.id = id;
     const orders = yield order_model_1.default.find(conditional)
         .populate({
         path: "orderItems",
