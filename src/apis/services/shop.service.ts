@@ -2,7 +2,9 @@ import { Request } from "express";
 import Shop from "../models/shop.model";
 import { ApiError } from "../utils/api-error";
 
-const addNewShopAddress = async (req: Request) => {
+const addNewShop = async (req: Request) => {
+  const countShops = await Shop.find().countDocuments();
+  if (countShops >= 1) throw new ApiError(500, "Địa chỉ shop đã tồn tại!");
   const newAddress = new Shop(req.body);
   const savedAddress = await newAddress.save();
   const response = {
@@ -12,7 +14,7 @@ const addNewShopAddress = async (req: Request) => {
   return response;
 };
 
-const getSingleShopAddress = async (req: Request) => {
+const getSingleShop = async (req: Request) => {
   const shopAddress = await Shop.findById(req.params.id).lean();
   if (!shopAddress) throw new ApiError(404, "Không tìm thấy địa chỉ shop!");
   const response = {
@@ -22,9 +24,7 @@ const getSingleShopAddress = async (req: Request) => {
   return response;
 };
 
-const getAllShopAddress = async (req: Request) => {
-  let condition: any = {};
-  if (req.query.default) condition.default = req.query.default;
+const getAllShop = async (req: Request) => {
   const shopAddress = await Shop.find({});
   if (!shopAddress) throw new ApiError(404, "Không tìm thấy địa chỉ shop!");
   const response = {
@@ -34,22 +34,7 @@ const getAllShopAddress = async (req: Request) => {
   return response;
 };
 
-const changeShopAddressDefault = async (req: Request) => {
-  const shopAddress = await Shop.findById(req.params.id);
-  if (!shopAddress) throw new ApiError(404, "Không tìm thấy địa chỉ shop!");
-  const shopAddressDefault = await Shop.findOne({ default: true });
-  if (shopAddressDefault) {
-    await shopAddressDefault.updateOne({ $set: { default: false } });
-  }
-  await shopAddress.updateOne({ $set: { default: true } });
-  const response = {
-    message: "Thay đổi địa chỉ mặc định thành công!",
-    data: shopAddress,
-  };
-  return response;
-};
-
-const updateShopAddress = async (req: Request) => {
+const updateShop = async (req: Request) => {
   const updatedAddress = await Shop.findByIdAndUpdate(req.params.id, req.body);
   if (!updatedAddress) throw new ApiError(404, "Không tìm thấy địa chỉ shop!");
   const response = {
@@ -59,7 +44,7 @@ const updateShopAddress = async (req: Request) => {
   return response;
 };
 
-const deleteShopAddress = async (req: Request) => {
+const deleteShop = async (req: Request) => {
   const addressInDB = await Shop.findByIdAndDelete(req.params.id).lean();
   if (!addressInDB) throw new ApiError(400, "Không tìm thấy địa chỉ shop!");
   const response = {
@@ -69,11 +54,10 @@ const deleteShopAddress = async (req: Request) => {
 };
 
 const shopServices = {
-  addNewShopAddress,
-  getSingleShopAddress,
-  getAllShopAddress,
-  updateShopAddress,
-  deleteShopAddress,
-  changeShopAddressDefault,
+  addNewShop,
+  getSingleShop,
+  getAllShop,
+  updateShop,
+  deleteShop,
 };
 export default shopServices;
