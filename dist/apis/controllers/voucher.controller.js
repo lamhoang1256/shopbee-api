@@ -19,6 +19,10 @@ const getSingleVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(v
     const shopAddress = yield voucher_service_1.default.getSingleVoucher(req);
     (0, response_1.responseSuccess)(res, shopAddress);
 }));
+const applyVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const shopAddress = yield voucher_service_1.default.applyVoucher(req);
+    (0, response_1.responseSuccess)(res, shopAddress);
+}));
 const getAllVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const shopAddressList = yield voucher_service_1.default.getAllVoucher(req);
     (0, response_1.responseSuccess)(res, shopAddressList);
@@ -41,5 +45,6 @@ const shopControllers = {
     addNewVoucher,
     updateVoucher,
     deleteVoucher,
+    applyVoucher,
 };
 exports.default = shopControllers;

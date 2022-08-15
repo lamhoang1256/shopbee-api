@@ -22,6 +22,18 @@ const getSingleVoucher = async (req: Request) => {
   return response;
 };
 
+const applyVoucher = async (req: Request) => {
+  const voucher: any = await Voucher.find({ code: req.query.code }).lean();
+  if (!voucher) throw new ApiError(404, "Mã giảm giá không hợp lệ!");
+  if (Number(voucher.expirationDate) < Date.now())
+    throw new ApiError(500, "Mã giảm giá đã hết hạn!");
+  const response = {
+    message: "Áp dụng mã giảm giá thành công!",
+    data: voucher,
+  };
+  return response;
+};
+
 const getAllVoucher = async (req: Request) => {
   const voucher = await Voucher.find({});
   if (!voucher) throw new ApiError(404, "Mã giảm giá không hợp lệ!");
@@ -57,5 +69,6 @@ const voucherServices = {
   getAllVoucher,
   updateVoucher,
   deleteVoucher,
+  applyVoucher,
 };
 export default voucherServices;

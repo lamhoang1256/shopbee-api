@@ -26,9 +26,21 @@ const addNewVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
 const getSingleVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const voucher = yield voucher_model_1.default.findById(req.params.id).lean();
     if (!voucher)
-        throw new api_error_1.ApiError(404, "Không tìm thấy voucher!");
+        throw new api_error_1.ApiError(404, "Mã giảm giá không hợp lệ!");
     const response = {
         message: "Lấy voucher thành công!",
+        data: voucher,
+    };
+    return response;
+});
+const applyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const voucher = yield voucher_model_1.default.find({ code: req.query.code }).lean();
+    if (!voucher)
+        throw new api_error_1.ApiError(404, "Mã giảm giá không hợp lệ!");
+    if (Number(voucher.expirationDate) < Date.now())
+        throw new api_error_1.ApiError(500, "Mã giảm giá đã hết hạn!");
+    const response = {
+        message: "Áp dụng mã giảm giá thành công!",
         data: voucher,
     };
     return response;
@@ -36,7 +48,7 @@ const getSingleVoucher = (req) => __awaiter(void 0, void 0, void 0, function* ()
 const getAllVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const voucher = yield voucher_model_1.default.find({});
     if (!voucher)
-        throw new api_error_1.ApiError(404, "Không tìm thấy voucher!");
+        throw new api_error_1.ApiError(404, "Mã giảm giá không hợp lệ!");
     const response = {
         message: "Lấy tất cả voucher thành công!",
         data: voucher,
@@ -46,7 +58,7 @@ const getAllVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
 const updateVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedVoucher = yield voucher_model_1.default.findByIdAndUpdate(req.params.id, req.body);
     if (!updatedVoucher)
-        throw new api_error_1.ApiError(404, "Không tìm thấy voucher!");
+        throw new api_error_1.ApiError(404, "Mã giảm giá không hợp lệ!");
     const response = {
         message: "Cập nhật voucher thành công!",
         data: updatedVoucher,
@@ -56,7 +68,7 @@ const updateVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
 const deleteVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const addressInDB = yield voucher_model_1.default.findByIdAndDelete(req.params.id).lean();
     if (!addressInDB)
-        throw new api_error_1.ApiError(400, "Không tìm thấy voucher!");
+        throw new api_error_1.ApiError(404, "Mã giảm giá không hợp lệ!");
     const response = {
         message: "Xóa voucher thành công!",
     };
@@ -68,5 +80,6 @@ const voucherServices = {
     getAllVoucher,
     updateVoucher,
     deleteVoucher,
+    applyVoucher,
 };
 exports.default = voucherServices;

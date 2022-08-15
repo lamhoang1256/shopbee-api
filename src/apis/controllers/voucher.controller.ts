@@ -8,6 +8,11 @@ const getSingleVoucher = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, shopAddress);
 });
 
+const applyVoucher = catchAsync(async (req: Request, res: Response) => {
+  const shopAddress = await voucherServices.applyVoucher(req);
+  responseSuccess(res, shopAddress);
+});
+
 const getAllVoucher = catchAsync(async (req: Request, res: Response) => {
   const shopAddressList = await voucherServices.getAllVoucher(req);
   responseSuccess(res, shopAddressList);
@@ -34,5 +39,6 @@ const shopControllers = {
   addNewVoucher,
   updateVoucher,
   deleteVoucher,
+  applyVoucher,
 };
 export default shopControllers;
