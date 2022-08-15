@@ -24,7 +24,7 @@ const addNewVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getSingleVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const voucher = yield voucher_model_1.default.findById(req.params.id).lean();
+    const voucher = yield voucher_model_1.default.findById(req.params.id);
     if (!voucher)
         throw new api_error_1.ApiError(404, "Mã giảm giá không hợp lệ!");
     const response = {
@@ -34,10 +34,10 @@ const getSingleVoucher = (req) => __awaiter(void 0, void 0, void 0, function* ()
     return response;
 });
 const applyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const voucher = yield voucher_model_1.default.find({ code: req.query.code }).lean();
+    const voucher = yield voucher_model_1.default.findOne({ code: req.query.code }).lean();
     if (!voucher)
         throw new api_error_1.ApiError(404, "Mã giảm giá không hợp lệ!");
-    if (Number(voucher.expirationDate) < Date.now())
+    if (Number(voucher.expirationDate) < Date.now() / 1000)
         throw new api_error_1.ApiError(500, "Mã giảm giá đã hết hạn!");
     const response = {
         message: "Áp dụng mã giảm giá thành công!",
