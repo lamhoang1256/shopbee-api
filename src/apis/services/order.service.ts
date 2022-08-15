@@ -4,22 +4,22 @@ import Shop from "../models/shop.model";
 import Product from "../models/product.model";
 import Cart from "../models/cart.model";
 import { ApiError } from "../utils/api-error";
-import { IAddressShop } from "../../@types/address";
+import { IShop } from "../../@types/shop";
 
 const createNewOrder = async (req: Request) => {
   const userId = req.user._id;
-  const { orderItems, shippingTo, shippingFee, oldPrice, promotion, total } = req.body;
+  const { orderItems, shippingTo, shippingFee, price, promotion, total } = req.body;
   if (orderItems && orderItems.length === 0) {
     throw new ApiError(404, "Giỏ hàng đang trống!");
   }
-  const shopAddress: IAddressShop = await Shop.findOne({ default: true }).lean();
+  const shop: IShop = await Shop.findOne().lean();
   const order = new Order({
     user: userId,
     orderItems,
     shippingTo,
-    shippingFrom: shopAddress?.street + ", " + shopAddress?.address,
+    shippingFrom: shop.address,
     shippingFee,
-    oldPrice,
+    price,
     promotion,
     total,
   });

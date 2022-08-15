@@ -19,18 +19,18 @@ const cart_model_1 = __importDefault(require("../models/cart.model"));
 const api_error_1 = require("../utils/api-error");
 const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = req.user._id;
-    const { orderItems, shippingTo, shippingFee, oldPrice, promotion, total } = req.body;
+    const { orderItems, shippingTo, shippingFee, price, promotion, total } = req.body;
     if (orderItems && orderItems.length === 0) {
         throw new api_error_1.ApiError(404, "Giỏ hàng đang trống!");
     }
-    const shopAddress = yield shop_model_1.default.findOne({ default: true }).lean();
+    const shop = yield shop_model_1.default.findOne().lean();
     const order = new order_model_1.default({
         user: userId,
         orderItems,
         shippingTo,
-        shippingFrom: (shopAddress === null || shopAddress === void 0 ? void 0 : shopAddress.street) + ", " + (shopAddress === null || shopAddress === void 0 ? void 0 : shopAddress.address),
+        shippingFrom: shop.address,
         shippingFee,
-        oldPrice,
+        price,
         promotion,
         total,
     });
