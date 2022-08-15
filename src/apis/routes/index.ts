@@ -7,6 +7,7 @@ import cartRoutes from "./cart.route";
 import orderRoutes from "./order.route";
 import userRoutes from "./user.route";
 import shopRoutes from "./shop.route";
+import voucherRoutes from "./voucher.route";
 import importRoutes from "./import.route";
 import { responseError } from "../utils/response";
 
@@ -20,6 +21,7 @@ appRoutes.use("/api/cart", cartRoutes);
 appRoutes.use("/api/order", orderRoutes);
 appRoutes.use("/api/user", userRoutes);
 appRoutes.use("/api/shop", shopRoutes);
+appRoutes.use("/api/voucher", voucherRoutes);
 appRoutes.use((err: any, req: Request, res: Response, next: NextFunction) => {
   responseError(err, res);
 });

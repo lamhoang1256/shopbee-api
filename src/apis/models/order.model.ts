@@ -23,17 +23,12 @@ const orderSchema = new mongoose.Schema(
     shippingTo: {
       type: String,
     },
-    shippingFee: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-    oldPrice: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
     price: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    shippingFee: {
       type: Number,
       required: true,
       default: 0,

@@ -9,7 +9,9 @@ const voucherSchema = new mongoose.Schema(
     value: {
       type: Number,
     },
-    expiredIn: {
+    image: String,
+    description: String,
+    expirationDate: {
       type: String,
       default: "",
     },
@@ -17,4 +19,4 @@ const voucherSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-export default mongoose.model("Token", voucherSchema);
+export default mongoose.model("Voucher", voucherSchema);

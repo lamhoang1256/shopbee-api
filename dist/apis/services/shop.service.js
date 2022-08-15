@@ -18,50 +18,50 @@ const addNewShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const countShops = yield shop_model_1.default.find().countDocuments();
     if (countShops >= 1)
         throw new api_error_1.ApiError(500, "Địa chỉ shop đã tồn tại!");
-    const newAddress = new shop_model_1.default(req.body);
-    const savedAddress = yield newAddress.save();
+    const newShop = new shop_model_1.default(req.body);
+    const savedShop = yield newShop.save();
     const response = {
-        message: "Thêm mới địa chỉ thành công!",
-        data: savedAddress,
+        message: "Thêm mới thành công!",
+        data: savedShop,
     };
     return response;
 });
 const getSingleShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const shopAddress = yield shop_model_1.default.findById(req.params.id).lean();
-    if (!shopAddress)
-        throw new api_error_1.ApiError(404, "Không tìm thấy địa chỉ shop!");
+    const shop = yield shop_model_1.default.findById(req.params.id).lean();
+    if (!shop)
+        throw new api_error_1.ApiError(404, "Không tìm thấy shop!");
     const response = {
-        message: "Lấy địa chỉ shop thành công!",
-        data: shopAddress,
+        message: "Lấy shop thành công!",
+        data: shop,
     };
     return response;
 });
 const getAllShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const shopAddress = yield shop_model_1.default.find({});
-    if (!shopAddress)
-        throw new api_error_1.ApiError(404, "Không tìm thấy địa chỉ shop!");
+    const shop = yield shop_model_1.default.find({});
+    if (!shop)
+        throw new api_error_1.ApiError(404, "Không tìm thấy shop!");
     const response = {
-        message: "Lấy tất cả địa chỉ shop thành công!",
-        data: shopAddress,
+        message: "Lấy tất cả shop thành công!",
+        data: shop,
     };
     return response;
 });
 const updateShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const updatedAddress = yield shop_model_1.default.findByIdAndUpdate(req.params.id, req.body);
-    if (!updatedAddress)
-        throw new api_error_1.ApiError(404, "Không tìm thấy địa chỉ shop!");
+    const updatedShop = yield shop_model_1.default.findByIdAndUpdate(req.params.id, req.body);
+    if (!updatedShop)
+        throw new api_error_1.ApiError(404, "Không tìm thấy shop!");
     const response = {
-        message: "Cập nhật địa chỉ shop thành công!",
-        data: updatedAddress,
+        message: "Cập nhật shop thành công!",
+        data: updatedShop,
     };
     return response;
 });
 const deleteShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const addressInDB = yield shop_model_1.default.findByIdAndDelete(req.params.id).lean();
-    if (!addressInDB)
-        throw new api_error_1.ApiError(400, "Không tìm thấy địa chỉ shop!");
+    const shopInDB = yield shop_model_1.default.findByIdAndDelete(req.params.id).lean();
+    if (!shopInDB)
+        throw new api_error_1.ApiError(400, "Không tìm thấy shop!");
     const response = {
-        message: "Xóa địa chỉ shop thành công!",
+        message: "Xóa shop thành công!",
     };
     return response;
 });
