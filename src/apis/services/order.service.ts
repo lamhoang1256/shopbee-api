@@ -48,7 +48,7 @@ const createNewOrder = async (req: Request) => {
 const getAllOrderAdmin = async (req: Request) => {
   const { status, orderId } = req.query;
   let conditional: any = {};
-  if (status) conditional.status = status;
+  if (status) conditional.orderStatus.status = status;
   if (orderId) conditional._id = orderId;
   const orders = await Order.find(conditional)
     .sort({

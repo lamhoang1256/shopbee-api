@@ -56,7 +56,7 @@ const getAllOrderAdmin = (req) => __awaiter(void 0, void 0, void 0, function* ()
     const { status, orderId } = req.query;
     let conditional = {};
     if (status)
-        conditional.status = status;
+        conditional.orderStatus.status = status;
     if (orderId)
         conditional._id = orderId;
     const orders = yield order_model_1.default.find(conditional)
