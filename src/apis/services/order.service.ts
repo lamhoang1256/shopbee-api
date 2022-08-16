@@ -97,11 +97,26 @@ const getSingleOrder = async (req: Request) => {
   return response;
 };
 
+const updateStatusOrderToProcessing = async (req: Request) => {
+  const order: any = await Order.findById(req.params.id);
+  if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
+  order.processingAt = Date.now();
+  order.orderStatus.status = "processing";
+  order.orderStatus.statusCode = 1;
+  const updatedOrder = await order.save();
+  const response = {
+    message: "Cập nhật trạng thái đang xử lý thành công!",
+    data: updatedOrder,
+  };
+  return response;
+};
+
 const updateStatusOrderToShipping = async (req: Request) => {
   const order: any = await Order.findById(req.params.id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   order.shippingAt = Date.now();
-  order.status = "shipping";
+  order.orderStatus.status = "shipping";
+  order.orderStatus.statusCode = 2;
   const updatedOrder = await order.save();
   const response = {
     message: "Cập nhật trạng thái đang vận chuyển thành công!",
@@ -114,7 +129,8 @@ const updateStatusOrderToDelivered = async (req: Request) => {
   const order: any = await Order.findById(req.params.id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   order.deliveredAt = Date.now();
-  order.status = "delivered";
+  order.orderStatus.status = "delivered";
+  order.orderStatus.statusCode = 3;
   const updatedOrder = await order.save();
   const response = {
     message: "Cập nhật trạng thái đã giao hàng thành công!",
@@ -127,7 +143,8 @@ const updateStatusOrderToCancel = async (req: Request) => {
   const order: any = await Order.findById(req.params.id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   order.canceledAt = Date.now();
-  order.status = "canceled";
+  order.orderStatus.status = "canceled";
+  order.orderStatus.statusCode = 4;
   const updatedOrder = await order.save();
   const response = {
     message: "Hủy đơn hàng thành công!",
@@ -141,6 +158,7 @@ const orderServices = {
   getAllOrderAdmin,
   getAllOrderMe,
   getSingleOrder,
+  updateStatusOrderToProcessing,
   updateStatusOrderToShipping,
   updateStatusOrderToDelivered,
   updateStatusOrderToCancel,

@@ -42,10 +42,17 @@ const orderSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
-    status: {
-      type: String,
-      enum: ["waiting", "processing", "shipping", "delivered", "canceled"],
-      default: "processing",
+    orderStatus: {
+      status: {
+        type: String,
+        enum: ["waiting", "processing", "shipping", "delivered", "canceled"],
+        default: "waiting",
+      },
+      statusCode: {
+        type: Number,
+        enum: [0, 1, 2, 3, 4],
+        default: 0,
+      },
     },
     shippingAt: {
       type: Date,

@@ -106,12 +106,27 @@ const getSingleOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
+const updateStatusOrderToProcessing = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const order = yield order_model_1.default.findById(req.params.id);
+    if (!order)
+        throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
+    order.processingAt = Date.now();
+    order.orderStatus.status = "processing";
+    order.orderStatus.statusCode = 1;
+    const updatedOrder = yield order.save();
+    const response = {
+        message: "Cập nhật trạng thái đang xử lý thành công!",
+        data: updatedOrder,
+    };
+    return response;
+});
 const updateStatusOrderToShipping = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const order = yield order_model_1.default.findById(req.params.id);
     if (!order)
         throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
     order.shippingAt = Date.now();
-    order.status = "shipping";
+    order.orderStatus.status = "shipping";
+    order.orderStatus.statusCode = 2;
     const updatedOrder = yield order.save();
     const response = {
         message: "Cập nhật trạng thái đang vận chuyển thành công!",
@@ -124,7 +139,8 @@ const updateStatusOrderToDelivered = (req) => __awaiter(void 0, void 0, void 0, 
     if (!order)
         throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
     order.deliveredAt = Date.now();
-    order.status = "delivered";
+    order.orderStatus.status = "delivered";
+    order.orderStatus.statusCode = 3;
     const updatedOrder = yield order.save();
     const response = {
         message: "Cập nhật trạng thái đã giao hàng thành công!",
@@ -137,7 +153,8 @@ const updateStatusOrderToCancel = (req) => __awaiter(void 0, void 0, void 0, fun
     if (!order)
         throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
     order.canceledAt = Date.now();
-    order.status = "canceled";
+    order.orderStatus.status = "canceled";
+    order.orderStatus.statusCode = 4;
     const updatedOrder = yield order.save();
     const response = {
         message: "Hủy đơn hàng thành công!",
@@ -150,6 +167,7 @@ const orderServices = {
     getAllOrderAdmin,
     getAllOrderMe,
     getSingleOrder,
+    updateStatusOrderToProcessing,
     updateStatusOrderToShipping,
     updateStatusOrderToDelivered,
     updateStatusOrderToCancel,
