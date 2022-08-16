@@ -53,10 +53,12 @@ const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getAllOrderAdmin = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { status } = req.query;
+    const { status, orderId } = req.query;
     let conditional = {};
     if (status)
         conditional.status = status;
+    if (orderId)
+        conditional._id = orderId;
     const orders = yield order_model_1.default.find(conditional)
         .sort({
         createdAt: -1,
@@ -74,7 +76,7 @@ const getAllOrderMe = (req) => __awaiter(void 0, void 0, void 0, function* () {
     if (status)
         conditional.status = status;
     if (orderId)
-        conditional.id = orderId;
+        conditional._id = orderId;
     const orders = yield order_model_1.default.find(conditional)
         .populate({
         path: "orderItems",
