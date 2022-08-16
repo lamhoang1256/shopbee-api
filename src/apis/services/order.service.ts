@@ -48,7 +48,7 @@ const createNewOrder = async (req: Request) => {
 const getAllOrderAdmin = async (req: Request) => {
   const { status, orderId } = req.query;
   let conditional: any = {};
-  if (status) conditional.orderStatus.status = status;
+  if (status) conditional.status = status;
   if (orderId) conditional._id = orderId;
   const orders = await Order.find(conditional)
     .sort({
@@ -101,8 +101,8 @@ const updateStatusOrderToProcessing = async (req: Request) => {
   const order: any = await Order.findById(req.params.id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   order.processingAt = Date.now();
-  order.orderStatus.status = "processing";
-  order.orderStatus.statusCode = 1;
+  order.status = "processing";
+  order.statusCode = 1;
   const updatedOrder = await order.save();
   const response = {
     message: "Cập nhật trạng thái đang xử lý thành công!",
@@ -115,8 +115,8 @@ const updateStatusOrderToShipping = async (req: Request) => {
   const order: any = await Order.findById(req.params.id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   order.shippingAt = Date.now();
-  order.orderStatus.status = "shipping";
-  order.orderStatus.statusCode = 2;
+  order.status = "shipping";
+  order.statusCode = 2;
   const updatedOrder = await order.save();
   const response = {
     message: "Cập nhật trạng thái đang vận chuyển thành công!",
@@ -129,8 +129,8 @@ const updateStatusOrderToDelivered = async (req: Request) => {
   const order: any = await Order.findById(req.params.id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   order.deliveredAt = Date.now();
-  order.orderStatus.status = "delivered";
-  order.orderStatus.statusCode = 3;
+  order.status = "delivered";
+  order.statusCode = 3;
   const updatedOrder = await order.save();
   const response = {
     message: "Cập nhật trạng thái đã giao hàng thành công!",
@@ -143,8 +143,8 @@ const updateStatusOrderToCancel = async (req: Request) => {
   const order: any = await Order.findById(req.params.id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   order.canceledAt = Date.now();
-  order.orderStatus.status = "canceled";
-  order.orderStatus.statusCode = 4;
+  order.status = "canceled";
+  order.statusCode = 4;
   const updatedOrder = await order.save();
   const response = {
     message: "Hủy đơn hàng thành công!",

@@ -56,7 +56,7 @@ const getAllOrderAdmin = (req) => __awaiter(void 0, void 0, void 0, function* ()
     const { status, orderId } = req.query;
     let conditional = {};
     if (status)
-        conditional.orderStatus.status = status;
+        conditional.status = status;
     if (orderId)
         conditional._id = orderId;
     const orders = yield order_model_1.default.find(conditional)
@@ -111,8 +111,8 @@ const updateStatusOrderToProcessing = (req) => __awaiter(void 0, void 0, void 0,
     if (!order)
         throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
     order.processingAt = Date.now();
-    order.orderStatus.status = "processing";
-    order.orderStatus.statusCode = 1;
+    order.status = "processing";
+    order.statusCode = 1;
     const updatedOrder = yield order.save();
     const response = {
         message: "Cập nhật trạng thái đang xử lý thành công!",
@@ -125,8 +125,8 @@ const updateStatusOrderToShipping = (req) => __awaiter(void 0, void 0, void 0, f
     if (!order)
         throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
     order.shippingAt = Date.now();
-    order.orderStatus.status = "shipping";
-    order.orderStatus.statusCode = 2;
+    order.status = "shipping";
+    order.statusCode = 2;
     const updatedOrder = yield order.save();
     const response = {
         message: "Cập nhật trạng thái đang vận chuyển thành công!",
@@ -139,8 +139,8 @@ const updateStatusOrderToDelivered = (req) => __awaiter(void 0, void 0, void 0, 
     if (!order)
         throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
     order.deliveredAt = Date.now();
-    order.orderStatus.status = "delivered";
-    order.orderStatus.statusCode = 3;
+    order.status = "delivered";
+    order.statusCode = 3;
     const updatedOrder = yield order.save();
     const response = {
         message: "Cập nhật trạng thái đã giao hàng thành công!",
@@ -153,8 +153,8 @@ const updateStatusOrderToCancel = (req) => __awaiter(void 0, void 0, void 0, fun
     if (!order)
         throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
     order.canceledAt = Date.now();
-    order.orderStatus.status = "canceled";
-    order.orderStatus.statusCode = 4;
+    order.status = "canceled";
+    order.statusCode = 4;
     const updatedOrder = yield order.save();
     const response = {
         message: "Hủy đơn hàng thành công!",
