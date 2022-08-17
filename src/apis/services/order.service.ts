@@ -54,7 +54,11 @@ const getAllOrderAdmin = async (req: Request) => {
     .sort({
       createdAt: -1,
     })
-    .populate("user", "id fullname email");
+    .populate("user", "id fullname email")
+    .populate({
+      path: "orderItems",
+      populate: { path: "product" },
+    });
   const response = {
     message: "Lấy tất cả đơn hàng thành công!",
     data: orders,
@@ -73,7 +77,7 @@ const getAllOrderMe = async (req: Request) => {
       populate: { path: "product" },
     })
     .sort({
-      _id: -1,
+      createdAt: -1,
     });
   const response = {
     message: "Lấy tất cả đơn hàng thành công!",
