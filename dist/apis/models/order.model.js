@@ -55,6 +55,9 @@ const orderSchema = new mongoose_1.default.Schema({
         enum: [0, 1, 2, 3, 4],
         default: 0,
     },
+    processingAt: {
+        type: Date,
+    },
     shippingAt: {
         type: Date,
     },

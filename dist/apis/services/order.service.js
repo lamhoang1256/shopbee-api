@@ -63,7 +63,11 @@ const getAllOrderAdmin = (req) => __awaiter(void 0, void 0, void 0, function* ()
         .sort({
         createdAt: -1,
     })
-        .populate("user", "id fullname email");
+        .populate("user", "id fullname email")
+        .populate({
+        path: "orderItems",
+        populate: { path: "product" },
+    });
     const response = {
         message: "Lấy tất cả đơn hàng thành công!",
         data: orders,
@@ -83,7 +87,7 @@ const getAllOrderMe = (req) => __awaiter(void 0, void 0, void 0, function* () {
         populate: { path: "product" },
     })
         .sort({
-        _id: -1,
+        createdAt: -1,
     });
     const response = {
         message: "Lấy tất cả đơn hàng thành công!",
