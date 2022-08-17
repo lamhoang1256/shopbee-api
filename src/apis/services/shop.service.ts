@@ -25,7 +25,7 @@ const getSingleShop = async (req: Request) => {
 };
 
 const getAllShop = async (req: Request) => {
-  const shop = await Shop.find({});
+  const shop = await Shop.findOne({});
   if (!shop) throw new ApiError(404, "Không tìm thấy shop!");
   const response = {
     message: "Lấy tất cả shop thành công!",

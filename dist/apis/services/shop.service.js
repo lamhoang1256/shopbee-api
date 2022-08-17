@@ -37,7 +37,7 @@ const getSingleShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getAllShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const shop = yield shop_model_1.default.find({});
+    const shop = yield shop_model_1.default.findOne({});
     if (!shop)
         throw new api_error_1.ApiError(404, "Không tìm thấy shop!");
     const response = {
