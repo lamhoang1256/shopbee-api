@@ -47,7 +47,7 @@ const getAllShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const updateShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const updatedShop = yield shop_model_1.default.findByIdAndUpdate(req.params.id, req.body);
+    const updatedShop = yield shop_model_1.default.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedShop)
         throw new api_error_1.ApiError(404, "Không tìm thấy shop!");
     const response = {

@@ -35,7 +35,7 @@ const getAllShop = async (req: Request) => {
 };
 
 const updateShop = async (req: Request) => {
-  const updatedShop = await Shop.findByIdAndUpdate(req.params.id, req.body);
+  const updatedShop = await Shop.findByIdAndUpdate(req.params.id, req.body, { new: true });
   if (!updatedShop) throw new ApiError(404, "Không tìm thấy shop!");
   const response = {
     message: "Cập nhật shop thành công!",
