@@ -7,9 +7,8 @@ const shop_controller_1 = __importDefault(require("../controllers/shop.controlle
 const express_1 = require("express");
 const tokenMiddleware_1 = __importDefault(require("../middlewares/tokenMiddleware"));
 const shopRoutes = (0, express_1.Router)();
-shopRoutes.get("/", tokenMiddleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.getAllShop);
-shopRoutes.get("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.getSingleShop);
-shopRoutes.post("/", tokenMiddleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.addNewShop);
-shopRoutes.put("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.updateShop);
-shopRoutes.delete("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.deleteShop);
+shopRoutes.get("/", shop_controller_1.default.getShopInfo);
+shopRoutes.post("/", tokenMiddleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.addNewShopInfo);
+shopRoutes.put("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.updateShopInfo);
+shopRoutes.delete("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.deleteShopInfo);
 exports.default = shopRoutes;

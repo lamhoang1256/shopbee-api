@@ -6,7 +6,7 @@ const orderRoutes = Router();
 orderRoutes.post("/", tokenMiddleware.verifyToken, orderControllers.createNewOrder);
 orderRoutes.get("/me", tokenMiddleware.verifyToken, orderControllers.getAllOrderMe);
 orderRoutes.get("/admin", tokenMiddleware.verifyTokenAndAdmin, orderControllers.getAllOrderAdmin);
-orderRoutes.get("/:id", orderControllers.getSingleOrder);
+orderRoutes.get("/:id", tokenMiddleware.verifyToken, orderControllers.getSingleOrder);
 orderRoutes.put(
   "/:id/shipping",
   tokenMiddleware.verifyTokenAndAdmin,

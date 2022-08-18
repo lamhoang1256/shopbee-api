@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const shop_model_1 = __importDefault(require("../models/shop.model"));
 const api_error_1 = require("../utils/api-error");
-const addNewShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
+const addNewShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const countShops = yield shop_model_1.default.find().countDocuments();
     if (countShops >= 1)
         throw new api_error_1.ApiError(500, "Địa chỉ shop đã tồn tại!");
@@ -26,17 +26,7 @@ const addNewShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-const getSingleShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const shop = yield shop_model_1.default.findById(req.params.id).lean();
-    if (!shop)
-        throw new api_error_1.ApiError(404, "Không tìm thấy shop!");
-    const response = {
-        message: "Lấy shop thành công!",
-        data: shop,
-    };
-    return response;
-});
-const getAllShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
+const getShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const shop = yield shop_model_1.default.findOne({});
     if (!shop)
         throw new api_error_1.ApiError(404, "Không tìm thấy shop!");
@@ -46,7 +36,7 @@ const getAllShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-const updateShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
+const updateShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedShop = yield shop_model_1.default.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedShop)
         throw new api_error_1.ApiError(404, "Không tìm thấy shop!");
@@ -56,7 +46,7 @@ const updateShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-const deleteShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const shopInDB = yield shop_model_1.default.findByIdAndDelete(req.params.id).lean();
     if (!shopInDB)
         throw new api_error_1.ApiError(400, "Không tìm thấy shop!");
@@ -66,10 +56,9 @@ const deleteShop = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const shopServices = {
-    addNewShop,
-    getSingleShop,
-    getAllShop,
-    updateShop,
-    deleteShop,
+    addNewShopInfo,
+    getShopInfo,
+    updateShopInfo,
+    deleteShopInfo,
 };
 exports.default = shopServices;

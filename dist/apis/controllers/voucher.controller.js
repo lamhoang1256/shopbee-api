@@ -15,26 +15,44 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const voucher_service_1 = __importDefault(require("../services/voucher.service"));
 const catch_async_1 = require("../utils/catch-async");
 const response_1 = require("../utils/response");
+// @desc    Lấy chi tiết 1 voucher
+// @route   GET /api/voucher/:id
+// @access  Public
 const getSingleVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const shopAddress = yield voucher_service_1.default.getSingleVoucher(req);
     (0, response_1.responseSuccess)(res, shopAddress);
 }));
-const applyVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const shopAddress = yield voucher_service_1.default.applyVoucher(req);
-    (0, response_1.responseSuccess)(res, shopAddress);
-}));
+// @desc    Lấy tất cả voucher
+// @route   GET /api/voucher
+// @access  Private/Admin
 const getAllVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const shopAddressList = yield voucher_service_1.default.getAllVoucher(req);
     (0, response_1.responseSuccess)(res, shopAddressList);
 }));
+// @desc    Sử dụng voucher
+// @route   GET /api/voucher
+// @access  Private
+const applyVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const shopAddress = yield voucher_service_1.default.applyVoucher(req);
+    (0, response_1.responseSuccess)(res, shopAddress);
+}));
+// @desc    Thêm mới 1 voucher
+// @route   POST /api/voucher
+// @access  Private/Admin
 const addNewVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const newAddress = yield voucher_service_1.default.addNewVoucher(req);
     (0, response_1.responseSuccess)(res, newAddress);
 }));
+// @desc    Cập nhật thông tin 1 voucher
+// @route   PUT /api/voucher
+// @access  Private/Admin
 const updateVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedAddress = yield voucher_service_1.default.updateVoucher(req);
     (0, response_1.responseSuccess)(res, updatedAddress);
 }));
+// @desc    Xóa 1 voucher
+// @route   DELETE /api/voucher
+// @access  Private/Admin
 const deleteVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const deletedAddress = yield voucher_service_1.default.deleteVoucher(req);
     (0, response_1.responseSuccess)(res, deletedAddress);

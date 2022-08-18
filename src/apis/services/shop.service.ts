@@ -2,7 +2,7 @@ import { Request } from "express";
 import Shop from "../models/shop.model";
 import { ApiError } from "../utils/api-error";
 
-const addNewShop = async (req: Request) => {
+const addNewShopInfo = async (req: Request) => {
   const countShops = await Shop.find().countDocuments();
   if (countShops >= 1) throw new ApiError(500, "Địa chỉ shop đã tồn tại!");
   const newShop = new Shop(req.body);
@@ -14,17 +14,7 @@ const addNewShop = async (req: Request) => {
   return response;
 };
 
-const getSingleShop = async (req: Request) => {
-  const shop = await Shop.findById(req.params.id).lean();
-  if (!shop) throw new ApiError(404, "Không tìm thấy shop!");
-  const response = {
-    message: "Lấy shop thành công!",
-    data: shop,
-  };
-  return response;
-};
-
-const getAllShop = async (req: Request) => {
+const getShopInfo = async (req: Request) => {
   const shop = await Shop.findOne({});
   if (!shop) throw new ApiError(404, "Không tìm thấy shop!");
   const response = {
@@ -34,7 +24,7 @@ const getAllShop = async (req: Request) => {
   return response;
 };
 
-const updateShop = async (req: Request) => {
+const updateShopInfo = async (req: Request) => {
   const updatedShop = await Shop.findByIdAndUpdate(req.params.id, req.body, { new: true });
   if (!updatedShop) throw new ApiError(404, "Không tìm thấy shop!");
   const response = {
@@ -44,7 +34,7 @@ const updateShop = async (req: Request) => {
   return response;
 };
 
-const deleteShop = async (req: Request) => {
+const deleteShopInfo = async (req: Request) => {
   const shopInDB = await Shop.findByIdAndDelete(req.params.id).lean();
   if (!shopInDB) throw new ApiError(400, "Không tìm thấy shop!");
   const response = {
@@ -54,10 +44,9 @@ const deleteShop = async (req: Request) => {
 };
 
 const shopServices = {
-  addNewShop,
-  getSingleShop,
-  getAllShop,
-  updateShop,
-  deleteShop,
+  addNewShopInfo,
+  getShopInfo,
+  updateShopInfo,
+  deleteShopInfo,
 };
 export default shopServices;

@@ -15,31 +15,38 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const shop_service_1 = __importDefault(require("../services/shop.service"));
 const catch_async_1 = require("../utils/catch-async");
 const response_1 = require("../utils/response");
-const getSingleShop = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const shopAddress = yield shop_service_1.default.getSingleShop(req);
-    (0, response_1.responseSuccess)(res, shopAddress);
-}));
-const getAllShop = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const shopAddressList = yield shop_service_1.default.getAllShop(req);
+// @desc    Lấy chi tiết thông tin shop
+// @route   GET /api/shop
+// @access  Public
+const getShopInfo = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const shopAddressList = yield shop_service_1.default.getShopInfo(req);
     (0, response_1.responseSuccess)(res, shopAddressList);
 }));
-const addNewShop = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const newAddress = yield shop_service_1.default.addNewShop(req);
+// @desc    Thêm mới thông tin shop
+// @route   POST /api/shop
+// @access  Private/Admin
+const addNewShopInfo = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const newAddress = yield shop_service_1.default.addNewShopInfo(req);
     (0, response_1.responseSuccess)(res, newAddress);
 }));
-const updateShop = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const updatedAddress = yield shop_service_1.default.updateShop(req);
+// @desc    Cập nhật thông tin shop
+// @route   PUT /api/shop
+// @access  Private/Admin
+const updateShopInfo = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedAddress = yield shop_service_1.default.updateShopInfo(req);
     (0, response_1.responseSuccess)(res, updatedAddress);
 }));
-const deleteShop = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const deletedAddress = yield shop_service_1.default.deleteShop(req);
+// @desc    Xóa thông tin shop
+// @route   DELETE /api/shop
+// @access  Private/Admin
+const deleteShopInfo = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const deletedAddress = yield shop_service_1.default.deleteShopInfo(req);
     (0, response_1.responseSuccess)(res, deletedAddress);
 }));
 const shopControllers = {
-    getSingleShop,
-    getAllShop,
-    addNewShop,
-    updateShop,
-    deleteShop,
+    getShopInfo,
+    addNewShopInfo,
+    updateShopInfo,
+    deleteShopInfo,
 };
 exports.default = shopControllers;

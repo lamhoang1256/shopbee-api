@@ -3,36 +3,42 @@ import shopServices from "../services/shop.service";
 import { catchAsync } from "../utils/catch-async";
 import { responseSuccess } from "../utils/response";
 
-const getSingleShop = catchAsync(async (req: Request, res: Response) => {
-  const shopAddress = await shopServices.getSingleShop(req);
-  responseSuccess(res, shopAddress);
-});
-
-const getAllShop = catchAsync(async (req: Request, res: Response) => {
-  const shopAddressList = await shopServices.getAllShop(req);
+// @desc    Lấy chi tiết thông tin shop
+// @route   GET /api/shop
+// @access  Public
+const getShopInfo = catchAsync(async (req: Request, res: Response) => {
+  const shopAddressList = await shopServices.getShopInfo(req);
   responseSuccess(res, shopAddressList);
 });
 
-const addNewShop = catchAsync(async (req: Request, res: Response) => {
-  const newAddress = await shopServices.addNewShop(req);
+// @desc    Thêm mới thông tin shop
+// @route   POST /api/shop
+// @access  Private/Admin
+const addNewShopInfo = catchAsync(async (req: Request, res: Response) => {
+  const newAddress = await shopServices.addNewShopInfo(req);
   responseSuccess(res, newAddress);
 });
 
-const updateShop = catchAsync(async (req: Request, res: Response) => {
-  const updatedAddress = await shopServices.updateShop(req);
+// @desc    Cập nhật thông tin shop
+// @route   PUT /api/shop
+// @access  Private/Admin
+const updateShopInfo = catchAsync(async (req: Request, res: Response) => {
+  const updatedAddress = await shopServices.updateShopInfo(req);
   responseSuccess(res, updatedAddress);
 });
 
-const deleteShop = catchAsync(async (req: Request, res: Response) => {
-  const deletedAddress = await shopServices.deleteShop(req);
+// @desc    Xóa thông tin shop
+// @route   DELETE /api/shop
+// @access  Private/Admin
+const deleteShopInfo = catchAsync(async (req: Request, res: Response) => {
+  const deletedAddress = await shopServices.deleteShopInfo(req);
   responseSuccess(res, deletedAddress);
 });
 
 const shopControllers = {
-  getSingleShop,
-  getAllShop,
-  addNewShop,
-  updateShop,
-  deleteShop,
+  getShopInfo,
+  addNewShopInfo,
+  updateShopInfo,
+  deleteShopInfo,
 };
 export default shopControllers;

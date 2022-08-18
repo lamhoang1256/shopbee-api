@@ -3,7 +3,7 @@ import voucherControllers from "../controllers/voucher.controller";
 import tokenMiddleware from "../middlewares/tokenMiddleware";
 const voucherRoutes = Router();
 
-voucherRoutes.get("/", voucherControllers.getAllVoucher);
+voucherRoutes.get("/", tokenMiddleware.verifyTokenAndAdmin, voucherControllers.getAllVoucher);
 voucherRoutes.get("/apply", tokenMiddleware.verifyToken, voucherControllers.applyVoucher);
 voucherRoutes.get("/:id", voucherControllers.getSingleVoucher);
 voucherRoutes.post("/", tokenMiddleware.verifyTokenAndAdmin, voucherControllers.addNewVoucher);
