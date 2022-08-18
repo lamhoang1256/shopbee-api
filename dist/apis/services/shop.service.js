@@ -41,7 +41,7 @@ const updateShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
     if (!updatedShop)
         throw new api_error_1.ApiError(404, "Không tìm thấy shop!");
     const response = {
-        message: "Cập nhật shop thành công!",
+        message: "Chỉnh sửa shop thành công!",
         data: updatedShop,
     };
     return response;

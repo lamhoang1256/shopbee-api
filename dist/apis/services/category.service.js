@@ -58,7 +58,7 @@ const updateCategory = (req) => __awaiter(void 0, void 0, void 0, function* () {
         throw new api_error_1.ApiError(404, "Không tìm thấy danh mục!");
     yield category.updateOne({ $set: req.body });
     const response = {
-        message: "Cập nhật danh mục thành công!",
+        message: "Chỉnh sửa danh mục thành công!",
     };
     return response;
 });

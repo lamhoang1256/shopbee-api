@@ -60,7 +60,7 @@ const updateVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     if (!updatedVoucher)
         throw new api_error_1.ApiError(404, "Mã giảm giá không hợp lệ!");
     const response = {
-        message: "Cập nhật voucher thành công!",
+        message: "Chỉnh sửa voucher thành công!",
         data: updatedVoucher,
     };
     return response;

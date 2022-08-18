@@ -1,5 +1,6 @@
 const phones = [
   {
+    _id: "62fdb82ac5f24dcd4213495b",
     category: "62f741b7a2ae57a2d58fafeb",
     name: "Điện Thoại Xiaomi Redmi 10 4GB/128GB - Hàng Chính Hãng",
     image:
@@ -10,10 +11,12 @@ const phones = [
     stock: 30,
     sold: 79,
     view: 121744436,
+    reviews: [],
     description:
       "Camera\n- 50MP camera chính\n- Sử dụng camera chính 50MP để ngắm nhìn thế giới với họa tiết đầy đủ và khám phá tiềm năng sáng tạo của bạn\n- Camera góc siêu rộng 8 MP sẽ mở rộng góc nhìn giúp bạn thu...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213495c",
     category: "62f741b7a2ae57a2d58fafeb",
     name: "Điện Thoại Samsung A52S 5G 8GB/128GB - Hàng Chính Hãng",
     image:
@@ -24,10 +27,12 @@ const phones = [
     stock: 5,
     sold: 28,
     view: 127061397,
+    reviews: [],
     description:
       'Màn Hình Đỉnh Cao Cho Chuyển Động Mượt Mà\n- Mãn nhãn với những hình ảnh chi tiết, rực rỡ trên màn hình Super AMOLED 6.5" chuẩn FHD+ Super Smooth mang đến trải nghiệm mượt mà tối ưu, bất kể bạn chơi...',
   },
   {
+    _id: "62fdb82ac5f24dcd4213495d",
     category: "62f741b7a2ae57a2d58fafeb",
     name: "Điện thoại Samsung Galaxy A32 (6GB/128GB) - Hàng Chính Hãng",
     image:
@@ -38,10 +43,12 @@ const phones = [
     stock: 3,
     sold: 50,
     view: 121237681,
+    reviews: [],
     description:
       "Thiết kế mới lạ, sang trọng nhưng không kém phần hấp dẫn\nSamsung Galaxy A32 có ngôn ngữ thiết kế cao cấp, sang trọng mặt lưng nổi bật cụm 4 camera cực chất không quá hào nhoáng nhưng vẫn đủ để giúp...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213495e",
     category: "62f741b7a2ae57a2d58fafeb",
     name: "Điện thoại Samsung Galaxy A22 (6GB/128GB) - Hàng chính hãng- Đã kích hoạt bảo hành điện tử",
     image:
@@ -52,10 +59,12 @@ const phones = [
     stock: 30,
     sold: 78,
     view: 124877316,
+    reviews: [],
     description:
       "\nThiết kê trẻ trung, cứng cáp\nKhông màu mè, không phức tạp,  được thiết kế theo phong cách tối giản nhưng vẫn rất bắt mắt và đem đến sự thoải mái cho người dùng khi cầm trên tay. Các góc cạnh được bo...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213495f",
     category: "62f741b7a2ae57a2d58fafeb",
     name: "Điện thoại Xiaomi Redmi 9C (4GB/128GB) - Hàng chính hãng",
     image:
@@ -66,10 +75,12 @@ const phones = [
     stock: 1,
     sold: 40,
     view: 125755154,
+    reviews: [],
     description:
       "Redmi 9C (4GB/128GB) được trang bị màn hình lớn, viên pin trâu, 3 camera AI cùng một hiệu năng đầy ổn định sẽ là lựa chọn tốt cho khách hàng đang muốn tìm một chiếc smartphone giá rẻ&nbsp;đầy đủ tính...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134960",
     category: "62f741b7a2ae57a2d58fafeb",
     name: "Điện Thoại Vsmart Bee Lite 2GB/16GB - Hàng Chính Hãng",
     image:
@@ -80,10 +91,12 @@ const phones = [
     stock: 5,
     sold: 50,
     view: 140184100,
+    reviews: [],
     description:
       "Điện Thoại Vsmart Bee Lite 2GB/16GB - Hàng Chính Hãng\nBộ sản phẩm bao gồm: Thân máy, sạc, cáp USB, sách hướng dẫn sử dụng.       \nThiết kế cơ bản, kiểu dáng tinh gọn, dễ dùng\n- Mặt lưng chất liệu...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134961",
     category: "62f741b7a2ae57a2d58fafeb",
     name: "Điện thoại Samsung Galaxy A03 Core (2GB/32GB) - Hàng chính hãng - ĐÃ KÍCH HOẠT BẢO HÀNH ĐIỆN TỬ",
     image:
@@ -94,10 +107,12 @@ const phones = [
     stock: 2,
     sold: 58,
     view: 166389510,
+    reviews: [],
     description:
       "GalaxyA03 Core có kết cấu đường cong mượt mà với thân máy để nâng cao khả năng cầm nắm. Màn hình rộng cho phép thưởng thức video một cách trọn vẹn nhất. Các họa tiết kẻ sọc thêm phần phong cách và...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134962",
     category: "62f741b7a2ae57a2d58fafeb",
     name: "Điện Thoại Oppo Reno 6Z 5G (8GB/128G) - Hàng Chính Hãng",
     image:
@@ -108,10 +123,12 @@ const phones = [
     stock: 8,
     sold: 58,
     view: 166389510,
+    reviews: [],
     description:
       "Điện thoại Reno6 Z 5G sở hữu thiết kế vô cùng thời thượng. Các đường nét, chi tiết trên máy được trau chuốt hoàn hảo và cực kỳ hấp dẫn. Các khung viền bo cong uyển chuyển, mềm mại mang đến cho người dùng cảm giác êm tay khi cầm nắm. Ngoài ra, kích thước tổng thể của máy rất nhỏ gọn và thuận tiện để người dùng mang theo bên mình mọi nơi...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134963",
     category: "62f741b7a2ae57a2d58fafeb",
     name: "Apple iPad Air (5th Gen) Wi-Fi, 2022",
     image:
@@ -122,10 +139,12 @@ const phones = [
     stock: 21,
     sold: 39,
     view: 13389510,
+    reviews: [],
     description:
       "iPad Air 5 M1 hoàn toàn mới. Linh hoạt hơn bao giờ hết. Màn hình Liquid Retina 10.9 inch tuyệt đẹp với dải màu rộng cho bạn trải nghiệm thị giác vô cùng sống động và chi tiết khi xem ảnh hay video cũng như khi chơi game trên thiết bị...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134964",
     category: "62f741b7a2ae57a2d58fafeb",
     name: "Điện thoại Xiaomi POCO X4 Pro 5G 6GB/128GB 8GB/256GB | Snapdragon 695 5G",
     image:
@@ -136,12 +155,14 @@ const phones = [
     stock: 10,
     sold: 56,
     view: 510,
+    reviews: [],
     description:
       "POCO X4 Pro 5G được trang bị màn hình FHD+ AMOLED 6.67 inch tần số quét 120 Hz. Tốc độ phản hồi cảm ứng ấn tượng hỗ trợ chơi game tốt hơn. Phần cứng bên trong mạnh mẽ với chip Snapdragon 695 5G kết hợp với RAM LPDDR4x 6GB/8GB và bộ nhớ trong UFS 2.1 128GB/256GB....",
   },
 ];
 const lifeHouse = [
   {
+    _id: "62fdb82ac5f24dcd42134965",
     category: "62f741b7a2ae57a2d58faff1",
     name: "Bộ cây lau nhà tự vắt thông minh, chổi lau nhà 360 độ, lau sạch khô nhanh - Parroti Pro PR01",
     image:
@@ -152,10 +173,12 @@ const lifeHouse = [
     stock: 100,
     sold: 11405,
     view: 53789449,
+    reviews: [],
     description:
       "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\n \n \nBẠN MUỐN MUA THÊM SẢN PHẨM KHÁC CỦA PARROTI\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBộ lau nhà ProMax - Size Lớn\nThùng rác Parroti Bin\nCọ bồn cầu Parroti Silicon\n\n\n\n \nBộ cây lau nhà thông minh tự vắt...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134966",
     category: "62f741b7a2ae57a2d58faff1",
     name: "Vợt Muỗi Sunhouse SHE-E200 - Vàng",
     image:
@@ -166,10 +189,12 @@ const lifeHouse = [
     stock: 3,
     sold: 217,
     view: 57655223,
+    reviews: [],
     description:
       "\nVợt Muỗi Sunhouse SHE-E250 có kiểu dáng gọn nhẹ với thiết kế lưới điện an toàn, được làm bằng 2 lớp lưới nhôm (bên ngoài) và 1 lớp lưới sắt (bên trong), giúp tiêu diệt muỗi nhanh chóng.\nSản phẩm có...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134967",
     category: "62f741b7a2ae57a2d58faff1",
     name: "Dụng cụ băm rau củ quả Lock&Lock Quick Chopper",
     image:
@@ -180,10 +205,12 @@ const lifeHouse = [
     stock: 10,
     sold: 11848,
     view: 58804365,
+    reviews: [],
     description:
       "\nLực băm nghiền mạnh nhờ hoạt động bằng phương pháp xoay và ba lưỡi dao bằng thép không gỉ.\nNếu bạn kéo thanh kéo nhiều lần, ba lưỡi dao sẽ quay nhanh và băm đều rau củ.\nLưỡi dao bằng thép không gỉ...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134968",
     category: "62f741b7a2ae57a2d58faff1",
     name: "giấy ăn gấu trúc Ycool khăn giấy tre 1 thùng 30 gói 300 tờ siêu dai mềm mại",
     image:
@@ -194,9 +221,11 @@ const lifeHouse = [
     stock: 30,
     sold: 11226,
     view: 70656792,
+    reviews: [],
     description: "Loại sản phẩm: Giấy ănChất liệu: Bột treThành phần: 100% bột sợi tre nguyên chất",
   },
   {
+    _id: "62fdb82ac5f24dcd42134969",
     category: "62f741b7a2ae57a2d58faff1",
     name: "Cây chà sàn thông minh cao cấp, chổi chà sàn đa năng 2 trong 1, cọ sàn và gạt nước – Parroti Easy ES02",
     image:
@@ -207,10 +236,12 @@ const lifeHouse = [
     stock: 3,
     sold: 2950,
     view: 122692851,
+    reviews: [],
     description:
       "\nChổi cọ sàn vệ sinh Parroti Easy ES02 được thiết kế tinh tế, cây chổi làm bằng nhôm cao cấp, có thể điều chỉnh độ dài linh hoạt phù hợp không gian phòng tắm. Cộng với tính năng vừa chà vừa gạt nước...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213496a",
     category: "62f741b7a2ae57a2d58faff1",
     name: "Bình Giữ Nhiệt Bằng Thép Không Gỉ Lock&Lock Vacuum Bottle LHC6180SLV (800ML)",
     image:
@@ -221,10 +252,12 @@ const lifeHouse = [
     stock: 10,
     sold: 33464,
     view: 73124604,
+    reviews: [],
     description:
       "Bình Giữ Nhiệt Thép Không Gỉ Vacuum Bottle Lock&amp;Lock LHC6180FU (800ml) thiết kế xách tay dễ dàng cho việc mang theo. Màu sắc nổi bật mang đển cảm giác trẻ trung khi sử dụng.\nBình giữ nhiệt mang...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213496b",
     category: "62f741b7a2ae57a2d58faff1",
     name: "Hộp cơm thủy tinh kèm muỗng đũa LocknLock LLG991CL 930ml",
     image:
@@ -235,10 +268,12 @@ const lifeHouse = [
     stock: 10,
     sold: 4660,
     view: 73125532,
+    reviews: [],
     description:
       "Hộp cơm thủy tinh kèm muỗng đũa LocknLock LLG991CL 930ml thiết kế vách ngăn giúp thực phẩm không bị trộn lẫn khi bỏ vào chung một hộp.\nBorosilicate là thủy tinh chịu nhiệt (lên tới 120 độ C), an toàn...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213496c",
     category: "62f741b7a2ae57a2d58faff1",
     name: "Cây lau kính, gạt chùi kính đa năng 2 đầu trong 1 - Parroti Shiny SN01",
     image:
@@ -249,10 +284,12 @@ const lifeHouse = [
     stock: 10,
     sold: 2046,
     view: 122700652,
+    reviews: [],
     description:
       "\nCây lau kính, gạt chùi kính đa năng 2 đầu trong 1 - Parroti Shiny SN01 được thiết kế tinh tế, cán làm bằng nhôm cao cấp, có thể điều chỉnh độ dài linh hoạt phù hợp độ cao của cửa sổ. Cộng với tính...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213496d",
     category: "62f741b7a2ae57a2d58faff1",
     name: "Chảo chiên chống dính Tefal Light & Clean 26cm, dùng cho bếp ga và hồng ngoại- Hàng chính hãng",
     image:
@@ -263,10 +300,12 @@ const lifeHouse = [
     stock: 3,
     sold: 3480,
     view: 80617684,
+    reviews: [],
     description:
       " \nChảo chiên Tefal Light &amp; Clean 26cm\nDÙNG CHO BẾP GAS/ BẾP HỒNG NGOẠI\nKHÔNG TƯƠNG THÍCH VỚI BẾP ĐIỆN TỪ\n\n \n\nClick gia nhập TEFAL CLUB ngay để được cập nhật nhiều thông tin hấp dẫn như cách đăng...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213496e",
     category: "62f741b7a2ae57a2d58faff1",
     name: "Bình giữ nhiệt Lock&Lock Belt Bottle LHC4267 490ml",
     image:
@@ -277,12 +316,14 @@ const lifeHouse = [
     stock: 10,
     sold: 4055,
     view: 99621374,
+    reviews: [],
     description:
       "\n\n\nBình giữ nhiệt Lock&amp;Lock Belt Bottle LHC4267 490ml với quai xách kiểu dáng dây đai giúp dễ dàng mang đi.\nTay cầm TPE ngăn nắp rơi ra và mất, dây đai cố định nắp trong khi uống.\nNắp được giữ cố...",
   },
 ];
 const boyFashion = [
   {
+    _id: "62fdb82ac5f24dcd4213496f",
     category: "62f741b7a2ae57a2d58fafea",
     name: "Áo sơ mi nam giấu cúc, Áo sơ mi nam trơn dài tay Hàn Quốc chất lụa Nhật chống nhăn chống phai cao cấp",
     image:
@@ -293,10 +334,12 @@ const boyFashion = [
     stock: 30,
     sold: 5,
     view: 188940408,
+    reviews: [],
     description:
       "\n  Áo sơ mi nam giấu cúc, Áo sơ mi nam trơn dài tay Hàn Quốc chất lụa Nhật chống nhăn chống phai cao cấp\n   Thông tin sản phẩm áo sơ mi nam giấu cúc của Amani Store:\n   - Áo sơ mi nam trơn dài tay...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134970",
     category: "62f741b7a2ae57a2d58fafea",
     name: "Áo khoác jean nam Hahaman thời trang cao cấp AKJ06",
     image:
@@ -307,10 +350,12 @@ const boyFashion = [
     stock: 3,
     sold: 137,
     view: 85347056,
+    reviews: [],
     description:
       "Chất liệu vải Kaki jean mềm mại, không phai màu, không nhàu.Màu vải được Wash kỹ hạn chế ra màu khi giặt.Form áo vừa vặn, đường may tinh tế, chuẩn từng chi tiết.Thiết kế nổi bật, phong cáchCó thể...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134971",
     category: "62f741b7a2ae57a2d58fafea",
     name: "Áo polo nam YODY Chất liệu Pique mắt chim bền màu, co giãn tốt, đàn hồi - APM3299",
     image:
@@ -321,10 +366,12 @@ const boyFashion = [
     stock: 100,
     sold: 221,
     view: 116150239,
+    reviews: [],
     description:
       "Áo Phông Polo Nam YODY Phối Bo Trẻ Trung Chất Liệu Pique Mắt Chim Thoáng Mát - APM3299\nThời trang chính hãng YODY:\n- Mang sản phẩm Chính hãng, chất liệu tốt nhất tới Khách hàng.\n- Quý khách được xem...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134972",
     category: "62f741b7a2ae57a2d58fafea",
     name: "Áo thun nam tay ngắn AKUBA form freesize chất liệu cotton không co rút AB2032",
     image:
@@ -335,10 +382,12 @@ const boyFashion = [
     stock: 5,
     sold: 366,
     view: 114927922,
+    reviews: [],
     description:
       "CHI TIẾT SẢN PHẨM -- Sản phẩm: Áo thun nam tay ngắn AKUBA form freesize chất liệu cotton không co rút AB2032 - Màu sắc: Trắng, Đen, Đỏ, Vàng Nghệ, Bò Cháy, Xanh Bích, Cam Ngói, Dầu Mới - Chất vải:...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134973",
     category: "62f741b7a2ae57a2d58fafea",
     name: "Combo 4 Quần Lót Nam cao cấp | quần xì nam | quần sịp nam | lưng nhật | vải thun lạnh 4 chiều | hiệu CM | kiểu brief | tam giác truyền thống | đồ lót nam",
     image:
@@ -349,10 +398,12 @@ const boyFashion = [
     stock: 1000,
     sold: 368,
     view: 73748483,
+    reviews: [],
     description:
       "Combo 4 Quần Lót Nam cao cấp lưng Nhật, quần xì nam, quần sịp nam, vải\nthun lạnh 4 chiều, tam giác truyền thống, đồ lót nam\n( 1 Combo = 04 quần lưng nhật )\n\n\n&lt;&gt; THIẾT KẾ - SỐ ĐO &lt;&gt;\n\nThiết...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134974",
     category: "62f741b7a2ae57a2d58fafea",
     name: "Áo phông unisex nam nữ tay lỡ thun form rộng teen cổ tròn oversize cotton giá rẻ basic đen trắng tee pull TOM",
     image:
@@ -363,10 +414,12 @@ const boyFashion = [
     stock: 30,
     sold: 8,
     view: 188837678,
+    reviews: [],
     description:
       "\n \n \n  \n   * Kính chào quý khách! Cảm ơn quý khách đã click vào trang sản phẩm của SamMy96 Shop. Sau đây là một số thông tin cực kì quan trọng của áo phông tay lỡ nam nữ cổ tròn vải Cotton co giãn:\n ...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134975",
     category: "62f741b7a2ae57a2d58fafea",
     name: "Quần đùi nam vải gió siêu nhẹ thể thao co giãn tốt loại quần đùi mặc nhà thể thao đi chơi điều được QDG",
     image:
@@ -377,10 +430,12 @@ const boyFashion = [
     stock: 20,
     sold: 306,
     view: 109505658,
+    reviews: [],
     description:
       "Quần đùi nam vải gió siêu nhẹ thể thao co giãn tốt loại quần đùi mặc nhà thể thao đi chơi điều được QDG\nCAM KẾT :\n-  Sẵn sàng nhận lại hàng nếu Quý khách không hài lòng và hoàn lại tiền 100%\n-  Cam...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134976",
     category: "62f741b7a2ae57a2d58fafea",
     name: "Áo phông nam, áo thun nam có cổ tay ngắn vải thun cotton 100% mặc thoáng mát - ATN04",
     image:
@@ -391,10 +446,12 @@ const boyFashion = [
     stock: 30,
     sold: 3,
     view: 190548072,
+    reviews: [],
     description:
       "▷ Chúc mừng bạn đã lựa chọn được sản phẩm tốt khi đến với Shop\n▷ Cam kết sản phẩm giống ảnh\n▷ Phục vụ chuyên nghiệp, Nhiệt tình, Chu...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134977",
     category: "62f741b7a2ae57a2d58fafea",
     name: "Quần Boxer Nam sợi thun lạnh kháng khuẩn, Quần Lót Nam co giãn 4 chiều thấm hút mồ hôi cực tốt thương hiệu BAW (combo 3 màu ngẫu nhiên) NH79",
     image:
@@ -405,10 +462,12 @@ const boyFashion = [
     stock: 3,
     sold: 164,
     view: 121252848,
+    reviews: [],
     description:
       "CHE TÊN SẢN PHẨM KHI GIAO HÀNG\nQuần Boxer Nam sợi thun lạnh kháng khuẩn, Quần Lót Nam co giãn 4 chiều thấm hút mồ hôi cực tốt thương hiệu BAW (combo 3 màu ngẫu nhiên) NH79\n(Được kiểm tra hàng trước...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134978",
     category: "62f741b7a2ae57a2d58fafea",
     name: "Quần Kaki Baggy Unisex Nam Nữ, Baggy Unisex Kaki Nam Nữ cạp chun vải Kaki nhập Hàn mềm co giãn",
     image:
@@ -419,12 +478,14 @@ const boyFashion = [
     stock: 30,
     sold: 7,
     view: 176599288,
+    reviews: [],
     description:
       "\n \n \n  \n   ✪ Giới thiệu sản phẩm:\n   Quần có thể mặc vào bất cứ mùa nào, bất cứ ai cũng có thể mặc được, mang đến cho người mặc nhiều sự lựa chọn hơn, thoải mái hơn.\n   ✪ Chi tiết sản phẩm: Quần nam...",
   },
 ];
 const shopOnline = [
   {
+    _id: "62fdb82ac5f24dcd42134979",
     category: "62f741b7a2ae57a2d58fafef",
     name: "Lốc 4 Chai bia Kronenbourg 1664 Blanc 330ml",
     image:
@@ -435,10 +496,12 @@ const shopOnline = [
     stock: 3,
     sold: 206,
     view: 142471191,
+    reviews: [],
     description:
       "Kronenbourg 1664 Blanc:Là dòng bia cao cấp được ủ từ lúa mì, 1664 Blanc mang sắc sánh vàng đặc trưng, cùng nhiều tầng hương vị tươi mát và sảng khoái - hiện thân hoàn hảo cho chuẩn mực hương vị Pháp....",
   },
   {
+    _id: "62fdb82ac5f24dcd4213497a",
     category: "62f741b7a2ae57a2d58fafef",
     name: "Cát Vệ Sinh Cho Mèo - Cát Nhật 8L ",
     image:
@@ -449,10 +512,12 @@ const shopOnline = [
     stock: 30,
     sold: 2047,
     view: 66712826,
+    reviews: [],
     description:
       "Cát được làm từ 100% Bentonite tự nhiên và thêm dược liệu thiên nhiên các mùi thơm dễ chịu.Xóa tan đi mùi hôi khó chịu của chó mèo mang đến cho bạn một môi trường dịu mát với mùi thơm của hương...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213497b",
     category: "62f741b7a2ae57a2d58fafef",
     name: "Mì Goreng Rasa Iga Penyet Vị Sườn Indomie (80G X 40 Gói/Thùng)",
     image:
@@ -463,10 +528,12 @@ const shopOnline = [
     stock: 30,
     sold: 304,
     view: 56274610,
+    reviews: [],
     description:
       "\nMì Xào Indomie: với 4 SKU chính, 40 Gói/Thùng, HSD 8 tháng kể từ ngày sản xuất và đóng gói. - Mi Goreng Special (Đặc Biệt) 85g - Mi Goreng Rendang (Bò Cay) 91g - Mi Goreng Hot&amp;Spicy (Cay Nồng)...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213497c",
     category: "62f741b7a2ae57a2d58fafef",
     name: "Bún gạo lứt ăn kiêng GUfoods - Giảm cân, Thực dưỡng, Eat clean",
     image:
@@ -477,10 +544,12 @@ const shopOnline = [
     stock: 10,
     sold: 3109,
     view: 76045163,
+    reviews: [],
     description:
       "ĐẶC ĐIỂM NỔI BẬT\n✓ Sợi bún dai ngon, màu sắc tự nhiên\n✓ Phù hợp ăn kiêng, thực dưỡng\n✓ Hỗ trợ chế độ ăn giảm cân\n✓ Nhiều giá trị dinh dưỡng và lợi ích sức khỏe từ gạo lứt\n✓ Nguyên liệu sạch, không...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213497d",
     category: "62f741b7a2ae57a2d58fafef",
     name: "Hộp Yến Thiên Hoàng Hương Lá Dứa (6 Lọ x 70 ml)",
     image:
@@ -491,10 +560,12 @@ const shopOnline = [
     stock: 5,
     sold: 527,
     view: 52281932,
+    reviews: [],
     description:
       "Hộp Yến Thiên Hoàng Hương Lá Dứa (6 Lọ x 70 ml) là sản phẩm với thành phần yến sào bổ dưỡng, hương thơm dịu nhẹ sẽ là nước uống bổ dưỡng cho gia đình bạn. Sản phẩm giúp bồi bổ cơ thể và tăng cường...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213497e",
     category: "62f741b7a2ae57a2d58fafef",
     name: "Dầu Gạo Lứt Simply 1L",
     image:
@@ -505,10 +576,12 @@ const shopOnline = [
     stock: 72,
     sold: 4573,
     view: 53831591,
+    reviews: [],
     description:
       "Dầu Gạo Lứt Simply được chiết xuất từ lớp màng cám, là nơi chứa nhiều dưỡng chất nhất của hạt gạo lứt.\nGạo lứt là gạo nguyên cám, được biết đến là thực phẩm có nhiều lợi ích cho sức khỏe, nhưng thói...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213497f",
     category: "62f741b7a2ae57a2d58fafef",
     name: "Thùng 24 Chai Nước Giải Khát Revive 500ml",
     image:
@@ -519,10 +592,12 @@ const shopOnline = [
     stock: 55,
     sold: 947,
     view: 2393001,
+    reviews: [],
     description:
       "KHÔNG CHỈ MẤT NƯỚC, BẠN CÓ THỂ MẤT SỨC DO VẬN ĐỘNG, NẮNG NÓNGMỗi ngày là 1 cuộc chơi để bạn chinh phục. Đừng để cuộc vui gián đoạn vì mất nước, mất sức khi bạn đổ mồ hôi. REVIVE - Nước uống điện giải...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134980",
     category: "62f741b7a2ae57a2d58fafef",
     name: "Túi 46 Gói Nescafé Đậm Vị Cà Phê (17g)",
     image:
@@ -533,10 +608,12 @@ const shopOnline = [
     stock: 5,
     sold: 14409,
     view: 143294,
+    reviews: [],
     description:
       "Túi 46 Gói Nescafé Đậm Vị Cà Phê (17g)\nTúi 46 Gói Nescafé Đậm Vị Cà Phê (17g) được   điều chế từ những cà phê Việt nguyên chất, qua sàng lọc và rang xay theo công nghệ hiện đại cho ra đời hương vị...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134981",
     category: "62f741b7a2ae57a2d58fafef",
     name: "Thức ăn mèo Whiskas vị cá ngừ túi 1.2kg",
     image:
@@ -547,10 +624,12 @@ const shopOnline = [
     stock: 5,
     sold: 781,
     view: 92710936,
+    reviews: [],
     description:
       "Thức ăn mèo Whiskas vị cá ngừ túi 1.2kg _x000D__x000D__x000D_● Cung cấp đủ chất dinh dưỡng cần thiết, giúp mèo cưng phát triển khỏe mạnh_x000D_● Giàu Omega 3&amp;6, axit béo giúp lông mèo khỏe và...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134982",
     category: "62f741b7a2ae57a2d58fafef",
     name: "Thùng Sữa đậu nành FamiGo đậu đỏ nếp cẩm (200ml x 40 Bịch)",
     image:
@@ -561,12 +640,14 @@ const shopOnline = [
     stock: 5,
     sold: 3512,
     view: 12629735,
+    reviews: [],
     description:
       "Thùng Sữa đậu nành FamiGo đậu đỏ nếp cẩm (200ml x 40 Bịch) được làm từ 100% đậu nành hạt chọn lọc, không biến đổi Gen (Non - GMO).Sữa đậu nành chứa nhiều protein, chất xơ, vitamin và chất khoáng có...",
   },
 ];
 const shopOnlineBook = [
   {
+    _id: "62fdb82ac5f24dcd42134983",
     category: "62f741b7a2ae57a2d58faff0",
     name: "Thiên Tài Bên Trái, Kẻ Điên Bên Phải (Tái Bản)",
     image:
@@ -577,10 +658,12 @@ const shopOnlineBook = [
     stock: 781,
     sold: 15935,
     view: 109017987,
+    reviews: [],
     description:
       "NẾU MỘT NGÀY ANH THẤY TÔI ĐIÊN, THỰC RA CHÍNH LÀ ANH ĐIÊN ĐẤY!\nHỡi những con người đang oằn mình trong cuộc sống, bạn biết gì về thế giới của mình? Là vô vàn thứ lý thuyết được các bậc vĩ nhân kiểm...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134984",
     category: "62f741b7a2ae57a2d58faff0",
     name: "Tổng ôn ngữ pháp Tiếng Anh cô Trang Anh- Sách luyện thi THPT Quốc gia môn tiếng anh ",
     image:
@@ -591,10 +674,12 @@ const shopOnlineBook = [
     stock: 5,
     sold: 6203,
     view: 106185390,
+    reviews: [],
     description:
       "Tips Học Sách Tiếng Anh Cô Trang Anh: Tổng Ôn Ngữ Pháp Hiệu Quả:\nBước 1: Kích hoạt mã ID phía cuối cuốn sách.Bước 2: Xem bài giảng lý thuyết trực tuyến đính kèm trên hệ thống qua mã ID.Bước 3: Xem ví...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134985",
     category: "62f741b7a2ae57a2d58faff0",
     name: "Cây Cam Ngọt Của Tôi",
     image:
@@ -605,10 +690,12 @@ const shopOnlineBook = [
     stock: 30,
     sold: 1048,
     view: 74677933,
+    reviews: [],
     description:
       "“Vị chua chát của cái nghèo hòa trộn với vị ngọt ngào khi khám phá ra những điều khiến cuộc đời này đáng số một tác phẩm kinh điển của Brazil.”\n- Booklist\n“Một cách nhìn cuộc sống gần như hoàn chỉnh...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134986",
     category: "62f741b7a2ae57a2d58faff0",
     name: "Blue Period - Tập 1 - Tặng Kèm Bookmark Giấy 2 Mặt + Card Nhựa PVC",
     image:
@@ -619,10 +706,12 @@ const shopOnlineBook = [
     stock: 1,
     sold: 3453,
     view: 187594270,
+    reviews: [],
     description:
       "KHI ĐAM MÊ THỨC TỈNH\nYataro Yaguchi là một học sinh xuất sắc nhưng có lối sống buông thả, không mục đích. Một ngày nọ, tận mắt chiêm ngưỡng bức tranh của một chị lớp trên ở CLB Mỹ thuật, Yataro hoàn...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134987",
     category: "62f741b7a2ae57a2d58faff0",
     name: "Tâm Lý Học - Phác Họa Chân Dung Kẻ Phạm Tội",
     image:
@@ -633,10 +722,12 @@ const shopOnlineBook = [
     stock: 6,
     sold: 1548,
     view: 108957058,
+    reviews: [],
     description:
       "TÂM LÝ HỌC TỘI PHẠM - PHÁC HỌA CHÂN DUNG KẺ PHẠM TỘI\nTội phạm, nhất là những vụ án mạng, luôn là một chủ đề thu hút sự quan tâm của công chúng, khơi gợi sự hiếu kỳ của bất cứ ai. Một khi đã bắt đầu...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134988",
     category: "62f741b7a2ae57a2d58faff0",
     name: "Sói Đầu Đàn Và Cún Nhỏ - Tập 2",
     image:
@@ -647,10 +738,12 @@ const shopOnlineBook = [
     stock: 1,
     sold: 2023,
     view: 185071151,
+    reviews: [],
     description:
       "Nếu tập 1 của bộ truyện tranh “Sói đầu đàn và cún nhỏ” là tổng hợp đầy đủ câu chuyện của đại ca Sói cùng bé Cún dưới lốt động vật, thì sang tập 2 này chúng mình sẽ được thỏa mãn trí tưởng tượng với...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134989",
     category: "62f741b7a2ae57a2d58faff0",
     name: "My Hero Academia - Học Viện Siêu Anh Hùng Tập 29: Bakugo Katsuki: Trỗi Dậy [Tặng Kèm Bookmark Pro Hero]",
     image:
@@ -661,10 +754,12 @@ const shopOnlineBook = [
     stock: 30,
     sold: 1520,
     view: 186265456,
+    reviews: [],
     description:
       "Vì tên khổng lồ kia mà xung quanh tan hoang hết cả! Hắn cứ luôn miệng nói “đến chỗ chủ nhân” - là Shigaraki sao…? Không được! Nếu hắn tiến vào thành phố thì người dân sẽ không chống đỡ nổi! Cả các...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213498a",
     category: "62f741b7a2ae57a2d58faff0",
     name: "Ajin - Boxset Số 1 (Tập 1 - 6) - Tặng Kèm Bookmark 3D",
     image:
@@ -675,10 +770,12 @@ const shopOnlineBook = [
     stock: 30,
     sold: 1492,
     view: 174215338,
+    reviews: [],
     description:
       "AJIN kể về một câu chuyện ly kỳ, hấp dẫn: 17 năm trước, lần đầu tiên một giống loài bất tử được phát hiện trên chiến trường ở châu Phi. Từ đó, người ta biết đến sự tồn tại của một chủng sinh vật bất...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213498b",
     category: "62f741b7a2ae57a2d58faff0",
     name: "Nhà Giả Kim (Tái Bản 2020)",
     image:
@@ -689,10 +786,12 @@ const shopOnlineBook = [
     stock: 6,
     sold: 2598,
     view: 56890005,
+    reviews: [],
     description:
       "Sơ lược về tác phẩm\nTất cả những trải nghiệm trong chuyến phiêu du theo đuổi vận mệnh của mình đã giúp Santiago thấu hiểu được ý nghĩa sâu xa nhất của hạnh phúc, hòa hợp với vũ trụ và con người.\nTiểu...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213498c",
     category: "62f741b7a2ae57a2d58faff0",
     name: "Tâm Lý Học Về Tiền",
     image:
@@ -703,12 +802,14 @@ const shopOnlineBook = [
     stock: 3,
     sold: 15816,
     view: 75953558,
+    reviews: [],
     description:
       "Tiền bạc có ở khắp mọi nơi, nó ảnh hưởng đến tất cả chúng ta, và khiến phần lớn chúng ta bối rối. Mọi người nghĩ về nó theo những cách hơi khác nhau một chút. Nó mang lại những bài học có thể được áp...",
   },
 ];
 const eletronicDevice = [
   {
+    _id: "62fdb82ac5f24dcd4213498d",
     category: "62f741b7a2ae57a2d58fafec",
     name: "Tai nghe nhét tai có dây jack 3.5mm Remax RM-512 (New Package) - Hàng chính hãng",
     image:
@@ -719,10 +820,12 @@ const eletronicDevice = [
     stock: 5,
     sold: 1771,
     view: 110850010,
+    reviews: [],
     description:
       "Thay đổi thói quen nghe nhạc không an toàn bằng chiếc #tai_nghe có dây Remax #RM_512 không chỉ mang đến những âm thanh sống động nhất, mà hơn thế còn đảm bảo an toàn cho bạn.\n Thiết kế hiện đại, cao...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213498e",
     category: "62f741b7a2ae57a2d58fafec",
     name: "Giá Đỡ Laptop Hợp Kim Nhôm Cao Cấp Có Thể Gấp Gọn, Giúp Tản Nhiệt Laptop, Macbook, Máy Tính Xách Tay. 07 Vị Trí Điều Chỉnh Góc Độ. Hàng Chính Hãng Tamayoko FS060",
     image:
@@ -733,10 +836,12 @@ const eletronicDevice = [
     stock: 211,
     sold: 5422,
     view: 72796677,
+    reviews: [],
     description:
       "\n\nBẠN CÓ BIẾT?\nL\nLàm việc với máy tính thời gian dài sai tư thế, cúi đầu trong thời gian dài có thể gây nguy hại cho cột sống của bạn và làm tăng tốc độ thoái hóa cột sống. Thói quen dùng máy tính...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213498f",
     category: "62f741b7a2ae57a2d58fafec",
     name: "Tai nghe bluetooth True Wireless thiết kế retro Remax TWS-38 - Hàng chính hãng",
     image:
@@ -747,10 +852,12 @@ const eletronicDevice = [
     stock: 5,
     sold: 258,
     view: 140376077,
+    reviews: [],
     description:
       "Tai nghe bluetooth True Wireless thiết kế retro Remax TWS-38 - Hàng chính hãng\n\nTai nghe bluetooth true wireless Remax TWS-38 thiết kế retro độc đáo, chống ồn đỉnh cao.\nDung lượng pin 450mAh: thời...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134990",
     category: "62f741b7a2ae57a2d58fafec",
     name: "Ốp lưng dành cho Samsung Galaxy S22 Ultra/ S22 Plus ESR  AIR SHIELD BOOST-Hàng chính hãng",
     image:
@@ -761,10 +868,12 @@ const eletronicDevice = [
     stock: 3,
     sold: 17,
     view: 163838948,
+    reviews: [],
     description:
       "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\n \n\n\n\n\n\n\n \n\n\n \n\n\n\nStand Your Way\nThe built-in metal kickstand supports vertical and horizontal viewing giving you the freedom to kick back and stream your favorite shows or sit...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134991",
     category: "62f741b7a2ae57a2d58fafec",
     name: "Tai nghe bluetooth nhét tai chống ồn cao cấp V5.0 chính hãng dùng cho iPhone Samsung OPPO VIVO HUAWEI XIAOMI tai nghe không dây - Hàng Chính Hãng PKCB",
     image:
@@ -775,10 +884,12 @@ const eletronicDevice = [
     stock: 10,
     sold: 1481,
     view: 109393114,
+    reviews: [],
     description:
       "Tai nghe bluetooth nhét tai chống ồn cao cấp chính hãng PKCB\n\n\nPhạm vi truyền: 10 mét\n\n\nKênh: âm thanh nổi\n\n\nMàu: đen \n\n\nCảm ứng thông minh\n\n\nChip Bluetooth 5.0 mới mượt mà và không bị trễ\n\n\nGiảm...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134992",
     category: "62f741b7a2ae57a2d58fafec",
     name: "Adapter Sạc 1 Cổng USB Type-C 20W - Trắng",
     image:
@@ -789,10 +900,12 @@ const eletronicDevice = [
     stock: 5,
     sold: 7790,
     view: 71523845,
+    reviews: [],
     description:
       "Bộ Sạc Apple USB-C 20W\nBộ Sạc Apple USB-C 20W giúp sạc nhanh và hiệu quả tại nhà, trong văn phòng hoặc khi đang di chuyển. Mặc dù bộ sạc này tương thích với mọi thiết bị có cổng USB‑C, Apple khuyên...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134993",
     category: "62f741b7a2ae57a2d58fafec",
     name: "Pin Sạc Dự Phòng Xiaomi Redmi 20000mAh PB200LZM Tích Hợp Cổng USB Type - C In Hỗ Trợ Sạc Nhanh 18W - Hàng Chính Hãng",
     image:
@@ -803,9 +916,11 @@ const eletronicDevice = [
     stock: 88,
     sold: 14115,
     view: 73627671,
+    reviews: [],
     description: "\n\n\n\n",
   },
   {
+    _id: "62fdb82ac5f24dcd42134994",
     category: "62f741b7a2ae57a2d58fafec",
     name: "Giá đỡ / Đế đỡ tản nhiệt dành cho laptop, macbook, máy tính bảng gấp gọn tiện dụng + tặng kèm túi đựng, ( Giao màu ngẫu nhiên )- Hàng chính hãng",
     image:
@@ -816,10 +931,12 @@ const eletronicDevice = [
     stock: 30,
     sold: 4,
     view: 184802363,
+    reviews: [],
     description:
       "Giá đỡ / Đế đỡ tản nhiệt dành cho laptop, macbook, máy tính bảng gấp gọn tiện dụng ( Giao màu ngẫu nhiên )- Hàng chính hãng\nTHÔNG TIN SẢN PHẨM\n- Màu sắc : Shop giao màu ngẫu nhiên ( Trắng bạc ,Hồng,...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134995",
     category: "62f741b7a2ae57a2d58fafec",
     name: "Chuột không dây Logitech B175 - đầu thu USB 2.4Ghz, pin 1 năm, nhỏ gọn, thiết kế thuận cả 2 tay, phù hợp PC/ Laptop - Hàng chính hãng",
     image:
@@ -830,10 +947,12 @@ const eletronicDevice = [
     stock: 100,
     sold: 6080,
     view: 23564916,
+    reviews: [],
     description:
       "Thiết kế vừa vặn\r\nChuột không dây Logitech B175 sử dụng công nghệ kết nối không dây 2.4GHz, khoảng cách hoạt động trong vòng 10m, chuột được thiết kế vừa với tầm tay, đem đến cho người dùng sự thoải...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134996",
     category: "62f741b7a2ae57a2d58fafec",
     name: "Bao Tay Chơi Game Cảm Ứng Chống Mồ Hôi SIDOTECH Siêu Mỏng Vải Sợi Carbon Siêu Bền Chống Giãn Xù, Cảm Ứng Nhạy Thuộc Dòng Găng Tay Chơi Game Bao Ngón Tay Cho PUBG Tốc Chiến Freefire Liên Quân mobile - Hàng Chính Hãng",
     image:
@@ -844,12 +963,14 @@ const eletronicDevice = [
     stock: 5,
     sold: 391,
     view: 167046982,
+    reviews: [],
     description:
       "\n\n\n\n\n\n\n \nTHÔNG TIN CHI TIẾT\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChất liệu vải sợi carbon siêu bền đặc biệt\nChống co giãn, xù có thể giặt\nPhụ kiện không thể thiểu để Leo rank TOP 1\nKết hợp 4 ngón tay tăng gấp 2 lần...",
   },
 ];
 const sport = [
   {
+    _id: "62fdb82ac5f24dcd42134997",
     category: "62f741b7a2ae57a2d58fafed",
     name: "Giày Thể Thao Nam Biti's Hunter Street Vintage Green DSMH04000",
     image:
@@ -860,10 +981,12 @@ const sport = [
     stock: 1,
     sold: 279,
     view: 103860323,
+    reviews: [],
     description:
       "Đa phong cách và tiện dụng - Bitis Hunter Street thế hệ mới hứa hẹn mang đến cho các tín đồ sneaker nhiều phong cách thời trang biến hóa khác nhau chỉ trên 1 đôi giày tiện dụng\n Độ nhẹ tối đa 300 gr/...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134998",
     category: "62f741b7a2ae57a2d58fafed",
     name: "Giày Thể Thao Cao Cấp Nam Biti's Hunter Layered Upper DSMH02800DEN (Đen)",
     image:
@@ -874,10 +997,12 @@ const sport = [
     stock: 2,
     sold: 360,
     view: 97518297,
+    reviews: [],
     description:
       "Cải tiến thiết kế độc đáo với xu hướng #layer từ những “đường cắt” chất liệu đan xen, lần đầu tiên có mặt tại gia đình Thợ Săn. Sở hữu công nghệ vượt trội chuẩn Hunter X, '   | -  sẵn sàng cùng bạn...",
   },
   {
+    _id: "62fdb82ac5f24dcd42134999",
     category: "62f741b7a2ae57a2d58fafed",
     name: "Giày thể thao nam Anta Super Flexi 812237788-1",
     image:
@@ -888,10 +1013,12 @@ const sport = [
     stock: 2,
     sold: 16,
     view: 188585393,
+    reviews: [],
     description:
       " Giày thể thao nam Anta Super Flexi 812237788-1  sở hữu thiết kế thời trang, năng động, cùng chất liệu bền bỉ hỗ trợ vận động tốt và bảo vệ đôi chân cho người mang. Đế cao su mềm, êm ái giúp bạn cảm...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213499a",
     category: "62f741b7a2ae57a2d58fafed",
     name: "Giày Thể Thao Nam Biti's Hunter Street Vintage Green DSMH04000XNG (Xanh Ngọc)",
     image:
@@ -902,10 +1029,12 @@ const sport = [
     stock: 5,
     sold: 389,
     view: 96703134,
+    reviews: [],
     description:
       "Đa phong cách và tiện dụng - Bitis Hunter Street thế hệ mới hứa hẹn mang đến cho các tín đồ sneaker nhiều phong cách thời trang biến hóa khác nhau chỉ trên 1 đôi giày tiện dụng\n Độ nhẹ tối đa 300 gr/...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213499b",
     category: "62f741b7a2ae57a2d58fafed",
     name: "Giày Thể Thao Cao Cấp Nam Biti's Hunter Layered Upper DSMH02800DEN (Đen)",
     image:
@@ -916,10 +1045,12 @@ const sport = [
     stock: 2,
     sold: 360,
     view: 97518301,
+    reviews: [],
     description:
       "Cải tiến thiết kế độc đáo với xu hướng #layer từ những “đường cắt” chất liệu đan xen, lần đầu tiên có mặt tại gia đình Thợ Săn. Sở hữu công nghệ vượt trội chuẩn Hunter X, '   | -  sẵn sàng cùng bạn...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213499c",
     category: "62f741b7a2ae57a2d58fafed",
     name: "Giày Thể Thao Nam Biti's Hunter Street Vintage Blue DSMH04000XDL (Xanh Dương Lợt)",
     image:
@@ -930,10 +1061,12 @@ const sport = [
     stock: 5,
     sold: 395,
     view: 101539492,
+    reviews: [],
     description:
       "Đa phong cách và tiện dụng - Bitis Hunter Street thế hệ mới hứa hẹn mang đến cho các tín đồ sneaker nhiều phong cách thời trang biến hóa khác nhau chỉ trên 1 đôi giày tiện dụng\n Độ nhẹ tối đa 300 gr/...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213499d",
     category: "62f741b7a2ae57a2d58fafed",
     name: "Giày Bóng Rổ Cổ Cao Cury06- Giày Sneaker chơi bóng rổ",
     image:
@@ -944,10 +1077,12 @@ const sport = [
     stock: 30,
     sold: 23,
     view: 186753065,
+    reviews: [],
     description:
       "****Lưu ý: Sản phẩm được bảo hành mọi lỗi sản xuất trong vòng 7 ngày đầu tiên, vì thế, sau khi nhận hàng, nếu có bất cứ vấn đề gì, quý khách hãy liên hệ ngay với chúng tôi qua thông tin trên đơn hàng...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213499e",
     category: "62f741b7a2ae57a2d58fafed",
     name: "Giày Thể Thao Nam Biti's Hunter X DSMH03500TRG - Trắng",
     image:
@@ -958,10 +1093,12 @@ const sport = [
     stock: 2,
     sold: 644,
     view: 90370326,
+    reviews: [],
     description:
       "\nGiày Thể Thao Nam Biti's Hunter X DSMH03500với công nghệ đế LiteFlex 2.0 độc quyền từ Biti's Hunter ứng dụng công nghê sản xuất IP trên nền chất liệu Phylon không chỉ giúp đôi chân cảm giác \"Nhẹ nư...",
   },
   {
+    _id: "62fdb82ac5f24dcd4213499f",
     category: "62f741b7a2ae57a2d58fafed",
     name: "Giày Thể Thao Nam Nữ Chạy Bộ, Tập Gym",
     image:
@@ -972,10 +1109,12 @@ const sport = [
     stock: 30,
     sold: 185,
     view: 110151835,
+    reviews: [],
     description:
       "Ô TẢ SẢN PHẨM\n\n\n\n\nSiêu nhẹ, êm chân, đế chống trơn trượtMàu sắc trẻ trung, dễ phối đồ, thích hợp mang cặp, nhóm, lớThích hợp mang đi chơi, đi dạo, tập gym, thể thao, chạy bộNam nữ đều mang được\n\nGiày...",
   },
   {
+    _id: "62fdb82ac5f24dcd421349a0",
     category: "62f741b7a2ae57a2d58fafed",
     name: "Giày Thể Thao Nam Biti's Hunter Street x Vietmax 2020 - BST HaNoi Culture Patchwork DSMH025",
     image:
@@ -986,12 +1125,14 @@ const sport = [
     stock: 2,
     sold: 182,
     view: 90369872,
+    reviews: [],
     description:
       "Mỗi đôi Hanoi Culture Patchwork hoàn thiện là tất cả những “chăm chút” từ bàn tay người thợ Việt. Bởi không một máy móc nào có thể chuyển tải trọn vẹn và tinh tế những thái cực văn hoá Hà Nội lên...",
   },
 ];
 const laptop = [
   {
+    _id: "62fdb82ac5f24dcd421349a1",
     category: "62f7473e4622fe20eba51652",
     name: "Màn hình máy tính LG UltraGear 32GN500-B - 31.5 inch - Hàng Chính Hãng",
     image:
@@ -1002,10 +1143,12 @@ const laptop = [
     stock: 502,
     sold: 259,
     view: 17842,
+    reviews: [],
     description:
       "Màn hình FHD 31,5 inch (1920 X 1080). Tốc độ làm mới 165Hz & MBR 1ms sRGB 95% (Thông thường) & HDR10. Tương thích NVIDIA G-Sync. Công nghệ AMD FreeSync Premium. Thiết kế hầu như không có viền....",
   },
   {
+    _id: "62fdb82ac5f24dcd421349a2",
     category: "62f7473e4622fe20eba51652",
     name: "MacBook Air M1 13 inch 2020",
     image:
@@ -1016,10 +1159,12 @@ const laptop = [
     stock: 102,
     sold: 229,
     view: 103842,
+    reviews: [],
     description:
       "MacBook Air là máy tính xách tay mỏng và nhẹ nhất của Apple, siêu mạnh mẽ với chip M1. Tạo ra một bước đột phá về hiệu năng CPU và đồ họa, cùng với thời lượng pin lên đến 18 giờ.(1) Giúp bạn hoàn thành mọi khối lượng bài tập thật dễ dàng....",
   },
   {
+    _id: "62fdb82ac5f24dcd421349a3",
     category: "62f7473e4622fe20eba51652",
     name: "MacBook Pro M2 13 inch 2022",
     image:
@@ -1030,10 +1175,12 @@ const laptop = [
     stock: 156,
     sold: 1033,
     view: 103842,
+    reviews: [],
     description:
       "MacBook Pro 13 inch nay đa năng hơn bao giờ hết. Siêu mạnh mẽ với chip M2 thế hệ tiếp theo, đây là chiếc máy tính xách tay chuyên nghiệp nhỏ gọn nhất của Apple, cùng thời lượng pin lên đến 20 giờ.1",
   },
   {
+    _id: "62fdb82ac5f24dcd421349a4",
     category: "62f7473e4622fe20eba51652",
     name: "MacBook Air M2 2022",
     image:
@@ -1044,10 +1191,12 @@ const laptop = [
     stock: 1356,
     sold: 1433,
     view: 1842,
+    reviews: [],
     description:
       "Siêu mạnh mẽ với chip M2 thế hệ tiếp theo, MacBook Air được thiết kế mới, kết hợp giữa hiệu năng đáng kinh ngạc và thời lượng pin lên đến 18 giờ trong vỏ nhôm mỏng ấn tượng.",
   },
   {
+    _id: "62fdb82ac5f24dcd421349a5",
     category: "62f7473e4622fe20eba51652",
     name: "MacBook Pro 16 inch 2021",
     image:
@@ -1058,10 +1207,12 @@ const laptop = [
     stock: 1466,
     sold: 602,
     view: 183112,
+    reviews: [],
     description:
       "MacBook Pro 16 inch mang đến hiệu năng cao ấn tượng để xử lý mọi khối lượng bài tập. Lựa chọn chip M1 Pro mạnh mẽ hay M1 Max còn mạnh hơn thế để xử lý nhanh gọn khối lượng bài tập khủng cùng thời lượng pin đáng kinh ngạc.(1) Với màn hình Liquid Retina XDR 16 inch sống động và nhiều cổng kết nối chuyên nghiệp, bạn có thể hoàn thành nhiều bài vở ở trường hơn bao giờ hết với MacBook Pro.",
   },
   {
+    _id: "62fdb82ac5f24dcd421349a6",
     category: "62f7473e4622fe20eba51652",
     name: "Màn Hình Máy Tính 27 inch UHD 4K (3840 x 2160) Tràn Viền X9",
     image:
@@ -1072,10 +1223,12 @@ const laptop = [
     stock: 2466,
     sold: 602,
     view: 109112,
+    reviews: [],
     description:
       " Màn Hình Máy Tính 27 inch UHD 4K (3840 x 2160) Tràn Viền X9 - Kích thước màn Hình 27 inch , tỉ lệ 16:9 - Độ Phân giải UHD 4K 3840 x 2160- Tần số quét :60hz- Tốc độ đáp ứng chỉ 2ms",
   },
   {
+    _id: "62fdb82ac5f24dcd421349a7",
     category: "62f7473e4622fe20eba51652",
     name: "Màn Hình Cong Samsung LC27F397FHEXXV 27inch FullHD 4ms 60Hz FreeSync VA - Hàng Chính Hãng",
     image:
@@ -1086,10 +1239,12 @@ const laptop = [
     stock: 9066,
     sold: 132,
     view: 19812,
+    reviews: [],
     description:
       "Màn Hình LED Samsung Siêu Mỏng LC27F397FHEXXV cho bạn trải nghiệm hình ảnh sống động với màn hình cong tối ưu của Samsung. Bao trùm mọi giác quan như một rạp phim iMax thực thụ, màn hình cong tạo ra góc nhìn tốt hơn, tăng cường độ sâu, cuốn bạn vào thế giới đa phương tiện sống động.",
   },
   {
+    _id: "62fdb82ac5f24dcd421349a8",
     category: "62f7473e4622fe20eba51652",
     name: "Màn hình máy tính Dell Ultrasharp U2422H 23.8 inch FHD USB TypeC - Hàng Chính Hãng",
     image:
@@ -1100,10 +1255,12 @@ const laptop = [
     stock: 2466,
     sold: 602,
     view: 109112,
+    reviews: [],
     description:
       " Màn Hình Máy Tính 27 inch UHD 4K (3840 x 2160) Tràn Viền X9 - Kích thước màn Hình 27 inch , tỉ lệ 16:9 - Độ Phân giải UHD 4K 3840 x 2160- Tần số quét :60hz- Tốc độ đáp ứng chỉ 2ms",
   },
   {
+    _id: "62fdb82ac5f24dcd421349a9",
     category: "62f7473e4622fe20eba51652",
     name: "Màn Hình Máy Tính 27 inch UHD 4K (3840 x 2160) Tràn Viền X9",
     image:
@@ -1114,10 +1271,12 @@ const laptop = [
     stock: 6566,
     sold: 672,
     view: 199012,
+    reviews: [],
     description:
       "LCD DELL UltraSharp U2422H cho hiệu suất màn hình ấn tượng: Trải nghiệm độ rõ nét vượt trội trên màn hình tuyệt vời với độ phân giải Full HD, kích thước hiển thị của tấm nền IPS",
   },
   {
+    _id: "62fdb82ac5f24dcd421349aa",
     category: "62f7473e4622fe20eba51652",
     name: "Laptop Lenovo IP 1 11IGL05 81VT006FVN (Pentium N5030/ 4GB DDR4 2400MHz/ 256GB SSD/ 11.6 HD/ WIn 11)",
     image:
@@ -1128,12 +1287,14 @@ const laptop = [
     stock: 1966,
     sold: 5492,
     view: 249012,
+    reviews: [],
     description:
       "Laptop Lenovo IP 1 11IGL05 81VT006FVN được trau chuốt khá tỉ mỉ và hoàn thiện chắc chắn. Vỏ ngoài của máy được hoàn thiện từ chất liệu nhựa polycarbanate và được xử lý dạng sần vừa mang lại vẻ tinh tế và hiện đại cho máy vừa chống bám bụi bẩn, mồ hôi và dấu vân tay khá hiệu quả. Ngoài ra, máy còn sở hữu trọng lượng khá nhẹ nhàng khi chỉ nặng 1.2 kg, nhờ đó mà các bạn sinh viên có thể dễ dàng mang máy lên trường để học nhóm hay thuyết trình.  ",
   },
 ];
 const girlFashion = [
   {
+    _id: "62fdb82ac5f24dcd421349ab",
     category: "62f741b7a2ae57a2d58faff4",
     name: "Áo sơ mi cộc tay thiết kế kiểu phong cách nhẹ nhàng cổ tròn_087 chất đẹp mầu trắng đen deal tốt",
     image:
@@ -1144,10 +1305,12 @@ const girlFashion = [
     stock: 196,
     sold: 54,
     view: 2012,
+    reviews: [],
     description:
       "Áo sơ mi cộc tay thiết kế kiểu phong cách nhẹ nhàng cổ tròn_087. Màu:trắng. Size:Freesize ",
   },
   {
+    _id: "62fdb82ac5f24dcd421349ac",
     category: "62f741b7a2ae57a2d58faff4",
     name: "Áo thun nữ - áo phông cộc tay phom rộng in số 11 phong cách hàn quốc",
     image:
@@ -1158,10 +1321,12 @@ const girlFashion = [
     stock: 3196,
     sold: 533,
     view: 20332,
+    reviews: [],
     description:
       "Áo bóng rổ chất cotton được xem như mẫu áo ưa thích của các bạn trẻ trong thời gian gần đây - Áo kiểu dáng thể thao cùng chất liệu cotton co dãn thấm hút mồ hôi tốt sẽ đem lại cảm giác mặc thoải mái khi mặc đặc biệt là trong ngày hè - Áo thun tay lỡ được xem như chiếc áo vạn năng cho các chị em khi có thể che đi các khuyết điểm trên cơ thể. Các cô nàng béo khi mặc trông sẽ thon gọn hơn hay những cô nàng gầy khi mặc lên trông sẽ đầy đặn hơn",
   },
   {
+    _id: "62fdb82ac5f24dcd421349ad",
     category: "62f741b7a2ae57a2d58faff4",
     name: "Áo Bra Thun Mềm Dáng Lửng Sẵn Đệm Ngực Siêu Hot 1809 ️ ️ hàng đẹp chất mềm , trendy",
     image:
@@ -1172,10 +1337,12 @@ const girlFashion = [
     stock: 1136,
     sold: 313,
     view: 24332,
+    reviews: [],
     description:
       "FEEDBACK 100% KHÁCH MUA HÀNG GỬI CHO SHOP CHẤT LƯỢNG ĐI CÙNG THƯƠNG HIỆU. CAM KẾT RẺ NHẤT THỊ TRƯỜNG GIÁ LẺ=GIÁ BUÔN",
   },
   {
+    _id: "62fdb82ac5f24dcd421349ae",
     category: "62f741b7a2ae57a2d58faff4",
     name: "Áo sơ mi nữ Giấu Nút tay dài phối voan mỏng",
     image:
@@ -1186,10 +1353,12 @@ const girlFashion = [
     stock: 873,
     sold: 3931,
     view: 937174,
+    reviews: [],
     description:
       "#thoitrangnu #aothunnu #gumac #aophong #aothun #freesize #fashion #inhinh #hanquoc #formrong #unisex #taylo #fullbox #aothununisex #aothuntaylo #aothunmoi #aothuninchu #ao #thun #inchu #áo thun nữ #áo phông nữ #áo nữ #áothun #áothunnữ #áophôngnữ #genz #in chữ #áo in chữ #phom rộng #áo #thun nữ #áoinchữ #áo thun hàn quôc #áo thun mới #áo thun loang #gumac #happinessfashion #thoitrangnu #giamgia #khuyenmai",
   },
   {
+    _id: "62fdb82ac5f24dcd421349af",
     category: "62f741b7a2ae57a2d58faff4",
     name: "Áo sơ mi nữ GUMAc AC08055 lai lật đô sau xếp ly nhiều màu",
     image:
@@ -1200,10 +1369,12 @@ const girlFashion = [
     stock: 2133,
     sold: 494,
     view: 301831,
+    reviews: [],
     description:
       "#thoitrangnu #aothunnu #gumac #aophong #aothun #freesize #fashion #inhinh #hanquoc #formrong #unisex #taylo #fullbox #aothununisex #aothuntaylo #aothunmoi #aothuninchu #ao #thun #inchu #áo thun nữ #áo phông nữ #áo nữ #áothun #áothunnữ #áophôngnữ #genz #in chữ #áo in chữ #phom rộng #áo #thun nữ #áoinchữ #áo thun hàn quôc #áo thun mới #áo thun loang #gumac #happinessfashion #thoitrangnu #giamgia #khuyenmai",
   },
   {
+    _id: "62fdb82ac5f24dcd421349b0",
     category: "62f741b7a2ae57a2d58faff4",
     name: "Áo nữ kiểu GUMAC AC08071 phom suông xếp ly rã đô",
     image:
@@ -1214,10 +1385,12 @@ const girlFashion = [
     stock: 113,
     sold: 213,
     view: 10911,
+    reviews: [],
     description:
       "#thoitrangnu #aothunnu #gumac #aophong #aothun #freesize #fashion #inhinh #hanquoc #formrong #unisex #taylo #fullbox #aothununisex #aothuntaylo #aothunmoi #aothuninchu #ao #thun #inchu #áo thun nữ #áo phông nữ #áo nữ #áothun #áothunnữ #áophôngnữ #genz #in chữ #áo in chữ #phom rộng #áo #thun nữ #áoinchữ #áo thun hàn quôc #áo thun mới #áo thun loang #gumac #happinessfashion #thoitrangnu #giamgia #khuyenmai",
   },
   {
+    _id: "62fdb82ac5f24dcd421349b1",
     category: "62f741b7a2ae57a2d58faff4",
     name: "Áo kiểu nữ GUMAC AC08110 phom suông tay dài xếp ly viền bèo",
     image:
@@ -1228,10 +1401,12 @@ const girlFashion = [
     stock: 311,
     sold: 4414,
     view: 421030,
+    reviews: [],
     description:
       "#thoitrangnu #aothunnu #gumac #aophong #aothun #freesize #fashion #inhinh #hanquoc #formrong #unisex #taylo #fullbox #aothununisex #aothuntaylo #aothunmoi #aothuninchu #ao #thun #inchu #áo thun nữ #áo phông nữ #áo nữ #áothun #áothunnữ #áophôngnữ #genz #in chữ #áo in chữ #phom rộng #áo #thun nữ #áoinchữ #áo thun hàn quôc #áo thun mới #áo thun loang #gumac #happinessfashion #thoitrangnu #giamgia #khuyenmai",
   },
   {
+    _id: "62fdb82ac5f24dcd421349b2",
     category: "62f741b7a2ae57a2d58faff4",
     name: "Áo polo nữ GUMAC ATC04011 phối cổ sọc viền nhiều màu, thanh lịch",
     image:
@@ -1242,10 +1417,12 @@ const girlFashion = [
     stock: 2102,
     sold: 3133,
     view: 3213133,
+    reviews: [],
     description:
       "#thoitrangnu #aothunnu #gumac #aophong #aothun #freesize #fashion #inhinh #hanquoc #formrong #unisex #taylo #fullbox #aothununisex #aothuntaylo #aothunmoi #aothuninchu #ao #thun #inchu #áo thun nữ #áo phông nữ #áo nữ #áothun #áothunnữ #áophôngnữ #genz #in chữ #áo in chữ #phom rộng #áo #thun nữ #áoinchữ #áo thun hàn quôc #áo thun mới #áo thun loang #gumac #happinessfashion #thoitrangnu #giamgia #khuyenmai",
   },
   {
+    _id: "62fdb82ac5f24dcd421349b3",
     category: "62f741b7a2ae57a2d58faff4",
     name: "Áo polo nữ GUMAC ATC04021 sọc ngang kiểu dáng trẻ trung năng động",
     image:
@@ -1256,10 +1433,12 @@ const girlFashion = [
     stock: 1029,
     sold: 212,
     view: 21310,
+    reviews: [],
     description:
       "#thoitrangnu #aothunnu #gumac #aophong #aothun #freesize #fashion #inhinh #hanquoc #formrong #unisex #taylo #fullbox #aothununisex #aothuntaylo #aothunmoi #aothuninchu #ao #thun #inchu #áo thun nữ #áo phông nữ #áo nữ #áothun #áothunnữ #áophôngnữ #genz #in chữ #áo in chữ #phom rộng #áo #thun nữ #áoinchữ #áo thun hàn quôc #áo thun mới #áo thun loang #gumac #happinessfashion #thoitrangnu #giamgia #khuyenmai",
   },
   {
+    _id: "62fdb82ac5f24dcd421349b4",
     category: "62f741b7a2ae57a2d58faff4",
     name: "Áo sơ mi nữ GUMAC AC04056 tay dài phối xếp ly nhún dễ thương",
     image:
@@ -1270,12 +1449,14 @@ const girlFashion = [
     stock: 1029,
     sold: 2121,
     view: 31314,
+    reviews: [],
     description:
       "#gumac #gumacfashion #happinessfashion #thoitrangnu #giamgia #khuyenmai #aokieu #aosomi #aosominu #somi #fashion #aosomicongso #hanghieu #docongso #ao #aomoi #aosomigumac #sominamgiare #sominamhanquoc #somitayngan #somiunisex #áo #áo sơ mi #áo nữ #áo kiểu #sơ mi #sơ mi nữ giá rẻ #sơ mi giá rẻ #sơ mi công sở #áosơmi #áonữ #áokiểu #sơmi #sơminữgiárẻ #sơmigiárẻ #sơmicôngsở",
   },
 ];
 const watch = [
   {
+    _id: "62fdb82ac5f24dcd421349b5",
     category: "62f741b7a2ae57a2d58faff2",
     name: "Đồng Hồ Nữ Julius Hàn Quốc JA-979 Dây Da",
     image:
@@ -1286,10 +1467,12 @@ const watch = [
     stock: 2121,
     sold: 3193,
     view: 98743,
+    reviews: [],
     description:
       "Đồng hồ không đơn thuần chỉ là 1 chiếc đồng hồ đó còn là 1 phụ kiện thời trang đẹp và sang trọng.Với thiết kế bắt mắt cùng chất liệu vỏ dây cao cấp từ inox và mặt kính cứng tăng cường độ cứng và độ bền cho chiếc đồng hồ.",
   },
   {
+    _id: "62fdb82ac5f24dcd421349b6",
     category: "62f741b7a2ae57a2d58faff2",
     name: "Đồng Hồ Nữ Julius Hàn Quốc JA-1190LD Dây Da Có Lịch",
     image:
@@ -1300,10 +1483,12 @@ const watch = [
     stock: 2121,
     sold: 931,
     view: 3183746,
+    reviews: [],
     description:
       "Đồng hồ không đơn thuần chỉ là 1 chiếc đồng hồ đó còn là 1 phụ kiện thời trang đẹp và sang trọng.Với thiết kế bắt mắt cùng chất liệu vỏ dây cao cấp từ inox và mặt kính cứng tăng cường độ cứng và độ bền cho chiếc đồng hồ.",
   },
   {
+    _id: "62fdb82ac5f24dcd421349b7",
     category: "62f741b7a2ae57a2d58faff2",
     name: "Đồng Hồ Nữ Julius Hàn Quốc JA979 Mặt Tròn Cá TÍnh Dây Da Màu Nâu",
     image:
@@ -1314,10 +1499,12 @@ const watch = [
     stock: 2192,
     sold: 319,
     view: 31391,
+    reviews: [],
     description:
       "Đồng hồ không đơn thuần chỉ là 1 chiếc đồng hồ đó còn là 1 phụ kiện thời trang đẹp và sang trọng.Với thiết kế bắt mắt cùng chất liệu vỏ dây cao cấp từ inox và mặt kính cứng tăng cường độ cứng và độ bền cho chiếc đồng hồ.",
   },
   {
+    _id: "62fdb82ac5f24dcd421349b8",
     category: "62f741b7a2ae57a2d58faff2",
     name: "Đồng Hồ Nữ Dây Kim Loại Julius JA-732 - Bạc",
     image: "https://salt.tikicdn.com/cache/400x400/media/catalog/product/_/m/_mg_3732.jpg.webp",
@@ -1327,10 +1514,12 @@ const watch = [
     stock: 2121,
     sold: 313,
     view: 13019,
+    reviews: [],
     description:
       "Đồng hồ không đơn thuần chỉ là 1 chiếc đồng hồ đó còn là 1 phụ kiện thời trang đẹp và sang trọng.Với thiết kế bắt mắt cùng chất liệu vỏ dây cao cấp từ inox và mặt kính cứng tăng cường độ cứng và độ bền cho chiếc đồng hồ.",
   },
   {
+    _id: "62fdb82ac5f24dcd421349b9",
     category: "62f741b7a2ae57a2d58faff2",
     name: "Đồng Hồ Nữ Dây Kim Loại Julius JA-728C (28mm) - Vàng",
     image:
@@ -1341,10 +1530,12 @@ const watch = [
     stock: 211,
     sold: 3131,
     view: 283913,
+    reviews: [],
     description:
       "Đồng hồ không đơn thuần chỉ là 1 chiếc đồng hồ đó còn là 1 phụ kiện thời trang đẹp và sang trọng.Với thiết kế bắt mắt cùng chất liệu vỏ dây cao cấp từ inox và mặt kính cứng tăng cường độ cứng và độ bền cho chiếc đồng hồ.",
   },
   {
+    _id: "62fdb82ac5f24dcd421349ba",
     category: "62f741b7a2ae57a2d58faff2",
     name: "Đồng hồ cơ nữ Hasher máy cơ tự động mặt kính full kim cương, dây đeo thép không gỉ sang chảnh full box cao cấp",
     image:
@@ -1355,10 +1546,12 @@ const watch = [
     stock: 121,
     sold: 313,
     view: 313592,
+    reviews: [],
     description:
       "Đồng hồ không đơn thuần chỉ là 1 chiếc đồng hồ đó còn là 1 phụ kiện thời trang đẹp và sang trọng.Với thiết kế bắt mắt cùng chất liệu vỏ dây cao cấp từ inox và mặt kính cứng tăng cường độ cứng và độ bền cho chiếc đồng hồ.",
   },
   {
+    _id: "62fdb82ac5f24dcd421349bb",
     category: "62f741b7a2ae57a2d58faff2",
     name: "Đồng Hồ Nam Casio F91W-1DG Chính Hãng",
     image:
@@ -1369,10 +1562,12 @@ const watch = [
     stock: 2109,
     sold: 2131,
     view: 2123,
+    reviews: [],
     description:
       "Đồng hồ không đơn thuần chỉ là 1 chiếc đồng hồ đó còn là 1 phụ kiện thời trang đẹp và sang trọng.Với thiết kế bắt mắt cùng chất liệu vỏ dây cao cấp từ inox và mặt kính cứng tăng cường độ cứng và độ bền cho chiếc đồng hồ.",
   },
   {
+    _id: "62fdb82ac5f24dcd421349bc",
     category: "62f741b7a2ae57a2d58faff2",
     name: "Đồng Hồ Nam Dây Nhựa Casio G-Shock GA-110-1ADR Chính Hãng - GA-110-1A",
     image:
@@ -1383,10 +1578,12 @@ const watch = [
     stock: 221,
     sold: 2120,
     view: 2193,
+    reviews: [],
     description:
       "Đồng hồ không đơn thuần chỉ là 1 chiếc đồng hồ đó còn là 1 phụ kiện thời trang đẹp và sang trọng.Với thiết kế bắt mắt cùng chất liệu vỏ dây cao cấp từ inox và mặt kính cứng tăng cường độ cứng và độ bền cho chiếc đồng hồ.",
   },
   {
+    _id: "62fdb82ac5f24dcd421349bd",
     category: "62f741b7a2ae57a2d58faff2",
     name: "Đồng Hồ Nam Dây Da Thời Trang Chính Hãng SKMEI 9058 Chống Nước 5ATM",
     image:
@@ -1397,10 +1594,12 @@ const watch = [
     stock: 130,
     sold: 291,
     view: 21023,
+    reviews: [],
     description:
       "Đồng hồ không đơn thuần chỉ là 1 chiếc đồng hồ đó còn là 1 phụ kiện thời trang đẹp và sang trọng.Với thiết kế bắt mắt cùng chất liệu vỏ dây cao cấp từ inox và mặt kính cứng tăng cường độ cứng và độ bền cho chiếc đồng hồ.",
   },
   {
+    _id: "62fdb82ac5f24dcd421349be",
     category: "62f741b7a2ae57a2d58faff2",
     name: "Đồng hồ nam cao cấp ECONOMICXI chính hãng dây thép lưới đen có lịch ngày",
     image:
@@ -1411,6 +1610,7 @@ const watch = [
     stock: 213,
     sold: 6643,
     view: 313424,
+    reviews: [],
     description:
       "Đồng hồ không đơn thuần chỉ là 1 chiếc đồng hồ đó còn là 1 phụ kiện thời trang đẹp và sang trọng.Với thiết kế bắt mắt cùng chất liệu vỏ dây cao cấp từ inox và mặt kính cứng tăng cường độ cứng và độ bền cho chiếc đồng hồ.",
   },

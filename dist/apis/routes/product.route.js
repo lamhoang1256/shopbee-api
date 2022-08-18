@@ -12,4 +12,7 @@ productRoutes.get("/:id", product_controller_1.default.getSingleProduct);
 productRoutes.post("/", tokenMiddleware_1.default.verifyTokenAndAdmin, product_controller_1.default.addNewProduct);
 productRoutes.delete("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, product_controller_1.default.deleteProduct);
 productRoutes.put("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, product_controller_1.default.updateProduct);
+productRoutes.post("/:id/review", tokenMiddleware_1.default.verifyToken, product_controller_1.default.addNewReview);
+productRoutes.delete("/:id/review", tokenMiddleware_1.default.verifyToken, product_controller_1.default.deleteReview);
+productRoutes.put("/:id/review", tokenMiddleware_1.default.verifyToken, product_controller_1.default.updateReview);
 exports.default = productRoutes;

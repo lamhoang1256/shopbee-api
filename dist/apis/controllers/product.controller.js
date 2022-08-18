@@ -50,11 +50,35 @@ const updateProduct = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void
     const updatedProduct = yield product_service_1.default.updateProduct(req);
     (0, response_1.responseSuccess)(res, updatedProduct);
 }));
+// @desc    Thêm mới 1 bình luận
+// @route   POST /api/product/:id/review
+// @access  Private
+const addNewReview = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const newReview = yield product_service_1.default.addNewReview(req);
+    (0, response_1.responseSuccess)(res, newReview);
+}));
+// @desc    Chỉnh sửa 1 bình luận
+// @route   PUT /api/product/:id/review
+// @access  Private
+const updateReview = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const newReview = yield product_service_1.default.updateReview(req);
+    (0, response_1.responseSuccess)(res, newReview);
+}));
+// @desc    Xóa 1 bình luận
+// @route   DELETE /api/product/:id/review
+// @access  Private
+const deleteReview = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const newReview = yield product_service_1.default.deleteReview(req);
+    (0, response_1.responseSuccess)(res, newReview);
+}));
 const productControllers = {
     addNewProduct,
     getAllProduct,
     getSingleProduct,
     deleteProduct,
     updateProduct,
+    addNewReview,
+    deleteReview,
+    updateReview,
 };
 exports.default = productControllers;

@@ -47,7 +47,7 @@ const updateCategory = async (req: Request) => {
   if (!category) throw new ApiError(404, "Không tìm thấy danh mục!");
   await category.updateOne({ $set: req.body });
   const response = {
-    message: "Cập nhật danh mục thành công!",
+    message: "Chỉnh sửa danh mục thành công!",
   };
   return response;
 };

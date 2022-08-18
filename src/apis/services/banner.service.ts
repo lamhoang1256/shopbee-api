@@ -49,7 +49,7 @@ const updateBanner = async (req: Request) => {
   if (!banner) throw new ApiError(404, "Không tìm thấy banner!");
   await banner.updateOne({ $set: req.body });
   const response = {
-    message: "Cập nhật banner thành công!",
+    message: "Chỉnh sửa banner thành công!",
   };
   return response;
 };

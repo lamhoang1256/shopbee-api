@@ -119,7 +119,7 @@ const updateStatusOrderToProcessing = (req) => __awaiter(void 0, void 0, void 0,
     order.statusCode = 1;
     const updatedOrder = yield order.save();
     const response = {
-        message: "Cập nhật trạng thái đang xử lý thành công!",
+        message: "Chỉnh sửa trạng thái đang xử lý thành công!",
         data: updatedOrder,
     };
     return response;
@@ -133,7 +133,7 @@ const updateStatusOrderToShipping = (req) => __awaiter(void 0, void 0, void 0, f
     order.statusCode = 2;
     const updatedOrder = yield order.save();
     const response = {
-        message: "Cập nhật trạng thái đang vận chuyển thành công!",
+        message: "Chỉnh sửa trạng thái đang vận chuyển thành công!",
         data: updatedOrder,
     };
     return response;
@@ -147,7 +147,7 @@ const updateStatusOrderToDelivered = (req) => __awaiter(void 0, void 0, void 0, 
     order.statusCode = 3;
     const updatedOrder = yield order.save();
     const response = {
-        message: "Cập nhật trạng thái đã giao hàng thành công!",
+        message: "Chỉnh sửa trạng thái đã giao hàng thành công!",
         data: updatedOrder,
     };
     return response;

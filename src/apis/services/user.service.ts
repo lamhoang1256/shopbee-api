@@ -10,7 +10,7 @@ const updateMe = async (req: Request) => {
     .lean();
   if (!updatedProfile) throw new ApiError(404, "Không tìm thấy tài khoản người dùng!");
   const response = {
-    message: "Cập nhật thông tin thành công!",
+    message: "Chỉnh sửa thông tin thành công!",
     data: updatedProfile,
   };
   return response;
@@ -22,7 +22,7 @@ const updateUser = async (req: Request) => {
     .lean();
   if (!updatedUser) throw new ApiError(404, "Không tìm thấy tài khoản người dùng!");
   const response = {
-    message: "Cập nhật thông tin thành công!",
+    message: "Chỉnh sửa thông tin thành công!",
     data: updatedUser,
   };
   return response;

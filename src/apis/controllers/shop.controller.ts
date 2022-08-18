@@ -19,7 +19,7 @@ const addNewShopInfo = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, newAddress);
 });
 
-// @desc    Cập nhật thông tin shop
+// @desc    Chỉnh sửa thông tin shop
 // @route   PUT /api/shop
 // @access  Private/Admin
 const updateShopInfo = catchAsync(async (req: Request, res: Response) => {

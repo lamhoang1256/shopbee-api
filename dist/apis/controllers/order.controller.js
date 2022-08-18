@@ -43,21 +43,21 @@ const getSingleOrder = (0, catch_async_1.catchAsync)((req, res) => __awaiter(voi
     const order = yield order_service_1.default.getSingleOrder(req);
     (0, response_1.responseSuccess)(res, order);
 }));
-// @desc    Cập nhật trạng thái đơn hàng sang đang giao hàng
+// @desc    Chỉnh sửa trạng thái đơn hàng sang đang giao hàng
 // @route   PUT /api/order/:id/shipping
 // @access  Private/Admin
 const updateStatusOrderToShipping = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedOrder = yield order_service_1.default.updateStatusOrderToShipping(req);
     (0, response_1.responseSuccess)(res, updatedOrder);
 }));
-// @desc    Cập nhật trạng thái đơn hàng sang đã giao hàng
+// @desc    Chỉnh sửa trạng thái đơn hàng sang đã giao hàng
 // @route   PUT /api/order/:id/delivered
 // @access  Private/Admin
 const updateStatusOrderToDelivered = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedOrder = yield order_service_1.default.updateStatusOrderToDelivered(req);
     (0, response_1.responseSuccess)(res, updatedOrder);
 }));
-// @desc    Cập nhật trạng thái đơn hàng sang đã hủy
+// @desc    Chỉnh sửa trạng thái đơn hàng sang đã hủy
 // @route   PUT /api/order/:id/canceled
 // @access  Private/Admin
 const updateStatusOrderToCancel = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {

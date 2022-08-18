@@ -29,7 +29,7 @@ const addNewShopInfo = (0, catch_async_1.catchAsync)((req, res) => __awaiter(voi
     const newAddress = yield shop_service_1.default.addNewShopInfo(req);
     (0, response_1.responseSuccess)(res, newAddress);
 }));
-// @desc    Cập nhật thông tin shop
+// @desc    Chỉnh sửa thông tin shop
 // @route   PUT /api/shop
 // @access  Private/Admin
 const updateShopInfo = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {

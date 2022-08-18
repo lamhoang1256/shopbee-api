@@ -19,7 +19,7 @@ const getAllUser = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, users);
 });
 
-// @desc    Cập nhật thông tin của người dùng hiện đang đăng nhập
+// @desc    Chỉnh sửa thông tin của người dùng hiện đang đăng nhập
 // @route   PUT /api/user/me
 // @access  Private
 const updateMe = catchAsync(async (req: Request, res: Response) => {
@@ -27,7 +27,7 @@ const updateMe = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, updatedUser);
 });
 
-// @desc    Cập nhật thông tin của người dùng qua userId bởi Admin
+// @desc    Chỉnh sửa thông tin của người dùng qua userId bởi Admin
 // @route   PUT /api/user/:id
 // @access  Private/Admin
 const updateUser = catchAsync(async (req: Request, res: Response) => {
@@ -35,7 +35,7 @@ const updateUser = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, updatedUser);
 });
 
-// @desc    Cập nhật password của người dùng hiện đang đăng nhập
+// @desc    Chỉnh sửa password của người dùng hiện đang đăng nhập
 // @route   PUT /api/user/change-password
 // @access  Private
 const changePasswordMe = catchAsync(async (req: Request, res: Response) => {

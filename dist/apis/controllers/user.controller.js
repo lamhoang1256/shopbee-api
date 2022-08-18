@@ -29,21 +29,21 @@ const getAllUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0,
     const users = yield user_service_1.default.getAllUser(req);
     (0, response_1.responseSuccess)(res, users);
 }));
-// @desc    Cập nhật thông tin của người dùng hiện đang đăng nhập
+// @desc    Chỉnh sửa thông tin của người dùng hiện đang đăng nhập
 // @route   PUT /api/user/me
 // @access  Private
 const updateMe = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedUser = yield user_service_1.default.updateMe(req);
     (0, response_1.responseSuccess)(res, updatedUser);
 }));
-// @desc    Cập nhật thông tin của người dùng qua userId bởi Admin
+// @desc    Chỉnh sửa thông tin của người dùng qua userId bởi Admin
 // @route   PUT /api/user/:id
 // @access  Private/Admin
 const updateUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedUser = yield user_service_1.default.updateUser(req);
     (0, response_1.responseSuccess)(res, updatedUser);
 }));
-// @desc    Cập nhật password của người dùng hiện đang đăng nhập
+// @desc    Chỉnh sửa password của người dùng hiện đang đăng nhập
 // @route   PUT /api/user/change-password
 // @access  Private
 const changePasswordMe = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {

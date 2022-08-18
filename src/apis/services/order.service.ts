@@ -109,7 +109,7 @@ const updateStatusOrderToProcessing = async (req: Request) => {
   order.statusCode = 1;
   const updatedOrder = await order.save();
   const response = {
-    message: "Cập nhật trạng thái đang xử lý thành công!",
+    message: "Chỉnh sửa trạng thái đang xử lý thành công!",
     data: updatedOrder,
   };
   return response;
@@ -123,7 +123,7 @@ const updateStatusOrderToShipping = async (req: Request) => {
   order.statusCode = 2;
   const updatedOrder = await order.save();
   const response = {
-    message: "Cập nhật trạng thái đang vận chuyển thành công!",
+    message: "Chỉnh sửa trạng thái đang vận chuyển thành công!",
     data: updatedOrder,
   };
   return response;
@@ -137,7 +137,7 @@ const updateStatusOrderToDelivered = async (req: Request) => {
   order.statusCode = 3;
   const updatedOrder = await order.save();
   const response = {
-    message: "Cập nhật trạng thái đã giao hàng thành công!",
+    message: "Chỉnh sửa trạng thái đã giao hàng thành công!",
     data: updatedOrder,
   };
   return response;

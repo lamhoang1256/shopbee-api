@@ -16,7 +16,12 @@ const addNewProduct = async (req: Request) => {
 };
 
 const getSingleProduct = async (req: Request) => {
-  const product = await Product.findById(req.params.id).populate("category");
+  const product = await Product.findById(req.params.id)
+    .populate("category")
+    .populate({
+      path: "reviews",
+      populate: { path: "user", select: "fullname avatar email" },
+    });
   if (!product) throw new ApiError(404, "Không tìm thấy sản phẩm!");
   const response = {
     message: "Lấy chi tiết sản phẩm thành công!",
@@ -40,7 +45,7 @@ const updateProduct = async (req: Request) => {
   if (!product) throw new ApiError(404, "Không tìm thấy sản phẩm!");
   await product.updateOne({ $set: req.body });
   const response = {
-    message: "Cập nhật sản phẩm thành công!",
+    message: "Chỉnh sửa sản phẩm thành công!",
   };
   return response;
 };
@@ -115,11 +120,87 @@ const getAllProduct = async (req: Request) => {
   return response;
 };
 
+const addNewReview = async (req: Request) => {
+  const { rating, comment } = req.body;
+  const product = await Product.findById(req.params.id);
+  if (!product) throw new ApiError(404, "Không tìm thấy sản phẩm!");
+  const review = {
+    user: req.user._id,
+    comment,
+    rating: Number(rating),
+  };
+  product.reviews.push(review);
+  product.rating =
+    product.reviews.reduce((acc, item: any) => item.rating + acc, 0) / product.reviews.length;
+  const savedProduct = await product.save();
+  const response = {
+    message: "Thêm bình luận thành công!",
+    data: savedProduct,
+  };
+  return response;
+};
+
+const updateReview = async (req: Request) => {
+  const { rating, comment, reviewId } = req.body;
+  const product: any = await Product.findById(req.params.id);
+  if (!product) throw new ApiError(404, "Không tìm thấy sản phẩm!");
+  const reviewDB: any = product.reviews.find((review: any) => review._id.toString() === reviewId);
+  if (!reviewDB) throw new ApiError(404, "Không tìm thấy bình luận!");
+  if (req.user._id !== reviewDB.user.toString()) {
+    throw new ApiError(404, "Bạn không thể chỉnh sửa bình luận của người khác!");
+  }
+  const newUpdateReview = {
+    _id: reviewId,
+    user: req.user._id,
+    comment,
+    rating: Number(rating),
+  };
+  let newReviews = product.reviews.filter((review: any) => review._id.toString() !== reviewId);
+  newReviews.push(newUpdateReview);
+  product.reviews = newReviews;
+  product.rating =
+    newReviews.length > 0
+      ? newReviews.reduce((acc: any, item: any) => item.rating + acc, 0) / newReviews.length
+      : 0;
+  const savedProduct = await product.save();
+  const response = {
+    message: "Sửa bình luận thành công!",
+    data: savedProduct,
+  };
+  return response;
+};
+
+const deleteReview = async (req: Request) => {
+  const { reviewId } = req.body;
+  const product: any = await Product.findById(req.params.id);
+  if (!product) throw new ApiError(404, "Không tìm thấy sản phẩm!");
+  const reviewDB: any = product.reviews.find((review: any) => review._id.toString() === reviewId);
+  if (!reviewDB) throw new ApiError(404, "Không tìm thấy bình luận!");
+  if (req.user._id !== reviewDB.user.toString()) {
+    throw new ApiError(404, "Bạn không thể xóa bình luận của người khác!");
+  }
+  const newReviews = product.reviews.filter((review: any) => review._id.toString() !== reviewId);
+  product.reviews = newReviews;
+  product.rating =
+    newReviews.length > 0
+      ? newReviews.reduce((acc: any, item: any) => item.rating + acc, 0) / newReviews.length
+      : 0;
+  const savedProduct = await product.save();
+  const response = {
+    message: "Xóa bình luận thành công!",
+    data: savedProduct,
+  };
+  return response;
+};
+
 const productServices = {
   addNewProduct,
   getAllProduct,
   getSingleProduct,
   deleteProduct,
   updateProduct,
+  addNewReview,
+  deleteReview,
+  updateReview,
 };
 export default productServices;

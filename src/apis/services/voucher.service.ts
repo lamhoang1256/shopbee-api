@@ -48,7 +48,7 @@ const updateVoucher = async (req: Request) => {
   const updatedVoucher = await Voucher.findByIdAndUpdate(req.params.id, req.body);
   if (!updatedVoucher) throw new ApiError(404, "Mã giảm giá không hợp lệ!");
   const response = {
-    message: "Cập nhật voucher thành công!",
+    message: "Chỉnh sửa voucher thành công!",
     data: updatedVoucher,
   };
   return response;

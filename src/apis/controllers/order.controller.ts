@@ -35,7 +35,7 @@ const getSingleOrder = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, order);
 });
 
-// @desc    Cập nhật trạng thái đơn hàng sang đang giao hàng
+// @desc    Chỉnh sửa trạng thái đơn hàng sang đang giao hàng
 // @route   PUT /api/order/:id/shipping
 // @access  Private/Admin
 const updateStatusOrderToShipping = catchAsync(async (req: Request, res: Response) => {
@@ -43,7 +43,7 @@ const updateStatusOrderToShipping = catchAsync(async (req: Request, res: Respons
   responseSuccess(res, updatedOrder);
 });
 
-// @desc    Cập nhật trạng thái đơn hàng sang đã giao hàng
+// @desc    Chỉnh sửa trạng thái đơn hàng sang đã giao hàng
 // @route   PUT /api/order/:id/delivered
 // @access  Private/Admin
 const updateStatusOrderToDelivered = catchAsync(async (req: Request, res: Response) => {
@@ -51,7 +51,7 @@ const updateStatusOrderToDelivered = catchAsync(async (req: Request, res: Respon
   responseSuccess(res, updatedOrder);
 });
 
-// @desc    Cập nhật trạng thái đơn hàng sang đã hủy
+// @desc    Chỉnh sửa trạng thái đơn hàng sang đã hủy
 // @route   PUT /api/order/:id/canceled
 // @access  Private/Admin
 const updateStatusOrderToCancel = catchAsync(async (req: Request, res: Response) => {

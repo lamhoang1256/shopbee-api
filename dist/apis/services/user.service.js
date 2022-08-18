@@ -23,7 +23,7 @@ const updateMe = (req) => __awaiter(void 0, void 0, void 0, function* () {
     if (!updatedProfile)
         throw new api_error_1.ApiError(404, "Không tìm thấy tài khoản người dùng!");
     const response = {
-        message: "Cập nhật thông tin thành công!",
+        message: "Chỉnh sửa thông tin thành công!",
         data: updatedProfile,
     };
     return response;
@@ -35,7 +35,7 @@ const updateUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     if (!updatedUser)
         throw new api_error_1.ApiError(404, "Không tìm thấy tài khoản người dùng!");
     const response = {
-        message: "Cập nhật thông tin thành công!",
+        message: "Chỉnh sửa thông tin thành công!",
         data: updatedUser,
     };
     return response;

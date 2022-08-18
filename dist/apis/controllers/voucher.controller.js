@@ -43,7 +43,7 @@ const addNewVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void
     const newAddress = yield voucher_service_1.default.addNewVoucher(req);
     (0, response_1.responseSuccess)(res, newAddress);
 }));
-// @desc    Cập nhật thông tin 1 voucher
+// @desc    Chỉnh sửa thông tin 1 voucher
 // @route   PUT /api/voucher
 // @access  Private/Admin
 const updateVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {

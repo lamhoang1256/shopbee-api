@@ -61,7 +61,7 @@ const updateBanner = (req) => __awaiter(void 0, void 0, void 0, function* () {
         throw new api_error_1.ApiError(404, "Không tìm thấy banner!");
     yield banner.updateOne({ $set: req.body });
     const response = {
-        message: "Cập nhật banner thành công!",
+        message: "Chỉnh sửa banner thành công!",
     };
     return response;
 });
