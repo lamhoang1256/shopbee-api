@@ -17,14 +17,14 @@ const order_model_1 = __importDefault(require("../models/order.model"));
 const user_model_1 = __importDefault(require("../models/user.model"));
 const api_error_1 = require("../utils/api-error");
 const updateMe = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const updatedProfile = yield user_model_1.default.findByIdAndUpdate(req.user._id, req.body, { new: true })
+    const updatedMe = yield user_model_1.default.findByIdAndUpdate({ _id: req.user._id }, req.body, { new: true })
         .select({ password: 0, __v: 0 })
         .lean();
-    if (!updatedProfile)
+    if (!updatedMe)
         throw new api_error_1.ApiError(404, "Không tìm thấy tài khoản người dùng!");
     const response = {
         message: "Chỉnh sửa thông tin thành công!",
-        data: updatedProfile,
+        data: updatedMe,
     };
     return response;
 });

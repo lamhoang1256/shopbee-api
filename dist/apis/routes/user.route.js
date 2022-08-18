@@ -11,7 +11,7 @@ userRoutes.get("/:id", tokenMiddleware_1.default.verifyToken, user_controller_1.
 userRoutes.get("/", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.getAllUser);
 userRoutes.post("/", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.addNewUser);
 userRoutes.delete("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.deleteUser);
-userRoutes.put("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.updateUser);
 userRoutes.put("/me", tokenMiddleware_1.default.verifyToken, user_controller_1.default.updateMe);
+userRoutes.put("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.updateUser);
 userRoutes.put("/change-password", tokenMiddleware_1.default.verifyToken, user_controller_1.default.changePasswordMe);
 exports.default = userRoutes;

@@ -5,13 +5,13 @@ import User from "../models/user.model";
 import { ApiError } from "../utils/api-error";
 
 const updateMe = async (req: Request) => {
-  const updatedProfile = await User.findByIdAndUpdate(req.user._id, req.body, { new: true })
+  const updatedMe = await User.findByIdAndUpdate({ _id: req.user._id }, req.body, { new: true })
     .select({ password: 0, __v: 0 })
     .lean();
-  if (!updatedProfile) throw new ApiError(404, "Không tìm thấy tài khoản người dùng!");
+  if (!updatedMe) throw new ApiError(404, "Không tìm thấy tài khoản người dùng!");
   const response = {
     message: "Chỉnh sửa thông tin thành công!",
-    data: updatedProfile,
+    data: updatedMe,
   };
   return response;
 };
