@@ -92,6 +92,10 @@ const getSingleOrder = async (req: Request) => {
     .populate({
       path: "orderItems",
       populate: { path: "product" },
+    })
+    .populate({
+      path: "reviews",
+      populate: { path: "user", select: "fullname avatar email" },
     });
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   const response = {
