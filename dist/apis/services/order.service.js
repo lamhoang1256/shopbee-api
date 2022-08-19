@@ -100,11 +100,10 @@ const getSingleOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
         .populate("user", "fullname email")
         .populate({
         path: "orderItems",
-        populate: { path: "product" },
-    })
-        .populate({
-        path: "reviews",
-        populate: { path: "user", select: "fullname avatar email" },
+        populate: {
+            path: "product",
+            populate: { path: "reviews", populate: { path: "user", select: "fullname avatar email" } },
+        },
     });
     if (!order)
         throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
