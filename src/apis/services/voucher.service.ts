@@ -28,7 +28,7 @@ const saveVoucher = async (req: Request) => {
   if (!voucher) throw new ApiError(404, "Mã giảm giá không hợp lệ!");
   if (Number(voucher.expirationDate) < Date.now() / 1000)
     throw new ApiError(500, "Mã giảm giá đã hết hạn!");
-  if (voucher.userUsed.indexOf(req.user._id) === -1)
+  if (voucher.userUsed.indexOf(req.user._id) !== -1)
     throw new ApiError(500, "Mã giảm giá đã được sử dụng!");
   const userDB: any = await User.findById(req.user._id);
   userDB.vouchersSave = userDB.vouchersSave?.push({ voucher: voucher?._id });
