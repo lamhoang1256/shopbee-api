@@ -35,7 +35,6 @@ const getSingleVoucher = (req) => __awaiter(void 0, void 0, void 0, function* ()
     return response;
 });
 const saveVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     const voucher = yield voucher_model_1.default.findOne({ code: req.query.code });
     if (!voucher)
         throw new api_error_1.ApiError(404, "Mã giảm giá không hợp lệ!");
@@ -44,7 +43,9 @@ const saveVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     if (voucher.userUsed.indexOf(req.user._id) !== -1)
         throw new api_error_1.ApiError(500, "Mã giảm giá đã được sử dụng!");
     const userDB = yield user_model_1.default.findById(req.user._id);
-    userDB.vouchersSave = (_a = userDB.vouchersSave) === null || _a === void 0 ? void 0 : _a.push({ voucher: voucher === null || voucher === void 0 ? void 0 : voucher._id });
+    if (userDB.vouchersSave.indexOf(voucher._id.toString()) !== -1)
+        throw new api_error_1.ApiError(500, "Mã giảm giá đã có trong túi!");
+    userDB.vouchersSave.push(voucher._id);
     yield userDB.save();
     const response = {
         message: "Áp dụng mã giảm giá thành công!",
