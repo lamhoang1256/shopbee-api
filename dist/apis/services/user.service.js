@@ -138,16 +138,16 @@ const getMyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
             valid.push(voucher);
         }
     });
-    let data = {};
+    let data;
     switch (status) {
         case "used":
-            data.used = used;
+            data = used;
             break;
         case "expiration":
-            data.expiration = expiration;
+            data = expiration;
             break;
         default:
-            data.valid = valid;
+            data = valid;
     }
     const response = {
         message: "Lấy voucher của bạn thành công!",
