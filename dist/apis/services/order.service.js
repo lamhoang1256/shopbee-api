@@ -22,7 +22,7 @@ const api_error_1 = require("../utils/api-error");
 const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const userId = req.user._id;
-    const { orderItems, shippingTo, shippingFee, price, promotion, total, voucherCode } = req.body;
+    const { orderItems, shippingTo, shippingFee, price, promotion, total, voucherCode, note } = req.body;
     if (orderItems && orderItems.length === 0) {
         throw new api_error_1.ApiError(404, "Giỏ hàng đang trống!");
     }
@@ -46,6 +46,7 @@ const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
         shippingFrom: shop.address,
         shippingFee,
         price,
+        note,
         promotion,
         total,
     });
@@ -174,6 +175,8 @@ const updateStatusOrderToCancel = (req) => __awaiter(void 0, void 0, void 0, fun
     const order = yield order_model_1.default.findById(req.params.id);
     if (!order)
         throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
+    if (req.body.note)
+        order.note = req.body.note;
     order.canceledAt = Date.now();
     order.status = "canceled";
     order.statusCode = 4;

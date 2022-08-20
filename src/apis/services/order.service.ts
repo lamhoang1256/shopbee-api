@@ -10,7 +10,8 @@ import { IShop } from "../../@types/shop";
 
 const createNewOrder = async (req: Request) => {
   const userId = req.user._id;
-  const { orderItems, shippingTo, shippingFee, price, promotion, total, voucherCode } = req.body;
+  const { orderItems, shippingTo, shippingFee, price, promotion, total, voucherCode, note } =
+    req.body;
   if (orderItems && orderItems.length === 0) {
     throw new ApiError(404, "Giỏ hàng đang trống!");
   }
@@ -36,6 +37,7 @@ const createNewOrder = async (req: Request) => {
     shippingFrom: shop.address,
     shippingFee,
     price,
+    note,
     promotion,
     total,
   });
@@ -165,6 +167,7 @@ const updateStatusOrderToDelivered = async (req: Request) => {
 const updateStatusOrderToCancel = async (req: Request) => {
   const order: any = await Order.findById(req.params.id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
+  if (req.body.note) order.note = req.body.note;
   order.canceledAt = Date.now();
   order.status = "canceled";
   order.statusCode = 4;
