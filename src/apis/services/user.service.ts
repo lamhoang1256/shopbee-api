@@ -98,6 +98,8 @@ const getSingleUser = async (req: Request) => {
 };
 
 const getMyVoucher = async (req: Request) => {
+  const { status } = req.query;
+  console.log("status: ", status);
   const userDB: any = await User.findById(req.user._id).populate("vouchersSave");
   if (!userDB) throw new ApiError(404, "Không tìm thấy người dùng!");
   let temp: any[] = [];
@@ -118,9 +120,20 @@ const getMyVoucher = async (req: Request) => {
       valid.push(voucher);
     }
   });
+  let data: any = {};
+  switch (status) {
+    case "used":
+      data.used = used;
+      break;
+    case "expiration":
+      data.expiration = expiration;
+      break;
+    default:
+      data.valid = valid;
+  }
   const response = {
-    message: "Lấy tất cả voucher của bạn thành công!",
-    data: { expiration, used, valid },
+    message: "Lấy voucher của bạn thành công!",
+    data,
   };
   return response;
 };

@@ -113,6 +113,8 @@ const getSingleUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const getMyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
+    const { status } = req.query;
+    console.log("status: ", status);
     const userDB = yield user_model_1.default.findById(req.user._id).populate("vouchersSave");
     if (!userDB)
         throw new api_error_1.ApiError(404, "Không tìm thấy người dùng!");
@@ -136,9 +138,20 @@ const getMyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
             valid.push(voucher);
         }
     });
+    let data = {};
+    switch (status) {
+        case "used":
+            data.used = used;
+            break;
+        case "expiration":
+            data.expiration = expiration;
+            break;
+        default:
+            data.valid = valid;
+    }
     const response = {
-        message: "Lấy tất cả voucher của bạn thành công!",
-        data: { expiration, used, valid },
+        message: "Lấy voucher của bạn thành công!",
+        data,
     };
     return response;
 });
