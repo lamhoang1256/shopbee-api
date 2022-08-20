@@ -18,5 +18,10 @@ const voucherSchema = new mongoose_1.default.Schema({
         type: String,
         default: "",
     },
+    userUsed: {
+        type: Array,
+        required: true,
+        default: [],
+    },
 }, { timestamps: true });
 exports.default = mongoose_1.default.model("Voucher", voucherSchema);

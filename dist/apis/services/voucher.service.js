@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const voucher_model_1 = __importDefault(require("../models/voucher.model"));
+const user_model_1 = __importDefault(require("../models/user.model"));
 const api_error_1 = require("../utils/api-error");
 const addNewVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const newVoucher = new voucher_model_1.default(req.body);
@@ -33,12 +34,18 @@ const getSingleVoucher = (req) => __awaiter(void 0, void 0, void 0, function* ()
     };
     return response;
 });
-const applyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
+const saveVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const voucher = yield voucher_model_1.default.findOne({ code: req.query.code }).lean();
     if (!voucher)
         throw new api_error_1.ApiError(404, "Mã giảm giá không hợp lệ!");
     if (Number(voucher.expirationDate) < Date.now() / 1000)
         throw new api_error_1.ApiError(500, "Mã giảm giá đã hết hạn!");
+    if (voucher.userUsed.indexOf(req.user._id) === -1)
+        throw new api_error_1.ApiError(500, "Mã giảm giá đã được sử dụng!");
+    const userDB = yield user_model_1.default.findById(req.user._id);
+    userDB.vouchersSave = (_a = userDB.vouchersSave) === null || _a === void 0 ? void 0 : _a.push({ voucher: voucher === null || voucher === void 0 ? void 0 : voucher._id });
+    yield userDB.save();
     const response = {
         message: "Áp dụng mã giảm giá thành công!",
         data: voucher,
@@ -80,6 +87,6 @@ const voucherServices = {
     getAllVoucher,
     updateVoucher,
     deleteVoucher,
-    applyVoucher,
+    saveVoucher,
 };
 exports.default = voucherServices;

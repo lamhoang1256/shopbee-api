@@ -3,14 +3,33 @@ import Order from "../models/order.model";
 import Shop from "../models/shop.model";
 import Product from "../models/product.model";
 import Cart from "../models/cart.model";
+import User from "../models/user.model";
+import Voucher from "../models/voucher.model";
 import { ApiError } from "../utils/api-error";
 import { IShop } from "../../@types/shop";
 
 const createNewOrder = async (req: Request) => {
   const userId = req.user._id;
-  const { orderItems, shippingTo, shippingFee, price, promotion, total } = req.body;
+  const { orderItems, shippingTo, shippingFee, price, promotion, total, voucherCode } = req.body;
   if (orderItems && orderItems.length === 0) {
     throw new ApiError(404, "Giỏ hàng đang trống!");
+  }
+  if (voucherCode) {
+    const voucherDB: any = await Voucher.findOne({ code: voucherCode });
+    if (Number(voucherDB.expirationDate) < Date.now() / 1000)
+      throw new ApiError(500, "Mã giảm giá đã hết hạn!");
+    if (voucherDB.userUsed.indexOf(req.user._id) !== -1)
+      throw new ApiError(500, "Mã giảm giá đã được sử dụng!");
+    voucherDB.userUsed.push(req.user._id);
+    await voucherDB.save();
+    const userDB: any = await User.findById(req.user._id).populate({
+      path: "vouchersSave",
+      populate: { path: "voucher" },
+    });
+    userDB.vouchersSave = userDB.vouchersSave?.filter(
+      (voucher: any) => voucher.code !== voucherCode,
+    );
+    await userDB.save();
   }
   const shop: IShop = await Shop.findOne().lean();
   const order = new Order({

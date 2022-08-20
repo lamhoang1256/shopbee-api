@@ -30,7 +30,7 @@ const updateUser = async (req: Request) => {
 
 const changePasswordMe = async (req: Request) => {
   const { currentPassword, newPassword } = req.body;
-  const userDB = await User.findById(req.user._id);
+  const userDB: any = await User.findById(req.user._id);
   if (!userDB) throw new ApiError(404, "Không tìm thấy tài khoản người dùng!");
   if (!currentPassword && !newPassword)
     throw new ApiError(404, "Vui lòng nhập mật khẩu hiện tại và mật khẩu mới!");

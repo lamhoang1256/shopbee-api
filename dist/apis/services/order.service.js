@@ -16,12 +16,30 @@ const order_model_1 = __importDefault(require("../models/order.model"));
 const shop_model_1 = __importDefault(require("../models/shop.model"));
 const product_model_1 = __importDefault(require("../models/product.model"));
 const cart_model_1 = __importDefault(require("../models/cart.model"));
+const user_model_1 = __importDefault(require("../models/user.model"));
+const voucher_model_1 = __importDefault(require("../models/voucher.model"));
 const api_error_1 = require("../utils/api-error");
 const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const userId = req.user._id;
-    const { orderItems, shippingTo, shippingFee, price, promotion, total } = req.body;
+    const { orderItems, shippingTo, shippingFee, price, promotion, total, voucherCode } = req.body;
     if (orderItems && orderItems.length === 0) {
         throw new api_error_1.ApiError(404, "Giỏ hàng đang trống!");
+    }
+    if (voucherCode) {
+        const voucherDB = yield voucher_model_1.default.findOne({ code: voucherCode });
+        if (Number(voucherDB.expirationDate) < Date.now() / 1000)
+            throw new api_error_1.ApiError(500, "Mã giảm giá đã hết hạn!");
+        if (voucherDB.userUsed.indexOf(req.user._id) !== -1)
+            throw new api_error_1.ApiError(500, "Mã giảm giá đã được sử dụng!");
+        voucherDB.userUsed.push(req.user._id);
+        yield voucherDB.save();
+        const userDB = yield user_model_1.default.findById(req.user._id).populate({
+            path: "vouchersSave",
+            populate: { path: "voucher" },
+        });
+        userDB.vouchersSave = (_a = userDB.vouchersSave) === null || _a === void 0 ? void 0 : _a.filter((voucher) => voucher.code !== voucherCode);
+        yield userDB.save();
     }
     const shop = yield shop_model_1.default.findOne().lean();
     const order = new order_model_1.default({

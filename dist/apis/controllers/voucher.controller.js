@@ -32,8 +32,8 @@ const getAllVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void
 // @desc    Sử dụng voucher
 // @route   GET /api/voucher
 // @access  Private
-const applyVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const shopAddress = yield voucher_service_1.default.applyVoucher(req);
+const saveVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const shopAddress = yield voucher_service_1.default.saveVoucher(req);
     (0, response_1.responseSuccess)(res, shopAddress);
 }));
 // @desc    Thêm mới 1 voucher
@@ -63,6 +63,6 @@ const shopControllers = {
     addNewVoucher,
     updateVoucher,
     deleteVoucher,
-    applyVoucher,
+    saveVoucher,
 };
 exports.default = shopControllers;

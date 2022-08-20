@@ -22,8 +22,8 @@ const getAllVoucher = catchAsync(async (req: Request, res: Response) => {
 // @desc    Sử dụng voucher
 // @route   GET /api/voucher
 // @access  Private
-const applyVoucher = catchAsync(async (req: Request, res: Response) => {
-  const shopAddress = await voucherServices.applyVoucher(req);
+const saveVoucher = catchAsync(async (req: Request, res: Response) => {
+  const shopAddress = await voucherServices.saveVoucher(req);
   responseSuccess(res, shopAddress);
 });
 
@@ -57,6 +57,6 @@ const shopControllers = {
   addNewVoucher,
   updateVoucher,
   deleteVoucher,
-  applyVoucher,
+  saveVoucher,
 };
 export default shopControllers;

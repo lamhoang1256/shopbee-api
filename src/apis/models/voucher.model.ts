@@ -15,6 +15,11 @@ const voucherSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    userUsed: {
+      type: Array,
+      required: true,
+      default: [],
+    },
   },
   { timestamps: true },
 );

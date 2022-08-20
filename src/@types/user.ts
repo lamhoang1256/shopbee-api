@@ -1,15 +1,20 @@
 export interface IUser {
+  _id: string;
   accessToken: string;
+  refreshToken: string;
   street: string;
   address: string;
-  createdAt: string;
-  email: string;
+  cityId: string;
+  districtId: string;
+  wardId: string;
   fullname: string;
-  isAdmin: boolean;
+  email: string;
+  avatar: string;
   phone: string;
-  refreshToken: string;
+  isAdmin: boolean;
+  password?: string;
+  createdAt: string;
   updatedAt: string;
-  password: string;
+  vouchersSave: [];
   __v: number;
-  _id: string;
 }

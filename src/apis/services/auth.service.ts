@@ -51,7 +51,7 @@ const signUp = async (req: Request) => {
 };
 
 const signIn = async (req: Request) => {
-  const user: IUser | null = await User.findOne({ email: req.body.email }).lean();
+  const user: any = await User.findOne({ email: req.body.email }).lean();
   if (!user) throw new ApiError(422, "Sai địa chỉ email hoặc mật khẩu!");
   const validPassword = await bcrypt.compare(req.body.password, user.password);
   if (!validPassword) throw new ApiError(422, "Sai địa chỉ email hoặc mật khẩu!");

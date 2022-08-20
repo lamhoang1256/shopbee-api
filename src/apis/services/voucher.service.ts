@@ -1,5 +1,6 @@
 import { Request } from "express";
 import Voucher from "../models/voucher.model";
+import User from "../models/user.model";
 import { ApiError } from "../utils/api-error";
 
 const addNewVoucher = async (req: Request) => {
@@ -22,11 +23,16 @@ const getSingleVoucher = async (req: Request) => {
   return response;
 };
 
-const applyVoucher = async (req: Request) => {
+const saveVoucher = async (req: Request) => {
   const voucher: any = await Voucher.findOne({ code: req.query.code }).lean();
   if (!voucher) throw new ApiError(404, "Mã giảm giá không hợp lệ!");
   if (Number(voucher.expirationDate) < Date.now() / 1000)
     throw new ApiError(500, "Mã giảm giá đã hết hạn!");
+  if (voucher.userUsed.indexOf(req.user._id) === -1)
+    throw new ApiError(500, "Mã giảm giá đã được sử dụng!");
+  const userDB: any = await User.findById(req.user._id);
+  userDB.vouchersSave = userDB.vouchersSave?.push({ voucher: voucher?._id });
+  await userDB.save();
   const response = {
     message: "Áp dụng mã giảm giá thành công!",
     data: voucher,
@@ -69,6 +75,6 @@ const voucherServices = {
   getAllVoucher,
   updateVoucher,
   deleteVoucher,
-  applyVoucher,
+  saveVoucher,
 };
 export default voucherServices;

@@ -12,6 +12,15 @@ const userSchema = new mongoose.Schema(
     cityId: { type: String, default: "" },
     districtId: { type: String, default: "" },
     wardId: { type: String, default: "" },
+    vouchersSave: [
+      {
+        voucher: {
+          type: mongoose.Schema.Types.ObjectId,
+          required: true,
+          ref: "Voucher",
+        },
+      },
+    ],
     isAdmin: {
       type: Boolean,
       default: false,
