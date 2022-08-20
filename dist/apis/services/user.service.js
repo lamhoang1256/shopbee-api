@@ -112,14 +112,13 @@ const getSingleUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getMyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const userDB = yield user_model_1.default.findById(req.user._id).populate({
-        path: "vouchersSave",
-        populate: { path: "voucher" },
-    });
+    var _a;
+    const userDB = yield user_model_1.default.findById(req.user._id).populate("vouchersSave");
     if (!userDB)
         throw new api_error_1.ApiError(404, "Không tìm thấy người dùng!");
+    userDB.vouchersSave = (_a = userDB.vouchersSave) === null || _a === void 0 ? void 0 : _a.filter((voucher) => Number(voucher.expirationDate) > Date.now() / 1000);
     const response = {
-        message: "Lấy thông tin người dùng thành công!",
+        message: "Lấy tất cả voucher của bạn thành công!",
         data: userDB.vouchersSave,
     };
     return response;

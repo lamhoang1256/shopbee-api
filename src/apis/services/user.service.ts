@@ -98,13 +98,13 @@ const getSingleUser = async (req: Request) => {
 };
 
 const getMyVoucher = async (req: Request) => {
-  const userDB = await User.findById(req.user._id).populate({
-    path: "vouchersSave",
-    populate: { path: "voucher" },
-  });
+  const userDB = await User.findById(req.user._id).populate("vouchersSave");
   if (!userDB) throw new ApiError(404, "Không tìm thấy người dùng!");
+  userDB.vouchersSave = userDB.vouchersSave?.filter(
+    (voucher: any) => Number(voucher.expirationDate) > Date.now() / 1000,
+  );
   const response = {
-    message: "Lấy thông tin người dùng thành công!",
+    message: "Lấy tất cả voucher của bạn thành công!",
     data: userDB.vouchersSave,
   };
   return response;
