@@ -116,29 +116,29 @@ const getMyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const userDB = yield user_model_1.default.findById(req.user._id).populate("vouchersSave");
     if (!userDB)
         throw new api_error_1.ApiError(404, "Không tìm thấy người dùng!");
-    let vouchersTemp = [];
-    let vouchersExpiration = [];
-    let vouchersUsed = [];
-    let vouchersValid = [];
+    let temp = [];
+    let expiration = [];
+    let used = [];
+    let valid = [];
     (_a = userDB.vouchersSave) === null || _a === void 0 ? void 0 : _a.forEach((voucher) => {
         if (Number(voucher.expirationDate) < Date.now() / 1000) {
-            vouchersExpiration.push(voucher);
+            expiration.push(voucher);
         }
         else {
-            vouchersTemp.push(voucher);
+            temp.push(voucher);
         }
     });
-    vouchersTemp === null || vouchersTemp === void 0 ? void 0 : vouchersTemp.forEach((voucher) => {
+    temp === null || temp === void 0 ? void 0 : temp.forEach((voucher) => {
         if (voucher.userUsed.indexOf(req.user._id) !== -1) {
-            vouchersUsed.push(voucher);
+            used.push(voucher);
         }
         else {
-            vouchersValid.push(voucher);
+            valid.push(voucher);
         }
     });
     const response = {
         message: "Lấy tất cả voucher của bạn thành công!",
-        data: { vouchersExpiration, vouchersUsed, vouchersValid },
+        data: { expiration, used, valid },
     };
     return response;
 });

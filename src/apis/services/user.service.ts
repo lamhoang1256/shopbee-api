@@ -100,27 +100,27 @@ const getSingleUser = async (req: Request) => {
 const getMyVoucher = async (req: Request) => {
   const userDB: any = await User.findById(req.user._id).populate("vouchersSave");
   if (!userDB) throw new ApiError(404, "Không tìm thấy người dùng!");
-  let vouchersTemp: any[] = [];
-  let vouchersExpiration: any[] = [];
-  let vouchersUsed: any[] = [];
-  let vouchersValid: any[] = [];
+  let temp: any[] = [];
+  let expiration: any[] = [];
+  let used: any[] = [];
+  let valid: any[] = [];
   userDB.vouchersSave?.forEach((voucher: any) => {
     if (Number(voucher.expirationDate) < Date.now() / 1000) {
-      vouchersExpiration.push(voucher);
+      expiration.push(voucher);
     } else {
-      vouchersTemp.push(voucher);
+      temp.push(voucher);
     }
   });
-  vouchersTemp?.forEach((voucher: any) => {
+  temp?.forEach((voucher: any) => {
     if (voucher.userUsed.indexOf(req.user._id) !== -1) {
-      vouchersUsed.push(voucher);
+      used.push(voucher);
     } else {
-      vouchersValid.push(voucher);
+      valid.push(voucher);
     }
   });
   const response = {
     message: "Lấy tất cả voucher của bạn thành công!",
-    data: { vouchersExpiration, vouchersUsed, vouchersValid },
+    data: { expiration, used, valid },
   };
   return response;
 };
