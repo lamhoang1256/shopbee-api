@@ -22,10 +22,7 @@ const createNewOrder = async (req: Request) => {
       throw new ApiError(500, "Mã giảm giá đã được sử dụng!");
     voucherDB.userUsed.push(req.user._id);
     await voucherDB.save();
-    const userDB: any = await User.findById(req.user._id).populate({
-      path: "vouchersSave",
-      populate: { path: "voucher" },
-    });
+    const userDB: any = await User.findById(req.user._id);
     userDB.vouchersSave = userDB.vouchersSave?.filter(
       (voucher: any) => voucher.code !== voucherCode,
     );

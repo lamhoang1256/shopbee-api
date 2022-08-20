@@ -111,6 +111,19 @@ const getSingleUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
+const getMyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const userDB = yield user_model_1.default.findById(req.user._id).populate({
+        path: "vouchersSave",
+        populate: { path: "voucher" },
+    });
+    if (!userDB)
+        throw new api_error_1.ApiError(404, "Không tìm thấy người dùng!");
+    const response = {
+        message: "Lấy thông tin người dùng thành công!",
+        data: userDB.vouchersSave,
+    };
+    return response;
+});
 const addNewUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const newUser = yield user_model_1.default.create(req.body);
     if (!newUser)
@@ -144,5 +157,6 @@ const userServices = {
     changePasswordMe,
     deleteUser,
     updateUser,
+    getMyVoucher,
 };
 exports.default = userServices;

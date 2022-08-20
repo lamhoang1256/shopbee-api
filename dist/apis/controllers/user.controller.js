@@ -22,6 +22,13 @@ const getSingleUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void
     const users = yield user_service_1.default.getSingleUser(req);
     (0, response_1.responseSuccess)(res, users);
 }));
+// @desc    Lấy tất cả voucher của người dùng đã đăng nhập
+// @route   GET /api/user/my-voucher
+// @access  Private
+const getMyVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const users = yield user_service_1.default.getMyVoucher(req);
+    (0, response_1.responseSuccess)(res, users);
+}));
 // @desc    Lấy chi tiết tất cả người dùng
 // @route   GET /api/user
 // @access  Private/Admin
@@ -72,5 +79,6 @@ const userControllers = {
     changePasswordMe,
     getSingleUser,
     updateUser,
+    getMyVoucher,
 };
 exports.default = userControllers;

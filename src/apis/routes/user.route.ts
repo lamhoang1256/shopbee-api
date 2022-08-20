@@ -5,6 +5,7 @@ const userRoutes = Router();
 
 userRoutes.get("/:id", tokenMiddleware.verifyToken, userControllers.getSingleUser);
 userRoutes.get("/", tokenMiddleware.verifyTokenAndAdmin, userControllers.getAllUser);
+userRoutes.get("/my-voucher", tokenMiddleware.verifyToken, userControllers.getMyVoucher);
 userRoutes.post("/", tokenMiddleware.verifyTokenAndAdmin, userControllers.addNewUser);
 userRoutes.delete("/:id", tokenMiddleware.verifyTokenAndAdmin, userControllers.deleteUser);
 userRoutes.put("/me", tokenMiddleware.verifyToken, userControllers.updateMe);

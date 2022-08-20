@@ -34,10 +34,7 @@ const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
             throw new api_error_1.ApiError(500, "Mã giảm giá đã được sử dụng!");
         voucherDB.userUsed.push(req.user._id);
         yield voucherDB.save();
-        const userDB = yield user_model_1.default.findById(req.user._id).populate({
-            path: "vouchersSave",
-            populate: { path: "voucher" },
-        });
+        const userDB = yield user_model_1.default.findById(req.user._id);
         userDB.vouchersSave = (_a = userDB.vouchersSave) === null || _a === void 0 ? void 0 : _a.filter((voucher) => voucher.code !== voucherCode);
         yield userDB.save();
     }

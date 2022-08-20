@@ -9,6 +9,7 @@ const tokenMiddleware_1 = __importDefault(require("../middlewares/tokenMiddlewar
 const userRoutes = (0, express_1.Router)();
 userRoutes.get("/:id", tokenMiddleware_1.default.verifyToken, user_controller_1.default.getSingleUser);
 userRoutes.get("/", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.getAllUser);
+userRoutes.get("/my-voucher", tokenMiddleware_1.default.verifyToken, user_controller_1.default.getMyVoucher);
 userRoutes.post("/", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.addNewUser);
 userRoutes.delete("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.deleteUser);
 userRoutes.put("/me", tokenMiddleware_1.default.verifyToken, user_controller_1.default.updateMe);

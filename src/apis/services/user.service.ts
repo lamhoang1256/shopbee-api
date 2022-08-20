@@ -97,6 +97,19 @@ const getSingleUser = async (req: Request) => {
   return response;
 };
 
+const getMyVoucher = async (req: Request) => {
+  const userDB = await User.findById(req.user._id).populate({
+    path: "vouchersSave",
+    populate: { path: "voucher" },
+  });
+  if (!userDB) throw new ApiError(404, "Không tìm thấy người dùng!");
+  const response = {
+    message: "Lấy thông tin người dùng thành công!",
+    data: userDB.vouchersSave,
+  };
+  return response;
+};
+
 const addNewUser = async (req: Request) => {
   const newUser = await User.create(req.body);
   if (!newUser) throw new ApiError(404, "Không tìm thấy người dùng!");
@@ -130,5 +143,6 @@ const userServices = {
   changePasswordMe,
   deleteUser,
   updateUser,
+  getMyVoucher,
 };
 export default userServices;

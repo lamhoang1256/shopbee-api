@@ -11,6 +11,14 @@ const getSingleUser = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, users);
 });
 
+// @desc    Lấy tất cả voucher của người dùng đã đăng nhập
+// @route   GET /api/user/my-voucher
+// @access  Private
+const getMyVoucher = catchAsync(async (req: Request, res: Response) => {
+  const users = await userServices.getMyVoucher(req);
+  responseSuccess(res, users);
+});
+
 // @desc    Lấy chi tiết tất cả người dùng
 // @route   GET /api/user
 // @access  Private/Admin
@@ -67,5 +75,6 @@ const userControllers = {
   changePasswordMe,
   getSingleUser,
   updateUser,
+  getMyVoucher,
 };
 export default userControllers;
