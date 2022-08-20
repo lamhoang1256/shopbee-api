@@ -36,7 +36,7 @@ const getSingleVoucher = (req) => __awaiter(void 0, void 0, void 0, function* ()
 });
 const saveVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    const voucher = yield voucher_model_1.default.findOne({ code: req.query.code }).lean();
+    const voucher = yield voucher_model_1.default.findOne({ code: req.query.code });
     if (!voucher)
         throw new api_error_1.ApiError(404, "Mã giảm giá không hợp lệ!");
     if (Number(voucher.expirationDate) < Date.now() / 1000)

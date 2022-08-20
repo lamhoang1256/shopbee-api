@@ -24,7 +24,7 @@ const getSingleVoucher = async (req: Request) => {
 };
 
 const saveVoucher = async (req: Request) => {
-  const voucher: any = await Voucher.findOne({ code: req.query.code }).lean();
+  const voucher: any = await Voucher.findOne({ code: req.query.code });
   if (!voucher) throw new ApiError(404, "Mã giảm giá không hợp lệ!");
   if (Number(voucher.expirationDate) < Date.now() / 1000)
     throw new ApiError(500, "Mã giảm giá đã hết hạn!");
