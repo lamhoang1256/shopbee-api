@@ -46,6 +46,7 @@ const saveVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     if (userDB.vouchersSave.indexOf(voucher._id.toString()) !== -1)
         throw new api_error_1.ApiError(500, "Mã giảm giá đã có trong túi!");
     userDB.vouchersSave.push(voucher._id);
+    console.log("userDB.vouchersSave: ", userDB.vouchersSave);
     yield userDB.save();
     const response = {
         message: "Áp dụng mã giảm giá thành công!",
