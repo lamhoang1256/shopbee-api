@@ -167,7 +167,7 @@ const updateStatusOrderToDelivered = async (req: Request) => {
 const updateStatusOrderToCancel = async (req: Request) => {
   const order: any = await Order.findById(req.params.id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
-  if (req.body.note) order.note = req.body.note;
+  if (req.body.reasonCancel) order.reasonCancel = req.body.reasonCancel;
   order.canceledAt = Date.now();
   order.status = "canceled";
   order.statusCode = 4;

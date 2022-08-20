@@ -46,6 +46,10 @@ const orderSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    reasonCancel: {
+      type: String,
+      default: "",
+    },
     status: {
       type: String,
       enum: ["waiting", "processing", "shipping", "delivered", "canceled"],

@@ -175,8 +175,8 @@ const updateStatusOrderToCancel = (req) => __awaiter(void 0, void 0, void 0, fun
     const order = yield order_model_1.default.findById(req.params.id);
     if (!order)
         throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
-    if (req.body.note)
-        order.note = req.body.note;
+    if (req.body.reasonCancel)
+        order.reasonCancel = req.body.reasonCancel;
     order.canceledAt = Date.now();
     order.status = "canceled";
     order.statusCode = 4;
