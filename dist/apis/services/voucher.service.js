@@ -38,7 +38,7 @@ const saveVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const voucher = yield voucher_model_1.default.findOne({ code: req.query.code });
     if (!voucher)
         throw new api_error_1.ApiError(404, "Mã giảm giá không hợp lệ!");
-    if (Number(voucher.expirationDate) < Date.now() / 1000)
+    if (voucher.expirationDate < Date.now())
         throw new api_error_1.ApiError(500, "Mã giảm giá đã hết hạn!");
     if (voucher.userUsed.indexOf(req.user._id) !== -1)
         throw new api_error_1.ApiError(500, "Mã giảm giá đã được sử dụng!");
@@ -57,11 +57,11 @@ const getAllVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     let { code, status, limit = 10, page = 1 } = req.query;
     page = Number(page);
     limit = Number(limit);
-    let condition = { expirationDate: { $gt: Date.now() / 1000 } };
+    let condition = { expirationDate: { $gt: Date.now() } };
     if (code)
         condition.code = { $regex: code, $options: "i" };
     if (status === "expiration")
-        condition.expirationDate = { $lt: Date.now() / 1000 };
+        condition.expirationDate = { $lt: Date.now() };
     const [vouchers, totalVouchers] = yield Promise.all([
         voucher_model_1.default.find(condition)
             .skip(page * limit - limit)

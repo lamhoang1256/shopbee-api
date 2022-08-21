@@ -11,8 +11,8 @@ const voucherSchema = new mongoose.Schema(
     },
     title: String,
     expirationDate: {
-      type: String,
-      default: "",
+      type: Number,
+      default: new Date(Date.now() + 3600 * 1000 * 24),
     },
     userUsed: {
       type: Array,

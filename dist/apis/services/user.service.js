@@ -122,7 +122,7 @@ const getMyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     let used = [];
     let valid = [];
     (_a = userDB.vouchersSave) === null || _a === void 0 ? void 0 : _a.forEach((voucher) => {
-        if (Number(voucher.expirationDate) < Date.now() / 1000) {
+        if (Number(voucher.expirationDate) < Date.now()) {
             expiration.push(voucher);
         }
         else {
