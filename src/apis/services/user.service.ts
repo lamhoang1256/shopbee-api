@@ -99,7 +99,6 @@ const getSingleUser = async (req: Request) => {
 
 const getMyVoucher = async (req: Request) => {
   const { status } = req.query;
-  console.log("status: ", status);
   const userDB: any = await User.findById(req.user._id).populate("vouchersSave");
   if (!userDB) throw new ApiError(404, "Không tìm thấy người dùng!");
   let temp: any[] = [];

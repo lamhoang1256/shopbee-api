@@ -9,8 +9,7 @@ const voucherSchema = new mongoose.Schema(
     value: {
       type: Number,
     },
-    image: String,
-    description: String,
+    title: String,
     expirationDate: {
       type: String,
       default: "",

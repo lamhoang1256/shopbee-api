@@ -70,7 +70,7 @@ const getAllOrderAdmin = async (req: Request) => {
   if (orderId) conditional._id = orderId;
   const orders = await Order.find(conditional)
     .sort({
-      createdAt: -1,
+      updatedAt: -1,
     })
     .populate("user", "id fullname email")
     .populate({
@@ -95,7 +95,7 @@ const getAllOrderMe = async (req: Request) => {
       populate: { path: "product" },
     })
     .sort({
-      createdAt: -1,
+      updatedAt: -1,
     });
   const response = {
     message: "Lấy tất cả đơn hàng thành công!",

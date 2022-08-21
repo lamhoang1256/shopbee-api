@@ -114,7 +114,6 @@ const getSingleUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
 const getMyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const { status } = req.query;
-    console.log("status: ", status);
     const userDB = yield user_model_1.default.findById(req.user._id).populate("vouchersSave");
     if (!userDB)
         throw new api_error_1.ApiError(404, "Không tìm thấy người dùng!");

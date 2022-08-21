@@ -54,9 +54,17 @@ const saveVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getAllVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const voucher = yield voucher_model_1.default.find({});
+    const { code, status } = req.query;
+    let conditional = { expirationDate: { $gt: Date.now() / 1000 } };
+    if (code)
+        conditional.code = code;
+    if (status === "expiration")
+        conditional.expirationDate = { $lt: Date.now() / 1000 };
+    const voucher = yield voucher_model_1.default.find(conditional).sort({
+        updatedAt: -1,
+    });
     if (!voucher)
-        throw new api_error_1.ApiError(404, "Mã giảm giá không hợp lệ!");
+        throw new api_error_1.ApiError(404, "Không tìm thấy mã giảm giá!");
     const response = {
         message: "Lấy tất cả voucher thành công!",
         data: voucher,

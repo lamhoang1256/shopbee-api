@@ -77,7 +77,7 @@ const getAllOrderAdmin = (req) => __awaiter(void 0, void 0, void 0, function* ()
         conditional._id = orderId;
     const orders = yield order_model_1.default.find(conditional)
         .sort({
-        createdAt: -1,
+        updatedAt: -1,
     })
         .populate("user", "id fullname email")
         .populate({
@@ -103,7 +103,7 @@ const getAllOrderMe = (req) => __awaiter(void 0, void 0, void 0, function* () {
         populate: { path: "product" },
     })
         .sort({
-        createdAt: -1,
+        updatedAt: -1,
     });
     const response = {
         message: "Lấy tất cả đơn hàng thành công!",
