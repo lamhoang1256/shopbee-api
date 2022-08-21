@@ -43,17 +43,36 @@ const saveVoucher = async (req: Request) => {
 };
 
 const getAllVoucher = async (req: Request) => {
-  const { code, status } = req.query;
-  let conditional: any = { expirationDate: { $gt: Date.now() / 1000 } };
-  if (code) conditional.code = code;
-  if (status === "expiration") conditional.expirationDate = { $lt: Date.now() / 1000 };
-  const voucher = await Voucher.find(conditional).sort({
-    updatedAt: -1,
-  });
-  if (!voucher) throw new ApiError(404, "Không tìm thấy mã giảm giá!");
+  let { code, status, limit = 10, page = 1 } = req.query;
+  page = Number(page);
+  limit = Number(limit);
+  let condition: any = { expirationDate: { $gt: Date.now() / 1000 } };
+  if (code) condition.code = { $regex: code, $options: "i" };
+  if (status === "expiration") condition.expirationDate = { $lt: Date.now() / 1000 };
+  const [vouchers, totalVouchers] = await Promise.all([
+    Voucher.find(condition)
+      .skip(page * limit - limit)
+      .limit(limit)
+      .sort({
+        updatedAt: -1,
+      })
+      .select({ __v: 0 })
+      .lean(),
+    Voucher.find(condition).countDocuments().lean(),
+  ]);
+  if (!vouchers) throw new ApiError(404, "Không tìm thấy mã giảm giá!");
+  const pageCount = Math.ceil(totalVouchers / limit) || 1;
+  const pagination = {
+    page,
+    limit,
+    pageCount,
+  };
   const response = {
     message: "Lấy tất cả voucher thành công!",
-    data: voucher,
+    data: {
+      vouchers,
+      pagination,
+    },
   };
   return response;
 };
