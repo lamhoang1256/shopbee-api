@@ -19,6 +19,7 @@ const productSchema = new mongoose.Schema(
   {
     name: String,
     image: String,
+    images: { type: [String], default: [] },
     description: String,
     category: { type: mongoose.SchemaTypes.ObjectId, ref: "Category" },
     oldPrice: { type: Number, default: 0 },

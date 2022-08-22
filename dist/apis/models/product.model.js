@@ -18,6 +18,7 @@ const reviewSchema = new mongoose_1.default.Schema({
 const productSchema = new mongoose_1.default.Schema({
     name: String,
     image: String,
+    images: { type: [String], default: [] },
     description: String,
     category: { type: mongoose_1.default.SchemaTypes.ObjectId, ref: "Category" },
     oldPrice: { type: Number, default: 0 },
