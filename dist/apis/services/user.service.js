@@ -191,7 +191,7 @@ const addToWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getMyWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const wishlist = yield user_model_1.default.findById(req.user._id).select("wishlist").populate("wishlist").exec();
+    const wishlist = yield user_model_1.default.findById(req.user._id).select("wishlist -_id").populate("wishlist");
     const response = {
         message: "Lấy danh sách yêu thích thành công!",
         data: wishlist,

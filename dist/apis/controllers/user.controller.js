@@ -79,7 +79,7 @@ const removeFromWishlist = (0, catch_async_1.catchAsync)((req, res) => __awaiter
     (0, response_1.responseSuccess)(res, updatedWishlist);
 }));
 // @desc    Lấy danh sách sản phẩm yêu thích
-// @route   POST /api/user/wishlist
+// @route   GET /api/user/wishlist
 // @access  Private
 const getMyWishlist = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const wishlist = yield user_service_1.default.getMyWishlist(req);

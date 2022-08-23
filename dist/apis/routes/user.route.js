@@ -8,13 +8,13 @@ const user_controller_1 = __importDefault(require("../controllers/user.controlle
 const tokenMiddleware_1 = __importDefault(require("../middlewares/tokenMiddleware"));
 const userRoutes = (0, express_1.Router)();
 userRoutes.get("/my-voucher", tokenMiddleware_1.default.verifyToken, user_controller_1.default.getMyVoucher);
+userRoutes.get("/wishlist", tokenMiddleware_1.default.verifyToken, user_controller_1.default.getMyWishlist);
 userRoutes.get("/:id", tokenMiddleware_1.default.verifyToken, user_controller_1.default.getSingleUser);
 userRoutes.get("/", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.getAllUser);
 userRoutes.post("/", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.addNewUser);
 userRoutes.delete("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.deleteUser);
 userRoutes.put("/me", tokenMiddleware_1.default.verifyToken, user_controller_1.default.updateMe);
 userRoutes.put("/wishlist", tokenMiddleware_1.default.verifyToken, user_controller_1.default.removeFromWishlist);
-userRoutes.get("/wishlist", tokenMiddleware_1.default.verifyToken, user_controller_1.default.getMyWishlist);
 userRoutes.post("/wishlist", tokenMiddleware_1.default.verifyToken, user_controller_1.default.addToWishlist);
 userRoutes.put("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.updateUser);
 userRoutes.put("/change-password", tokenMiddleware_1.default.verifyToken, user_controller_1.default.changePasswordMe);

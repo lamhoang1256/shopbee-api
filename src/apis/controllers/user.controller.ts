@@ -76,7 +76,7 @@ const removeFromWishlist = catchAsync(async (req: Request, res: Response) => {
 });
 
 // @desc    Lấy danh sách sản phẩm yêu thích
-// @route   POST /api/user/wishlist
+// @route   GET /api/user/wishlist
 // @access  Private
 const getMyWishlist = catchAsync(async (req: Request, res: Response) => {
   const wishlist = await userServices.getMyWishlist(req);

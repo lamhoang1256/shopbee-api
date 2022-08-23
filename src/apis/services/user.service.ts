@@ -175,7 +175,7 @@ const addToWishlist = async (req: Request) => {
 };
 
 const getMyWishlist = async (req: Request) => {
-  const wishlist = await User.findById(req.user._id).select("wishlist").populate("wishlist").exec();
+  const wishlist = await User.findById(req.user._id).select("wishlist -_id").populate("wishlist");
   const response = {
     message: "Lấy danh sách yêu thích thành công!",
     data: wishlist,
