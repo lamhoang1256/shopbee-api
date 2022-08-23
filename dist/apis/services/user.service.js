@@ -183,7 +183,7 @@ const addToWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const { productId } = req.body;
     const user = yield user_model_1.default.findByIdAndUpdate(req.user._id, {
         $addToSet: { wishlist: productId },
-    }).exec();
+    }).select("-password");
     const response = {
         message: "Đã thêm vào danh sách yêu thích!",
         data: user,
@@ -202,7 +202,7 @@ const removeFromWishlist = (req) => __awaiter(void 0, void 0, void 0, function* 
     const { productId } = req.body;
     const user = yield user_model_1.default.findByIdAndUpdate(req.user._id, {
         $pull: { wishlist: productId },
-    }).exec();
+    }).select("-password");
     const response = {
         message: "Đã thêm vào danh sách yêu thích!",
         data: user,
