@@ -16,12 +16,10 @@ const addNewProduct = async (req: Request) => {
 };
 
 const getSingleProduct = async (req: Request) => {
-  const product = await Product.findById(req.params.id)
-    .populate("category")
-    .populate({
-      path: "reviews",
-      populate: { path: "user", select: "fullname avatar email" },
-    });
+  const product = await Product.findById(req.params.id).populate({
+    path: "reviews",
+    populate: { path: "user", select: "fullname avatar email" },
+  });
   if (!product) throw new ApiError(404, "Không tìm thấy sản phẩm!");
   const response = {
     message: "Lấy chi tiết sản phẩm thành công!",

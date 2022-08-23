@@ -26,9 +26,7 @@ const addNewProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getSingleProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const product = yield product_model_1.default.findById(req.params.id)
-        .populate("category")
-        .populate({
+    const product = yield product_model_1.default.findById(req.params.id).populate({
         path: "reviews",
         populate: { path: "user", select: "fullname avatar email" },
     });
