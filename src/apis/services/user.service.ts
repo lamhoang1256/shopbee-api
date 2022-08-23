@@ -189,7 +189,7 @@ const removeFromWishlist = async (req: Request) => {
     $pull: { wishlist: productId },
   }).select("-password");
   const response = {
-    message: "Đã thêm vào danh sách yêu thích!",
+    message: "Đã xóa khỏi danh sách yêu thích!",
     data: user,
   };
   return response;
