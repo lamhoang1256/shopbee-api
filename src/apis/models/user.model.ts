@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema(
     vouchersSave: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        default: [],
         ref: "Voucher",
       },
     ],
@@ -23,6 +23,13 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    wishlist: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+        default: [],
+      },
+    ],
   },
   { timestamps: true },
 );

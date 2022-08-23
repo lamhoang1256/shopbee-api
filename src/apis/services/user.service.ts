@@ -162,6 +162,39 @@ const deleteUser = async (req: Request) => {
   return response;
 };
 
+const addToWishlist = async (req: Request) => {
+  const { productId } = req.body;
+  const user = await User.findByIdAndUpdate(req.user._id, {
+    $addToSet: { wishlist: productId },
+  }).exec();
+  const response = {
+    message: "Đã thêm vào danh sách yêu thích!",
+    data: user,
+  };
+  return response;
+};
+
+const getMyWishlist = async (req: Request) => {
+  const wishlist = await User.findById(req.user._id).select("wishlist").populate("wishlist").exec();
+  const response = {
+    message: "Lấy danh sách yêu thích thành công!",
+    data: wishlist,
+  };
+  return response;
+};
+
+const removeFromWishlist = async (req: Request) => {
+  const { productId } = req.body;
+  const user = await User.findByIdAndUpdate(req.user._id, {
+    $pull: { wishlist: productId },
+  }).exec();
+  const response = {
+    message: "Đã thêm vào danh sách yêu thích!",
+    data: user,
+  };
+  return response;
+};
+
 const userServices = {
   updateMe,
   getSingleUser,
@@ -171,5 +204,8 @@ const userServices = {
   deleteUser,
   updateUser,
   getMyVoucher,
+  addToWishlist,
+  getMyWishlist,
+  removeFromWishlist,
 };
 export default userServices;

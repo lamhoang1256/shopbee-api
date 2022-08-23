@@ -13,6 +13,9 @@ userRoutes.get("/", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controll
 userRoutes.post("/", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.addNewUser);
 userRoutes.delete("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.deleteUser);
 userRoutes.put("/me", tokenMiddleware_1.default.verifyToken, user_controller_1.default.updateMe);
+userRoutes.put("/wishlist", tokenMiddleware_1.default.verifyToken, user_controller_1.default.removeFromWishlist);
+userRoutes.get("/wishlist", tokenMiddleware_1.default.verifyToken, user_controller_1.default.getMyWishlist);
+userRoutes.post("/wishlist", tokenMiddleware_1.default.verifyToken, user_controller_1.default.addToWishlist);
 userRoutes.put("/:id", tokenMiddleware_1.default.verifyTokenAndAdmin, user_controller_1.default.updateUser);
 userRoutes.put("/change-password", tokenMiddleware_1.default.verifyToken, user_controller_1.default.changePasswordMe);
 exports.default = userRoutes;

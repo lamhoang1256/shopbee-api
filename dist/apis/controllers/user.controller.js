@@ -58,11 +58,32 @@ const changePasswordMe = (0, catch_async_1.catchAsync)((req, res) => __awaiter(v
     (0, response_1.responseSuccess)(res, updatedUser);
 }));
 // @desc    Thêm mới 1 người dùng
-// @route   PUT /api/user
+// @route   POST /api/user
 // @access  Private/Admin
 const addNewUser = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedUser = yield user_service_1.default.addNewUser(req);
     (0, response_1.responseSuccess)(res, updatedUser);
+}));
+// @desc    Lưu sản phẩm yêu thích
+// @route   POST /api/user/wishlist
+// @access  Private
+const addToWishlist = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const newWishlist = yield user_service_1.default.addToWishlist(req);
+    (0, response_1.responseSuccess)(res, newWishlist);
+}));
+// @desc    Xóa sản phẩm ra khỏi danh sách yêu thích
+// @route   PUT /api/user/wishlist
+// @access  Private
+const removeFromWishlist = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedWishlist = yield user_service_1.default.removeFromWishlist(req);
+    (0, response_1.responseSuccess)(res, updatedWishlist);
+}));
+// @desc    Lấy danh sách sản phẩm yêu thích
+// @route   POST /api/user/wishlist
+// @access  Private
+const getMyWishlist = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const wishlist = yield user_service_1.default.getMyWishlist(req);
+    (0, response_1.responseSuccess)(res, wishlist);
 }));
 // @desc    Xóa 1 người dùng
 // @route   DELETE /api/user/:id
@@ -80,5 +101,8 @@ const userControllers = {
     getSingleUser,
     updateUser,
     getMyVoucher,
+    addToWishlist,
+    getMyWishlist,
+    removeFromWishlist,
 };
 exports.default = userControllers;
