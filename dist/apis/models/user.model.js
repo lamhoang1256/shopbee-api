@@ -18,7 +18,6 @@ const userSchema = new mongoose_1.default.Schema({
     vouchersSave: [
         {
             type: mongoose_1.default.Schema.Types.ObjectId,
-            default: [],
             ref: "Voucher",
         },
     ],
@@ -30,7 +29,6 @@ const userSchema = new mongoose_1.default.Schema({
         {
             type: mongoose_1.default.Schema.Types.ObjectId,
             ref: "Product",
-            default: [],
         },
     ],
 }, { timestamps: true });

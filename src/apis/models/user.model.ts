@@ -15,7 +15,6 @@ const userSchema = new mongoose.Schema(
     vouchersSave: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        default: [],
         ref: "Voucher",
       },
     ],
@@ -27,7 +26,6 @@ const userSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Product",
-        default: [],
       },
     ],
   },
