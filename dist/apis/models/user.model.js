@@ -12,9 +12,9 @@ const userSchema = new mongoose_1.default.Schema({
     password: { type: String, required: true },
     street: { type: String, default: "" },
     address: { type: String, default: "" },
-    cityId: { type: String, default: "" },
-    districtId: { type: String, default: "" },
-    wardId: { type: String, default: "" },
+    city: { id: "", name: "" },
+    district: { id: "", name: "" },
+    wardId: { id: "", name: "" },
     vouchersSave: [
         {
             type: mongoose_1.default.Schema.Types.ObjectId,

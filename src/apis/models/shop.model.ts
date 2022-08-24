@@ -4,9 +4,9 @@ const shopSchema = new mongoose.Schema(
   {
     name: { type: String, default: "" },
     avatar: { type: String, default: "" },
-    cityId: { type: String, default: "" },
-    districtId: { type: String, default: "" },
-    wardId: { type: String, default: "" },
+    city: { id: "", name: "" },
+    district: { id: "", name: "" },
+    ward: { id: "", name: "" },
     street: { type: String, default: "" },
     administrative: { type: String, default: "" },
     address: { type: String, default: "" },
