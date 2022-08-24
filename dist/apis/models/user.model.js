@@ -14,7 +14,7 @@ const userSchema = new mongoose_1.default.Schema({
     address: { type: String, default: "" },
     city: { id: "", name: "" },
     district: { id: "", name: "" },
-    wardId: { id: "", name: "" },
+    ward: { id: "", name: "" },
     vouchersSave: [
         {
             type: mongoose_1.default.Schema.Types.ObjectId,
