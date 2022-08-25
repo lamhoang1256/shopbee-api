@@ -17,11 +17,53 @@ productRoutes.get(
   helpersMiddleware.idValidator,
   productControllers.getSingleProduct,
 );
-productRoutes.post("/", tokenMiddleware.verifyTokenAndAdmin, productControllers.addNewProduct);
-productRoutes.delete("/:id", tokenMiddleware.verifyTokenAndAdmin, productControllers.deleteProduct);
-productRoutes.put("/:id", tokenMiddleware.verifyTokenAndAdmin, productControllers.updateProduct);
-productRoutes.post("/:id/review", tokenMiddleware.verifyToken, productControllers.addNewReview);
-productRoutes.delete("/:id/review", tokenMiddleware.verifyToken, productControllers.deleteReview);
-productRoutes.put("/:id/review", tokenMiddleware.verifyToken, productControllers.updateReview);
+productRoutes.post(
+  "/",
+  productMiddleware.addProductRules(),
+  helpersMiddleware.entityValidator,
+  tokenMiddleware.verifyTokenAndAdmin,
+  productControllers.addNewProduct,
+);
+productRoutes.delete(
+  "/:id",
+  helpersMiddleware.idRule("id"),
+  helpersMiddleware.idValidator,
+  tokenMiddleware.verifyTokenAndAdmin,
+  productControllers.deleteProduct,
+);
+productRoutes.put(
+  "/:id",
+  helpersMiddleware.idRule("id"),
+  helpersMiddleware.idValidator,
+  productMiddleware.updateProductRules(),
+  helpersMiddleware.entityValidator,
+  tokenMiddleware.verifyTokenAndAdmin,
+  productControllers.updateProduct,
+);
+productRoutes.post(
+  "/:id/review",
+  helpersMiddleware.idRule("id"),
+  helpersMiddleware.idValidator,
+  productMiddleware.addNewReviewRules(),
+  helpersMiddleware.entityValidator,
+  tokenMiddleware.verifyToken,
+  productControllers.addNewReview,
+);
+productRoutes.delete(
+  "/:id/review",
+  helpersMiddleware.idRule("id"),
+  helpersMiddleware.idValidator,
+  tokenMiddleware.verifyToken,
+  productControllers.deleteReview,
+);
+productRoutes.put(
+  "/:id/review",
+  helpersMiddleware.idRule("id"),
+  helpersMiddleware.idValidator,
+  productMiddleware.updateReviewRules(),
+  helpersMiddleware.entityValidator,
+  tokenMiddleware.verifyToken,
+  productControllers.updateReview,
+);
 
 export default productRoutes;

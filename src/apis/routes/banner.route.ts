@@ -30,7 +30,8 @@ bannerRoutes.put(
   "/:id",
   helpersMiddleware.idRule("id"),
   helpersMiddleware.idValidator,
-  bannerMiddleware.updateBannerRules,
+  bannerMiddleware.updateBannerRules(),
+  helpersMiddleware.entityValidator,
   tokenMiddleware.verifyTokenAndAdmin,
   bannerControllers.updateBanner,
 );

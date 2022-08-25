@@ -84,8 +84,26 @@ const addProductRules = () => {
   ];
 };
 
+const addNewReviewRules = () => {
+  return [
+    body("rating")
+      .if((value: any) => value !== undefined)
+      .isNumeric()
+      .withMessage("rating phải ở định dạng number"),
+    body("comment")
+      .exists({ checkFalsy: true })
+      .withMessage("comment không được để trống")
+      .isLength({ max: 8000 })
+      .withMessage("comment  phải ít hơn 8000 kí tự"),
+  ];
+};
+
 const updateProductRules = () => {
   return addProductRules();
+};
+
+const updateReviewRules = () => {
+  return addNewReviewRules();
 };
 
 const productMiddleware = {
@@ -94,6 +112,8 @@ const productMiddleware = {
   getProductsRules,
   getPagesRules,
   getAllProductsRules,
+  addNewReviewRules,
+  updateReviewRules,
 };
 
 export default productMiddleware;

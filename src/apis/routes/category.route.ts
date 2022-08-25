@@ -30,9 +30,9 @@ categoryRoutes.put(
   "/:id",
   helpersMiddleware.idRule("id"),
   helpersMiddleware.idValidator,
-  tokenMiddleware.verifyTokenAndAdmin,
   categoryMiddleware.updateCategoryRules(),
   helpersMiddleware.entityValidator,
+  tokenMiddleware.verifyTokenAndAdmin,
   categoryControllers.updateCategory,
 );
 
