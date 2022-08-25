@@ -21,7 +21,7 @@ const idValidator = (req: Request, res: Response, next: NextFunction) => {
   if (errors.isEmpty()) {
     return next();
   }
-  const error = errors.array().reduce((result: any, item, index) => {
+  const error: [key: string] = errors.array().reduce((result: any, item, index) => {
     result[item.param] = item.msg;
     return result;
   }, {});
@@ -29,7 +29,7 @@ const idValidator = (req: Request, res: Response, next: NextFunction) => {
     status: 400,
     error,
     name: "",
-    message: "Lỗi",
+    message: Object.values(error)[0] || "Lỗi",
   };
   return responseError(response, res);
 };
@@ -39,15 +39,17 @@ const entityValidator = (req: Request, res: Response, next: NextFunction) => {
   if (errors.isEmpty()) {
     return next();
   }
-  const error = errors.array({ onlyFirstError: true }).reduce((result: any, item, index) => {
-    result[item.param] = item.msg;
-    return result;
-  }, {});
+  const error: [key: string] = errors
+    .array({ onlyFirstError: true })
+    .reduce((result: any, item, index) => {
+      result[item.param] = item.msg;
+      return result;
+    }, {});
   const response: ApiError = {
     status: 422,
     error,
     name: "",
-    message: "Lỗi",
+    message: Object.values(error)[0] || "Lỗi",
   };
   return responseError(response, res);
 };
