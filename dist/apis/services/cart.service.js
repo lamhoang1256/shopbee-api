@@ -19,9 +19,7 @@ const addNewProductToCart = (payload) => __awaiter(void 0, void 0, void 0, funct
     const { userId, productId, quantity } = payload;
     const newCart = {
         user: userId,
-        product: {
-            _id: productId,
-        },
+        product: { _id: productId },
         quantity,
     };
     const savedCart = yield new cart_model_1.default(newCart).save();
@@ -52,9 +50,7 @@ const addToCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
     let savedCart;
     const cartInDb = yield cart_model_1.default.findOne({
         user: userId,
-        product: {
-            _id: productId,
-        },
+        product: { _id: productId },
     });
     const payload = { userId, productId, quantity };
     if (cartInDb) {
@@ -72,15 +68,8 @@ const addToCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const getAllCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const carts = yield cart_model_1.default.find({ user: req.user._id })
-        .populate({
-        path: "product",
-        populate: {
-            path: "category",
-        },
-    })
-        .sort({
-        createdAt: -1,
-    });
+        .populate({ path: "product", populate: { path: "category" } })
+        .sort({ createdAt: -1 });
     const response = {
         message: "Lấy đơn mua thành công",
         data: carts,
@@ -90,7 +79,7 @@ const getAllCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
 const deleteSingleCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const deletedData = yield cart_model_1.default.deleteMany({
         user: req.user._id,
-        _id: { $in: req.body.cartIds },
+        _id: { $in: req.body.cartId },
     });
     if (!deletedData)
         throw new api_error_1.ApiError(404, "Sản phẩm bạn muốn xóa không tồn tại!");
@@ -101,9 +90,7 @@ const deleteSingleCart = (req) => __awaiter(void 0, void 0, void 0, function* ()
     return response;
 });
 const deleteCarts = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const deletedData = yield cart_model_1.default.deleteMany({
-        user: req.user._id,
-    });
+    const deletedData = yield cart_model_1.default.deleteMany({ user: req.user._id });
     if (!deletedData)
         throw new api_error_1.ApiError(404, "Tất cả sản phẩm bạn muốn xóa không tồn tại!");
     const response = {

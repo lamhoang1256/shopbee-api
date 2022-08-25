@@ -3,9 +3,7 @@ import Banner from "../models/banner.model";
 import { ApiError } from "../utils/api-error";
 
 const getAllBanner = async () => {
-  const banners = await Banner.find().sort({
-    createdAt: -1,
-  });
+  const banners = await Banner.find().sort({ createdAt: -1 });
   const response = {
     message: "Lấy tất cả banner thành công!",
     data: banners,

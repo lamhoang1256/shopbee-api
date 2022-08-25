@@ -5,15 +5,27 @@ const getProductsRules = () => {
     query("page")
       .if((value: any) => value !== undefined)
       .isInt()
-      .withMessage("page không đúng định dạng"),
+      .withMessage("page phải ở định dạng number"),
     query("limit")
       .if((value: any) => value !== undefined)
       .isInt()
-      .withMessage("limit không đúng định dạng"),
+      .withMessage("limit phải ở định dạng number"),
     query("category")
       .if((value: any) => value !== undefined)
       .isMongoId()
-      .withMessage("category không đúng định dạng"),
+      .withMessage("category phải là id"),
+    query("rating")
+      .if((value: any) => value !== undefined)
+      .isInt()
+      .withMessage("rating phải ở định dạng number"),
+    query("price_max")
+      .if((value: any) => value !== undefined)
+      .isInt()
+      .withMessage("price_max phải ở định dạng number"),
+    query("price_min")
+      .if((value: any) => value !== undefined)
+      .isInt()
+      .withMessage("price_min phải ở định dạng number"),
   ];
 };
 
@@ -22,17 +34,17 @@ const getAllProductsRules = () => {
     query("category")
       .if((value: any) => value !== undefined)
       .isMongoId()
-      .withMessage("category không đúng định dạng"),
+      .withMessage("category phải là id"),
   ];
 };
 
 const getPagesRules = () => {
   return [
-    query("limit").isInt().withMessage("limit không đúng định dạng"),
+    query("limit").isInt().withMessage("limit phải ở định dạng number"),
     query("category")
       .if((value: any) => value !== undefined)
       .isMongoId()
-      .withMessage("category không đúng định dạng"),
+      .withMessage("category phải là id"),
   ];
 };
 
@@ -47,7 +59,7 @@ const addProductRules = () => {
       .exists({ checkFalsy: true })
       .withMessage("image không được để trống")
       .isLength({ max: 1000 })
-      .withMessage("image  phải ít hơn 1000 kí tự"),
+      .withMessage("image phải ít hơn 1000 kí tự"),
     body("images")
       .if((value: any) => value !== undefined)
       .isArray()

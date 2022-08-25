@@ -8,9 +8,7 @@ const addNewProductToCart = async (payload: IPayloadProductCart) => {
   const { userId, productId, quantity } = payload;
   const newCart = {
     user: userId,
-    product: {
-      _id: productId,
-    },
+    product: { _id: productId },
     quantity,
   };
   const savedCart = await new Cart(newCart).save();
@@ -44,9 +42,7 @@ const addToCart = async (req: Request) => {
   let savedCart;
   const cartInDb = await Cart.findOne({
     user: userId,
-    product: {
-      _id: productId,
-    },
+    product: { _id: productId },
   });
   const payload = { userId, productId, quantity };
   if (cartInDb) {
@@ -64,15 +60,8 @@ const addToCart = async (req: Request) => {
 
 const getAllCart = async (req: Request) => {
   const carts = await Cart.find({ user: req.user._id })
-    .populate({
-      path: "product",
-      populate: {
-        path: "category",
-      },
-    })
-    .sort({
-      createdAt: -1,
-    });
+    .populate({ path: "product", populate: { path: "category" } })
+    .sort({ createdAt: -1 });
   const response = {
     message: "Lấy đơn mua thành công",
     data: carts,
@@ -83,7 +72,7 @@ const getAllCart = async (req: Request) => {
 const deleteSingleCart = async (req: Request) => {
   const deletedData = await Cart.deleteMany({
     user: req.user._id,
-    _id: { $in: req.body.cartIds },
+    _id: { $in: req.body.cartId },
   });
   if (!deletedData) throw new ApiError(404, "Sản phẩm bạn muốn xóa không tồn tại!");
   const response = {
@@ -94,9 +83,7 @@ const deleteSingleCart = async (req: Request) => {
 };
 
 const deleteCarts = async (req: Request) => {
-  const deletedData = await Cart.deleteMany({
-    user: req.user._id,
-  });
+  const deletedData = await Cart.deleteMany({ user: req.user._id });
   if (!deletedData) throw new ApiError(404, "Tất cả sản phẩm bạn muốn xóa không tồn tại!");
   const response = {
     message: `Xoá ${deletedData.deletedCount} đơn thành công!`,

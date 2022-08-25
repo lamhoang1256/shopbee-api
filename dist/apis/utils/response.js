@@ -8,7 +8,7 @@ const responseSuccess = (res, data) => {
 exports.responseSuccess = responseSuccess;
 const responseError = (err, res) => {
     const status = err.status || 500;
-    const message = err.message || "Something went wrong!";
+    const message = err.message || "Lỗi server!";
     const error = err.error;
     return res.status(status).json({
         status,

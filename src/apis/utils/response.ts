@@ -8,12 +8,12 @@ export const responseSuccess = (res: Response, data: any) => {
 
 export const responseError = (err: ApiError, res: Response) => {
   const status = err.status || 500;
-  const message = err.message || "Something went wrong!";
-  const data = err.error;
+  const message = err.message || "Lỗi server!";
+  const error = err.error;
   return res.status(status).json({
     status,
     success: false,
     message,
-    data,
+    error,
   });
 };
