@@ -1,10 +1,16 @@
 import { Router } from "express";
 import categoryControllers from "../controllers/category.controller";
+import helpersMiddleware from "../middlewares/helpersMiddleware";
 import tokenMiddleware from "../middlewares/tokenMiddleware";
 const categoryRoutes = Router();
 
 categoryRoutes.get("/", categoryControllers.getAllCategory);
-categoryRoutes.get("/:id", categoryControllers.getSingleCategory);
+categoryRoutes.get(
+  "/:id",
+  helpersMiddleware.idRule("id"),
+  helpersMiddleware.idValidator,
+  categoryControllers.getSingleCategory,
+);
 categoryRoutes.post("/", tokenMiddleware.verifyTokenAndAdmin, categoryControllers.addNewCategory);
 categoryRoutes.delete(
   "/:id",
