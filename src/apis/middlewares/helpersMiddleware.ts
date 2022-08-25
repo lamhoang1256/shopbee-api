@@ -4,6 +4,10 @@ import { ApiError } from "../utils/api-error";
 import { responseError } from "../utils/response";
 import { isMongoId } from "../utils/validate";
 
+interface IError {
+  [key: string]: string;
+}
+
 const idRule = (...id: string[]) => {
   return id.map((item) => {
     return check(item).isMongoId().withMessage(`${item} không đúng định dạng`);
@@ -18,10 +22,8 @@ const listIdRule = (list_id: string) => {
 
 const idValidator = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
-  if (errors.isEmpty()) {
-    return next();
-  }
-  const error: [key: string] = errors.array().reduce((result: any, item, index) => {
+  if (errors.isEmpty()) return next();
+  const error: IError = errors.array().reduce((result: any, item, index) => {
     result[item.param] = item.msg;
     return result;
   }, {});
@@ -36,15 +38,14 @@ const idValidator = (req: Request, res: Response, next: NextFunction) => {
 
 const entityValidator = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
-  if (errors.isEmpty()) {
-    return next();
-  }
-  const error: [key: string] = errors
+  if (errors.isEmpty()) return next();
+  const error: IError = errors
     .array({ onlyFirstError: true })
     .reduce((result: any, item, index) => {
       result[item.param] = item.msg;
       return result;
     }, {});
+  console.log(Object.values(error)[0]);
   const response: ApiError = {
     status: 422,
     error,

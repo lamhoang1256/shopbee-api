@@ -15,9 +15,8 @@ const listIdRule = (list_id) => {
 };
 const idValidator = (req, res, next) => {
     const errors = (0, express_validator_1.validationResult)(req);
-    if (errors.isEmpty()) {
+    if (errors.isEmpty())
         return next();
-    }
     const error = errors.array().reduce((result, item, index) => {
         result[item.param] = item.msg;
         return result;
@@ -26,24 +25,26 @@ const idValidator = (req, res, next) => {
         status: 400,
         error,
         name: "",
-        message: "Lỗi",
+        message: Object.values(error)[0] || "Lỗi",
     };
     return (0, response_1.responseError)(response, res);
 };
 const entityValidator = (req, res, next) => {
     const errors = (0, express_validator_1.validationResult)(req);
-    if (errors.isEmpty()) {
+    if (errors.isEmpty())
         return next();
-    }
-    const error = errors.array({ onlyFirstError: true }).reduce((result, item, index) => {
+    const error = errors
+        .array({ onlyFirstError: true })
+        .reduce((result, item, index) => {
         result[item.param] = item.msg;
         return result;
     }, {});
+    console.log(Object.values(error)[0]);
     const response = {
         status: 422,
         error,
         name: "",
-        message: "Lỗi",
+        message: Object.values(error)[0] || "Lỗi",
     };
     return (0, response_1.responseError)(response, res);
 };
