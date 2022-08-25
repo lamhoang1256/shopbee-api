@@ -29,32 +29,13 @@ const getProductsRules = () => {
   ];
 };
 
-const getAllProductsRules = () => {
-  return [
-    query("category")
-      .if((value: any) => value !== undefined)
-      .isMongoId()
-      .withMessage("category phải là id"),
-  ];
-};
-
-const getPagesRules = () => {
-  return [
-    query("limit").isInt().withMessage("limit phải ở định dạng number"),
-    query("category")
-      .if((value: any) => value !== undefined)
-      .isMongoId()
-      .withMessage("category phải là id"),
-  ];
-};
-
 const addProductRules = () => {
   return [
     body("name")
       .exists({ checkFalsy: true })
-      .withMessage("Tiêu đề không được để trống")
+      .withMessage("name sản phẩm không được để trống")
       .isLength({ max: 200 })
-      .withMessage("Tiêu đề  phải ít hơn 200 kí tự"),
+      .withMessage("name sản phẩm  phải ít hơn 200 kí tự"),
     body("image")
       .exists({ checkFalsy: true })
       .withMessage("image không được để trống")
@@ -110,8 +91,6 @@ const productMiddleware = {
   addProductRules,
   updateProductRules,
   getProductsRules,
-  getPagesRules,
-  getAllProductsRules,
   addNewReviewRules,
   updateReviewRules,
 };

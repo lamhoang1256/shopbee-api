@@ -53,9 +53,7 @@ const createNewOrder = async (req: Request) => {
       },
     );
   }
-  await Cart.deleteMany({
-    user: userId,
-  });
+  await Cart.deleteMany({ user: userId });
   const response = {
     message: "Tạo đơn hàng thành công!",
     data: savedOrder,

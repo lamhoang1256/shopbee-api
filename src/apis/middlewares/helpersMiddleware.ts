@@ -45,7 +45,6 @@ const entityValidator = (req: Request, res: Response, next: NextFunction) => {
       result[item.param] = item.msg;
       return result;
     }, {});
-  console.log(Object.values(error)[0]);
   const response: ApiError = {
     status: 422,
     error,

@@ -7,13 +7,13 @@ const authRoutes = Router();
 
 authRoutes.post(
   "/sign-up",
-  authMiddleware.signUpRules,
+  authMiddleware.signUpRules(),
   helpersMiddleware.entityValidator,
   authControllers.signUp,
 );
 authRoutes.post(
   "/sign-in",
-  authMiddleware.signInRules,
+  authMiddleware.signInRules(),
   helpersMiddleware.entityValidator,
   authControllers.signIn,
 );

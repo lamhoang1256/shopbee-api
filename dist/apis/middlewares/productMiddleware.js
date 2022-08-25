@@ -29,30 +29,13 @@ const getProductsRules = () => {
             .withMessage("price_min phải ở định dạng number"),
     ];
 };
-const getAllProductsRules = () => {
-    return [
-        (0, express_validator_1.query)("category")
-            .if((value) => value !== undefined)
-            .isMongoId()
-            .withMessage("category phải là id"),
-    ];
-};
-const getPagesRules = () => {
-    return [
-        (0, express_validator_1.query)("limit").isInt().withMessage("limit phải ở định dạng number"),
-        (0, express_validator_1.query)("category")
-            .if((value) => value !== undefined)
-            .isMongoId()
-            .withMessage("category phải là id"),
-    ];
-};
 const addProductRules = () => {
     return [
         (0, express_validator_1.body)("name")
             .exists({ checkFalsy: true })
-            .withMessage("Tiêu đề không được để trống")
+            .withMessage("name sản phẩm không được để trống")
             .isLength({ max: 200 })
-            .withMessage("Tiêu đề  phải ít hơn 200 kí tự"),
+            .withMessage("name sản phẩm  phải ít hơn 200 kí tự"),
         (0, express_validator_1.body)("image")
             .exists({ checkFalsy: true })
             .withMessage("image không được để trống")
@@ -104,8 +87,6 @@ const productMiddleware = {
     addProductRules,
     updateProductRules,
     getProductsRules,
-    getPagesRules,
-    getAllProductsRules,
     addNewReviewRules,
     updateReviewRules,
 };

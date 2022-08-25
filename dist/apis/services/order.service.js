@@ -59,9 +59,7 @@ const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
             },
         });
     }
-    yield cart_model_1.default.deleteMany({
-        user: userId,
-    });
+    yield cart_model_1.default.deleteMany({ user: userId });
     const response = {
         message: "Tạo đơn hàng thành công!",
         data: savedOrder,
