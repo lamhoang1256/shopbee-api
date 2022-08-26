@@ -21,9 +21,9 @@ categoryRoutes.post(
 );
 categoryRoutes.delete(
   "/:id",
-  tokenMiddleware.verifyTokenAndAdmin,
   helpersMiddleware.idRule("id"),
   helpersMiddleware.idValidator,
+  tokenMiddleware.verifyTokenAndAdmin,
   categoryControllers.deleteCategory,
 );
 categoryRoutes.put(

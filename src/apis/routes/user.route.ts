@@ -16,14 +16,13 @@ userRoutes.get(
 );
 userRoutes.get(
   "/",
-  userMiddleware.getAllUserRules,
-  helpersMiddleware.entityValidator,
   tokenMiddleware.verifyTokenAndAdmin,
+  userMiddleware.getAllUserRules(),
+  helpersMiddleware.entityValidator,
   userControllers.getAllUser,
 );
 userRoutes.post(
   "/",
-  tokenMiddleware.verifyTokenAndAdmin,
   tokenMiddleware.verifyTokenAndAdmin,
   userMiddleware.addNewUserRules(),
   helpersMiddleware.entityValidator,
@@ -68,9 +67,9 @@ userRoutes.put(
 );
 userRoutes.put(
   "/change-password",
+  tokenMiddleware.verifyToken,
   userMiddleware.changePasswordMeRules(),
   helpersMiddleware.entityValidator,
-  tokenMiddleware.verifyToken,
   userControllers.changePasswordMe,
 );
 

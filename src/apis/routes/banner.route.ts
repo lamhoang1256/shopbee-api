@@ -21,9 +21,9 @@ bannerRoutes.post(
 );
 bannerRoutes.delete(
   "/:id",
-  tokenMiddleware.verifyTokenAndAdmin,
   helpersMiddleware.idRule("id"),
   helpersMiddleware.idValidator,
+  tokenMiddleware.verifyTokenAndAdmin,
   bannerControllers.deleteBanner,
 );
 bannerRoutes.put(
