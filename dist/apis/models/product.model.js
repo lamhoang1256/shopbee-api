@@ -16,11 +16,11 @@ const reviewSchema = new mongoose_1.default.Schema({
     timestamps: true,
 });
 const productSchema = new mongoose_1.default.Schema({
-    name: String,
-    image: String,
+    name: { type: String, require: true },
+    image: { type: String, require: true },
     images: { type: [String], default: [] },
-    description: String,
-    category: { type: mongoose_1.default.SchemaTypes.ObjectId, ref: "Category" },
+    description: { type: String, default: "" },
+    category: { type: mongoose_1.default.SchemaTypes.ObjectId, ref: "Category", require: true },
     oldPrice: { type: Number, default: 0 },
     price: { type: Number, default: 0 },
     rating: { type: Number, default: 0 },

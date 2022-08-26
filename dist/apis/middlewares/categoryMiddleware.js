@@ -13,11 +13,11 @@ const addNewCategoryRules = () => {
             .withMessage("slug không được để trống")
             .isLength({ max: 200 })
             .withMessage("Tên phải ít hơn 200 kí tự"),
-        (0, express_validator_1.body)("thumb")
+        (0, express_validator_1.body)("image")
             .exists({ checkFalsy: true })
-            .withMessage("thumb không được để trống")
+            .withMessage("image không được để trống")
             .isLength({ max: 1000 })
-            .withMessage("thumb phải ít hơn 1000 kí tự"),
+            .withMessage("image phải ít hơn 1000 kí tự"),
     ];
 };
 const updateCategoryRules = () => {

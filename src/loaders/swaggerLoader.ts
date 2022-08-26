@@ -10,7 +10,10 @@ const options = {
       version: "1.0.0",
       description: "A simple api for ecommerce",
     },
-    servers: [{ url: "http://localhost:8000/api" }],
+    servers: [
+      { url: "http://localhost:8000/api" },
+      { url: "https://shopbee-api.herokuapp.com/api" },
+    ],
   },
   apis: ["**/*.ts"],
 };

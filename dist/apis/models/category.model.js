@@ -7,7 +7,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const categorySchema = new mongoose_1.default.Schema({
     name: String,
     slug: String,
-    thumb: String,
+    image: String,
 }, {
     timestamps: true,
 });

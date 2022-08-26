@@ -12,11 +12,11 @@ const addNewCategoryRules = () => {
       .withMessage("slug không được để trống")
       .isLength({ max: 200 })
       .withMessage("Tên phải ít hơn 200 kí tự"),
-    body("thumb")
+    body("image")
       .exists({ checkFalsy: true })
-      .withMessage("thumb không được để trống")
+      .withMessage("image không được để trống")
       .isLength({ max: 1000 })
-      .withMessage("thumb phải ít hơn 1000 kí tự"),
+      .withMessage("image phải ít hơn 1000 kí tự"),
   ];
 };
 
