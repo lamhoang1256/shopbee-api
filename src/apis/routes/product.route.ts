@@ -19,9 +19,9 @@ productRoutes.get(
 );
 productRoutes.post(
   "/",
+  tokenMiddleware.verifyTokenAndAdmin,
   productMiddleware.addProductRules(),
   helpersMiddleware.entityValidator,
-  tokenMiddleware.verifyTokenAndAdmin,
   productControllers.addNewProduct,
 );
 productRoutes.delete(
@@ -35,18 +35,18 @@ productRoutes.put(
   "/:id",
   helpersMiddleware.idRule("id"),
   helpersMiddleware.idValidator,
+  tokenMiddleware.verifyTokenAndAdmin,
   productMiddleware.updateProductRules(),
   helpersMiddleware.entityValidator,
-  tokenMiddleware.verifyTokenAndAdmin,
   productControllers.updateProduct,
 );
 productRoutes.post(
   "/:id/review",
   helpersMiddleware.idRule("id"),
   helpersMiddleware.idValidator,
+  tokenMiddleware.verifyToken,
   productMiddleware.addNewReviewRules(),
   helpersMiddleware.entityValidator,
-  tokenMiddleware.verifyToken,
   productControllers.addNewReview,
 );
 productRoutes.delete(
@@ -60,9 +60,9 @@ productRoutes.put(
   "/:id/review",
   helpersMiddleware.idRule("id"),
   helpersMiddleware.idValidator,
+  tokenMiddleware.verifyToken,
   productMiddleware.updateReviewRules(),
   helpersMiddleware.entityValidator,
-  tokenMiddleware.verifyToken,
   productControllers.updateReview,
 );
 

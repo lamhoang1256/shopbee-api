@@ -8,16 +8,16 @@ const cartRoutes = Router();
 cartRoutes.get("/", tokenMiddleware.verifyToken, cartControllers.getAllCart);
 cartRoutes.post(
   "/add-to-cart",
+  tokenMiddleware.verifyToken,
   cartMiddleware.addToCartRules(),
   helpersMiddleware.entityValidator,
-  tokenMiddleware.verifyToken,
   cartControllers.addToCart,
 );
 cartRoutes.delete(
   "/",
+  tokenMiddleware.verifyToken,
   cartMiddleware.deleteSingleCartRules(),
   helpersMiddleware.entityValidator,
-  tokenMiddleware.verifyToken,
   cartControllers.deleteSingleCart,
 );
 cartRoutes.delete("/all", tokenMiddleware.verifyToken, cartControllers.deleteCarts);

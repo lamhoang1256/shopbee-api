@@ -61,7 +61,7 @@ const createNewOrder = async (req: Request) => {
   return response;
 };
 
-const getAllOrderAdmin = async (req: Request) => {
+const getAllOrder = async (req: Request) => {
   const { status, orderId } = req.query;
   let conditional: any = {};
   if (status) conditional.status = status;
@@ -179,7 +179,7 @@ const updateStatusOrderToCancel = async (req: Request) => {
 
 const orderServices = {
   createNewOrder,
-  getAllOrderAdmin,
+  getAllOrder,
   getAllOrderMe,
   getSingleOrder,
   updateStatusOrderToProcessing,

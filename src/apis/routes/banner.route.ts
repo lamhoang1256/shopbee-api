@@ -14,25 +14,25 @@ bannerRoutes.get(
 );
 bannerRoutes.post(
   "/",
+  tokenMiddleware.verifyTokenAndAdmin,
   bannerMiddleware.addNewBannerRules(),
   helpersMiddleware.entityValidator,
-  tokenMiddleware.verifyTokenAndAdmin,
   bannerControllers.addNewBanner,
 );
 bannerRoutes.delete(
   "/:id",
+  tokenMiddleware.verifyTokenAndAdmin,
   helpersMiddleware.idRule("id"),
   helpersMiddleware.idValidator,
-  tokenMiddleware.verifyTokenAndAdmin,
   bannerControllers.deleteBanner,
 );
 bannerRoutes.put(
   "/:id",
   helpersMiddleware.idRule("id"),
   helpersMiddleware.idValidator,
+  tokenMiddleware.verifyTokenAndAdmin,
   bannerMiddleware.updateBannerRules(),
   helpersMiddleware.entityValidator,
-  tokenMiddleware.verifyTokenAndAdmin,
   bannerControllers.updateBanner,
 );
 

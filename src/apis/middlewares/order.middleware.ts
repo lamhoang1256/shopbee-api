@@ -29,10 +29,14 @@ const createNewOrderRules = () => {
   ];
 };
 
-const getAllOrderAdminRules = () => {
+const getAllOrderMeRules = () => {
   return [query("orderId").isMongoId().withMessage(`orderId phải là id`)];
 };
 
-const orderMiddleware = { createNewOrderRules, getAllOrderAdminRules };
+const getAllOrderRules = () => {
+  return getAllOrderMeRules();
+};
+
+const orderMiddleware = { createNewOrderRules, getAllOrderMeRules, getAllOrderRules };
 
 export default orderMiddleware;

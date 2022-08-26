@@ -14,25 +14,25 @@ categoryRoutes.get(
 );
 categoryRoutes.post(
   "/",
+  tokenMiddleware.verifyTokenAndAdmin,
   categoryMiddleware.addNewCategoryRules(),
   helpersMiddleware.entityValidator,
-  tokenMiddleware.verifyTokenAndAdmin,
   categoryControllers.addNewCategory,
 );
 categoryRoutes.delete(
   "/:id",
+  tokenMiddleware.verifyTokenAndAdmin,
   helpersMiddleware.idRule("id"),
   helpersMiddleware.idValidator,
-  tokenMiddleware.verifyTokenAndAdmin,
   categoryControllers.deleteCategory,
 );
 categoryRoutes.put(
   "/:id",
   helpersMiddleware.idRule("id"),
   helpersMiddleware.idValidator,
+  tokenMiddleware.verifyTokenAndAdmin,
   categoryMiddleware.updateCategoryRules(),
   helpersMiddleware.entityValidator,
-  tokenMiddleware.verifyTokenAndAdmin,
   categoryControllers.updateCategory,
 );
 

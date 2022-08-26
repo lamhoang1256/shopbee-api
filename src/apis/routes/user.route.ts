@@ -1,18 +1,71 @@
 import { Router } from "express";
 import userControllers from "../controllers/user.controller";
+import helpersMiddleware from "../middlewares/helpersMiddleware";
 import tokenMiddleware from "../middlewares/tokenMiddleware";
+import userMiddleware from "../middlewares/user.middleware";
 const userRoutes = Router();
 
 userRoutes.get("/my-voucher", tokenMiddleware.verifyToken, userControllers.getMyVoucher);
 userRoutes.get("/wishlist", tokenMiddleware.verifyToken, userControllers.getMyWishlist);
-userRoutes.get("/:id", tokenMiddleware.verifyToken, userControllers.getSingleUser);
+userRoutes.get(
+  "/:id",
+  helpersMiddleware.idRule("id"),
+  helpersMiddleware.idValidator,
+  tokenMiddleware.verifyToken,
+  userControllers.getSingleUser,
+);
 userRoutes.get("/", tokenMiddleware.verifyTokenAndAdmin, userControllers.getAllUser);
-userRoutes.post("/", tokenMiddleware.verifyTokenAndAdmin, userControllers.addNewUser);
-userRoutes.delete("/:id", tokenMiddleware.verifyTokenAndAdmin, userControllers.deleteUser);
-userRoutes.put("/me", tokenMiddleware.verifyToken, userControllers.updateMe);
-userRoutes.put("/wishlist", tokenMiddleware.verifyToken, userControllers.removeFromWishlist);
-userRoutes.post("/wishlist", tokenMiddleware.verifyToken, userControllers.addToWishlist);
-userRoutes.put("/:id", tokenMiddleware.verifyTokenAndAdmin, userControllers.updateUser);
-userRoutes.put("/change-password", tokenMiddleware.verifyToken, userControllers.changePasswordMe);
+userRoutes.post(
+  "/",
+  tokenMiddleware.verifyTokenAndAdmin,
+  tokenMiddleware.verifyTokenAndAdmin,
+  userMiddleware.addNewUserRules(),
+  helpersMiddleware.entityValidator,
+  userControllers.addNewUser,
+);
+userRoutes.delete(
+  "/:id",
+  helpersMiddleware.idRule("id"),
+  helpersMiddleware.idValidator,
+  tokenMiddleware.verifyTokenAndAdmin,
+  userControllers.deleteUser,
+);
+userRoutes.put(
+  "/me",
+  tokenMiddleware.verifyToken,
+  userMiddleware.updateMeRules(),
+  helpersMiddleware.entityValidator,
+  userControllers.updateMe,
+);
+userRoutes.post(
+  "/wishlist",
+  tokenMiddleware.verifyToken,
+  userMiddleware.addToWishlistRules(),
+  helpersMiddleware.entityValidator,
+  userControllers.addToWishlist,
+);
+userRoutes.put(
+  "/wishlist",
+  tokenMiddleware.verifyToken,
+  userMiddleware.removeFromWishlist(),
+  helpersMiddleware.entityValidator,
+  userControllers.removeFromWishlist,
+);
+userRoutes.put(
+  "/:id",
+  helpersMiddleware.idRule("id"),
+  helpersMiddleware.idValidator,
+  tokenMiddleware.verifyTokenAndAdmin,
+  userMiddleware.updateUserRules(),
+  helpersMiddleware.entityValidator,
+  userControllers.updateUser,
+);
+userRoutes.put(
+  "/change-password",
+  userMiddleware.changePasswordMeRules(),
+  helpersMiddleware.entityValidator,
+  tokenMiddleware.verifyToken,
+  userControllers.changePasswordMe,
+);
 
 export default userRoutes;

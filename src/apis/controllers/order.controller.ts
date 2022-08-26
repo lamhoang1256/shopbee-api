@@ -14,8 +14,8 @@ const createNewOrder = catchAsync(async (req: Request, res: Response) => {
 // @desc    Lấy tất cả đơn hàng bời Admin
 // @route   GET /api/order/admin
 // @access  Private/Admin
-const getAllOrderAdmin = catchAsync(async (req: Request, res: Response) => {
-  const orders = await orderServices.getAllOrderAdmin(req);
+const getAllOrder = catchAsync(async (req: Request, res: Response) => {
+  const orders = await orderServices.getAllOrder(req);
   responseSuccess(res, orders);
 });
 
@@ -61,7 +61,7 @@ const updateStatusOrderToCancel = catchAsync(async (req: Request, res: Response)
 
 const categoryControllers = {
   createNewOrder,
-  getAllOrderAdmin,
+  getAllOrder,
   getAllOrderMe,
   getSingleOrder,
   updateStatusOrderToShipping,

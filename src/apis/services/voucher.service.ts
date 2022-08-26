@@ -4,13 +4,18 @@ import User from "../models/user.model";
 import { ApiError } from "../utils/api-error";
 
 const addNewVoucher = async (req: Request) => {
-  const newVoucher = new Voucher(req.body);
-  const savedVoucher = await newVoucher.save();
-  const response = {
-    message: "Thêm mới voucher thành công!",
-    data: savedVoucher,
-  };
-  return response;
+  const voucherDB = await Voucher.findOne({ code: req.body.code }).exec();
+  if (!voucherDB) {
+    const newVoucher = new Voucher(req.body);
+    const savedVoucher = await newVoucher.save();
+    const response = {
+      message: "Thêm mới voucher thành công!",
+      data: savedVoucher,
+    };
+    return response;
+  } else {
+    throw new ApiError(422, "Voucher đã tồn tại!");
+  }
 };
 
 const getSingleVoucher = async (req: Request) => {
