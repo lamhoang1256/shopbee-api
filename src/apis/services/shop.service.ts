@@ -2,7 +2,7 @@ import { Request } from "express";
 import Shop from "../models/shop.model";
 import { ApiError } from "../utils/api-error";
 
-const addNewShopInfo = async (req: Request) => {
+const addShopInfo = async (req: Request) => {
   const countShops = await Shop.find().countDocuments();
   if (countShops >= 1) throw new ApiError(500, "Địa chỉ shop đã tồn tại!");
   const newShop = new Shop(req.body);
@@ -44,7 +44,7 @@ const deleteShopInfo = async (req: Request) => {
 };
 
 const shopServices = {
-  addNewShopInfo,
+  addShopInfo,
   getShopInfo,
   updateShopInfo,
   deleteShopInfo,

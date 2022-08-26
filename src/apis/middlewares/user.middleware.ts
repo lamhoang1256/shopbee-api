@@ -1,4 +1,21 @@
-import { body } from "express-validator";
+import { body, query } from "express-validator";
+
+const getAllUserRules = () => {
+  return [
+    query("page")
+      .if((value: any) => value !== undefined)
+      .isInt()
+      .withMessage("page phải ở định dạng number"),
+    query("limit")
+      .if((value: any) => value !== undefined)
+      .isInt()
+      .withMessage("limit phải ở định dạng number"),
+    query("email")
+      .if((value: any) => value !== undefined)
+      .isEmail()
+      .withMessage("Email không đúng định dạng"),
+  ];
+};
 
 const addNewUserRules = () => {
   return [
@@ -38,10 +55,14 @@ const updateUserRules = () => {
       .withMessage("Họ tên không được để trống")
       .isLength({ max: 160 })
       .withMessage("Họ tên phải ít hơn 160 kí tự"),
+    body("street")
+      .if((value: any) => value !== undefined)
+      .isLength({ max: 300 })
+      .withMessage("Địa chỉ đường phải ít hơn 300 kí tự"),
     body("address")
       .if((value: any) => value !== undefined)
-      .isLength({ max: 160 })
-      .withMessage("Địa chỉ phải ít hơn 160 kí tự"),
+      .isLength({ max: 500 })
+      .withMessage("Địa chỉ phải ít hơn 500 kí tự"),
     body("phone")
       .if((value: any) => value !== undefined)
       .isLength({ max: 20 })
@@ -97,6 +118,7 @@ const userMiddleware = {
   changePasswordMeRules,
   addToWishlistRules,
   removeFromWishlist,
+  getAllUserRules,
 };
 
 export default userMiddleware;

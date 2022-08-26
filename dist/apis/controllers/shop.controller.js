@@ -25,8 +25,8 @@ const getShopInfo = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0
 // @desc    Thêm mới thông tin shop
 // @route   POST /api/shop
 // @access  Private/Admin
-const addNewShopInfo = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const newAddress = yield shop_service_1.default.addNewShopInfo(req);
+const addShopInfo = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const newAddress = yield shop_service_1.default.addShopInfo(req);
     (0, response_1.responseSuccess)(res, newAddress);
 }));
 // @desc    Chỉnh sửa thông tin shop
@@ -45,7 +45,7 @@ const deleteShopInfo = (0, catch_async_1.catchAsync)((req, res) => __awaiter(voi
 }));
 const shopControllers = {
     getShopInfo,
-    addNewShopInfo,
+    addShopInfo,
     updateShopInfo,
     deleteShopInfo,
 };

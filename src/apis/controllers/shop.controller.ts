@@ -14,8 +14,8 @@ const getShopInfo = catchAsync(async (req: Request, res: Response) => {
 // @desc    Thêm mới thông tin shop
 // @route   POST /api/shop
 // @access  Private/Admin
-const addNewShopInfo = catchAsync(async (req: Request, res: Response) => {
-  const newAddress = await shopServices.addNewShopInfo(req);
+const addShopInfo = catchAsync(async (req: Request, res: Response) => {
+  const newAddress = await shopServices.addShopInfo(req);
   responseSuccess(res, newAddress);
 });
 
@@ -37,7 +37,7 @@ const deleteShopInfo = catchAsync(async (req: Request, res: Response) => {
 
 const shopControllers = {
   getShopInfo,
-  addNewShopInfo,
+  addShopInfo,
   updateShopInfo,
   deleteShopInfo,
 };

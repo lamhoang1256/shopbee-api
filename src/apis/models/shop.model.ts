@@ -8,7 +8,6 @@ const shopSchema = new mongoose.Schema(
     district: { id: "", name: "" },
     ward: { id: "", name: "" },
     street: { type: String, default: "" },
-    administrative: { type: String, default: "" },
     address: { type: String, default: "" },
   },
   { timestamps: true },

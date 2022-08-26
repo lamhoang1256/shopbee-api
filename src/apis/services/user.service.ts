@@ -52,12 +52,7 @@ const getAllUser = async (req: Request) => {
   page = Number(page);
   limit = Number(limit);
   let condition: any = {};
-  if (email) {
-    condition.email = {
-      $regex: email,
-      $options: "i",
-    };
-  }
+  if (email) condition.email = { $regex: email, $options: "i" };
   const [users, totalUsers] = await Promise.all([
     User.find(condition)
       .select("-password")

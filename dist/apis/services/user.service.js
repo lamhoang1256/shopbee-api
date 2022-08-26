@@ -66,12 +66,8 @@ const getAllUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     page = Number(page);
     limit = Number(limit);
     let condition = {};
-    if (email) {
-        condition.email = {
-            $regex: email,
-            $options: "i",
-        };
-    }
+    if (email)
+        condition.email = { $regex: email, $options: "i" };
     const [users, totalUsers] = yield Promise.all([
         user_model_1.default.find(condition)
             .select("-password")

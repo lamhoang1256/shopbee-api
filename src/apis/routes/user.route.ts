@@ -14,7 +14,13 @@ userRoutes.get(
   tokenMiddleware.verifyToken,
   userControllers.getSingleUser,
 );
-userRoutes.get("/", tokenMiddleware.verifyTokenAndAdmin, userControllers.getAllUser);
+userRoutes.get(
+  "/",
+  userMiddleware.getAllUserRules,
+  helpersMiddleware.entityValidator,
+  tokenMiddleware.verifyTokenAndAdmin,
+  userControllers.getAllUser,
+);
 userRoutes.post(
   "/",
   tokenMiddleware.verifyTokenAndAdmin,

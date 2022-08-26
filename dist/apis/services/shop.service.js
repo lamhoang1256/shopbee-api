@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const shop_model_1 = __importDefault(require("../models/shop.model"));
 const api_error_1 = require("../utils/api-error");
-const addNewShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
+const addShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const countShops = yield shop_model_1.default.find().countDocuments();
     if (countShops >= 1)
         throw new api_error_1.ApiError(500, "Địa chỉ shop đã tồn tại!");
@@ -56,7 +56,7 @@ const deleteShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const shopServices = {
-    addNewShopInfo,
+    addShopInfo,
     getShopInfo,
     updateShopInfo,
     deleteShopInfo,

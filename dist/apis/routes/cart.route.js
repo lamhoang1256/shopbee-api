@@ -10,7 +10,7 @@ const helpersMiddleware_1 = __importDefault(require("../middlewares/helpersMiddl
 const tokenMiddleware_1 = __importDefault(require("../middlewares/tokenMiddleware"));
 const cartRoutes = (0, express_1.Router)();
 cartRoutes.get("/", tokenMiddleware_1.default.verifyToken, cart_controller_1.default.getAllCart);
-cartRoutes.post("/add-to-cart", cartMiddleware_1.default.addToCartRules(), helpersMiddleware_1.default.entityValidator, tokenMiddleware_1.default.verifyToken, cart_controller_1.default.addToCart);
-cartRoutes.delete("/", cartMiddleware_1.default.deleteSingleCartRules(), helpersMiddleware_1.default.entityValidator, tokenMiddleware_1.default.verifyToken, cart_controller_1.default.deleteSingleCart);
+cartRoutes.post("/add-to-cart", tokenMiddleware_1.default.verifyToken, cartMiddleware_1.default.addToCartRules(), helpersMiddleware_1.default.entityValidator, cart_controller_1.default.addToCart);
+cartRoutes.delete("/", tokenMiddleware_1.default.verifyToken, cartMiddleware_1.default.deleteSingleCartRules(), helpersMiddleware_1.default.entityValidator, cart_controller_1.default.deleteSingleCart);
 cartRoutes.delete("/all", tokenMiddleware_1.default.verifyToken, cart_controller_1.default.deleteCarts);
 exports.default = cartRoutes;

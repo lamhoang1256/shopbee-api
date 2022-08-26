@@ -16,13 +16,19 @@ const voucher_model_1 = __importDefault(require("../models/voucher.model"));
 const user_model_1 = __importDefault(require("../models/user.model"));
 const api_error_1 = require("../utils/api-error");
 const addNewVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const newVoucher = new voucher_model_1.default(req.body);
-    const savedVoucher = yield newVoucher.save();
-    const response = {
-        message: "Thêm mới voucher thành công!",
-        data: savedVoucher,
-    };
-    return response;
+    const voucherDB = yield voucher_model_1.default.findOne({ code: req.body.code }).exec();
+    if (!voucherDB) {
+        const newVoucher = new voucher_model_1.default(req.body);
+        const savedVoucher = yield newVoucher.save();
+        const response = {
+            message: "Thêm mới voucher thành công!",
+            data: savedVoucher,
+        };
+        return response;
+    }
+    else {
+        throw new api_error_1.ApiError(422, "Voucher đã tồn tại!");
+    }
 });
 const getSingleVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const voucher = yield voucher_model_1.default.findById(req.params.id);
