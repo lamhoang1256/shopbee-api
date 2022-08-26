@@ -61,7 +61,7 @@ const addToCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
     }
     savedCart ? (savedCart.product = product) : savedCart;
     const response = {
-        message: "Thêm sản phẩm vào giỏ hàng thành công",
+        message: `Đã thêm vào giỏ hàng`,
         data: savedCart,
     };
     return response;

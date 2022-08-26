@@ -8,6 +8,7 @@ const env = {
   isDevelopment: process.env.NODE_ENV === "development",
   app: {
     port: process.env.PORT || 8000,
+    apiUrl: process.env.API_URL || "localhost:8000",
   },
   database: {
     mongoUrl: process.env.MONGODB_URL || "",
