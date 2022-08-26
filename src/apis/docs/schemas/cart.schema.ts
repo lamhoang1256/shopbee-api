@@ -8,8 +8,7 @@
  *        - quantity
  *      properties:
  *        user:
- *          type: string
- *          description: userId của giỏ hàng
+ *          $ref: '#/components/schemas/User'
  *        product:
  *          $ref: '#/components/schemas/Product'
  *        quantity:
