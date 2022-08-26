@@ -52,7 +52,7 @@ const addToCart = async (req: Request) => {
   }
   savedCart ? (savedCart.product = product) : savedCart;
   const response = {
-    message: "Thêm sản phẩm vào giỏ hàng thành công",
+    message: `Đã thêm vào giỏ hàng`,
     data: savedCart,
   };
   return response;
