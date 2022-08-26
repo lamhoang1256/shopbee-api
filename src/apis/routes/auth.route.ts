@@ -1,8 +1,8 @@
 import authControllers from "../controllers/auth.controller";
 import { Router } from "express";
-import tokenMiddleware from "../middlewares/tokenMiddleware";
+import tokenMiddleware from "../middlewares/token.middleware";
 import authMiddleware from "../middlewares/auth.middleware";
-import helpersMiddleware from "../middlewares/helpersMiddleware";
+import helpersMiddleware from "../middlewares/helpers.middleware";
 const authRoutes = Router();
 
 authRoutes.post(

@@ -1,8 +1,8 @@
 import shopControllers from "../controllers/shop.controller";
 import { Router } from "express";
-import tokenMiddleware from "../middlewares/tokenMiddleware";
+import tokenMiddleware from "../middlewares/token.middleware";
 import shopMiddleware from "../middlewares/shop.middleware";
-import helpersMiddleware from "../middlewares/helpersMiddleware";
+import helpersMiddleware from "../middlewares/helpers.middleware";
 const shopRoutes = Router();
 
 shopRoutes.get("/", shopControllers.getShopInfo);

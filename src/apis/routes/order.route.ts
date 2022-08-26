@@ -1,8 +1,8 @@
 import { Router } from "express";
 import orderControllers from "../controllers/order.controller";
-import helpersMiddleware from "../middlewares/helpersMiddleware";
+import helpersMiddleware from "../middlewares/helpers.middleware";
 import orderMiddleware from "../middlewares/order.middleware";
-import tokenMiddleware from "../middlewares/tokenMiddleware";
+import tokenMiddleware from "../middlewares/token.middleware";
 const orderRoutes = Router();
 
 orderRoutes.post(

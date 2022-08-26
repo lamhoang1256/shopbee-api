@@ -1,8 +1,8 @@
 import { Router } from "express";
 import cartControllers from "../controllers/cart.controller";
-import cartMiddleware from "../middlewares/cartMiddleware";
-import helpersMiddleware from "../middlewares/helpersMiddleware";
-import tokenMiddleware from "../middlewares/tokenMiddleware";
+import cartMiddleware from "../middlewares/cart.middleware";
+import helpersMiddleware from "../middlewares/helpers.middleware";
+import tokenMiddleware from "../middlewares/token.middleware";
 const cartRoutes = Router();
 
 cartRoutes.get("/", tokenMiddleware.verifyToken, cartControllers.getAllCart);

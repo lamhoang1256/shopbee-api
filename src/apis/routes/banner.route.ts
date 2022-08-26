@@ -1,8 +1,8 @@
 import { Router } from "express";
 import bannerControllers from "../controllers/banner.controller";
-import bannerMiddleware from "../middlewares/bannerMiddleware";
-import helpersMiddleware from "../middlewares/helpersMiddleware";
-import tokenMiddleware from "../middlewares/tokenMiddleware";
+import bannerMiddleware from "../middlewares/banner.middleware";
+import helpersMiddleware from "../middlewares/helpers.middleware";
+import tokenMiddleware from "../middlewares/token.middleware";
 const bannerRoutes = Router();
 
 bannerRoutes.get("/", bannerControllers.getAllBanner);

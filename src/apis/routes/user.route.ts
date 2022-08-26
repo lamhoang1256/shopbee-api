@@ -1,7 +1,7 @@
 import { Router } from "express";
 import userControllers from "../controllers/user.controller";
-import helpersMiddleware from "../middlewares/helpersMiddleware";
-import tokenMiddleware from "../middlewares/tokenMiddleware";
+import helpersMiddleware from "../middlewares/helpers.middleware";
+import tokenMiddleware from "../middlewares/token.middleware";
 import userMiddleware from "../middlewares/user.middleware";
 const userRoutes = Router();
 

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import voucherControllers from "../controllers/voucher.controller";
-import helpersMiddleware from "../middlewares/helpersMiddleware";
-import tokenMiddleware from "../middlewares/tokenMiddleware";
+import helpersMiddleware from "../middlewares/helpers.middleware";
+import tokenMiddleware from "../middlewares/token.middleware";
 import voucherMiddleware from "../middlewares/voucher.middleware";
 const voucherRoutes = Router();
 

@@ -1,8 +1,8 @@
 import { Router } from "express";
 import categoryControllers from "../controllers/category.controller";
-import categoryMiddleware from "../middlewares/categoryMiddleware";
-import helpersMiddleware from "../middlewares/helpersMiddleware";
-import tokenMiddleware from "../middlewares/tokenMiddleware";
+import categoryMiddleware from "../middlewares/category.middleware";
+import helpersMiddleware from "../middlewares/helpers.middleware";
+import tokenMiddleware from "../middlewares/token.middleware";
 const categoryRoutes = Router();
 
 categoryRoutes.get("/", categoryControllers.getAllCategory);

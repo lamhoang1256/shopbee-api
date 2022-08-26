@@ -1,6 +1,6 @@
 import { Router } from "express";
 import importControllers from "../controllers/import.controller";
-import tokenMiddleware from "../middlewares/tokenMiddleware";
+import tokenMiddleware from "../middlewares/token.middleware";
 const importRoutes = Router();
 
 importRoutes.post("/category", tokenMiddleware.verifyTokenAndAdmin, importControllers.category);
