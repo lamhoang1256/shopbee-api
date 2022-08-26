@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const bannerSchema = new mongoose.Schema(
   {
-    bannerUrl: String,
+    bannerUrl: { type: String, require: true },
   },
   {
     timestamps: true,

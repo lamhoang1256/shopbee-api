@@ -9,25 +9,12 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     street: { type: String, default: "" },
     address: { type: String, default: "" },
-    city: { id: "", name: "" },
-    district: { id: "", name: "" },
-    ward: { id: "", name: "" },
-    vouchersSave: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Voucher",
-      },
-    ],
-    isAdmin: {
-      type: Boolean,
-      default: false,
-    },
-    wishlist: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
-      },
-    ],
+    city: { id: { type: String, default: "" }, name: { type: String, default: "" } },
+    district: { id: { type: String, default: "" }, name: { type: String, default: "" } },
+    ward: { id: { type: String, default: "" }, name: { type: String, default: "" } },
+    vouchersSave: [{ type: mongoose.Schema.Types.ObjectId, ref: "Voucher" }],
+    isAdmin: { type: Boolean, default: false },
+    wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
   },
   { timestamps: true },
 );
