@@ -12,24 +12,11 @@ const userSchema = new mongoose_1.default.Schema({
     password: { type: String, required: true },
     street: { type: String, default: "" },
     address: { type: String, default: "" },
-    city: { id: "", name: "" },
-    district: { id: "", name: "" },
-    ward: { id: "", name: "" },
-    vouchersSave: [
-        {
-            type: mongoose_1.default.Schema.Types.ObjectId,
-            ref: "Voucher",
-        },
-    ],
-    isAdmin: {
-        type: Boolean,
-        default: false,
-    },
-    wishlist: [
-        {
-            type: mongoose_1.default.Schema.Types.ObjectId,
-            ref: "Product",
-        },
-    ],
+    city: { id: { type: String, default: "" }, name: { type: String, default: "" } },
+    district: { id: { type: String, default: "" }, name: { type: String, default: "" } },
+    ward: { id: { type: String, default: "" }, name: { type: String, default: "" } },
+    vouchersSave: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: "Voucher" }],
+    isAdmin: { type: Boolean, default: false },
+    wishlist: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: "Product" }],
 }, { timestamps: true });
 exports.default = mongoose_1.default.model("User", userSchema);

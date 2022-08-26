@@ -12,20 +12,8 @@ orderRoutes.post(
   helpersMiddleware.entityValidator,
   orderControllers.createNewOrder,
 );
-orderRoutes.get(
-  "/",
-  tokenMiddleware.verifyTokenAndAdmin,
-  orderMiddleware.getAllOrderRules(),
-  helpersMiddleware.entityValidator,
-  orderControllers.getAllOrder,
-);
-orderRoutes.get(
-  "/me",
-  tokenMiddleware.verifyToken,
-  orderMiddleware.getAllOrderMeRules(),
-  helpersMiddleware.entityValidator,
-  orderControllers.getAllOrderMe,
-);
+orderRoutes.get("/", tokenMiddleware.verifyTokenAndAdmin, orderControllers.getAllOrder);
+orderRoutes.get("/me", tokenMiddleware.verifyToken, orderControllers.getAllOrderMe);
 orderRoutes.get(
   "/:id",
   helpersMiddleware.idRule("id"),

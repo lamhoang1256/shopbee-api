@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const categorySchema = new mongoose_1.default.Schema({
-    name: String,
-    slug: String,
-    image: String,
+    name: { type: String, require: true, unique: true },
+    slug: { type: String, require: true, unique: true },
+    image: { type: String, require: true },
 }, {
     timestamps: true,
 });

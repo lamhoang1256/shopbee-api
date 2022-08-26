@@ -29,11 +29,5 @@ const createNewOrderRules = () => {
             .withMessage("shippingTo không được để trống"),
     ];
 };
-const getAllOrderMeRules = () => {
-    return [(0, express_validator_1.query)("orderId").isMongoId().withMessage(`orderId phải là id`)];
-};
-const getAllOrderRules = () => {
-    return getAllOrderMeRules();
-};
-const orderMiddleware = { createNewOrderRules, getAllOrderMeRules, getAllOrderRules };
+const orderMiddleware = { createNewOrderRules };
 exports.default = orderMiddleware;
