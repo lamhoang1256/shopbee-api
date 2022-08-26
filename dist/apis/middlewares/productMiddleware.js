@@ -55,6 +55,8 @@ const addProductRules = () => {
             .isNumeric()
             .withMessage("oldPrice phải ở định dạng number"),
         (0, express_validator_1.body)("price")
+            .exists({ checkFalsy: true })
+            .withMessage("price không được để trống")
             .if((value) => value !== undefined)
             .isNumeric()
             .withMessage("price phải ở định dạng number"),

@@ -8,7 +8,5 @@ const categorySchema = new mongoose_1.default.Schema({
     name: { type: String, require: true, unique: true },
     slug: { type: String, require: true, unique: true },
     image: { type: String, require: true },
-}, {
-    timestamps: true,
-});
+}, { timestamps: true });
 exports.default = mongoose_1.default.model("Category", categorySchema);

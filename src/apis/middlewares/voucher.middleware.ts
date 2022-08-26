@@ -4,17 +4,21 @@ const addNewVoucherRules = () => {
   return [
     body("code")
       .exists({ checkFalsy: true })
-      .withMessage("Voucher code không được để trống")
+      .withMessage("voucher code không được để trống")
       .isLength({ min: 6, max: 20 })
-      .withMessage("Voucher code phải từ 6-20 kí tự"),
+      .withMessage("voucher code phải từ 6-20 kí tự"),
     body("value")
+      .exists({ checkFalsy: true })
+      .withMessage("voucher value không được để trống")
       .if((value: any) => value !== undefined)
       .isNumeric()
-      .withMessage("Value phải ở định dạng number"),
+      .withMessage("voucher value phải ở định dạng number"),
     body("title")
+      .exists({ checkFalsy: true })
+      .withMessage("voucher title không được để trống")
       .if((value: any) => value !== undefined)
       .isLength({ max: 200 })
-      .withMessage("Title phải ít hơn 200 kí tự"),
+      .withMessage("voucher title phải ít hơn 200 kí tự"),
   ];
 };
 

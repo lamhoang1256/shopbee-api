@@ -23,7 +23,7 @@ const productSchema = new mongoose.Schema(
     description: { type: String, default: "" },
     category: { type: mongoose.SchemaTypes.ObjectId, ref: "Category", require: true },
     oldPrice: { type: Number, default: 0 },
-    price: { type: Number, default: 0 },
+    price: { type: Number, require: true },
     rating: { type: Number, default: 0 },
     stock: { type: Number, default: 0 },
     sold: { type: Number, default: 0 },

@@ -11,10 +11,10 @@ const orderSchema = new mongoose.Schema(
     ],
     shippingFrom: { type: String, default: "" },
     shippingTo: { type: String, default: "" },
-    price: { type: Number, required: true, default: 0 },
-    shippingFee: { type: Number, required: true, default: 0 },
+    price: { type: Number, required: true },
+    shippingFee: { type: Number, required: true },
     promotion: { type: Number, default: 0 },
-    total: { type: Number, required: true, default: 0 },
+    total: { type: Number, required: true },
     note: { type: String, default: "" },
     reasonCancel: { type: String, default: "" },
     status: {

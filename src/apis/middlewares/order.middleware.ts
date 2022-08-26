@@ -1,4 +1,4 @@
-import { body, query } from "express-validator";
+import { body } from "express-validator";
 
 const createNewOrderRules = () => {
   return [
@@ -7,6 +7,8 @@ const createNewOrderRules = () => {
       .isArray()
       .withMessage("orderItems phải dạng array"),
     body("price")
+      .exists({ checkFalsy: true })
+      .withMessage("price không được để trống")
       .if((value: any) => value !== undefined)
       .isNumeric()
       .withMessage("price phải ở định dạng number"),
@@ -15,10 +17,14 @@ const createNewOrderRules = () => {
       .isNumeric()
       .withMessage("promotion phải ở định dạng number"),
     body("shippingFee")
+      .exists({ checkFalsy: true })
+      .withMessage("shippingFee không được để trống")
       .if((value: any) => value !== undefined)
       .isNumeric()
       .withMessage("shippingFee phải ở định dạng number"),
     body("total")
+      .exists({ checkFalsy: true })
+      .withMessage("total không được để trống")
       .if((value: any) => value !== undefined)
       .isNumeric()
       .withMessage("total phải ở định dạng number"),

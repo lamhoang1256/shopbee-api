@@ -2,24 +2,11 @@ import mongoose from "mongoose";
 
 const voucherSchema = new mongoose.Schema(
   {
-    code: {
-      type: String,
-      unique: true,
-    },
-    value: {
-      type: Number,
-      default: 0,
-    },
-    title: String,
-    expirationDate: {
-      type: Number,
-      default: new Date(Date.now() + 3600 * 1000 * 24),
-    },
-    userUsed: {
-      type: Array,
-      required: true,
-      default: [],
-    },
+    code: { type: String, unique: true, require: true },
+    value: { type: Number, require: true },
+    title: { type: String, require: true },
+    expirationDate: { type: Number, default: new Date(Date.now() + 3600 * 1000 * 24) },
+    userUsed: { type: Array, default: [] },
   },
   { timestamps: true },
 );
