@@ -14,6 +14,20 @@ const options = {
       { url: "http://localhost:8000/api" },
       { url: "https://shopbee-api.herokuapp.com/api" },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          description: "JWT Authorization",
+          type: "https",
+          scheme: "bearer",
+          in: "header",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+    security: {
+      bearerAuth: [],
+    },
   },
   apis: ["**/*.ts"],
 };

@@ -96,9 +96,9 @@ const requestRefreshToken = async (req: Request) => {
 };
 
 const logOut = async (req: Request) => {
-  if (!req.body.refreshToken) throw new ApiError(404, "Không tìm thấy refresh token!");
+  if (!req.query.refreshToken) throw new ApiError(404, "Không tìm thấy refresh token!");
   const deleteRefreshToken = await Token.findOneAndDelete({
-    refreshToken: req.body.refreshToken,
+    refreshToken: req.query.refreshToken,
   }).exec();
   if (!deleteRefreshToken) throw new ApiError(401, "Refresh token không hợp lệ!");
   const response = {

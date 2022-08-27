@@ -111,10 +111,10 @@ const requestRefreshToken = (req) => __awaiter(void 0, void 0, void 0, function*
     return response;
 });
 const logOut = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!req.body.refreshToken)
+    if (!req.query.refreshToken)
         throw new api_error_1.ApiError(404, "Không tìm thấy refresh token!");
     const deleteRefreshToken = yield token_model_1.default.findOneAndDelete({
-        refreshToken: req.body.refreshToken,
+        refreshToken: req.query.refreshToken,
     }).exec();
     if (!deleteRefreshToken)
         throw new api_error_1.ApiError(401, "Refresh token không hợp lệ!");
