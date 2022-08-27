@@ -14,18 +14,15 @@ shopRoutes.post(
   shopControllers.addShopInfo,
 );
 shopRoutes.put(
-  "/:id",
-  helpersMiddleware.idRule("id"),
-  helpersMiddleware.idValidator,
+  "/",
   tokenMiddleware.verifyTokenAndAdmin,
   shopMiddleware.updateShopInfoRules(),
   helpersMiddleware.entityValidator,
   shopControllers.updateShopInfo,
 );
 shopRoutes.delete(
-  "/:id",
-  helpersMiddleware.idRule("id"),
-  helpersMiddleware.idValidator,
+  "/",
+
   tokenMiddleware.verifyTokenAndAdmin,
   shopControllers.deleteShopInfo,
 );

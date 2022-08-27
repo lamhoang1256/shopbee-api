@@ -1,11 +1,18 @@
 /** Cập nhật banner
  * @swagger
- * /banner:
- *  post:
+ * /banner/{id}:
+ *  put:
  *      summary: Cập nhật banner
  *      tags: [Banner]
  *      security:
  *        - bearerAuth: []
+ *      parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           description: Product ID
  *      requestBody:
  *        content:
  *          application/json:

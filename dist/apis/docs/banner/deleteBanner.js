@@ -1,7 +1,7 @@
 "use strict";
 /** Xóa banner
  * @swagger
- * /product/{id}:
+ * /banner/{id}:
  *  delete:
  *      summary: Xóa banner
  *      tags: [Banner]
@@ -13,7 +13,7 @@
  *         required: true
  *         schema:
  *           type: string
- *           description: Product ID
+ *           description: Banner ID
  *      responses:
  *          200:
  *              description: Success

@@ -11,6 +11,6 @@ const helpers_middleware_1 = __importDefault(require("../middlewares/helpers.mid
 const shopRoutes = (0, express_1.Router)();
 shopRoutes.get("/", shop_controller_1.default.getShopInfo);
 shopRoutes.post("/", token_middleware_1.default.verifyTokenAndAdmin, shop_middleware_1.default.addShopInfoRules(), helpers_middleware_1.default.entityValidator, shop_controller_1.default.addShopInfo);
-shopRoutes.put("/:id", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, token_middleware_1.default.verifyTokenAndAdmin, shop_middleware_1.default.updateShopInfoRules(), helpers_middleware_1.default.entityValidator, shop_controller_1.default.updateShopInfo);
-shopRoutes.delete("/:id", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, token_middleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.deleteShopInfo);
+shopRoutes.put("/", token_middleware_1.default.verifyTokenAndAdmin, shop_middleware_1.default.updateShopInfoRules(), helpers_middleware_1.default.entityValidator, shop_controller_1.default.updateShopInfo);
+shopRoutes.delete("/", token_middleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.deleteShopInfo);
 exports.default = shopRoutes;

@@ -25,8 +25,9 @@ const getShopInfo = async (req: Request) => {
 };
 
 const updateShopInfo = async (req: Request) => {
-  const updatedShop = await Shop.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  if (!updatedShop) throw new ApiError(404, "Không tìm thấy shop!");
+  const shopInDB: any = await Shop.findOne({});
+  if (!shopInDB) throw new ApiError(404, "Không tìm thấy shop!");
+  const updatedShop = await shopInDB.updateOne({ $set: req.body }, { new: true });
   const response = {
     message: "Chỉnh sửa shop thành công!",
     data: updatedShop,
@@ -35,8 +36,9 @@ const updateShopInfo = async (req: Request) => {
 };
 
 const deleteShopInfo = async (req: Request) => {
-  const shopInDB = await Shop.findByIdAndDelete(req.params.id).lean();
+  const shopInDB: any = await Shop.findOne({}).lean();
   if (!shopInDB) throw new ApiError(400, "Không tìm thấy shop!");
+  await Shop.findByIdAndDelete(shopInDB._id.toString());
   const response = {
     message: "Xóa shop thành công!",
   };

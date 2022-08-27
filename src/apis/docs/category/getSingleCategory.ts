@@ -1,18 +1,16 @@
-/** Xóa banner
+/** Lấy chi tiết category
  * @swagger
- * /banner/{id}:
- *  delete:
- *      summary: Xóa banner
- *      tags: [Banner]
- *      security:
- *        - bearerAuth: []
+ * /category/{id}:
+ *  get:
+ *      summary: Lấy chi tiết category
+ *      tags: [Category]
  *      parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: string
- *           description: Banner ID
+ *           description: Category ID
  *      responses:
  *          200:
  *              description: Success

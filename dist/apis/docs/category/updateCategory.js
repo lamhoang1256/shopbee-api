@@ -1,10 +1,10 @@
 "use strict";
-/** Cập nhật banner
+/** Cập nhật category
  * @swagger
- * /banner/{id}:
+ * /category/{id}:
  *  put:
- *      summary: Cập nhật banner
- *      tags: [Banner]
+ *      summary: Cập nhật category
+ *      tags: [Category]
  *      security:
  *        - bearerAuth: []
  *      parameters:
@@ -20,11 +20,19 @@
  *             schema:
  *                type: object
  *                required:
- *                  - bannerUrl
+ *                  - name
+ *                  - slug
+ *                  - image
  *                properties:
- *                   bannerUrl:
+ *                   name:
  *                     type: string
- *                     example: https://cf.shopee.vn/file/5b678401fea50c49d3c28ca099837630_xxhdpi
+ *                     example: Thời trang nữ
+ *                   slug:
+ *                     type: string
+ *                     example: thoi-trang-nữ
+ *                   image:
+ *                     type: string
+ *                     example: https://cf.shopee.vn/file/75ea42f9eca124e9cb3cde744c060e4d_tn
  *      responses:
  *          200:
  *              description: Success

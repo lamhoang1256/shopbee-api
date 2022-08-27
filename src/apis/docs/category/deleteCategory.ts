@@ -1,9 +1,9 @@
-/** Xóa banner
+/** Xóa category
  * @swagger
- * /banner/{id}:
+ * /category/{id}:
  *  delete:
- *      summary: Xóa banner
- *      tags: [Banner]
+ *      summary: Xóa category
+ *      tags: [Category]
  *      security:
  *        - bearerAuth: []
  *      parameters:
@@ -12,7 +12,7 @@
  *         required: true
  *         schema:
  *           type: string
- *           description: Banner ID
+ *           description: Category ID
  *      responses:
  *          200:
  *              description: Success

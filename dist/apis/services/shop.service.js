@@ -37,9 +37,10 @@ const getShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const updateShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const updatedShop = yield shop_model_1.default.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!updatedShop)
+    const shopInDB = yield shop_model_1.default.findOne({});
+    if (!shopInDB)
         throw new api_error_1.ApiError(404, "Không tìm thấy shop!");
+    const updatedShop = yield shopInDB.updateOne({ $set: req.body }, { new: true });
     const response = {
         message: "Chỉnh sửa shop thành công!",
         data: updatedShop,
@@ -47,9 +48,10 @@ const updateShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const deleteShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const shopInDB = yield shop_model_1.default.findByIdAndDelete(req.params.id).lean();
+    const shopInDB = yield shop_model_1.default.findOne({}).lean();
     if (!shopInDB)
         throw new api_error_1.ApiError(400, "Không tìm thấy shop!");
+    yield shop_model_1.default.findByIdAndDelete(shopInDB._id.toString());
     const response = {
         message: "Xóa shop thành công!",
     };
