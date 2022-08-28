@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const voucher_model_1 = __importDefault(require("../models/voucher.model"));
-const user_model_1 = __importDefault(require("../models/user.model"));
 const api_error_1 = require("../utils/api-error");
 const addNewVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const voucherDB = yield voucher_model_1.default.findOne({ code: req.body.code }).exec();
@@ -46,15 +45,14 @@ const saveVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
         throw new api_error_1.ApiError(404, "Mã giảm giá không hợp lệ!");
     if (voucher.expirationDate < Date.now())
         throw new api_error_1.ApiError(500, "Mã giảm giá đã hết hạn!");
-    if (voucher.userUsed.indexOf(req.user._id) !== -1)
+    if (voucher.usersUsed.indexOf(req.user._id) !== -1)
         throw new api_error_1.ApiError(500, "Mã giảm giá đã được sử dụng!");
-    const userDB = yield user_model_1.default.findById(req.user._id);
-    if (userDB.vouchersSave.indexOf(voucher._id.toString()) !== -1)
+    if (voucher.usersSave.indexOf(req.user._id) !== -1)
         throw new api_error_1.ApiError(500, "Mã giảm giá đã có trong túi!");
-    userDB.vouchersSave.push(voucher._id);
-    yield userDB.save();
+    voucher.usersSave.push(req.user._id);
+    yield voucher.save();
     const response = {
-        message: "Áp dụng mã giảm giá thành công!",
+        message: "Lưu mã giảm giá thành công!",
         data: voucher,
     };
     return response;
@@ -72,9 +70,7 @@ const getAllVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
         voucher_model_1.default.find(condition)
             .skip(page * limit - limit)
             .limit(limit)
-            .sort({
-            updatedAt: -1,
-        })
+            .sort({ updatedAt: -1 })
             .select({ __v: 0 })
             .lean(),
         voucher_model_1.default.find(condition).countDocuments().lean(),

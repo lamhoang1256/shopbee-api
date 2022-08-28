@@ -19,9 +19,9 @@ const createNewOrder = async (req: Request) => {
     const voucherDB: any = await Voucher.findOne({ code: voucherCode });
     if (Number(voucherDB.expirationDate) < Date.now() / 1000)
       throw new ApiError(500, "Mã giảm giá đã hết hạn!");
-    if (voucherDB.userUsed.indexOf(req.user._id) !== -1)
+    if (voucherDB.usersUsed.indexOf(req.user._id) !== -1)
       throw new ApiError(500, "Mã giảm giá đã được sử dụng!");
-    voucherDB.userUsed.push(req.user._id);
+    voucherDB.usersUsed.push(req.user._id);
     await voucherDB.save();
     const userDB: any = await User.findById(req.user._id);
     userDB.vouchersSave = userDB.vouchersSave?.filter(

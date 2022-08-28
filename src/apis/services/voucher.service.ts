@@ -32,15 +32,14 @@ const saveVoucher = async (req: Request) => {
   const voucher: any = await Voucher.findOne({ code: req.query.code });
   if (!voucher) throw new ApiError(404, "Mã giảm giá không hợp lệ!");
   if (voucher.expirationDate < Date.now()) throw new ApiError(500, "Mã giảm giá đã hết hạn!");
-  if (voucher.userUsed.indexOf(req.user._id) !== -1)
+  if (voucher.usersUsed.indexOf(req.user._id) !== -1)
     throw new ApiError(500, "Mã giảm giá đã được sử dụng!");
-  const userDB: any = await User.findById(req.user._id);
-  if (userDB.vouchersSave.indexOf(voucher._id.toString()) !== -1)
+  if (voucher.usersSave.indexOf(req.user._id) !== -1)
     throw new ApiError(500, "Mã giảm giá đã có trong túi!");
-  userDB.vouchersSave.push(voucher._id);
-  await userDB.save();
+  voucher.usersSave.push(req.user._id);
+  await voucher.save();
   const response = {
-    message: "Áp dụng mã giảm giá thành công!",
+    message: "Lưu mã giảm giá thành công!",
     data: voucher,
   };
   return response;
@@ -57,9 +56,7 @@ const getAllVoucher = async (req: Request) => {
     Voucher.find(condition)
       .skip(page * limit - limit)
       .limit(limit)
-      .sort({
-        updatedAt: -1,
-      })
+      .sort({ updatedAt: -1 })
       .select({ __v: 0 })
       .lean(),
     Voucher.find(condition).countDocuments().lean(),

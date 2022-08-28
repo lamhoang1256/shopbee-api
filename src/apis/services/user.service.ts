@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import { Request } from "express";
 import Order from "../models/order.model";
 import User from "../models/user.model";
+import Voucher from "../models/voucher.model";
 import { ApiError } from "../utils/api-error";
 
 const updateMe = async (req: Request) => {
@@ -92,46 +93,6 @@ const getSingleUser = async (req: Request) => {
   return response;
 };
 
-const getMyVoucher = async (req: Request) => {
-  const { status } = req.query;
-  const userDB: any = await User.findById(req.user._id).populate("vouchersSave");
-  if (!userDB) throw new ApiError(404, "Không tìm thấy người dùng!");
-  let temp: any[] = [];
-  let expiration: any[] = [];
-  let used: any[] = [];
-  let valid: any[] = [];
-  userDB.vouchersSave?.forEach((voucher: any) => {
-    if (Number(voucher.expirationDate) < Date.now()) {
-      expiration.push(voucher);
-    } else {
-      temp.push(voucher);
-    }
-  });
-  temp?.forEach((voucher: any) => {
-    if (voucher.userUsed.indexOf(req.user._id) !== -1) {
-      used.push(voucher);
-    } else {
-      valid.push(voucher);
-    }
-  });
-  let data: any;
-  switch (status) {
-    case "used":
-      data = used;
-      break;
-    case "expiration":
-      data = expiration;
-      break;
-    default:
-      data = valid;
-  }
-  const response = {
-    message: "Lấy voucher của bạn thành công!",
-    data,
-  };
-  return response;
-};
-
 const addNewUser = async (req: Request) => {
   const newUser = await User.create(req.body);
   if (!newUser) throw new ApiError(404, "Không tìm thấy người dùng!");
@@ -190,6 +151,23 @@ const removeFromWishlist = async (req: Request) => {
   return response;
 };
 
+const getMyVoucher = async (req: Request) => {
+  let { code, status, limit = 10, page = 1 } = req.query;
+  page = Number(page);
+  limit = Number(limit);
+  let condition: any = { usersSave: req.user._id, expirationDate: { $gt: Date.now() } };
+  if (code) condition.code = { $regex: code, $options: "i" };
+  if (status === "expiration") condition.expirationDate = { $lt: Date.now() };
+  if (status === "used") condition.usersUsed = req.user._id;
+  const vouchers = await Voucher.find(condition).sort({ updatedAt: -1 });
+  if (!vouchers) throw new ApiError(404, "Không tìm thấy mã giảm giá!");
+  const response = {
+    message: "Lấy voucher của bạn thành công!",
+    data: vouchers,
+  };
+  return response;
+};
+
 const userServices = {
   updateMe,
   getSingleUser,
@@ -198,9 +176,9 @@ const userServices = {
   changePasswordMe,
   deleteUser,
   updateUser,
-  getMyVoucher,
   addToWishlist,
   getMyWishlist,
   removeFromWishlist,
+  getMyVoucher,
 };
 export default userServices;

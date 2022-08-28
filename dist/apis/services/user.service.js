@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const order_model_1 = __importDefault(require("../models/order.model"));
 const user_model_1 = __importDefault(require("../models/user.model"));
+const voucher_model_1 = __importDefault(require("../models/voucher.model"));
 const api_error_1 = require("../utils/api-error");
 const updateMe = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedMe = yield user_model_1.default.findByIdAndUpdate({ _id: req.user._id }, req.body, { new: true })
@@ -107,49 +108,6 @@ const getSingleUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-const getMyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
-    const { status } = req.query;
-    const userDB = yield user_model_1.default.findById(req.user._id).populate("vouchersSave");
-    if (!userDB)
-        throw new api_error_1.ApiError(404, "Không tìm thấy người dùng!");
-    let temp = [];
-    let expiration = [];
-    let used = [];
-    let valid = [];
-    (_a = userDB.vouchersSave) === null || _a === void 0 ? void 0 : _a.forEach((voucher) => {
-        if (Number(voucher.expirationDate) < Date.now()) {
-            expiration.push(voucher);
-        }
-        else {
-            temp.push(voucher);
-        }
-    });
-    temp === null || temp === void 0 ? void 0 : temp.forEach((voucher) => {
-        if (voucher.userUsed.indexOf(req.user._id) !== -1) {
-            used.push(voucher);
-        }
-        else {
-            valid.push(voucher);
-        }
-    });
-    let data;
-    switch (status) {
-        case "used":
-            data = used;
-            break;
-        case "expiration":
-            data = expiration;
-            break;
-        default:
-            data = valid;
-    }
-    const response = {
-        message: "Lấy voucher của bạn thành công!",
-        data,
-    };
-    return response;
-});
 const addNewUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const newUser = yield user_model_1.default.create(req.body);
     if (!newUser)
@@ -205,6 +163,26 @@ const removeFromWishlist = (req) => __awaiter(void 0, void 0, void 0, function* 
     };
     return response;
 });
+const getMyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    let { code, status, limit = 10, page = 1 } = req.query;
+    page = Number(page);
+    limit = Number(limit);
+    let condition = { usersSave: req.user._id, expirationDate: { $gt: Date.now() } };
+    if (code)
+        condition.code = { $regex: code, $options: "i" };
+    if (status === "expiration")
+        condition.expirationDate = { $lt: Date.now() };
+    if (status === "used")
+        condition.usersUsed = req.user._id;
+    const vouchers = yield voucher_model_1.default.find(condition).sort({ updatedAt: -1 });
+    if (!vouchers)
+        throw new api_error_1.ApiError(404, "Không tìm thấy mã giảm giá!");
+    const response = {
+        message: "Lấy voucher của bạn thành công!",
+        data: vouchers,
+    };
+    return response;
+});
 const userServices = {
     updateMe,
     getSingleUser,
@@ -213,9 +191,9 @@ const userServices = {
     changePasswordMe,
     deleteUser,
     updateUser,
-    getMyVoucher,
     addToWishlist,
     getMyWishlist,
     removeFromWishlist,
+    getMyVoucher,
 };
 exports.default = userServices;

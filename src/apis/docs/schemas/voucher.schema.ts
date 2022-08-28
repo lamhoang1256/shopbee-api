@@ -21,7 +21,7 @@
  *        expirationDate:
  *          type: number
  *          description: Hạn sử dụng của voucher
- *        userUsed:
+ *        usersUsed:
  *          type: array
  *          items:
  *             type: string
