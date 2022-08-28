@@ -22,6 +22,7 @@ const createNewOrder = async (req: Request) => {
     if (voucherDB.usersUsed.indexOf(req.user._id) !== -1)
       throw new ApiError(500, "Mã giảm giá đã được sử dụng!");
     voucherDB.usersUsed.push(req.user._id);
+    voucherDB.save();
   }
   const shop: IShop = await Shop.findOne().lean();
   const order = new Order({

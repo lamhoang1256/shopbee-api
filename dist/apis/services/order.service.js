@@ -31,6 +31,7 @@ const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
         if (voucherDB.usersUsed.indexOf(req.user._id) !== -1)
             throw new api_error_1.ApiError(500, "Mã giảm giá đã được sử dụng!");
         voucherDB.usersUsed.push(req.user._id);
+        voucherDB.save();
     }
     const shop = yield shop_model_1.default.findOne().lean();
     const order = new order_model_1.default({
