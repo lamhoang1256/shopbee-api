@@ -7,7 +7,7 @@ const getMyWishlist = async (req: Request) => {
     .lean();
   const response = {
     message: "Lấy danh sách yêu thích thành công!",
-    data: wishlistsDB.wishlists,
+    data: wishlistsDB.wishlists.reverse(),
   };
   return response;
 };

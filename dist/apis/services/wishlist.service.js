@@ -19,7 +19,7 @@ const getMyWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
         .lean();
     const response = {
         message: "Lấy danh sách yêu thích thành công!",
-        data: wishlistsDB.wishlists,
+        data: wishlistsDB.wishlists.reverse(),
     };
     return response;
 });
