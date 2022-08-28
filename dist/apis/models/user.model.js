@@ -16,6 +16,5 @@ const userSchema = new mongoose_1.default.Schema({
     district: { id: { type: String, default: "" }, name: { type: String, default: "" } },
     ward: { id: { type: String, default: "" }, name: { type: String, default: "" } },
     isAdmin: { type: Boolean, default: false },
-    wishlist: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: "Product" }],
 }, { timestamps: true });
 exports.default = mongoose_1.default.model("User", userSchema);

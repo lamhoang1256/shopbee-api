@@ -13,7 +13,6 @@ const userSchema = new mongoose.Schema(
     district: { id: { type: String, default: "" }, name: { type: String, default: "" } },
     ward: { id: { type: String, default: "" }, name: { type: String, default: "" } },
     isAdmin: { type: Boolean, default: false },
-    wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
   },
   { timestamps: true },
 );
