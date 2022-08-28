@@ -170,6 +170,7 @@ const getMyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
     let condition = {
         expirationDate: { $gt: Date.now() },
         usersSave: req.user._id,
+        usersUsed: { $ne: req.user._id },
     };
     if (code)
         condition.code = { $regex: code, $options: "i" };
@@ -177,7 +178,6 @@ const getMyVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
         condition.expirationDate = { $lt: Date.now() };
     if (status === "used")
         condition.usersUsed = req.user._id;
-    console.log("condition: ", condition);
     const vouchers = yield voucher_model_1.default.find(condition).sort({ updatedAt: -1 });
     if (!vouchers)
         throw new api_error_1.ApiError(404, "Không tìm thấy mã giảm giá!");

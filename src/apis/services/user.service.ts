@@ -158,11 +158,11 @@ const getMyVoucher = async (req: Request) => {
   let condition: any = {
     expirationDate: { $gt: Date.now() },
     usersSave: req.user._id,
+    usersUsed: { $ne: req.user._id },
   };
   if (code) condition.code = { $regex: code, $options: "i" };
   if (status === "expiration") condition.expirationDate = { $lt: Date.now() };
   if (status === "used") condition.usersUsed = req.user._id;
-  console.log("condition: ", condition);
   const vouchers = await Voucher.find(condition).sort({ updatedAt: -1 });
   if (!vouchers) throw new ApiError(404, "Không tìm thấy mã giảm giá!");
   const response = {
