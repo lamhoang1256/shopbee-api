@@ -13,7 +13,7 @@ wishlistRoutes.post(
   helpersMiddleware.entityValidator,
   wishlistControllers.addToWishlist,
 );
-wishlistRoutes.put(
+wishlistRoutes.delete(
   "/",
   tokenMiddleware.verifyToken,
   wishlistMiddleware.removeFromWishlist(),

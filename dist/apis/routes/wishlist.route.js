@@ -11,5 +11,5 @@ const wishlist_middleware_1 = __importDefault(require("../middlewares/wishlist.m
 const wishlistRoutes = (0, express_1.Router)();
 wishlistRoutes.get("/", token_middleware_1.default.verifyToken, wishlist_controller_1.default.getMyWishlist);
 wishlistRoutes.post("/", token_middleware_1.default.verifyToken, wishlist_middleware_1.default.addToWishlistRules(), helpers_middleware_1.default.entityValidator, wishlist_controller_1.default.addToWishlist);
-wishlistRoutes.put("/", token_middleware_1.default.verifyToken, wishlist_middleware_1.default.removeFromWishlist(), helpers_middleware_1.default.entityValidator, wishlist_controller_1.default.removeFromWishlist);
+wishlistRoutes.delete("/", token_middleware_1.default.verifyToken, wishlist_middleware_1.default.removeFromWishlist(), helpers_middleware_1.default.entityValidator, wishlist_controller_1.default.removeFromWishlist);
 exports.default = wishlistRoutes;

@@ -13,7 +13,7 @@ const getMyWishlist = async (req: Request) => {
 };
 
 const addToWishlist = async (req: Request) => {
-  const { productId } = req.body;
+  const { productId } = req.query;
   const wishlistDB = await Wishlist.findOne({ user: req.user._id });
   let savedWishlist;
   if (!wishlistDB) {
@@ -33,7 +33,7 @@ const addToWishlist = async (req: Request) => {
 };
 
 const removeFromWishlist = async (req: Request) => {
-  const { productId } = req.body;
+  const { productId } = req.query;
   const updateWishlist = await Wishlist.findByIdAndUpdate(req.user._id, {
     $pull: { wishlists: productId },
   });

@@ -24,7 +24,7 @@ const getMyWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const addToWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { productId } = req.body;
+    const { productId } = req.query;
     const wishlistDB = yield wishlist_model_1.default.findOne({ user: req.user._id });
     let savedWishlist;
     if (!wishlistDB) {
@@ -44,7 +44,7 @@ const addToWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const removeFromWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { productId } = req.body;
+    const { productId } = req.query;
     const updateWishlist = yield wishlist_model_1.default.findByIdAndUpdate(req.user._id, {
         $pull: { wishlists: productId },
     });

@@ -1,8 +1,8 @@
-import { body } from "express-validator";
+import { query } from "express-validator";
 
 const addToWishlistRules = () => {
   return [
-    body("productId")
+    query("productId")
       .exists({ checkFalsy: true })
       .withMessage("productId không được để trống")
       .isMongoId()

@@ -1,9 +1,9 @@
-/** Xóa thông tin shop
+/** Lấy tất cả người dùng
  * @swagger
- * /shop:
- *  delete:
- *      summary: Xóa thông tin shop
- *      tags: [Shop]
+ * /user:
+ *  get:
+ *      summary: Lấy tất cả người dùng
+ *      tags: [User]
  *      security:
  *        - bearerAuth: []
  *      responses:

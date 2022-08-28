@@ -23,7 +23,7 @@ const addToWishlist = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void
     (0, response_1.responseSuccess)(res, newWishlist);
 }));
 // @desc    Xóa sản phẩm ra khỏi danh sách yêu thích
-// @route   PUT /api/user/wishlist
+// @route   DELETE /api/user/wishlist
 // @access  Private
 const removeFromWishlist = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedWishlist = yield wishlist_service_1.default.removeFromWishlist(req);

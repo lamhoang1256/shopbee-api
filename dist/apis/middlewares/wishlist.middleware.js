@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_validator_1 = require("express-validator");
 const addToWishlistRules = () => {
     return [
-        (0, express_validator_1.body)("productId")
+        (0, express_validator_1.query)("productId")
             .exists({ checkFalsy: true })
             .withMessage("productId không được để trống")
             .isMongoId()

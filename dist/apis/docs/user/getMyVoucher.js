@@ -1,10 +1,10 @@
 "use strict";
-/** Xóa thông tin shop
+/** Lấy tất cả voucher của bạn
  * @swagger
- * /shop:
- *  delete:
- *      summary: Xóa thông tin shop
- *      tags: [Shop]
+ * /user/my-voucher:
+ *  get:
+ *      summary: Lấy tất cả voucher của bạn
+ *      tags: [User]
  *      security:
  *        - bearerAuth: []
  *      responses:
