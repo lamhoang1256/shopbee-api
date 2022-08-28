@@ -46,7 +46,7 @@ const addToWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
 const removeFromWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const { productId } = req.body;
     const updateWishlist = yield wishlist_model_1.default.findByIdAndUpdate(req.user._id, {
-        $pull: { wishlist: productId },
+        $pull: { wishlists: productId },
     });
     const response = {
         message: "Đã xóa khỏi danh sách yêu thích!",

@@ -35,7 +35,7 @@ const addToWishlist = async (req: Request) => {
 const removeFromWishlist = async (req: Request) => {
   const { productId } = req.body;
   const updateWishlist = await Wishlist.findByIdAndUpdate(req.user._id, {
-    $pull: { wishlist: productId },
+    $pull: { wishlists: productId },
   });
   const response = {
     message: "Đã xóa khỏi danh sách yêu thích!",
