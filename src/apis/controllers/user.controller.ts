@@ -59,30 +59,6 @@ const addNewUser = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, updatedUser);
 });
 
-// @desc    Lưu sản phẩm yêu thích
-// @route   POST /api/user/wishlist
-// @access  Private
-const addToWishlist = catchAsync(async (req: Request, res: Response) => {
-  const newWishlist = await userServices.addToWishlist(req);
-  responseSuccess(res, newWishlist);
-});
-
-// @desc    Xóa sản phẩm ra khỏi danh sách yêu thích
-// @route   PUT /api/user/wishlist
-// @access  Private
-const removeFromWishlist = catchAsync(async (req: Request, res: Response) => {
-  const updatedWishlist = await userServices.removeFromWishlist(req);
-  responseSuccess(res, updatedWishlist);
-});
-
-// @desc    Lấy danh sách sản phẩm yêu thích
-// @route   GET /api/user/wishlist
-// @access  Private
-const getMyWishlist = catchAsync(async (req: Request, res: Response) => {
-  const wishlist = await userServices.getMyWishlist(req);
-  responseSuccess(res, wishlist);
-});
-
 // @desc    Xóa 1 người dùng
 // @route   DELETE /api/user/:id
 // @access  Private/Admin
@@ -100,8 +76,5 @@ const userControllers = {
   getSingleUser,
   updateUser,
   getMyVoucher,
-  addToWishlist,
-  getMyWishlist,
-  removeFromWishlist,
 };
 export default userControllers;

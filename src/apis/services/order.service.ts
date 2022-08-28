@@ -3,7 +3,6 @@ import Order from "../models/order.model";
 import Shop from "../models/shop.model";
 import Product from "../models/product.model";
 import Cart from "../models/cart.model";
-import User from "../models/user.model";
 import Voucher from "../models/voucher.model";
 import { ApiError } from "../utils/api-error";
 import { IShop } from "../../@types/shop";

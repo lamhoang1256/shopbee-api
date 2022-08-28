@@ -13,6 +13,7 @@ const order_route_1 = __importDefault(require("./order.route"));
 const user_route_1 = __importDefault(require("./user.route"));
 const shop_route_1 = __importDefault(require("./shop.route"));
 const voucher_route_1 = __importDefault(require("./voucher.route"));
+const wishlist_route_1 = __importDefault(require("./wishlist.route"));
 const import_route_1 = __importDefault(require("./import.route"));
 const response_1 = require("../utils/response");
 const appRoutes = (0, express_1.default)();
@@ -26,6 +27,7 @@ appRoutes.use("/api/order", order_route_1.default);
 appRoutes.use("/api/user", user_route_1.default);
 appRoutes.use("/api/shop", shop_route_1.default);
 appRoutes.use("/api/voucher", voucher_route_1.default);
+appRoutes.use("/api/wishlist", wishlist_route_1.default);
 appRoutes.use((err, req, res, next) => {
     (0, response_1.responseError)(err, res);
 });

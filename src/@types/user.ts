@@ -15,6 +15,5 @@ export interface IUser {
   password?: string;
   createdAt: string;
   updatedAt: string;
-  vouchersSave: [];
   __v: number;
 }

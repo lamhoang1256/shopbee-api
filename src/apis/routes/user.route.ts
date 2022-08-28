@@ -6,7 +6,6 @@ import userMiddleware from "../middlewares/user.middleware";
 const userRoutes = Router();
 
 userRoutes.get("/my-voucher", tokenMiddleware.verifyToken, userControllers.getMyVoucher);
-userRoutes.get("/wishlist", tokenMiddleware.verifyToken, userControllers.getMyWishlist);
 userRoutes.get(
   "/:id",
   helpersMiddleware.idRule("id"),
@@ -41,20 +40,6 @@ userRoutes.put(
   userMiddleware.updateMeRules(),
   helpersMiddleware.entityValidator,
   userControllers.updateMe,
-);
-userRoutes.post(
-  "/wishlist",
-  tokenMiddleware.verifyToken,
-  userMiddleware.addToWishlistRules(),
-  helpersMiddleware.entityValidator,
-  userControllers.addToWishlist,
-);
-userRoutes.put(
-  "/wishlist",
-  tokenMiddleware.verifyToken,
-  userMiddleware.removeFromWishlist(),
-  helpersMiddleware.entityValidator,
-  userControllers.removeFromWishlist,
 );
 userRoutes.put(
   "/:id",

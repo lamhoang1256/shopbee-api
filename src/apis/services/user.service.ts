@@ -95,10 +95,10 @@ const getSingleUser = async (req: Request) => {
 
 const addNewUser = async (req: Request) => {
   const newUser = await User.create(req.body);
-  if (!newUser) throw new ApiError(404, "Không tìm thấy người dùng!");
+  const savedUser = await newUser.save();
   const response = {
     message: "Thêm người dùng mới thành công!",
-    data: newUser,
+    data: savedUser,
   };
   return response;
 };
@@ -114,39 +114,6 @@ const deleteUser = async (req: Request) => {
   const response = {
     message: "Xóa người dùng thành công!",
     data: deletedUser,
-  };
-  return response;
-};
-
-const addToWishlist = async (req: Request) => {
-  const { productId } = req.body;
-  const user = await User.findByIdAndUpdate(req.user._id, {
-    $addToSet: { wishlist: productId },
-  }).select("-password");
-  const response = {
-    message: "Đã thêm vào danh sách yêu thích!",
-    data: user,
-  };
-  return response;
-};
-
-const getMyWishlist = async (req: Request) => {
-  const wishlist = await User.findById(req.user._id).select("wishlist -_id").populate("wishlist");
-  const response = {
-    message: "Lấy danh sách yêu thích thành công!",
-    data: wishlist,
-  };
-  return response;
-};
-
-const removeFromWishlist = async (req: Request) => {
-  const { productId } = req.body;
-  const user = await User.findByIdAndUpdate(req.user._id, {
-    $pull: { wishlist: productId },
-  }).select("-password");
-  const response = {
-    message: "Đã xóa khỏi danh sách yêu thích!",
-    data: user,
   };
   return response;
 };
@@ -180,9 +147,6 @@ const userServices = {
   changePasswordMe,
   deleteUser,
   updateUser,
-  addToWishlist,
-  getMyWishlist,
-  removeFromWishlist,
   getMyVoucher,
 };
 export default userServices;

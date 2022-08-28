@@ -110,11 +110,10 @@ const getSingleUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const addNewUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const newUser = yield user_model_1.default.create(req.body);
-    if (!newUser)
-        throw new api_error_1.ApiError(404, "Không tìm thấy người dùng!");
+    const savedUser = yield newUser.save();
     const response = {
         message: "Thêm người dùng mới thành công!",
-        data: newUser,
+        data: savedUser,
     };
     return response;
 });
@@ -130,36 +129,6 @@ const deleteUser = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const response = {
         message: "Xóa người dùng thành công!",
         data: deletedUser,
-    };
-    return response;
-});
-const addToWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { productId } = req.body;
-    const user = yield user_model_1.default.findByIdAndUpdate(req.user._id, {
-        $addToSet: { wishlist: productId },
-    }).select("-password");
-    const response = {
-        message: "Đã thêm vào danh sách yêu thích!",
-        data: user,
-    };
-    return response;
-});
-const getMyWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const wishlist = yield user_model_1.default.findById(req.user._id).select("wishlist -_id").populate("wishlist");
-    const response = {
-        message: "Lấy danh sách yêu thích thành công!",
-        data: wishlist,
-    };
-    return response;
-});
-const removeFromWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { productId } = req.body;
-    const user = yield user_model_1.default.findByIdAndUpdate(req.user._id, {
-        $pull: { wishlist: productId },
-    }).select("-password");
-    const response = {
-        message: "Đã xóa khỏi danh sách yêu thích!",
-        data: user,
     };
     return response;
 });
@@ -195,9 +164,6 @@ const userServices = {
     changePasswordMe,
     deleteUser,
     updateUser,
-    addToWishlist,
-    getMyWishlist,
-    removeFromWishlist,
     getMyVoucher,
 };
 exports.default = userServices;
