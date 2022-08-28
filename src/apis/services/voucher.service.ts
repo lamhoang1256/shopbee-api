@@ -1,6 +1,5 @@
 import { Request } from "express";
 import Voucher from "../models/voucher.model";
-import User from "../models/user.model";
 import { ApiError } from "../utils/api-error";
 
 const addNewVoucher = async (req: Request) => {
