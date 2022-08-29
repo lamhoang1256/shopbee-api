@@ -5,7 +5,18 @@ import reviewMiddleware from "../middlewares/review.middleware";
 import tokenMiddleware from "../middlewares/token.middleware";
 const reviewRoutes = Router();
 
-reviewRoutes.get("/", reviewControllers.getAllReviewProduct);
+reviewRoutes.get(
+  "/product/:id",
+  helpersMiddleware.idRule("id"),
+  helpersMiddleware.idValidator,
+  reviewControllers.getAllReviewProduct,
+);
+reviewRoutes.get(
+  "/order/:id",
+  helpersMiddleware.idRule("id"),
+  helpersMiddleware.idValidator,
+  reviewControllers.getAllReviewOrder,
+);
 reviewRoutes.get(
   "/:id",
   helpersMiddleware.idRule("id"),

@@ -9,7 +9,8 @@ const helpers_middleware_1 = __importDefault(require("../middlewares/helpers.mid
 const review_middleware_1 = __importDefault(require("../middlewares/review.middleware"));
 const token_middleware_1 = __importDefault(require("../middlewares/token.middleware"));
 const reviewRoutes = (0, express_1.Router)();
-reviewRoutes.get("/", review_controller_1.default.getAllReviewProduct);
+reviewRoutes.get("/product/:id", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, review_controller_1.default.getAllReviewProduct);
+reviewRoutes.get("/order/:id", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, review_controller_1.default.getAllReviewOrder);
 reviewRoutes.get("/:id", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, review_controller_1.default.getSingleReview);
 reviewRoutes.post("/", token_middleware_1.default.verifyToken, review_middleware_1.default.addNewReviewRules(), helpers_middleware_1.default.entityValidator, review_controller_1.default.addNewReview);
 reviewRoutes.delete("/:id", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, token_middleware_1.default.verifyToken, review_controller_1.default.deleteReview);

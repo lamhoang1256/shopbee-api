@@ -11,6 +11,14 @@ const getAllReviewProduct = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, reviews);
 });
 
+// @desc    Lấy tất cả nhận xét sản phẩm
+// @route   GET /api/review
+// @access  Public
+const getAllReviewOrder = catchAsync(async (req: Request, res: Response) => {
+  const reviews = await reviewServices.getAllReviewOrder(req);
+  responseSuccess(res, reviews);
+});
+
 // @desc    Lấy chi tiết nhận xét sản phẩm
 // @route   GET /api/review/:id
 // @access  Public
@@ -49,5 +57,6 @@ const reviewControllers = {
   updateReview,
   getSingleReview,
   getAllReviewProduct,
+  getAllReviewOrder,
 };
 export default reviewControllers;

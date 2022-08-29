@@ -1,9 +1,9 @@
 "use strict";
-/** Lấy tất cả nhận xét theo id sản phẩm
+/** Lấy tất cả nhận xét theo id đơn hàng
  * @swagger
- * /review/product/:id:
+ * /review/order/:id:
  *  get:
- *      summary: Lấy tất cả nhận xét theo id sản phẩm
+ *      summary: Lấy tất cả nhận xét theo id đơn hàng
  *      tags: [Review]
  *      parameters:
  *       - in: path
@@ -11,7 +11,7 @@
  *         required: true
  *         schema:
  *           type: string
- *           description: Product ID
+ *           description: Order ID
  *      responses:
  *          200:
  *              description: Success

@@ -1,14 +1,16 @@
-/** Lấy tất cả nhận xét của sản phẩm
+/** Lấy tất cả nhận xét theo id sản phẩm
  * @swagger
- * /review:
+ * /review/product/:id:
  *  get:
- *      summary: Lấy tất cả nhận xét của sản phẩm
+ *      summary: Lấy tất cả nhận xét theo id sản phẩm
  *      tags: [Review]
  *      parameters:
- *          - in: query
- *            name: productId
- *            schema:
- *              type: string
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           description: Product ID
  *      responses:
  *          200:
  *              description: Success

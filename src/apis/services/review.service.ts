@@ -4,8 +4,23 @@ import Review from "../models/review.model";
 import { ApiError } from "../utils/api-error";
 
 const getAllReviewProduct = async (req: Request) => {
-  const { productId } = req.query;
+  const { productId } = req.params;
   const reviews = await Review.find({ productId })
+    .populate({
+      path: "user",
+      select: "fullname avatar email",
+    })
+    .sort({ updatedAt: -1 });
+  const response = {
+    message: "Lấy tất cả nhận xét sản phẩm!",
+    data: reviews,
+  };
+  return response;
+};
+
+const getAllReviewOrder = async (req: Request) => {
+  const { orderId } = req.params;
+  const reviews = await Review.find({ orderId })
     .populate({
       path: "user",
       select: "fullname avatar email",
@@ -94,5 +109,6 @@ const reviewServices = {
   deleteReview,
   updateReview,
   getSingleReview,
+  getAllReviewOrder,
 };
 export default reviewServices;

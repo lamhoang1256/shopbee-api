@@ -16,8 +16,22 @@ const product_model_1 = __importDefault(require("../models/product.model"));
 const review_model_1 = __importDefault(require("../models/review.model"));
 const api_error_1 = require("../utils/api-error");
 const getAllReviewProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { productId } = req.query;
+    const { productId } = req.params;
     const reviews = yield review_model_1.default.find({ productId })
+        .populate({
+        path: "user",
+        select: "fullname avatar email",
+    })
+        .sort({ updatedAt: -1 });
+    const response = {
+        message: "Lấy tất cả nhận xét sản phẩm!",
+        data: reviews,
+    };
+    return response;
+});
+const getAllReviewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const { orderId } = req.params;
+    const reviews = yield review_model_1.default.find({ orderId })
         .populate({
         path: "user",
         select: "fullname avatar email",
@@ -106,5 +120,6 @@ const reviewServices = {
     deleteReview,
     updateReview,
     getSingleReview,
+    getAllReviewOrder,
 };
 exports.default = reviewServices;

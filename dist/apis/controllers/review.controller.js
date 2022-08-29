@@ -22,6 +22,13 @@ const getAllReviewProduct = (0, catch_async_1.catchAsync)((req, res) => __awaite
     const reviews = yield review_service_1.default.getAllReviewProduct(req);
     (0, response_1.responseSuccess)(res, reviews);
 }));
+// @desc    Lấy tất cả nhận xét sản phẩm
+// @route   GET /api/review
+// @access  Public
+const getAllReviewOrder = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const reviews = yield review_service_1.default.getAllReviewOrder(req);
+    (0, response_1.responseSuccess)(res, reviews);
+}));
 // @desc    Lấy chi tiết nhận xét sản phẩm
 // @route   GET /api/review/:id
 // @access  Public
@@ -56,5 +63,6 @@ const reviewControllers = {
     updateReview,
     getSingleReview,
     getAllReviewProduct,
+    getAllReviewOrder,
 };
 exports.default = reviewControllers;
