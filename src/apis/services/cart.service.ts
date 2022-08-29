@@ -72,7 +72,7 @@ const getAllCart = async (req: Request) => {
 const deleteSingleCart = async (req: Request) => {
   const deletedData = await Cart.deleteMany({
     user: req.user._id,
-    _id: { $in: req.body.cartId },
+    _id: { $in: req.params.id },
   });
   if (!deletedData) throw new ApiError(404, "Sản phẩm bạn muốn xóa không tồn tại!");
   const response = {

@@ -43,6 +43,13 @@ const getSingleOrder = (0, catch_async_1.catchAsync)((req, res) => __awaiter(voi
     const order = yield order_service_1.default.getSingleOrder(req);
     (0, response_1.responseSuccess)(res, order);
 }));
+// @desc    Xóa đơn hàng
+// @route   GET /api/order/:id
+// @access  Private
+const deleteOrder = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const deletedOrder = yield order_service_1.default.deleteOrder(req);
+    (0, response_1.responseSuccess)(res, deletedOrder);
+}));
 // @desc    Chỉnh sửa trạng thái đơn hàng sang đang giao hàng
 // @route   PUT /api/order/:id/shipping
 // @access  Private/Admin
@@ -69,6 +76,7 @@ const categoryControllers = {
     getAllOrder,
     getAllOrderMe,
     getSingleOrder,
+    deleteOrder,
     updateStatusOrderToShipping,
     updateStatusOrderToDelivered,
     updateStatusOrderToCancel,

@@ -13,13 +13,13 @@ cartRoutes.post(
   helpersMiddleware.entityValidator,
   cartControllers.addToCart,
 );
+cartRoutes.delete("/", tokenMiddleware.verifyToken, cartControllers.deleteCarts);
 cartRoutes.delete(
-  "/",
+  "/:id",
   tokenMiddleware.verifyToken,
-  cartMiddleware.deleteSingleCartRules(),
-  helpersMiddleware.entityValidator,
+  helpersMiddleware.idRule("id"),
+  helpersMiddleware.idValidator,
   cartControllers.deleteSingleCart,
 );
-cartRoutes.delete("/all", tokenMiddleware.verifyToken, cartControllers.deleteCarts);
 
 export default cartRoutes;

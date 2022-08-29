@@ -1,10 +1,9 @@
-"use strict";
-/** Lấy tất cả người dùng
+/** Lấy tất cả đơn hàng của bạn
  * @swagger
- * /user:
+ * /order/me:
  *  get:
- *      summary: Lấy tất cả người dùng
- *      tags: [User]
+ *      summary: Lấy tất cả đơn hàng của bạn
+ *      tags: [Order]
  *      security:
  *        - bearerAuth: []
  *      parameters:
@@ -17,7 +16,11 @@
  *          schema:
  *            type: number
  *        - in: query
- *          name: email
+ *          name: status
+ *          schema:
+ *            type: string
+ *        - in: query
+ *          name: orderId
  *          schema:
  *            type: string
  *      responses:

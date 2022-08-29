@@ -56,42 +56,88 @@ const createNewOrder = async (req: Request) => {
 };
 
 const getAllOrder = async (req: Request) => {
-  const { status, orderId } = req.query;
-  let conditional: any = {};
-  if (status) conditional.status = status;
-  if (orderId) conditional._id = orderId;
-  const orders = await Order.find(conditional)
-    .sort({
-      updatedAt: -1,
-    })
-    .populate("user", "id fullname email")
-    .populate({
-      path: "orderItems",
-      populate: { path: "product" },
-    });
+  let { page = 1, limit = 12, status, orderId } = req.query;
+  page = Number(page);
+  limit = Number(limit);
+  let condition: any = {};
+  if (status) condition.status = status;
+  if (orderId) condition._id = orderId;
+  const [orders, totalOrders] = await Promise.all([
+    Order.find(condition)
+      .skip(page * limit - limit)
+      .limit(limit)
+      .populate("user", "id fullname email")
+      .populate({
+        path: "orderItems",
+        populate: { path: "product" },
+      })
+      .sort({
+        updatedAt: -1,
+      })
+      .lean(),
+    Order.find(condition).countDocuments().lean(),
+  ]);
+  if (!orders) throw new ApiError(404, "Không tìm thấy đơn hàng!");
+  const pageCount = Math.ceil(totalOrders / limit) || 1;
+  const pagination = {
+    page,
+    limit,
+    pageCount,
+  };
   const response = {
     message: "Lấy tất cả đơn hàng thành công!",
-    data: orders,
+    data: {
+      orders,
+      pagination,
+    },
+  };
+  return response;
+};
+
+const deleteOrder = async (req: Request) => {
+  const deleteOrder = await Order.findByIdAndDelete(req.params.id);
+  if (!deleteOrder) throw new ApiError(404, "Không tìm thấy đơn hàng!");
+  const response = {
+    message: "Xóa đơn hàng thành công!",
   };
   return response;
 };
 
 const getAllOrderMe = async (req: Request) => {
-  const { status, orderId } = req.query;
-  let conditional: any = { user: req.user._id };
-  if (status) conditional.status = status;
-  if (orderId) conditional._id = orderId;
-  const orders = await Order.find(conditional)
-    .populate({
-      path: "orderItems",
-      populate: { path: "product" },
-    })
-    .sort({
-      updatedAt: -1,
-    });
+  let { page = 1, limit = 12, status, orderId } = req.query;
+  page = Number(page);
+  limit = Number(limit);
+  let condition: any = { user: req.user._id };
+  if (status) condition.status = status;
+  if (orderId) condition._id = orderId;
+  const [orders, totalOrders] = await Promise.all([
+    Order.find(condition)
+      .skip(page * limit - limit)
+      .limit(limit)
+      .populate("user", "id fullname email")
+      .populate({
+        path: "orderItems",
+        populate: { path: "product" },
+      })
+      .sort({
+        updatedAt: -1,
+      })
+      .lean(),
+    Order.find(condition).countDocuments().lean(),
+  ]);
+  if (!orders) throw new ApiError(404, "Không tìm thấy đơn hàng!");
+  const pageCount = Math.ceil(totalOrders / limit) || 1;
+  const pagination = {
+    page,
+    limit,
+    pageCount,
+  };
   const response = {
     message: "Lấy tất cả đơn hàng thành công!",
-    data: orders,
+    data: {
+      orders,
+      pagination,
+    },
   };
   return response;
 };
@@ -180,5 +226,6 @@ const orderServices = {
   updateStatusOrderToShipping,
   updateStatusOrderToDelivered,
   updateStatusOrderToCancel,
+  deleteOrder,
 };
 export default orderServices;

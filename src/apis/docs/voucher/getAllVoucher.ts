@@ -1,10 +1,9 @@
-"use strict";
-/** Lấy tất cả người dùng
+/** Lấy tất cả voucher
  * @swagger
- * /user:
+ * /order:
  *  get:
- *      summary: Lấy tất cả người dùng
- *      tags: [User]
+ *      summary: Lấy tất cả voucher
+ *      tags: [Voucher]
  *      security:
  *        - bearerAuth: []
  *      parameters:
@@ -17,7 +16,11 @@
  *          schema:
  *            type: number
  *        - in: query
- *          name: email
+ *          name: status
+ *          schema:
+ *            type: string
+ *        - in: query
+ *          name: code
  *          schema:
  *            type: string
  *      responses:

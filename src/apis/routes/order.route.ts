@@ -21,6 +21,13 @@ orderRoutes.get(
   tokenMiddleware.verifyToken,
   orderControllers.getSingleOrder,
 );
+orderRoutes.delete(
+  "/:id",
+  helpersMiddleware.idRule("id"),
+  helpersMiddleware.idValidator,
+  tokenMiddleware.verifyTokenAndAdmin,
+  orderControllers.deleteOrder,
+);
 orderRoutes.put(
   "/:id/shipping",
   helpersMiddleware.idRule("id"),

@@ -13,16 +13,7 @@ const addToCartRules = () => {
             .withMessage("quantity phải ở định dạng number"),
     ];
 };
-const deleteSingleCartRules = () => {
-    return [
-        (0, express_validator_1.body)("cartId")
-            .if((value) => value !== undefined)
-            .isMongoId()
-            .withMessage("cartId phải là id"),
-    ];
-};
 const cartMiddleware = {
     addToCartRules,
-    deleteSingleCartRules,
 };
 exports.default = cartMiddleware;

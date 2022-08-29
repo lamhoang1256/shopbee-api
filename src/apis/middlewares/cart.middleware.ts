@@ -13,18 +13,8 @@ const addToCartRules = () => {
   ];
 };
 
-const deleteSingleCartRules = () => {
-  return [
-    body("cartId")
-      .if((value: any) => value !== undefined)
-      .isMongoId()
-      .withMessage("cartId phải là id"),
-  ];
-};
-
 const cartMiddleware = {
   addToCartRules,
-  deleteSingleCartRules,
 };
 
 export default cartMiddleware;

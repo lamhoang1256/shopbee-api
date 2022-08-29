@@ -79,7 +79,7 @@ const getAllCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
 const deleteSingleCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const deletedData = yield cart_model_1.default.deleteMany({
         user: req.user._id,
-        _id: { $in: req.body.cartId },
+        _id: { $in: req.params.id },
     });
     if (!deletedData)
         throw new api_error_1.ApiError(404, "Sản phẩm bạn muốn xóa không tồn tại!");

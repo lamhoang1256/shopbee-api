@@ -35,6 +35,14 @@ const getSingleOrder = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, order);
 });
 
+// @desc    Xóa đơn hàng
+// @route   GET /api/order/:id
+// @access  Private
+const deleteOrder = catchAsync(async (req: Request, res: Response) => {
+  const deletedOrder = await orderServices.deleteOrder(req);
+  responseSuccess(res, deletedOrder);
+});
+
 // @desc    Chỉnh sửa trạng thái đơn hàng sang đang giao hàng
 // @route   PUT /api/order/:id/shipping
 // @access  Private/Admin
@@ -64,6 +72,7 @@ const categoryControllers = {
   getAllOrder,
   getAllOrderMe,
   getSingleOrder,
+  deleteOrder,
   updateStatusOrderToShipping,
   updateStatusOrderToDelivered,
   updateStatusOrderToCancel,
