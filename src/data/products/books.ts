@@ -9,7 +9,6 @@ const books = [
     stock: 320,
     sold: 1329,
     view: 4858,
-    reviews: [],
     description: `
     <p>Giới thiệu nội dung:</p>
     <p>Kimizuka Kimihiko, một học sinh bình thường, tuy vậy, bản thân lại mắc một thể chất đặc biệt luôn thu hút những rắc rối ập tới. Đi trên đường thì bị lôi kéo vào một đám đông phiền phức, đi vào trong hẻm thì bắt gặp cảnh giao dịch mờ ám,vbản thân luôn vô tình tìm thấy hiện trường án mạng đầu tiên khiến cho cảnh sát gặp quen mặt phải nghi ngờ. Ngày hôm ấy, thể chất thu hút rắc rối kia tiếp tục hoành hành, khiến cậu không hiểu vì lý do gì lại ở trên một chuyến bay ra nước ngoài cùng một chiếc va ly khả nghi. Đấy cũng là thời điểm câu hỏi của người tiếp viên vang lên trong đầu cậu. Một tình huống nhạy cảm đã xảy ra trên chiếc máy bay này, khiến người tiếp viên cần cứu viện từ một thám tử. Và đấy cũng là lần đầu tiên, Kimizuka gặp cô ấy, người con gái tự xưng là thám tử bậc thầy với ngoại hình xinh đẹp tựa giấc mộng trưa hè, Siesta. Vì quá ngỡ ngàng, cậu đã ngỏ lời và được vị thám tử ấy mời làm trợ thủ.
@@ -31,7 +30,6 @@ const books = [
     stock: 920,
     sold: 4029,
     view: 67158,
-    reviews: [],
     description: `
     <p>Giới thiệu nội dung:</p>
     <p>"Bạn hối tiếc vì không nắm bắt lấy một cơ hội nào đó, chẳng có ai phải mất ngủ.
@@ -52,7 +50,6 @@ const books = [
     stock: 230,
     sold: 7129,
     view: 23318,
-    reviews: [],
     description: `
     <p>Giới thiệu nội dung:</p>
     <p>Đắc Nhân Tâm - Được lòng người, là cuốn sách đưa ra các lời khuyên về cách thức cư xử, ứng xử và giao tiếp với mọi người để đạt được thành công trong cuộc sống. Gần 80 năm kể từ khi ra đời, Đắc Nhân Tâm là cuốn sách gối đầu giường của nhiều thế hệ luôn muốn hoàn thiện chính mình để vươn tới một cuộc sống tốt đẹp và thành công.</p><p>Đắc Nhân Tâm cụ thể và chi tiết với những chỉ dẫn để dẫn đạo người, để gây thiện cảm và dẫn dắt người khác,... những hướng dẫn ấy, qua thời gian, có thể không còn thích hợp trong cuộc sống hiện đại nhưng nếu người đọc có thể cảm và hiểu được những thông điệp tác giả muốn truyền đạt thì việc áp dụng nó vào cuộc sống trở nên dễ dàng và hiệu quả."</p><p>Đắc Nhân Tâm là nghệ thuật thu phục lòng người, là làm cho tất cả mọi người yêu mến mình. "Đắc nhân tâm" và cái Tài trong mỗi người chúng ta. "Đắc Nhân Tâm" trong ý nghĩa đó cần được thụ đắc bằng sự hiểu rõ bản thân, thành thật với chính mình, hiểu biết và quan tâm đến những người xung quanh để nhìn ra và khơi gợi những tiềm năng ẩn khuất nơi họ, giúp họ phát triển lên một tầm cao mới. Đây chính là nghệ thuật cao nhất về con người và chính là ý nghĩa sâu sắc nhất đúc kết từ những nguyên tắc vàng của Dale Carnegie.Sách đã được chuyển ngữ sang hầu hết các thứ tiếng trên thế giới và có mặt ở hàng trăm quốc gia. Đây là cuốn sách liên tục đứng đầu danh mục sách bán chạy nhất do thời báo NewYork Times bình chọn suốt 10 năm liền.</p>`,
@@ -74,7 +71,6 @@ const books = [
     stock: 1210,
     sold: 2129,
     view: 5158,
-    reviews: [],
     description: `
     <p>Giới thiệu nội dung:</p>
     <p>Hàng xóm kế bên căn hộ của Fujimiya Amane chính là nữ sinh xinh đẹp nhất trường cậu, Shiina Mahiru.Họ vốn chẳng có mối liên hệ nào cho đến một ngày mưa tầm tã, Amane tình nguyện đưa chiếc ô của mình cho cô bạn hàng xóm xinh đẹp tựa thiên thần, cả hai đã bắt đầu tương tác với nhau theo một cách kì quặc.</p><p>Chẳng thể chịu được lối sinh hoạt cẩu thả khi sống một mình của Amane, Mahiru đã quyết định sẽ chăm sóc cậu từ những điều nhỏ nhất.Một Mahiru thiếu thốn sự gắn kết với gia đình đang dần mở lòng hơn, cùng một Amane hay tự ti đang ngày một đổi thay theo chiều hướng tích cực. Khoảng cách giữa hai con người không chút thành thật ấy đang từng bước thu hẹp lại...</p>`,
@@ -94,7 +90,6 @@ const books = [
     stock: 1210,
     sold: 3129,
     view: 858,
-    reviews: [],
     description: `
     <div"><p>Truyện _ Thám tử lừng danh Conan - Hồ sơ tuyệt mật - Shuichi Akai và Toru Amuro</p><p></p><p>Mã EAN 8935244870473</p><p>Tác giả Gosho Aoyama</p><p>Dịch giả Thu Hằng</p><p>Giá bìa 120.000</p><p>Loại bìa Bìa áo ép nhũ</p><p>Khổ (cm) 18x26</p><p>Số trang 92</p><p>Nhà xuất bản NXB Kim Đồng</p><p>Năm xuất bản 2022</p><p></p><p></p><p>Series Magazine Conan - Secret Archives tiết lộ những bí mật chưa từng được công bố xoay</p><p>quanh dàn nhân vật &amp;quot;Cực phẩm&amp;quot; trong Conan chính thức được phát hành tại Việt Nam!!</p><p>Tập đầu tiên bao gồm Hồ sơ cá nhân của Shuichi Akai và Toru Amuro cùng những nhân vật liên</p><p>quan chắc chắn sẽ làm bạn không thể rời mắt!!</p><p>Điệp viên FBI Vs. Cảnh sát An ninh: SHUICHI AKAI &amp;amp; TORU AMURO!! Akai Shuichi và</p><p>Amuro Toru là hai người hoàn toàn trái ngược nhau. Akai là đặc vụ của Cục Điều tra Liên bang</p><p>Hoa Kì (hay còn gọi là FBI), Amuro là cảnh sát trực thuộc Lực lượng Cảnh sát An ninh Nhật</p><p>Bản. Akai ít nói và luôn hành động một cách bí mật, còn Amuro dồn ép đối phương bằng sự hoạt</p><p>ngôn bẩm sinh. Thế nhưng, Akai Shuichi và Amuro Toru vẫn có những điểm rất giống nhau. Cả</p><p>hai đều sở hữu trí thông minh tuyệt đỉnh, cộng thêm khả năng chiến đấu đáng nể!</p><p>Bạn sẽ được cuốn theo các phân cảnh chủ đạo của Akai và Amuro trong Movie “Cơn ác mộng</p><p>đen tối”! Ngoài ra còn có các tranh gốc, bảng phân cảnh và bản chỉnh sửa cốt truyện mang bút</p><p>tích của tác giả Gosho Aoyama nữa!!</p><p>Hãy cùng đến với cuốn Tạp chí đầu tiên về CONAN, với hình thức cao cấp giống hệt bản gốc:</p><p>Phần bìa áo ép nhũ, phần ruột được in màu toàn bộ trên giấy C! Chắc chắn sẽ mang đến những</p><p>trải nghiệm chưa từng có trước nay cho các Fan của chàng thám tử Conan! Nhất là khi tác phẩm</p><p>đang trên đà kỉ niệm 100 tập truyện và gần 30 năm phát hành tại Việt Nam! Nhà xuất bản Kim</p><p>Đồng xin trân trọng giới thiệu cùng bạn đọc</p></div>`,
     images: [
@@ -115,7 +110,6 @@ const books = [
     stock: 210,
     sold: 8129,
     view: 12858,
-    reviews: [],
     description: `
     <p>Hãy làm quen với Zezé, cậu bé tinh nghịch siêu hạng đồng thời cũng đáng yêu bậc nhất, với ước mơ lớn lên trở thành nhà thơ cổ thắt nơ bướm. Chẳng phải ai cũng công nhận khoản “đáng yêu” kia đâu nhé. Bởi vì, ở cái xóm ngoại ô nghèo ấy, nỗi khắc khổ bủa vây đã che mờ mắt người ta trước trái tim thiện lương cùng trí tưởng tượng tuyệt vời của cậu bé con năm tuổi.</p><p>Có hề gì đâu bao nhiêu là hắt hủi, đánh mắng, vì Zezé đã có một người bạn đặc biệt để trút nỗi lòng: cây cam ngọt nơi vườn sau. Và cả một người bạn nữa, bằng xương bằng thịt, một ngày kia xuất hiện, cho cậu bé nhạy cảm khôn sớm biết thế nào là trìu mến, thế nào là nỗi đau, và mãi mãi thay đổi cuộc đời cậu.</p><p>Mở đầu bằng những thanh âm trong sáng và kết thúc lắng lại trong những nốt trầm hoài niệm, Cây cam ngọt của tôi khiến ta nhận ra vẻ đẹp thực sự của cuộc sống đến từ những điều giản dị như bông hoa trắng của cái cây sau nhà, và rằng cuộc đời thật khốn khổ nếu thiếu đi lòng yêu thương và niềm trắc ẩn. Cuốn sách kinh điển này bởi thế không ngừng khiến trái tim người đọc khắp thế giới thổn thức, kể từ khi ra mắt lần đầu năm 1968 tại Brazil.</p><p>TÁC GIẢ: JOSÉ MAURO DE VASCONCELOS (1920-1984) là nhà văn người Brazil. Sinh ra trong một gia đình nghèo ở ngoại ô Rio de Janeiro, lớn lên ông phải làm đủ nghề để kiếm sống. Nhưng với tài kể chuyện thiên bẩm, trí nhớ phi thường, trí tưởng tượng tuyệt vời cùng vốn sống phong phú, José cảm thấy trong mình thôi thúc phải trở thành nhà văn nên đã bắt đầu sáng tác năm 22 tuổi. Tác phẩm nổi tiếng nhất của ông là tiểu thuyết mang màu sắc tự truyện Cây cam ngọt của tôi. Cuốn sách được đưa vào chương trình tiểu học của Brazil, được bán bản quyền cho hai mươi quốc gia và chuyển thể thành phim điện ảnh. Ngoài ra, José còn rất thành công trong vai trò diễn viên điện ảnh và biên kịch.</p>`,
     images: [
@@ -133,7 +127,6 @@ const books = [
     stock: 310,
     sold: 7329,
     view: 32858,
-    reviews: [],
     description: `<div><p>Tác giả: Kinugasa Syougo</p><p>Nhà phát hành: IPM</p><p>Nhà xuất bản: NXB Hà Nội</p><p>Kích thước: 18 x 13 cm</p><p>Năm xuất bản: 2022</p><p>Số trang: 400</p><p>Ngôn ngữ: Tiếng Việt</p><p></p><p>BẢN GIỚI HẠN, chỉ phát hành một lần duy nhất, bao gồm: </p><p>01 cuốn sách đựng trong boxset in 6 màu với hoa văn nhũ bạc sang trọng, có dán tem quà tặng độc quyền từ NXB Kadokawa, mỗi tem chứa 1 số seri độc nhất. </p><p>01 Standee Acrylic hình nhân vật thiết kế độc quyền, dạng bảng kích cỡ 13x18cm. </p><p>01 ID Card 5.5x8.5 cm bằng nhựa cứng cáp, dày dặn, đựng trong phong bì thiết kế riêng.</p><p></p><p>BẢN ĐẶC BIỆT, chỉ phát hành một lần duy nhất:</p><p> 01 cuốn sách.</p><p> 01 Camera card 6.7x12 cm sử dụng chất liệu nhựa trong thiết kế độc quyền, vừa có thể đánh dấu trang, vừa phù hợp để check-in, “sống ảo”. </p><p></p><p> BẢN THƯỜNG: 01 quyển sách</p><p></p><p>Giới thiệu sách:</p><p>Trường Trung học Phổ thông Đào tạo Nâng cao là ngôi trường danh giá hàng đầu Nhật Bản, với gần 100% học sinh đỗ vào trường đại học mong muốn và tìm được việc làm. Học sinh được sử dụng cơ sở vật chất hiện đại bậc nhất, mỗi tháng được cấp một số điểm có giá trị tương đương 100.000 yên, tự do tạo kiểu tóc và mang vật dụng cá nhân. Thật giống như sống trên thiên đường.</p><p>Thực chất, đây là ngôi trường theo chủ nghĩa đề cao thực lực, nơi chỉ học sinh ưu tú mới được đãi ngộ tốt. Vì lý do riêng, nhân vật chính Ayanokoji Kiyotaka làm bài thi đầu vào qua loa, rồi bị xếp vào lớp D hạng bét - thường bị giễu cợt là cái “ổ” tập trung “hàng lỗi”. Tại đây, cậu gặp Horikita Suzune - một nữ sinh xinh đẹp học giỏi nhưng tính cách đầy vấn đề, và Kushida Kikyo - một cô bạn dịu dàng tốt bụng tựa thiên thần. Nhờ đó, tình hình quanh Kiyotaka dần biến chuyển...</p><p>Bộ đôi tác giả - họa sĩ minh họa trứ danh hứa hẹn sẽ đem tới cho độc giả tập sách “Khải Huyền”</p><p>mới của thể loại học đường</p></div>`,
     images: [
       "https://cf.shopee.vn/file/aa1ad5b434ab6e6dd36107568e863f48",
@@ -151,7 +144,6 @@ const books = [
     stock: 3110,
     sold: 8329,
     view: 42858,
-    reviews: [],
     description: `<div><p>Tự học 2000 từ vựng tiếng Anh theo chủ đề (khổ nhỏ)” giúp người học  bắt đầu với những bài học cơ bản nhất từ chữ viết, ngữ pháp, từ vựng thông dụng để bạn đọc nắm bắt được ngôn ngữ một cách dễ dàng</p><p>Cuốn sách “Tự học 2000 từ vựng tiếng Anh theo chủ đề (khổ nhỏ)” sẽ giúp bạn:
     </p><p>-	Nắm trọn 2000 từ vựng tiếng Anh theo chủ đề thông dụng nhất </p><p>-	Tiếp cận cách học sáng tạo và tập trung </p><p>-	Tạo nền tảng căn bản trong giao tiếp tiếng Anh </p><p>-	Củng cố kiến thức hiệu quả qua bài tập thực hành chọn lọc </p><p>-	Kết hợp audio luyện nghe và phát âm hiệu quả </p><p>-	Tặng ngay Ebook flashcards 100 cụm động từ thông dụng nhất </p><p>Đối tượng và nội dung cơ bản của cuốn sách</p><p>-	Cuốn sách gồm 42 chủ đề bao gồm các từng vựng tiếng Anh thông dụng nhất trong cuộc sống hàng ngày, phù hợp với mọi đối tượng, lứa tuổi và trình độ khác nhau. </p><p>-	Việc chia thành nhiều chủ đề nhỏ giúp bạn đọc dễ học hơn mà không bị rối với một lượng từ quá lớn. Mỗi từ vựng đều có cách phát âm chuẩn, trọng âm, nghĩa, được phân loại cụ thể cùng với cách sử dụng dễ hiểu, rất phù hợp với những bạn tự học tiếng Anh. Cuốn sách còn thu hút người đọc bởi bố cục hợp lý, màu sắc bắt mắt tạo hứng thú trong quá trình học tập.</p>
     </div>`,
@@ -171,7 +163,6 @@ const books = [
     stock: 110,
     sold: 829,
     view: 858,
-    reviews: [],
     description: `<div><p>SỨC MẠNH CỦA NGÔN TỪ</p><p>(SHIN DOHYEON &amp; YUN NARU) </p><p>
     </p><p>SỨC MẠNH CỦA NGÔN TỪ</p><p>Bí quyết thay đổi khả năng ngôn ngữ của chính bạn!</p><p></p><p>Cuốn sách yêu thích của V - thành viên nhóm nhạc nổi tiếng toàn cầu BTS.</p><p>Lọt top những cuốn sách được đọc nhiều nhất Hàn Quốc năm 2019. </p><p>Liên tục sold out trên toàn hệ thống mỗi lần tái bản.</p><p>Được nhiều quốc gia mua bản quyền và chuyển ngữ sang nhiều thứ tiếng như Trung Quốc, Đài Loan, Thái Lan,…</p><p>
     </p><p>Ấn phẩm giới thiệu đến độc giả tám giai đoạn khác nhau để cải thiện kỹ năng nói của bạn từ cơ bản đến nâng cao.</p><p>Kỹ năng giao tiếp là một trong những kỹ năng sống vô cùng quan trọng, tuy nhiên đôi khi chúng ta lại không mấy để ý tới chúng. Để đạt được điều bạn mong muốn, ngôn từ chính là chiếc chìa khóa đầu tiên. Sức mạnh của ngôn từ có thể đưa bạn từ sự vui sướng tột độ đến tâm trạng tụt dốc, buồn đau,chán nản. Cuộc sống của bạn sẽ trở nên tốt đẹp và hạnh phúc hơn nếu thấu hiểu được ẩn ý và cách sử dụng khéo léo và linh hoạt  ngôn từ trong giao tiếp.</p><p>
@@ -193,7 +184,6 @@ const books = [
     stock: 2110,
     sold: 6829,
     view: 92858,
-    reviews: [],
     description: `<div><h3>BẠN NHẬN ĐƯỢC GÌ TRONG KHI HỌC SÁCH ID LỚP 12: TỔNG ÔN NGỮ PHÁP TIẾNG ANH CÔ TRANG ANH - BẢN 2022:</h3><p>- Đầy đủ nhất với 30 CHUYÊN ĐỀ NGỮ PHÁP TIẾNG ANH của cô Trang Anh </p><p>- Dày 605 trang gần 7.000 bài tập  SỐ LƯỢNG BÀI NHIỀU NHẤT </p><p>- TỔNG ÔN TẬP ngữ pháp tiếng anh CHẮC CHẮN CÓ trong đề thi </p><p>- Lí thuyết được đơn giản hoá, trình bày MINDMAP dễ hiểu và siêu dễ nhớ </p><p>- Mức độ bài tập đi từ CỰC DỄ đến KHÔNG THỂ KHÓ HƠN </p><h3>ĐỐI TƯỢNG HỌC SÁCH ID 12 ÔN LUYỆN THI THPT QUỐC GIA 2023 – TỔNG ÔN NGỮ PHÁP TIẾNG ANH CÔ TRANG ANH MOON.VN:</h3><p>- Học sinh lớp 12 đang luyện thi THPTQG năm 2022, học sinh từ lớp 8 trở lên muốn  </p>lấy lại gốc ngữ pháp Tiếng Anh<p>- Thầy cô giáo làm tài liệu tham khảo trong quá trình luyện thi </p> ĐIỂM ĐẶC BIỆT CỦA SÁCH ID 12 TỔNG ÔN NGỮ PHÁP TIẾNG ANH MOONBOOK BẢN 2022: <p>- Tích hợp với khóa học Ngữ pháp tiếng anh cô Trang Anh  Trị giá 600K </p><p>- Tặng kèm hơn 200 BÀI GIẢNG NGỮ PHÁP TIẾNG ANH và thi thử tại Moon hàng tuần </p><p>- KHÔNG THỂ LÀM LẬU vì mã ID là duy nhất </p> CHƯƠNG TRÌNH ƯU ĐÃI KHI MUA SÁCH ID:<p>- 100% có lời giải cà video cUA SÁCH ID: </p><p>- Freeship 70k cho đơn từ 300ka </p><p>- Tặng kèm flashcard hoặc bookmark, phiếu trắc nghiệm trong đơn hàng </p><p>- Truy cập bài giảng online các môn học ngoài Sách ôn thi THPT quốc gia miễn phí </p><p>- 100% Sách phát hành là bản mới nhất </p><p>- 100% MIỄN PHÍ đổi trả nếu sản phẩm lỗi từ phía shop hoặc nhà sản xuất </p>THÔNG TIN  CHI TIẾT VỀ SẢN PHẨM: <p>- Tác giả: Cô Trang Anh </p><p>- Nhà xuất bản: NXB ĐẠI HỌC QUỐC GIA HÀ NỘI </p><p>- Nhà phát hành: Công ty Cổ phần công nghệ giáo dục trực tuyến Aladanh </p><p>- Số Trang: 606 trang </p><p>- Kích thước: 19x27x5cm </p><p>- Năm xuất bản: 2020 </p><p>- Năm tái bản: 2021 </p><p>- Loại bìa: Bìa mềm </p><p>✔️ Học ngữ pháp: Tổng ôn Tiếng Anh </p><p>✔️ Học từ vựng: 3.000 câu hỏi ngữ pháp từ vựng hay saI </p><p>✔️ Luyện kỹ năng đọc hiểu: 500 bài đọc hiểu Tiếng Anh  </p><p>✔️ Thành ngữ/ Tục ngữ tiếng anh: 2.000 Collocations and idioms </p><p>✔️ Luyện đề tiếng anh: Bộ đề minh họa Tiếng Anh 2022 </p></div>`,
     images: [
       "https://cf.shopee.vn/file/b482e5c0dfdf23368fb6b0301c284ecd",

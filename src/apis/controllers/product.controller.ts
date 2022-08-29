@@ -43,38 +43,11 @@ const updateProduct = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, updatedProduct);
 });
 
-// @desc    Thêm mới 1 bình luận
-// @route   POST /api/product/:id/review
-// @access  Private
-const addNewReview = catchAsync(async (req: Request, res: Response) => {
-  const newReview = await productServices.addNewReview(req);
-  responseSuccess(res, newReview);
-});
-
-// @desc    Chỉnh sửa 1 bình luận
-// @route   PUT /api/product/:id/review
-// @access  Private
-const updateReview = catchAsync(async (req: Request, res: Response) => {
-  const newReview = await productServices.updateReview(req);
-  responseSuccess(res, newReview);
-});
-
-// @desc    Xóa 1 bình luận
-// @route   DELETE /api/product/:id/review
-// @access  Private
-const deleteReview = catchAsync(async (req: Request, res: Response) => {
-  const newReview = await productServices.deleteReview(req);
-  responseSuccess(res, newReview);
-});
-
 const productControllers = {
   addNewProduct,
   getAllProduct,
   getSingleProduct,
   deleteProduct,
   updateProduct,
-  addNewReview,
-  deleteReview,
-  updateReview,
 };
 export default productControllers;

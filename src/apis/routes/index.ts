@@ -9,6 +9,7 @@ import userRoutes from "./user.route";
 import shopRoutes from "./shop.route";
 import voucherRoutes from "./voucher.route";
 import wishlistRoutes from "./wishlist.route";
+import reviewRoutes from "./review.route";
 import importRoutes from "./import.route";
 import { responseError } from "../utils/response";
 
@@ -24,6 +25,7 @@ appRoutes.use("/api/user", userRoutes);
 appRoutes.use("/api/shop", shopRoutes);
 appRoutes.use("/api/voucher", voucherRoutes);
 appRoutes.use("/api/wishlist", wishlistRoutes);
+appRoutes.use("/api/review", reviewRoutes);
 appRoutes.use((err: any, req: Request, res: Response, next: NextFunction) => {
   responseError(err, res);
 });

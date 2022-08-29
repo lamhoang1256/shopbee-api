@@ -9,7 +9,6 @@ const laptop = [
     stock: 320,
     sold: 1239,
     view: 91158,
-    reviews: [],
     description: `<div>
     <h3>Apple MacBook Air (2020) M1 Chip, 13.3-inch, 8GB, 256GB SSD</h3>
     <p>Mạnh mẽ vươn tới thành công. Mà nhẹ bỗng.</p>
@@ -56,7 +55,6 @@ const laptop = [
     stock: 220,
     sold: 529,
     view: 10158,
-    reviews: [],
     description: `<div>
     <h3>Máy tính Laptop máy tính xách tay chip Intel J3455 /J4105/RAM8G+ROM128G màn 15.6 inch</h3>
     <p>Mạnh mẽ vươn tới thành công. Mà nhẹ bỗng.</p>
@@ -103,7 +101,6 @@ const laptop = [
     stock: 50,
     sold: 329,
     view: 60158,
-    reviews: [],
     description: `<div>
     <h3>Surface Laptop Go i5-1035G1 l RAM 8G l SSD 128G l Màn Touch 12 Inch</h3>
     <p>Mạnh mẽ vươn tới thành công. Mà nhẹ bỗng.</p>
@@ -150,7 +147,6 @@ const laptop = [
     stock: 420,
     sold: 129,
     view: 45158,
-    reviews: [],
     description: `<div>
     <h3>Laptop ThinkPad Yoga 370 Core i7-7600u l i5-7300u l Ram 8G l SSD 256G</h3>
     <p>Mạnh mẽ vươn tới thành công. Mà nhẹ bỗng.</p>
@@ -197,7 +193,6 @@ const laptop = [
     stock: 450,
     sold: 329,
     view: 34158,
-    reviews: [],
     description: `<div>
     <h3>ThinkPad X1 Yoga Gen 1 i7-6600U l RAM 8GB l SSD 256GB l Màn 14' FHD Touch </h3>
     <p>Mạnh mẽ vươn tới thành công. Mà nhẹ bỗng.</p>
@@ -244,7 +239,6 @@ const laptop = [
     stock: 3120,
     sold: 99,
     view: 17158,
-    reviews: [],
     description: `<div>
     <h3>Laptop Acer Gaming Aspire 7 A715 42G R1SB NH.QAYSV.005 kèm Balo Acer Gaming chính hãng SUV2</h3>
     <p>Mạnh mẽ vươn tới thành công. Mà nhẹ bỗng.</p>
@@ -291,7 +285,6 @@ const laptop = [
     stock: 109,
     sold: 89,
     view: 158,
-    reviews: [],
     description: `<div>
     <h3>Laptop Asus X542UQR I5</h3>
     <p>Mạnh mẽ vươn tới thành công. Mà nhẹ bỗng.</p>
@@ -339,7 +332,6 @@ const laptop = [
     stock: 420,
     sold: 289,
     view: 958,
-    reviews: [],
     description: `<div>
     <h3>Laptop MSI Modern 15 A5M-239VN R7-5700U | 8GB | 512GB | AMD | 15.6' FHD</h3>
     <p>Mạnh mẽ vươn tới thành công. Mà nhẹ bỗng.</p>
@@ -386,7 +378,6 @@ const laptop = [
     stock: 220,
     sold: 529,
     view: 10158,
-    reviews: [],
     description: `<div>
     <h3>Laptop ASUS TUF Gaming F15 FX506LHB-HN188W/i5-10300H/15.6"FHD/8GB/512GB/GTX 1650 4GB</h3>
     <p>Mạnh mẽ vươn tới thành công. Mà nhẹ bỗng.</p>
@@ -434,7 +425,6 @@ const laptop = [
     stock: 620,
     sold: 150,
     view: 9008,
-    reviews: [],
     description: `<div>
     <h3>Máy tính Laptop máy tính xách tay chip Intel J3455 /J4105/RAM8G+ROM128G màn 15.6 inch</h3>
     <p>Mạnh mẽ vươn tới thành công. Mà nhẹ bỗng.</p>

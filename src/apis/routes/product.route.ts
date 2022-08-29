@@ -40,30 +40,5 @@ productRoutes.put(
   helpersMiddleware.entityValidator,
   productControllers.updateProduct,
 );
-productRoutes.post(
-  "/:id/review",
-  helpersMiddleware.idRule("id"),
-  helpersMiddleware.idValidator,
-  tokenMiddleware.verifyToken,
-  productMiddleware.addNewReviewRules(),
-  helpersMiddleware.entityValidator,
-  productControllers.addNewReview,
-);
-productRoutes.delete(
-  "/:id/review",
-  helpersMiddleware.idRule("id"),
-  helpersMiddleware.idValidator,
-  tokenMiddleware.verifyToken,
-  productControllers.deleteReview,
-);
-productRoutes.put(
-  "/:id/review",
-  helpersMiddleware.idRule("id"),
-  helpersMiddleware.idValidator,
-  tokenMiddleware.verifyToken,
-  productMiddleware.updateReviewRules(),
-  helpersMiddleware.entityValidator,
-  productControllers.updateReview,
-);
 
 export default productRoutes;

@@ -9,7 +9,6 @@ const lifeHouse = [
     stock: 120,
     sold: 429,
     view: 9758,
-    reviews: [],
     description: `<ul>
     <p>Khăn Tắm Khăn Mặt Khách Sạn RIOTEX - Kích Thước 34x34/ 40x80/ 60x120 cm Hàng Xuất Nhật dùng cho khách sạn, nhà nghỉ, salon tóc, spa,</p>
     <p>1. Đặc điểm sản phẩm</p>
@@ -46,7 +45,6 @@ const lifeHouse = [
     stock: 820,
     sold: 929,
     view: 15098,
-    reviews: [],
     description: `<div><h3>Hướng dẫn sử dụng</h3>
     - Trước khi dùng nên pha chút dấm hoặc nước chanh vào nước và đun sôi 5 phút<br>- Cho một chút rất ít dầu ăn và dàn đều chảo thì chống dính sẽ tốt và bền hơn.<br>- Trong quá trình sử dụng không gia nhiệt quá lâu khi&nbsp;&nbsp;thức ăn trong nồi<br>- Không để thức ăn quá 8 tiếng trong nồi để chất chống dính được bền<br>- Nên thao tác nấu bằng các dụng cụ làm bằng chất liệu gỗ, nhựa như đũa gỗ, thìa gỗ<br>- Sau khi dùng xong không dùng các loại dụng cụ cọ xoong nồi bằng kim loại<br>- Nên vệ sinh nồi/ chảo bằng dầu rửa bát và dụng cụ mềm, để chỗ khô thoáng</div>`,
     images: [
@@ -66,7 +64,6 @@ const lifeHouse = [
     stock: 870,
     sold: 529,
     view: 9998,
-    reviews: [],
     description: `<div><p>Ghế xoay lưới có tựa đầu là dòng sản phẩm được thiết kế dùng cho nhân viên văn phòng.</p>
     <p>Ghế tựa lưới khung nhựa kiểu dáng chắc khỏe, đệm ghế mút bọc lưới xốp, lưng lưới thoáng.</p>
     <p>Tay ghế nhựa kiểu cách tạo điểm nhấn cho sản phẩm.</p>
@@ -90,7 +87,6 @@ const lifeHouse = [
     stock: 320,
     sold: 8629,
     view: 19158,
-    reviews: [],
     description: `<div>
     <p>Ngày nay khi mà đời sống vật chất của mỗi người dần được cải thiện thì nhu cầu thẩm mỹ lại càng được nâng cao lên một bước. Đó là lý do vì sao không gian sống ngày càng được chăm chút kỹ lưỡng hơn</p><p>Chất liệu: gỗ</p><p>Kích thước: 43 x 40 x 26cm</p><p>Màu : Vân gỗ</p></div>`,
     images: [
@@ -109,7 +105,6 @@ const lifeHouse = [
     stock: 3149,
     sold: 9579,
     view: 28958,
-    reviews: [],
     description: `<div><p>THÔNG TIN SẢN PHẨM<br>Tên: Mười Giờ mix màu từ 15-16 màu</p>
     <p>- Kích thước của cây:<br>+ Chiều cao: 15-20cm<br>+ Màu sắc: Xanh</p>
     <p>&nbsp;: Số lượng cành " trên 60 cành&nbsp;</p>
@@ -133,7 +128,6 @@ const lifeHouse = [
     stock: 420,
     sold: 929,
     view: 1158,
-    reviews: [],
     description: `<div><p><strong>TÍNH NĂNG NỔI BẬT:</strong></p>
     <p>- Siêu Tiết kiệm: Sản phầm bao gồm 1 nắp thiết kế trượt đóng, mở dễ dàng và tặng kèm 1 ống hút thép thắng tái sử dụng, 1 dụng cụ vệ sinh ống hút.</p>
     <p>- Vật Liệu Cao Cấp: Ly được làm từ thép thực phẩm 304,18/8 giúp giữ nhiệt độ của đồ uống lâu hơn.</p><p>- Thiết kế 2 vách chân không: giúp giữ lạnh lên đến 16h và giữ nóng lên đến 8h.</p>
@@ -159,7 +153,6 @@ const lifeHouse = [
     stock: 6842,
     sold: 1929,
     view: 80008,
-    reviews: [],
     description: `<div><p><strong>TÍNH NĂNG NỔI BẬT:</strong></p>
     <p>- Siêu Tiết kiệm: Sản phầm bao gồm 1 nắp thiết kế trượt đóng, mở dễ dàng và tặng kèm 1 ống hút thép thắng tái sử dụng, 1 dụng cụ vệ sinh ống hút.</p>
     <p>- Vật Liệu Cao Cấp: Ly được làm từ thép thực phẩm 304,18/8 giúp giữ nhiệt độ của đồ uống lâu hơn.</p><p>- Thiết kế 2 vách chân không: giúp giữ lạnh lên đến 16h và giữ nóng lên đến 8h.</p>
@@ -184,7 +177,6 @@ const lifeHouse = [
     stock: 180,
     sold: 129,
     view: 1568,
-    reviews: [],
     description: `<div><h3>RÈM DÁN KEO TRỰC TIẾP TRÊN THÀNH CỬA ĐANG ĐƯỢC LỰA CHỌN NHIỀU HIỆN NAY, TIẾT KIỆM CHI PHÍ THANH TREO, KHÔNG MẮC CÔNG LẮP ĐẶT KHÓ KHĂN, TIỆN DỤNG.</h3>
     <p>** Sản phẩm được may và chạy biên mép hoa văn, tạo độ thẩm mỹ cao</p>
     <p>** Chất liệu không co rút bền màu khi giặt</p>
@@ -220,7 +212,6 @@ const lifeHouse = [
     stock: 940,
     sold: 7629,
     view: 9958,
-    reviews: [],
     description: `<div><p>➫ Khách hàng vui lòng đọc rõ thông tin về sản phẩm để tránh trường hợp mua về không hài lòng nhé ^^</p><p>☑ Chất liệu mặt kính đồng hồ nam : Kính khoáng chất (chống xước tốt, đánh bóng được) được ép trong khung thép không gỉ<br>☑ Chất liệu dây đeo đồng hồ nam: Thép không gỉ<br>☑ Chống nước : 30M<br>☑ Độ dày đồng hồ nam : 0.7CM<br>☑ Đường kính mặt đồng hồ nam : 3.8 CM<br>☑ Độ rộng dây đeo đồng hồ nam : 2 CM<br>☑ Trọng lượng : 72gram<br>🕦 Bảo hành : 12 tháng (tính từ ngày mua hàng)</p><p>❃ Nên tránh tiếp xúc đồng hồ nam 8018 với hóa chất như xà phòng, nước tẩy rửa, không mang khi bơi lội. Tránh va đập mạnh</p><p>❃ Chính sách bảo hành:<br>🎁 Được đổi trả sản phẩm trong vòng 2 ngày kể từ khi nhận được hàng nếu sản phẩm bị lỗi do nhà sản xuất.<br>🎁 Không bảo hành đồng hồ cho các trường hợp: các loại dây đeo, khoá, vỏ, màu xi, mặt số, mặt kiếng bị hỏng hóc, vỡ do sử dụng không đúng, tai nạn, lão hóa tự nhiên, va đập, … trong quá trình sử dụng.<br>🎁 Không bảo hành đồng hồ hỏng hóc do hậu quả gián tiếp của việc sử dụng sai hướng dẫn.<br>🎁 Không bảo hành đồng hồ trầy xước về dây hoặc mặt kiếng bị trầy xước, vỡ do va chạm trong quá trình sử dụng. <br>🎁 Không bảo hàng đồng hồ khi tự ý thay đổi máy móc bên trong, mở ra can thiệp sửa chữa trong thời gian còn bảo hành – Tại những nơi không phải là trung tâm của hãng.</p><p>❖ CÁC TRƯỜNG HỢP CỤ THỂ CỦA ĐỒNG HỒ CHỐNG NƯỚC :<br>➫ 30M, 3ATM, 3BAR (hoặc chỉ ghi là Water Resistance) – Chỉ chịu nước ở mức rửa tay, đi mưa nhẹ.<br>➫ 50M, 5ATM, 5 BAR – Được sử dụng trong bơi lội, lặn sông nước (không sử dụng được trong lặn biển, chơi thể thao mạnh dưới nước…)<br>➫ 100M, 10 ATM, 10BAR – Được sử dụng trong bơi lội, lặn vùng sông nước, lặn biển, không được sử dụng khi chơi thể thao mạnh dưới nước.</p><p>❖ THỜI GIAN GIAO HÀNG<br>➫ Hcm, Bình Dương, Đồng Nai : 1-2 ngày<br>➫ Hà Nội, Huế, Đà Nẵng : dự kiến 2-4 ngày (hoặc có thể sớm hơn)<br>➫ Các tỉnh thành khác : dự kiến 3-4 ngày (hoặc có thể sớm hơn)</p><p>❖ ƯU ĐÃI<br>➫ Giảm giá khi mua hàng lần 2<br>➫ Quà tặng khi mua hàng lần 2<br>➫ Mua 10 tặng 1</p><p>♣ HƯỚNG DẪN LẤY MÃ GIẢM GIÁ VẬN CHUYỂN TRƯỚC KHI ĐẶT HÀNG:<br>BƯỚC 1: Vào trang chủ shopee =&gt; mục giảm giá =&gt; lấy mã <br>BƯỚC 2: Nhấn vào mã giảm giá trong giỏ hàng khi tiến hành thanh toán<br>BƯỚC 3: Mã miễn phí vận chuyển được tự động chọn, bạn có thể chọn thêm mã giảm giá khác (nếu có) và bấm OK để được ưu đãi cho đơn hàng<br>BƯỚC 4: Tiến hành thanh toán cho đơn hàng sau khi chọn mã giảm giá <br>LƯU Ý: 1 đơn hàng được dùng tối đa 1 mã miễn phí vận chuyển và 1 mã giảm giá loại khác<br>#đồnghồ #đồnghồnam #đồnghồđẹp #đồnghồthờitrang #thờitrangnam #WWOOR #đồnghồwwoor #đồnghồchínhhãng</p></div>`,
     images: [
       "https://cf.shopee.vn/file/e9c938e6ed0ca5d694897d0485bcae74",
@@ -240,7 +231,6 @@ const lifeHouse = [
     stock: 176,
     sold: 899,
     view: 22758,
-    reviews: [],
     description: `<div>
     <p>Cây lau nhà phun sương thông minh 2 trong 1, đầu xoay 360 độ tiện lợi - Broom Green Pro 02</p>
     <p>THÔNG TIN SẢN PHẨM:</p>

@@ -11,7 +11,6 @@ const foodShop = [
         stock: 5420,
         sold: 1429,
         view: 8158,
-        reviews: [],
         description: `<div>
     <p>Thương hiệu Ngôi sao Phương Nam xanh lá </p><p>👉 Sản xuất Việt Nam</p><p>👉 Hương vị Ngọt vừa</p><p>👉 Độ đạm 2.7g/100g</p><p>👉 Trọng lượng 1284g. Ngôi Sao Phương Nam là “Thương hiệu được chọn mua nhiều nhất” , được người tiêu dùng tin tưởng và sử dụng phổ biến trong các công thức chế biến như bánh flan, sinh tố, yogurt…</p><p>👉 Hạn sử dụng: 12 tháng</p><p>👉 Đặc biệt, Ngôi Sao Phương Nam là bí quyết không thể thiếu để pha ly cà phê sữa thơm ngon, đúng điệu nhờ vào độ sánh đặc, thơm béo.Sữa Đặc Ngôi Sao Phương Nam là một sản phẩm mới của Vinamilk, được làm từ những nguyên liệu chọn lựa kỹ lưỡng cùng công thức ngày một hoàn thiện, tạo nên một sản phẩm thơm ngon, bổ dưỡng. Sản phẩm được sản xuất dưới quy trình công nghệ hiện đại, đạt chỉ tiêu về vệ sinh an toàn thực phẩm, đảm bảo cho sức khỏe người sử dụng. 
     Sữa có hương vị thơm đặc trưng hòa cùng độ béo và ngọt vừa phải, đặc biệt thích hợp khi pha cùng cà phê. Sản phẩm còn có thể dùng để pha chế các món sinh tố, chè, kem... hoặc dùng trực tiếp kèm với bánh mì cũng rất tuyệt vời. Thêm vào đó, sản phẩm cũng có giá cả phù hợp với người tiêu dùng.</p><p>👉Sữa Đặc Ngôi Sao Phương Nam Cam bổ sung thêm nhiều chất dinh dưỡng và năng lượng cần thiết cho một ngày năng động. Sữa được đóng trong hộp giấy màu xanh bắt mắt, tiện lợi cho việc bảo quản cũng như sử dụng. </p></div>`,
@@ -31,7 +30,6 @@ const foodShop = [
         stock: 1320,
         sold: 2424,
         view: 42158,
-        reviews: [],
         description: `
     <div><p>Thùng 48 hộp Sữa đậu nành Vinamilk hạt óc chó hộp 180ml/hộp</p><p>
     </p><p>Loại sữa: Có đường</p><p>
@@ -56,7 +54,6 @@ const foodShop = [
         stock: 520,
         sold: 629,
         view: 5158,
-        reviews: [],
         description: `
     <div>
     <h3>💖 MẬT ONG HOA CÀ PHÊ NGUYÊN CHẤT NÔNG SẢN VÀNG 💖</h3>
@@ -93,7 +90,6 @@ const foodShop = [
         stock: 210,
         sold: 269,
         view: 8158,
-        reviews: [],
         description: `
     <p>Bánh sô cô la nhân kem vani Oreo là sản phẩm cao cấp có hương vị thơm ngon hấp dẫn với sự hòa quyện của lớp vỏ sô cô la bên ngoài, nhân vani bên trong. Được đóng gói theo dạng gói rất phù hợp cho những chuyến dã ngoại, du lịch cũng như ăn sáng hoặc có thể là bữa phụ dành cho buổi chiều vì hàm lượng dinh dưỡng cao tiếp sức cho ngày dài năng động. Có rất nhiều cách để thưởng thức trọn vẹn hương vị của bánh, trong đó có thể kể đến ăn kèm bánh với sữa tươi. Ngoài ra, có thể sử dụng bánh sô cô la nhân kem vani làm nguyên liệu trong việc pha chế một số loại thức uống.
     </p><p>Thành phần gồm: Bột mì, đường, dầu thực vật, bột sữa cacao, vani, phụ liệu khác.</p><p>Quy cách: Hộp 10 gói x 20.4g (Hộp 204g)</p>
@@ -115,7 +111,6 @@ const foodShop = [
         stock: 410,
         sold: 529,
         view: 4158,
-        reviews: [],
         description: `
     <h3>Hộp quà Bánh trung thu 2022,hộp quà biếu cao cấp,sang trọng , mooncake gift by hafood Mooncake gift 2022 Bánh trung thu sang trọng cao cấp</h3><p>1/ Giới Thiệu Hộp quà bánh trung thu 2022 hafood</p><p>- Quà biếu sang trọng trong dịp trung thu, lễ , tết  </p><p>- Là món quà ko thể thiếu trong các dịp trung thu </p><p>- Trao tình cảm và giữ mối quan hệ thân thiết hơn trong công việc lẫn cuộc sống </p><p>- Khách có thể lựa mẫu bánh và hộp để mix </p><p>- Chiết khấu lên tới 20 % </p><p>- Quý công ty, doanh nghiệp đặt số lượng lớn lh hafood để dc hỗ trợ </p>
     2/ HAFOOD XIN CAM KẾT:<p>- 1 Đổi 1 nếu bị hư hỏng </p><p>- Sản phẩm CHÍNH HÃNG giống với mô tả và hình ảnh đăng trên cửa hàng.  </p><p>- Mang tới dịch vụ khách hàng tận tâm và nhiệt tình, giúp quý khách có được trải nghiệm tốt khi mua hàng.  </p><p>- Giải quyết thắc mắc và vấn đề về sản phẩm (nếu có) cho khách hàng nhanh chóng và thỏa đáng  </p><p>#Hop #qua #banh #trung #thu #cao #cap #sang #trong #2022 #mooncake #gift 
@@ -137,7 +132,6 @@ const foodShop = [
         stock: 3310,
         sold: 229,
         view: 2158,
-        reviews: [],
         description: `
     <h3>Xúc xích CP Winner được chế biến từ thịt heo và thịt gà chất lượng cao bởi Công ty cổ phần chăn nuôi CP việt nam - một trong những công ty lớn, Uy tín chất lượng số 1 trong lĩnh vực chế biến thực phẩm.</h3><p>Xúc xích CP Winner chứa nhiều dưỡng chất cần thiết cho cơ thể như protein, lipit, phốt pho, sắt... giúp cung cấp năng lượng, thúc đẩy quá trình trao đổi chất bên trong. Sản phẩm giúp bạn tiết kiệm tối đa thời gian nấu nướng mà vẫn có món ăn nhanh thơm ngon, bổ dưỡng. Xúc xích CP Winner được đóng gói tiện lợi và phù hợp với các bữa ăn nhanh, góp phần làm bữa cơm của bạn thêm ngon miệng và phong phú.</p><p>- Thành phần gồm thịt gà , thịt heo, đạm, đậu nành, đường ,muối... </p><p>-  Quy cách đóng gói: gói 10 chiếc, 500gr </p><p>- Bảo quản: Bảo quản trong ngăn mát tủ lạnh. </p>
    <p>#xucxich #winner #CP #veal #xucxichcp #xucxichwinner #xucxichanlien #xucxichchien #cavienchien #raucuhaisan #haisanraucu #vienraucu #delifoods #lacusina #lcfoods #cavien #tomvien #bovien </p>`,
@@ -158,7 +152,6 @@ const foodShop = [
         stock: 310,
         sold: 329,
         view: 2098,
-        reviews: [],
         description: `
     <h3>SỮA TẮM DOUBLE RICH BLOOMING LOVE.</h3><p>Là sự kết hợp các thành phần chiết xuất từ lô hội, tinh dầu Jojoba giàu Vitamin E và hoa anh đào không chỉ làm sạch da, loại bỏ bụi bẩn, bã nhờn, tạp chất mà còn nuôi dưỡng, giữ ẩm, làm mềm và sáng da từng ngày.  Double Rich Blooming Love mang đến cho bạn làn da tươi trẻ và thoảng hương thơm quyến rũ.</p><p>Sữa tắm White Purity kết hợp Aloe Vera, Jojoba giàu vitamin E dưỡng ẩm và tinh dầu hoa Lily cho làn da trắng sáng. Bí quyết của làn da quyến rũ.</p>
    <p>#sữatắm #doublerich #hoaanhđào #bodyshower #</p>`,
@@ -179,7 +172,6 @@ const foodShop = [
         stock: 3110,
         sold: 3139,
         view: 23198,
-        reviews: [],
         description: `
     <p> 🍬 Kẹo cao su thổi Big Babol tô màu vui nhộn, sáng tạo, thổi cực to chơi cực vui</p><p>🍬 Thiết kế dạng gói nhỏ gọn đầy màu sắc thu hút</p>
     <p>🍬 Sản xuất bởi Công ty Perffeti Van Melle Việt Nam</p>
@@ -199,7 +191,6 @@ const foodShop = [
         stock: 5110,
         sold: 2139,
         view: 9198,
-        reviews: [],
         description: `
     <p> 🍬 Kẹo Mút Alpenliebe Hương Dâu Kem (Gói 40 Que) với hương vị trái cây hỗn hợp dâu kem thơm ngon, ngọt ngào, cung cấp nhiều năng lượng, kẹo Alpenliebe đã trở thành một phần không thể thiếu trong những bữa tiệc, liên hoan hay dùng để nhâm nhi những lúc rảnh rỗi.</p><p>🍬 Một vài viên kẹo trong túi đôi khi sẽ giúp bạn giảm stress, giúp trí não hoạt động minh mẫn hơn, tăng lượng đường trong máu, tránh được nguy cơ đột quỵ hoặc cũng có thể là một món quà đáng yêu dành tặng bạn bè, người thân.
     </p>
@@ -220,7 +211,6 @@ const foodShop = [
         stock: 89110,
         sold: 113139,
         view: 11213198,
-        reviews: [],
         description: `
     <p> 🍬Lẻ 1 Kẹo mút Ice-Cream Alpenliebe gói 14,5g với hương vị trái cây hỗn hợp dâu kem thơm ngon, ngọt ngào, cung cấp nhiều năng lượng, kẹo Alpenliebe đã trở thành một phần không thể thiếu trong những bữa tiệc, liên hoan hay dùng để nhâm nhi những lúc rảnh rỗi.</p><p>🍬 Một vài viên kẹo trong túi đôi khi sẽ giúp bạn giảm stress, giúp trí não hoạt động minh mẫn hơn, tăng lượng đường trong máu, tránh được nguy cơ đột quỵ hoặc cũng có thể là một món quà đáng yêu dành tặng bạn bè, người thân.
     </p>

@@ -26,10 +26,7 @@ const addNewProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getSingleProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const product = yield product_model_1.default.findById(req.params.id).populate({
-        path: "reviews",
-        populate: { path: "user", select: "fullname avatar email" },
-    });
+    const product = yield product_model_1.default.findById(req.params.id);
     if (!product)
         throw new api_error_1.ApiError(404, "Không tìm thấy sản phẩm!");
     const response = {
@@ -116,89 +113,11 @@ const getAllProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
     };
     return response;
 });
-const addNewReview = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { rating, comment } = req.body;
-    const product = yield product_model_1.default.findById(req.params.id);
-    if (!product)
-        throw new api_error_1.ApiError(404, "Không tìm thấy sản phẩm!");
-    const review = {
-        user: req.user._id,
-        comment,
-        rating: Number(rating),
-    };
-    product.reviews.push(review);
-    product.rating =
-        product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length;
-    const savedProduct = yield product.save();
-    const response = {
-        message: "Thêm bình luận thành công!",
-        data: savedProduct,
-    };
-    return response;
-});
-const updateReview = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { rating, comment, reviewId } = req.body;
-    const product = yield product_model_1.default.findById(req.params.id);
-    if (!product)
-        throw new api_error_1.ApiError(404, "Không tìm thấy sản phẩm!");
-    const reviewDB = product.reviews.find((review) => review._id.toString() === reviewId);
-    if (!reviewDB)
-        throw new api_error_1.ApiError(404, "Không tìm thấy bình luận!");
-    if (req.user._id !== reviewDB.user.toString()) {
-        throw new api_error_1.ApiError(404, "Bạn không thể chỉnh sửa bình luận của người khác!");
-    }
-    const newUpdateReview = {
-        _id: reviewId,
-        user: req.user._id,
-        comment,
-        rating: Number(rating),
-    };
-    let newReviews = product.reviews.filter((review) => review._id.toString() !== reviewId);
-    newReviews.push(newUpdateReview);
-    product.reviews = newReviews;
-    product.rating =
-        newReviews.length > 0
-            ? newReviews.reduce((acc, item) => item.rating + acc, 0) / newReviews.length
-            : 0;
-    const savedProduct = yield product.save();
-    const response = {
-        message: "Sửa bình luận thành công!",
-        data: savedProduct,
-    };
-    return response;
-});
-const deleteReview = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { reviewId } = req.body;
-    const product = yield product_model_1.default.findById(req.params.id);
-    if (!product)
-        throw new api_error_1.ApiError(404, "Không tìm thấy sản phẩm!");
-    const reviewDB = product.reviews.find((review) => review._id.toString() === reviewId);
-    if (!reviewDB)
-        throw new api_error_1.ApiError(404, "Không tìm thấy bình luận!");
-    if (req.user._id !== reviewDB.user.toString()) {
-        throw new api_error_1.ApiError(404, "Bạn không thể xóa bình luận của người khác!");
-    }
-    const newReviews = product.reviews.filter((review) => review._id.toString() !== reviewId);
-    product.reviews = newReviews;
-    product.rating =
-        newReviews.length > 0
-            ? newReviews.reduce((acc, item) => item.rating + acc, 0) / newReviews.length
-            : 0;
-    const savedProduct = yield product.save();
-    const response = {
-        message: "Xóa bình luận thành công!",
-        data: savedProduct,
-    };
-    return response;
-});
 const productServices = {
     addNewProduct,
     getAllProduct,
     getSingleProduct,
     deleteProduct,
     updateProduct,
-    addNewReview,
-    deleteReview,
-    updateReview,
 };
 exports.default = productServices;

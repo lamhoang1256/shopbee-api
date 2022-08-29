@@ -9,7 +9,6 @@ const electric = [
     stock: 320,
     sold: 1239,
     view: 91158,
-    reviews: [],
     description: `<div><p><strong>Màn Hình Máy Tính 27 inch UHD 4K (3840 x 2160) Tràn Viền Xiangye X9</strong><br>Model: Màn hình UHD 19' LED (PV191VNCD - PV191VNH)<br>Kích thước màn hình: 19" inch LED Monitor<br>Độ phân giải: 1600 x 900/1400x900 at 60 Hz<br>Độ sáng: 200cd/m2; 250cd/m23<br>Độ tương phản: 600:1; Dynamic: 3,000,000:1<br>Góc nhìn: 90° horizontal&nbsp; / 60° vertical<br>Thời gian đáp ứng: 5ms<br>Tín hiệu ngõ vào: 1 VGA<br>Nguồn điện: 100~240VAC, 50/60Hz<br>Điện năng tiêu thụ: 18w; &lt;13w<br>#màn_hình #pc #monitor</p>
     <p><strong>2, MÀN HÌNH MÁY TÍNH PROVISION 20' LED NEW BẢO HÀNH 12T</strong></p>
     <p>- Màn hình 20" HD đáp ứng mọi nhu cầu văn phòng, giải trí cũng như gaming với màu sắc rực rỡ</p>
@@ -63,7 +62,6 @@ const electric = [
     stock: 260,
     sold: 129,
     view: 9158,
-    reviews: [],
     description: `<div>
     <h3>Màn hình máy tính MSI PRO MP241X 23.8 inch FHD VA</h3>
     <p>Mạnh mẽ vươn tới thành công. Mà nhẹ bỗng.</p>
@@ -110,7 +108,6 @@ const electric = [
     stock: 1140,
     sold: 4129,
     view: 8158,
-    reviews: [],
     description: `<div><p>Loa Máy Tính/Laptop ROBOT RS180 Hiệu Ứng Ánh Sáng RGB - BẢO HÀNH 12 THÁNG</p>
     <p>&nbsp;</p>
     <p>Thông số kỹ thuật</p>
@@ -151,7 +148,6 @@ const electric = [
     stock: 320,
     sold: 1419,
     view: 49858,
-    reviews: [],
     description: `<div>
      <p>Gian hàng phân phối chính hãng sản phẩm "Bàn phím cơ keychron"!</p>
      <p>THÔNG TIN SẢN PHẨM</p>
@@ -196,7 +192,6 @@ const electric = [
     stock: 1220,
     sold: 489,
     view: 9858,
-    reviews: [],
     description: `<div>
      <p>Gian hàng phân phối chính hãng sản phẩm "Bàn phím cơ keychron"!</p>
      <p>THÔNG TIN SẢN PHẨM</p>
@@ -241,7 +236,6 @@ const electric = [
     stock: 3110,
     sold: 3129,
     view: 9188,
-    reviews: [],
     description: `<div><p>Củ sạc sở hữu thiết kế nhỏ gọn tích hợp 2 cổng sạc nhanh chuẩn PD + QC giúp bạn tiết kiệm thời gian khi sạc thiết bị. Nhanh tay đặt hàng ngay để sở hữu mẫu sạc nhanh công nghệ mới nhất từ thương hiệu Remax. RP-U88 củ sạc nhanh giúp giảm 50% thời gian nạp pin cho thiết bị là sản phẩm bán chạy nhất Remax<br>THÔNG SỐ KỸ THUẬT:<br>Tên sản phẩm: Củ sạc nhanh PD + QC 20W Remax RP-U88<br>Hãng: Remax<br>Model:RP-U88<br>Chất liệu: ABS<br>Công suất: 20W<br>Cổng sạc: 1 Type C + 1 USB<br>Màu sắc: Trắng/Đen</p></div>`,
     images: [
       "https://cf.shopee.vn/file/b6e72e520075f00dbf1ff538948f37c1",
@@ -260,7 +254,6 @@ const electric = [
     stock: 210,
     sold: 929,
     view: 8888,
-    reviews: [],
     description: `<div><p>Củ sạc dự phòng cho iPhone RP-U88 sở hữu thiết kế nhỏ gọn tích hợp 2 cổng sạc nhanh chuẩn PD + QC giúp bạn tiết kiệm thời gian khi sạc thiết bị. Nhanh tay đặt hàng ngay để sở hữu mẫu sạc nhanh công nghệ mới nhất từ thương hiệu Remax. RP-U88 củ sạc nhanh giúp giảm 50% thời gian nạp pin cho thiết bị là sản phẩm bán chạy nhất Remax<br>THÔNG SỐ KỸ THUẬT:<br>Tên sản phẩm: Củ sạc nhanh PD + QC 20W Remax RP-U88<br>Hãng: Remax<br>Model:RP-U88<br>Chất liệu: ABS<br>Công suất: 20W<br>Cổng sạc: 1 Type C + 1 USB<br>Màu sắc: Trắng/Đen</p></div>`,
     images: [
       "https://cf.shopee.vn/file/ebfbebc04e0dfc6782effe778653880c",
@@ -279,7 +272,6 @@ const electric = [
     stock: 1319,
     sold: 989,
     view: 31358,
-    reviews: [],
     description: `<div><p>Tai nghe nhét trong Wiresto âm trầm có dây âm thanh HIFI chống ồn không gây đau tai có micro HD. Thay đổi thói quen nghe nhạc không an toàn bằng chiếc #tai_nghe có dây Remax #RM_512 không chỉ mang đến những âm thanh sống động nhất, mà hơn thế còn đảm bảo an toàn cho bạn.</p>
     <p> Thiết kế hiện đại, cao cấp;</p>
     <p> Chất liệu có khả năng chống oxy hóa cao đảm bảo đường truyền âm thanh ổn định, rõ nét.</p>
@@ -305,7 +297,6 @@ const electric = [
     stock: 2119,
     sold: 129,
     view: 21158,
-    reviews: [],
     description: `<div><p>Tai Nghe Chụp Tai Wiresto Không Dây Bluetooth 5.0 Âm Bass Nổi Bật Giảm Ồn Tích Hợp Mic Thiết Kế Gấp Gọn Tiện Dụng. Thay đổi thói quen nghe nhạc không an toàn bằng chiếc #tai_nghe có dây Remax #RM_512 không chỉ mang đến những âm thanh sống động nhất, mà hơn thế còn đảm bảo an toàn cho bạn.</p>
     <p> Thiết kế hiện đại, cao cấp;</p>
     <p> Chất liệu có khả năng chống oxy hóa cao đảm bảo đường truyền âm thanh ổn định, rõ nét.</p>
@@ -331,7 +322,6 @@ const electric = [
     stock: 319,
     sold: 129,
     view: 1158,
-    reviews: [],
     description: `<div><p>Tai Nghe Nhét Tai Có Dây Jack Cắm 3.5mm PKCB323 - Hàng Chính Hãng. Thay đổi thói quen nghe nhạc không an toàn bằng chiếc #tai_nghe có dây Remax #RM_512 không chỉ mang đến những âm thanh sống động nhất, mà hơn thế còn đảm bảo an toàn cho bạn.</p>
     <p> Thiết kế hiện đại, cao cấp;</p>
     <p> Chất liệu có khả năng chống oxy hóa cao đảm bảo đường truyền âm thanh ổn định, rõ nét.</p>
