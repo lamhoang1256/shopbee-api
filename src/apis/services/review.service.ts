@@ -4,8 +4,7 @@ import Review from "../models/review.model";
 import { ApiError } from "../utils/api-error";
 
 const getAllReviewProduct = async (req: Request) => {
-  const { productId } = req.params;
-  const reviews = await Review.find({ productId })
+  const reviews = await Review.find({ productId: req.params.id })
     .populate({
       path: "user",
       select: "fullname avatar email",
@@ -19,8 +18,7 @@ const getAllReviewProduct = async (req: Request) => {
 };
 
 const getAllReviewOrder = async (req: Request) => {
-  const { orderId } = req.params;
-  const reviews = await Review.find({ orderId })
+  const reviews = await Review.find({ orderId: req.params.id })
     .populate({
       path: "user",
       select: "fullname avatar email",

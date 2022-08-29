@@ -16,8 +16,7 @@ const product_model_1 = __importDefault(require("../models/product.model"));
 const review_model_1 = __importDefault(require("../models/review.model"));
 const api_error_1 = require("../utils/api-error");
 const getAllReviewProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { productId } = req.params;
-    const reviews = yield review_model_1.default.find({ productId })
+    const reviews = yield review_model_1.default.find({ productId: req.params.id })
         .populate({
         path: "user",
         select: "fullname avatar email",
@@ -30,8 +29,7 @@ const getAllReviewProduct = (req) => __awaiter(void 0, void 0, void 0, function*
     return response;
 });
 const getAllReviewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { orderId } = req.params;
-    const reviews = yield review_model_1.default.find({ orderId })
+    const reviews = yield review_model_1.default.find({ orderId: req.params.id })
         .populate({
         path: "user",
         select: "fullname avatar email",
