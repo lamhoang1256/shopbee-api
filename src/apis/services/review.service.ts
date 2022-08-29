@@ -5,7 +5,12 @@ import { ApiError } from "../utils/api-error";
 
 const getAllReviewProduct = async (req: Request) => {
   const { productId } = req.query;
-  const reviews = await Review.find({ productId }).sort({ updatedAt: -1 });
+  const reviews = await Review.find({ productId })
+    .populate({
+      path: "user",
+      select: "fullname avatar email",
+    })
+    .sort({ updatedAt: -1 });
   const response = {
     message: "Lấy tất cả nhận xét sản phẩm!",
     data: reviews,
