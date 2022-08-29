@@ -19,11 +19,12 @@ const getAllReviewProduct = async (req: Request) => {
 };
 
 const addNewReview = async (req: Request) => {
-  const { rating, comment, productId } = req.body;
+  const { rating, comment, productId, orderId } = req.body;
   const product = await Product.findById(productId);
   if (!product) throw new ApiError(404, "Không tìm thấy sản phẩm!");
   const review = {
     productId,
+    orderId,
     user: req.user._id,
     comment,
     rating: Number(rating),

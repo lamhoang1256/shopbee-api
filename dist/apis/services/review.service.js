@@ -30,12 +30,13 @@ const getAllReviewProduct = (req) => __awaiter(void 0, void 0, void 0, function*
     return response;
 });
 const addNewReview = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { rating, comment, productId } = req.body;
+    const { rating, comment, productId, orderId } = req.body;
     const product = yield product_model_1.default.findById(productId);
     if (!product)
         throw new api_error_1.ApiError(404, "Không tìm thấy sản phẩm!");
     const review = {
         productId,
+        orderId,
         user: req.user._id,
         comment,
         rating: Number(rating),
