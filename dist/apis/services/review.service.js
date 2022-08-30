@@ -72,7 +72,7 @@ const updateReview = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const reviewDB = review_model_1.default.findById(req.params.id);
     if (!reviewDB)
         throw new api_error_1.ApiError(404, "Không tìm thấy bình luận!");
-    if (req.user._id !== reviewDB.user.toString()) {
+    if (req.user._id !== reviewDB.user) {
         throw new api_error_1.ApiError(404, "Bạn không thể chỉnh sửa bình luận của người khác!");
     }
     const updateReview = { comment, rating: Number(rating) };
@@ -96,10 +96,10 @@ const getSingleReview = (req) => __awaiter(void 0, void 0, void 0, function* () 
     return response;
 });
 const deleteReview = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const reviewDB = review_model_1.default.findById(req.params.id);
+    const reviewDB = review_model_1.default.findById(req.params.id).lean();
     if (!reviewDB)
         throw new api_error_1.ApiError(404, "Không tìm thấy bình luận!");
-    if (req.user._id !== reviewDB.user.toString()) {
+    if (req.user._id !== reviewDB.user) {
         throw new api_error_1.ApiError(404, "Bạn không thể chỉnh sửa bình luận của người khác!");
     }
     const deletedReview = yield review_model_1.default.findByIdAndDelete(req.params.id);

@@ -60,7 +60,7 @@ const updateReview = async (req: Request) => {
   if (!product) throw new ApiError(404, "Không tìm thấy sản phẩm!");
   const reviewDB: any = Review.findById(req.params.id);
   if (!reviewDB) throw new ApiError(404, "Không tìm thấy bình luận!");
-  if (req.user._id !== reviewDB.user.toString()) {
+  if (req.user._id !== reviewDB.user) {
     throw new ApiError(404, "Bạn không thể chỉnh sửa bình luận của người khác!");
   }
   const updateReview = { comment, rating: Number(rating) };
@@ -85,9 +85,9 @@ const getSingleReview = async (req: Request) => {
 };
 
 const deleteReview = async (req: Request) => {
-  const reviewDB: any = Review.findById(req.params.id);
+  const reviewDB: any = Review.findById(req.params.id).lean();
   if (!reviewDB) throw new ApiError(404, "Không tìm thấy bình luận!");
-  if (req.user._id !== reviewDB.user.toString()) {
+  if (req.user._id !== reviewDB.user) {
     throw new ApiError(404, "Bạn không thể chỉnh sửa bình luận của người khác!");
   }
   const deletedReview = await Review.findByIdAndDelete(req.params.id);
