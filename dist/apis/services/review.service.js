@@ -66,19 +66,23 @@ const addNewReview = (req) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const updateReview = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const { rating, comment, productId } = req.body;
-    const product = yield product_model_1.default.findById(productId);
-    if (!product)
+    const productDB = yield product_model_1.default.findById(productId);
+    if (!productDB)
         throw new api_error_1.ApiError(404, "Không tìm thấy sản phẩm!");
-    const reviewDB = review_model_1.default.findById(req.params.id);
+    const reviewDB = yield review_model_1.default.findById(req.params.id);
     if (!reviewDB)
         throw new api_error_1.ApiError(404, "Không tìm thấy bình luận!");
-    if (req.user._id !== reviewDB.user) {
+    if (req.user._id !== reviewDB.user.toString()) {
         throw new api_error_1.ApiError(404, "Bạn không thể chỉnh sửa bình luận của người khác!");
     }
     const updateReview = { comment, rating: Number(rating) };
     const updatedReview = yield reviewDB.updateOne({ $set: updateReview }, { new: true });
     const reviewsDB = yield review_model_1.default.find({ productId }).lean();
-    product.rating = reviewsDB.reduce((acc, item) => item.rating + acc, 0) / reviewsDB.length;
+    if (reviewsDB.length > 0) {
+        productDB.rating =
+            reviewsDB.reduce((acc, item) => item.rating + acc, 0) / reviewsDB.length;
+        yield productDB.save();
+    }
     const response = {
         message: "Sửa bình luận thành công!",
         data: updatedReview,
@@ -96,17 +100,20 @@ const getSingleReview = (req) => __awaiter(void 0, void 0, void 0, function* () 
     return response;
 });
 const deleteReview = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const reviewDB = review_model_1.default.findById(req.params.id).lean();
+    const reviewDB = yield review_model_1.default.findById(req.params.id);
     if (!reviewDB)
         throw new api_error_1.ApiError(404, "Không tìm thấy bình luận!");
-    if (req.user._id !== reviewDB.user) {
+    if (req.user._id !== reviewDB.user.toString()) {
         throw new api_error_1.ApiError(404, "Bạn không thể chỉnh sửa bình luận của người khác!");
     }
+    const productDB = yield product_model_1.default.findById(reviewDB.productId);
     const deletedReview = yield review_model_1.default.findByIdAndDelete(req.params.id);
     const reviewsDB = yield review_model_1.default.find({ productId: reviewDB.productId });
-    const productDB = yield product_model_1.default.findById(reviewDB.productId);
-    productDB.rating = reviewsDB.reduce((acc, item) => item.rating + acc, 0) / reviewsDB.length;
-    const savedProduct = yield productDB.save();
+    if (reviewsDB.length > 0) {
+        productDB.rating =
+            reviewsDB.reduce((acc, item) => item.rating + acc, 0) / reviewsDB.length;
+        yield productDB.save();
+    }
     const response = {
         message: "Xóa bình luận thành công!",
     };
