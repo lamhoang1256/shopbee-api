@@ -26,6 +26,11 @@ const orderSchema = new mongoose_1.default.Schema({
         default: "waiting",
     },
     statusCode: { type: Number, enum: [0, 1, 2, 3, 4], default: 0 },
+    methodPayment: {
+        type: String,
+        enum: ["money", "credit-card"],
+        default: "money",
+    },
     processingAt: { type: Date },
     shippingAt: { type: Date },
     deliveredAt: { type: Date },

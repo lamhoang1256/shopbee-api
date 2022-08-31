@@ -9,8 +9,17 @@ import { IShop } from "../../@types/shop";
 
 const createNewOrder = async (req: Request) => {
   const userId = req.user._id;
-  const { orderItems, shippingTo, shippingFee, price, promotion, total, voucherCode, note } =
-    req.body;
+  const {
+    orderItems,
+    shippingTo,
+    shippingFee,
+    price,
+    promotion,
+    total,
+    voucherCode,
+    note,
+    methodPayment,
+  } = req.body;
   if (orderItems && orderItems.length === 0) {
     throw new ApiError(404, "Giỏ hàng đang trống!");
   }
@@ -34,6 +43,7 @@ const createNewOrder = async (req: Request) => {
     note,
     promotion,
     total,
+    methodPayment,
   });
   const savedOrder = await order.save();
   for (let i = 0; i < orderItems.length; i++) {

@@ -20,7 +20,7 @@ const voucher_model_1 = __importDefault(require("../models/voucher.model"));
 const api_error_1 = require("../utils/api-error");
 const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = req.user._id;
-    const { orderItems, shippingTo, shippingFee, price, promotion, total, voucherCode, note } = req.body;
+    const { orderItems, shippingTo, shippingFee, price, promotion, total, voucherCode, note, methodPayment, } = req.body;
     if (orderItems && orderItems.length === 0) {
         throw new api_error_1.ApiError(404, "Giỏ hàng đang trống!");
     }
@@ -44,6 +44,7 @@ const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
         note,
         promotion,
         total,
+        methodPayment,
     });
     const savedOrder = yield order.save();
     for (let i = 0; i < orderItems.length; i++) {

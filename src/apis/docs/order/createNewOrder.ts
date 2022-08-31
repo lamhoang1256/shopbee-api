@@ -52,6 +52,9 @@
  *                  total:
  *                    type: number
  *                    example: 22653000
+ *                  methodPayment:
+ *                    type: string
+ *                    example: money
  *                  note:
  *                    type: string
  *                    example: Nhớ giao hàng vào thứ 7, chủ nhật nha Shop
