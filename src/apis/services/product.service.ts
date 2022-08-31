@@ -16,7 +16,7 @@ const addNewProduct = async (req: Request) => {
 };
 
 const getSingleProduct = async (req: Request) => {
-  const product = await Product.findById(req.params.id).populate("category");
+  const product = await Product.findById(req.params.id);
   if (!product) throw new ApiError(404, "Không tìm thấy sản phẩm!");
   const response = {
     message: "Lấy chi tiết sản phẩm thành công!",
