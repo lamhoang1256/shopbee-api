@@ -26,7 +26,7 @@ const addNewProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getSingleProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const product = yield product_model_1.default.findById(req.params.id);
+    const product = yield product_model_1.default.findById(req.params.id).populate("category");
     if (!product)
         throw new api_error_1.ApiError(404, "Không tìm thấy sản phẩm!");
     const response = {
