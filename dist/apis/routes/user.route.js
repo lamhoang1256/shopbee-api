@@ -15,6 +15,7 @@ userRoutes.get("/", token_middleware_1.default.verifyTokenAndAdmin, user_middlew
 userRoutes.post("/", token_middleware_1.default.verifyTokenAndAdmin, user_middleware_1.default.addNewUserRules(), helpers_middleware_1.default.entityValidator, user_controller_1.default.addNewUser);
 userRoutes.delete("/:id", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, token_middleware_1.default.verifyTokenAndAdmin, user_controller_1.default.deleteUser);
 userRoutes.put("/me", token_middleware_1.default.verifyToken, user_middleware_1.default.updateMeRules(), helpers_middleware_1.default.entityValidator, user_controller_1.default.updateMe);
-userRoutes.put("/:id", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, token_middleware_1.default.verifyTokenAndAdmin, user_middleware_1.default.updateUserRules(), helpers_middleware_1.default.entityValidator, user_controller_1.default.updateUser);
 userRoutes.put("/change-password", token_middleware_1.default.verifyToken, user_middleware_1.default.changePasswordMeRules(), helpers_middleware_1.default.entityValidator, user_controller_1.default.changePasswordMe);
+userRoutes.put("/credit-card", token_middleware_1.default.verifyToken, user_middleware_1.default.updateCreditCardRules(), helpers_middleware_1.default.entityValidator, user_controller_1.default.updateCreditCard);
+userRoutes.put("/:id", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, token_middleware_1.default.verifyTokenAndAdmin, user_middleware_1.default.updateUserRules(), helpers_middleware_1.default.entityValidator, user_controller_1.default.updateUser);
 exports.default = userRoutes;

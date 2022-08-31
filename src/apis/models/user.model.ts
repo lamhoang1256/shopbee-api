@@ -12,6 +12,12 @@ const userSchema = new mongoose.Schema(
     city: { id: { type: String, default: "" }, name: { type: String, default: "" } },
     district: { id: { type: String, default: "" }, name: { type: String, default: "" } },
     ward: { id: { type: String, default: "" }, name: { type: String, default: "" } },
+    creditCard: {
+      number: { type: String, default: "" },
+      name: { type: String, default: "" },
+      expiry: { type: String, default: "" },
+      cvc: { type: String, default: "" },
+    },
     isAdmin: { type: Boolean, default: false },
   },
   { timestamps: true },

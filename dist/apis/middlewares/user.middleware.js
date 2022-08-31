@@ -93,6 +93,32 @@ const changePasswordMeRules = () => {
             .withMessage("Mật khẩu mới phải từ 6-160 kí tự"),
     ];
 };
+const updateCreditCardRules = () => {
+    return [
+        (0, express_validator_1.body)("number")
+            .if((value) => value !== undefined)
+            .isString()
+            .withMessage("number credit card phải là string")
+            .isLength({ min: 16, max: 19 })
+            .withMessage("Số thẻ phải từ 16-19 chữ số"),
+        (0, express_validator_1.body)("expiry")
+            .if((value) => value !== undefined)
+            .isString()
+            .withMessage("expiry credit card phải là string"),
+        (0, express_validator_1.body)("cvc")
+            .if((value) => value !== undefined)
+            .isString()
+            .withMessage("cvc credit card phải là string")
+            .isLength({ min: 3, max: 3 })
+            .withMessage("Mã bảo vệ bao gồm 3 chữ số"),
+        (0, express_validator_1.body)("name")
+            .if((value) => value !== undefined)
+            .isString()
+            .withMessage("name credit card phải là string")
+            .isLength({ min: 12, max: 22 })
+            .withMessage("Họ tên phải từ 12-22 kí tự"),
+    ];
+};
 const addToWishlistRules = () => {
     return [
         (0, express_validator_1.body)("productId")
@@ -113,5 +139,6 @@ const userMiddleware = {
     addToWishlistRules,
     removeFromWishlist,
     getAllUserRules,
+    updateCreditCardRules,
 };
 exports.default = userMiddleware;

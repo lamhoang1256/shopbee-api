@@ -43,6 +43,13 @@ const updateMe = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, v
     const updatedUser = yield user_service_1.default.updateMe(req);
     (0, response_1.responseSuccess)(res, updatedUser);
 }));
+// @desc    Cập nhật thông tin thẻ tín dụng của bản thân
+// @route   PUT /api/user/credit-card
+// @access  Private
+const updateCreditCard = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedCreditCard = yield user_service_1.default.updateCreditCard(req);
+    (0, response_1.responseSuccess)(res, updatedCreditCard);
+}));
 // @desc    Chỉnh sửa thông tin của người dùng qua userId bởi Admin
 // @route   PUT /api/user/:id
 // @access  Private/Admin
@@ -80,5 +87,6 @@ const userControllers = {
     getSingleUser,
     updateUser,
     getMyVoucher,
+    updateCreditCard,
 };
 exports.default = userControllers;

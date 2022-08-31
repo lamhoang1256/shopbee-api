@@ -42,6 +42,20 @@ userRoutes.put(
   userControllers.updateMe,
 );
 userRoutes.put(
+  "/change-password",
+  tokenMiddleware.verifyToken,
+  userMiddleware.changePasswordMeRules(),
+  helpersMiddleware.entityValidator,
+  userControllers.changePasswordMe,
+);
+userRoutes.put(
+  "/credit-card",
+  tokenMiddleware.verifyToken,
+  userMiddleware.updateCreditCardRules(),
+  helpersMiddleware.entityValidator,
+  userControllers.updateCreditCard,
+);
+userRoutes.put(
   "/:id",
   helpersMiddleware.idRule("id"),
   helpersMiddleware.idValidator,
@@ -49,13 +63,6 @@ userRoutes.put(
   userMiddleware.updateUserRules(),
   helpersMiddleware.entityValidator,
   userControllers.updateUser,
-);
-userRoutes.put(
-  "/change-password",
-  tokenMiddleware.verifyToken,
-  userMiddleware.changePasswordMeRules(),
-  helpersMiddleware.entityValidator,
-  userControllers.changePasswordMe,
 );
 
 export default userRoutes;

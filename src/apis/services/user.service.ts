@@ -48,6 +48,32 @@ const changePasswordMe = async (req: Request) => {
   return response;
 };
 
+const updateCreditCard = async (req: Request) => {
+  const { number, expiry, cvc } = req.body;
+  const currentDate = new Date();
+  const currentYear = Number(currentDate.getFullYear().toString().slice(2, 4));
+  const currentMonth = currentDate.getMonth() + 1;
+  const expiryYear = Number(expiry.split("/")[1]);
+  const expiryMonth = Number(expiry.split("/")[0]);
+  if (expiryYear < currentYear) throw new ApiError(500, "Thẻ đã hết hạn!");
+  if (expiryYear === currentYear && expiryMonth <= currentMonth)
+    throw new ApiError(500, "Thẻ đã hết hạn!");
+  if (number.length < 16 || number.length > 19) throw new ApiError(500, "Số thẻ không hợp lệ!");
+  if (cvc.length !== 3) throw new ApiError(500, "Mã bảo mật cvc gồm 3 chữ số!");
+  const updatedCreditCard = await User.findByIdAndUpdate(
+    req.user._id,
+    { creditCard: req.body },
+    { new: true },
+  )
+    .select({ password: 0, __v: 0 })
+    .lean();
+  const response = {
+    message: "Cập nhật thẻ tín dụng thành công!",
+    data: updatedCreditCard,
+  };
+  return response;
+};
+
 const getAllUser = async (req: Request) => {
   let { page = 1, limit = 12, email } = req.query;
   page = Number(page);
@@ -148,5 +174,6 @@ const userServices = {
   deleteUser,
   updateUser,
   getMyVoucher,
+  updateCreditCard,
 };
 export default userServices;

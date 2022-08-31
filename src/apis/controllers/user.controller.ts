@@ -35,6 +35,14 @@ const updateMe = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, updatedUser);
 });
 
+// @desc    Cập nhật thông tin thẻ tín dụng của bản thân
+// @route   PUT /api/user/credit-card
+// @access  Private
+const updateCreditCard = catchAsync(async (req: Request, res: Response) => {
+  const updatedCreditCard = await userServices.updateCreditCard(req);
+  responseSuccess(res, updatedCreditCard);
+});
+
 // @desc    Chỉnh sửa thông tin của người dùng qua userId bởi Admin
 // @route   PUT /api/user/:id
 // @access  Private/Admin
@@ -76,5 +84,6 @@ const userControllers = {
   getSingleUser,
   updateUser,
   getMyVoucher,
+  updateCreditCard,
 };
 export default userControllers;
