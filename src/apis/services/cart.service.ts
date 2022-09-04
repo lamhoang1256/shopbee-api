@@ -62,7 +62,7 @@ const getAllCart = async (req: Request) => {
   let carts: any = await Cart.find({ user: req.user._id })
     .populate({ path: "product", populate: { path: "category" } })
     .sort({ createdAt: -1 });
-  carts.filter((cart: any) => cart.product.stock > 0);
+  carts = carts.filter((cart: any) => cart.product.stock > 0);
   const response = {
     message: "Lấy giỏ hàng thành công",
     data: carts,
