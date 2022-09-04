@@ -14,6 +14,7 @@ orderRoutes.get("/", token_middleware_1.default.verifyTokenAndAdmin, order_contr
 orderRoutes.get("/me", token_middleware_1.default.verifyToken, order_controller_1.default.getAllOrderMe);
 orderRoutes.get("/:id", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, token_middleware_1.default.verifyToken, order_controller_1.default.getSingleOrder);
 orderRoutes.delete("/:id", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, token_middleware_1.default.verifyTokenAndAdmin, order_controller_1.default.deleteOrder);
+orderRoutes.put("/:id/processing", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, token_middleware_1.default.verifyTokenAndAdmin, order_controller_1.default.updateStatusOrderToProcessing);
 orderRoutes.put("/:id/shipping", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, token_middleware_1.default.verifyTokenAndAdmin, order_controller_1.default.updateStatusOrderToShipping);
 orderRoutes.put("/:id/delivered", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, token_middleware_1.default.verifyTokenAndAdmin, order_controller_1.default.updateStatusOrderToDelivered);
 orderRoutes.put("/:id/canceled", helpers_middleware_1.default.idRule("id"), helpers_middleware_1.default.idValidator, token_middleware_1.default.verifyToken, order_controller_1.default.updateStatusOrderToCancel);

@@ -51,6 +51,14 @@ const updateStatusOrderToShipping = catchAsync(async (req: Request, res: Respons
   responseSuccess(res, updatedOrder);
 });
 
+// @desc    Chỉnh sửa trạng thái đơn hàng sang đang xử lí
+// @route   PUT /api/order/:id/processing
+// @access  Private/Admin
+const updateStatusOrderToProcessing = catchAsync(async (req: Request, res: Response) => {
+  const updatedOrder = await orderServices.updateStatusOrderToProcessing(req);
+  responseSuccess(res, updatedOrder);
+});
+
 // @desc    Chỉnh sửa trạng thái đơn hàng sang đã giao hàng
 // @route   PUT /api/order/:id/delivered
 // @access  Private/Admin
@@ -76,5 +84,6 @@ const categoryControllers = {
   updateStatusOrderToShipping,
   updateStatusOrderToDelivered,
   updateStatusOrderToCancel,
+  updateStatusOrderToProcessing,
 };
 export default categoryControllers;

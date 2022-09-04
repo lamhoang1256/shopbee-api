@@ -29,6 +29,13 @@ orderRoutes.delete(
   orderControllers.deleteOrder,
 );
 orderRoutes.put(
+  "/:id/processing",
+  helpersMiddleware.idRule("id"),
+  helpersMiddleware.idValidator,
+  tokenMiddleware.verifyTokenAndAdmin,
+  orderControllers.updateStatusOrderToProcessing,
+);
+orderRoutes.put(
   "/:id/shipping",
   helpersMiddleware.idRule("id"),
   helpersMiddleware.idValidator,

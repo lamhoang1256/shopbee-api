@@ -57,6 +57,13 @@ const updateStatusOrderToShipping = (0, catch_async_1.catchAsync)((req, res) => 
     const updatedOrder = yield order_service_1.default.updateStatusOrderToShipping(req);
     (0, response_1.responseSuccess)(res, updatedOrder);
 }));
+// @desc    Chỉnh sửa trạng thái đơn hàng sang đang xử lí
+// @route   PUT /api/order/:id/processing
+// @access  Private/Admin
+const updateStatusOrderToProcessing = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedOrder = yield order_service_1.default.updateStatusOrderToProcessing(req);
+    (0, response_1.responseSuccess)(res, updatedOrder);
+}));
 // @desc    Chỉnh sửa trạng thái đơn hàng sang đã giao hàng
 // @route   PUT /api/order/:id/delivered
 // @access  Private/Admin
@@ -80,5 +87,6 @@ const categoryControllers = {
     updateStatusOrderToShipping,
     updateStatusOrderToDelivered,
     updateStatusOrderToCancel,
+    updateStatusOrderToProcessing,
 };
 exports.default = categoryControllers;
