@@ -28,12 +28,9 @@
  *                          type: string
  *                        quantity:
  *                          type: number
- *                        stock:
- *                          type: number
  *                      example:
  *                        product: 6309ddf6ababc1783117dbc3
  *                        quantity: 1
- *                        stock: 121
  *                  shippingFrom:
  *                    type: string
  *                    example: 101/20, Hương Lộ 80B, Tổ 1, Ấp 4, Xã Đông Thạnh, Huyện Hóc Môn, TP. Hồ Chí Minh

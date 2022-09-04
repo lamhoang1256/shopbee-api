@@ -67,9 +67,10 @@ const addToCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getAllCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const carts = yield cart_model_1.default.find({ user: req.user._id })
+    let carts = yield cart_model_1.default.find({ user: req.user._id })
         .populate({ path: "product", populate: { path: "category" } })
         .sort({ createdAt: -1 });
+    carts.filter((cart) => cart.product.stock > 0);
     const response = {
         message: "Lấy giỏ hàng thành công",
         data: carts,

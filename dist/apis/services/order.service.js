@@ -24,11 +24,6 @@ const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     if (orderItems && orderItems.length === 0) {
         throw new api_error_1.ApiError(404, "Giỏ hàng đang trống!");
     }
-    orderItems.forEach((item) => {
-        if ((item === null || item === void 0 ? void 0 : item.stock) <= 0) {
-            throw new api_error_1.ApiError(500, "Vui lòng xóa sản phẩm đã hết hàng khỏi đơn mua!");
-        }
-    });
     if (voucherCode) {
         const voucherDB = yield voucher_model_1.default.findOne({ code: voucherCode });
         if (Number(voucherDB.expirationDate) < Date.now() / 1000)
