@@ -6,6 +6,11 @@ import helpersMiddleware from "../middlewares/helpers.middleware";
 const shopRoutes = Router();
 
 shopRoutes.get("/", shopControllers.getShopInfo);
+shopRoutes.get(
+  "/overview",
+  tokenMiddleware.verifyTokenAndAdmin,
+  shopControllers.getOverviewDashboard,
+);
 shopRoutes.post(
   "/",
   tokenMiddleware.verifyTokenAndAdmin,

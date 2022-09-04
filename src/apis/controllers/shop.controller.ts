@@ -11,6 +11,14 @@ const getShopInfo = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, shopAddressList);
 });
 
+// @desc    Lấy thông tin dashboard
+// @route   GET /api/shop/overview
+// @access  Private/Admin
+const getOverviewDashboard = catchAsync(async (req: Request, res: Response) => {
+  const dashboard = await shopServices.getOverviewDashboard(req);
+  responseSuccess(res, dashboard);
+});
+
 // @desc    Thêm mới thông tin shop
 // @route   POST /api/shop
 // @access  Private/Admin
@@ -40,5 +48,6 @@ const shopControllers = {
   addShopInfo,
   updateShopInfo,
   deleteShopInfo,
+  getOverviewDashboard,
 };
 export default shopControllers;

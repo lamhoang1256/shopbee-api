@@ -10,6 +10,7 @@ const shop_middleware_1 = __importDefault(require("../middlewares/shop.middlewar
 const helpers_middleware_1 = __importDefault(require("../middlewares/helpers.middleware"));
 const shopRoutes = (0, express_1.Router)();
 shopRoutes.get("/", shop_controller_1.default.getShopInfo);
+shopRoutes.get("/overview", token_middleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.getOverviewDashboard);
 shopRoutes.post("/", token_middleware_1.default.verifyTokenAndAdmin, shop_middleware_1.default.addShopInfoRules(), helpers_middleware_1.default.entityValidator, shop_controller_1.default.addShopInfo);
 shopRoutes.put("/", token_middleware_1.default.verifyTokenAndAdmin, shop_middleware_1.default.updateShopInfoRules(), helpers_middleware_1.default.entityValidator, shop_controller_1.default.updateShopInfo);
 shopRoutes.delete("/", token_middleware_1.default.verifyTokenAndAdmin, shop_controller_1.default.deleteShopInfo);

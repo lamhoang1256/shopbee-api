@@ -12,6 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const order_model_1 = __importDefault(require("../models/order.model"));
+const user_model_1 = __importDefault(require("../models/user.model"));
+const product_model_1 = __importDefault(require("../models/product.model"));
+const voucher_model_1 = __importDefault(require("../models/voucher.model"));
 const shop_model_1 = __importDefault(require("../models/shop.model"));
 const api_error_1 = require("../utils/api-error");
 const addShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
@@ -23,6 +27,34 @@ const addShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const response = {
         message: "Thêm mới thành công!",
         data: savedShop,
+    };
+    return response;
+});
+const getOverviewDashboard = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const orders = yield order_model_1.default.find();
+    const users = yield user_model_1.default.find();
+    const products = yield product_model_1.default.find();
+    const vouchers = yield voucher_model_1.default.find();
+    const ordersWaiting = orders.filter((order) => order.status === "waiting");
+    const ordersProcessing = orders.filter((order) => order.status === "processing");
+    const ordersShipping = orders.filter((order) => order.status === "shipping");
+    const ordersDelivered = orders.filter((order) => order.status === "delivered");
+    const ordersCanceled = orders.filter((order) => order.status === "canceled");
+    const revenue = ordersDelivered.reduce((prev, curr) => prev + curr.total, 0);
+    const response = {
+        message: "Lấy thông tin dashboard thành công!",
+        data: {
+            totalOrders: orders.length,
+            totalOrdersWaiting: ordersWaiting.length,
+            totalOrdersProcessing: ordersProcessing.length,
+            totalOrdersShipping: ordersShipping.length,
+            totalOrdersCanceled: ordersCanceled.length,
+            totalOrdersDelivered: ordersDelivered.length,
+            totalProducts: products.length,
+            totalUsers: users.length,
+            totalVouchers: vouchers.length,
+            totalRevenue: revenue,
+        },
     };
     return response;
 });
@@ -62,5 +94,6 @@ const shopServices = {
     getShopInfo,
     updateShopInfo,
     deleteShopInfo,
+    getOverviewDashboard,
 };
 exports.default = shopServices;

@@ -22,6 +22,13 @@ const getShopInfo = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0
     const shopAddressList = yield shop_service_1.default.getShopInfo(req);
     (0, response_1.responseSuccess)(res, shopAddressList);
 }));
+// @desc    Lấy thông tin dashboard
+// @route   GET /api/shop/overview
+// @access  Private/Admin
+const getOverviewDashboard = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const dashboard = yield shop_service_1.default.getOverviewDashboard(req);
+    (0, response_1.responseSuccess)(res, dashboard);
+}));
 // @desc    Thêm mới thông tin shop
 // @route   POST /api/shop
 // @access  Private/Admin
@@ -48,5 +55,6 @@ const shopControllers = {
     addShopInfo,
     updateShopInfo,
     deleteShopInfo,
+    getOverviewDashboard,
 };
 exports.default = shopControllers;
