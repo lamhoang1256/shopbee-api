@@ -18,6 +18,7 @@ const product_model_1 = __importDefault(require("../models/product.model"));
 const cart_model_1 = __importDefault(require("../models/cart.model"));
 const voucher_model_1 = __importDefault(require("../models/voucher.model"));
 const api_error_1 = require("../utils/api-error");
+const notify_controller_1 = require("../controllers/notify.controller");
 const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = req.user._id;
     const { orderItems, shippingTo, shippingFee, price, promotion, total, voucherCode, note, methodPayment, } = req.body;
@@ -166,13 +167,21 @@ const getSingleOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const updateStatusOrderToProcessing = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const order = yield order_model_1.default.findById(req.params.id);
+    const { id } = req.params;
+    const order = yield order_model_1.default.findById(id);
     if (!order)
         throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
     order.processingAt = Date.now();
     order.status = "processing";
     order.statusCode = 1;
     const updatedOrder = yield order.save();
+    const notify = {
+        user: order.user,
+        title: "Đang xử lí",
+        desc: `Đơn hàng ${id} đã chuyển sang trạng thái đang xử lí`,
+        image: "https://seeklogo.com/images/S/shopee-logo-065D1ADCB9-seeklogo.com.png",
+    };
+    (0, notify_controller_1.addNewNotify)(notify);
     const response = {
         message: "Chỉnh sửa trạng thái đang xử lý thành công!",
         data: updatedOrder,
@@ -180,13 +189,21 @@ const updateStatusOrderToProcessing = (req) => __awaiter(void 0, void 0, void 0,
     return response;
 });
 const updateStatusOrderToShipping = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const order = yield order_model_1.default.findById(req.params.id);
+    const { id } = req.params;
+    const order = yield order_model_1.default.findById(id);
     if (!order)
         throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
     order.shippingAt = Date.now();
     order.status = "shipping";
     order.statusCode = 2;
     const updatedOrder = yield order.save();
+    const notify = {
+        user: order.user,
+        title: "Đang vận chuyển",
+        desc: `Đơn hàng ${id} đã chuyển sang trạng thái đang vận chuyển`,
+        image: "https://seeklogo.com/images/S/shopee-logo-065D1ADCB9-seeklogo.com.png",
+    };
+    (0, notify_controller_1.addNewNotify)(notify);
     const response = {
         message: "Chỉnh sửa trạng thái đang vận chuyển thành công!",
         data: updatedOrder,
@@ -194,13 +211,21 @@ const updateStatusOrderToShipping = (req) => __awaiter(void 0, void 0, void 0, f
     return response;
 });
 const updateStatusOrderToDelivered = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const order = yield order_model_1.default.findById(req.params.id);
+    const { id } = req.params;
+    const order = yield order_model_1.default.findById(id);
     if (!order)
         throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
     order.deliveredAt = Date.now();
     order.status = "delivered";
     order.statusCode = 3;
     const updatedOrder = yield order.save();
+    const notify = {
+        user: order.user,
+        title: "Đã giao hàng",
+        desc: `Đơn hàng ${id} đã chuyển sang trạng thái đã giao hàng`,
+        image: "https://seeklogo.com/images/S/shopee-logo-065D1ADCB9-seeklogo.com.png",
+    };
+    (0, notify_controller_1.addNewNotify)(notify);
     const response = {
         message: "Chỉnh sửa trạng thái đã giao hàng thành công!",
         data: updatedOrder,
@@ -208,7 +233,8 @@ const updateStatusOrderToDelivered = (req) => __awaiter(void 0, void 0, void 0, 
     return response;
 });
 const updateStatusOrderToCancel = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const order = yield order_model_1.default.findById(req.params.id);
+    const { id } = req.params;
+    const order = yield order_model_1.default.findById(id);
     if (!order)
         throw new api_error_1.ApiError(404, "Không tìm thấy đơn hàng!");
     if (req.body.reasonCancel)
@@ -217,6 +243,13 @@ const updateStatusOrderToCancel = (req) => __awaiter(void 0, void 0, void 0, fun
     order.status = "canceled";
     order.statusCode = 4;
     const updatedOrder = yield order.save();
+    const notify = {
+        user: order.user,
+        title: "Đã hủy",
+        desc: `Đơn hàng ${id} đã chuyển sang trạng thái đã hủy`,
+        image: "https://seeklogo.com/images/S/shopee-logo-065D1ADCB9-seeklogo.com.png",
+    };
+    (0, notify_controller_1.addNewNotify)(notify);
     const response = {
         message: "Hủy đơn hàng thành công!",
         data: updatedOrder,

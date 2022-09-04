@@ -1,11 +1,14 @@
 import { Request } from "express";
 import Order from "../models/order.model";
 import Shop from "../models/shop.model";
+import Notify from "../models/notify.model";
 import Product from "../models/product.model";
 import Cart from "../models/cart.model";
 import Voucher from "../models/voucher.model";
 import { ApiError } from "../utils/api-error";
 import { IShop } from "../../@types/shop";
+import { io } from "../../loaders/expressLoaders";
+import notifyController, { addNewNotify } from "../controllers/notify.controller";
 
 const createNewOrder = async (req: Request) => {
   const userId = req.user._id;
@@ -165,12 +168,20 @@ const getSingleOrder = async (req: Request) => {
 };
 
 const updateStatusOrderToProcessing = async (req: Request) => {
-  const order: any = await Order.findById(req.params.id);
+  const { id } = req.params;
+  const order: any = await Order.findById(id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   order.processingAt = Date.now();
   order.status = "processing";
   order.statusCode = 1;
   const updatedOrder = await order.save();
+  const notify = {
+    user: order.user,
+    title: "Đang xử lí",
+    desc: `Đơn hàng ${id} đã chuyển sang trạng thái đang xử lí`,
+    image: "https://seeklogo.com/images/S/shopee-logo-065D1ADCB9-seeklogo.com.png",
+  };
+  addNewNotify(notify);
   const response = {
     message: "Chỉnh sửa trạng thái đang xử lý thành công!",
     data: updatedOrder,
@@ -179,12 +190,20 @@ const updateStatusOrderToProcessing = async (req: Request) => {
 };
 
 const updateStatusOrderToShipping = async (req: Request) => {
-  const order: any = await Order.findById(req.params.id);
+  const { id } = req.params;
+  const order: any = await Order.findById(id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   order.shippingAt = Date.now();
   order.status = "shipping";
   order.statusCode = 2;
   const updatedOrder = await order.save();
+  const notify = {
+    user: order.user,
+    title: "Đang vận chuyển",
+    desc: `Đơn hàng ${id} đã chuyển sang trạng thái đang vận chuyển`,
+    image: "https://seeklogo.com/images/S/shopee-logo-065D1ADCB9-seeklogo.com.png",
+  };
+  addNewNotify(notify);
   const response = {
     message: "Chỉnh sửa trạng thái đang vận chuyển thành công!",
     data: updatedOrder,
@@ -193,12 +212,20 @@ const updateStatusOrderToShipping = async (req: Request) => {
 };
 
 const updateStatusOrderToDelivered = async (req: Request) => {
-  const order: any = await Order.findById(req.params.id);
+  const { id } = req.params;
+  const order: any = await Order.findById(id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   order.deliveredAt = Date.now();
   order.status = "delivered";
   order.statusCode = 3;
   const updatedOrder = await order.save();
+  const notify = {
+    user: order.user,
+    title: "Đã giao hàng",
+    desc: `Đơn hàng ${id} đã chuyển sang trạng thái đã giao hàng`,
+    image: "https://seeklogo.com/images/S/shopee-logo-065D1ADCB9-seeklogo.com.png",
+  };
+  addNewNotify(notify);
   const response = {
     message: "Chỉnh sửa trạng thái đã giao hàng thành công!",
     data: updatedOrder,
@@ -207,13 +234,21 @@ const updateStatusOrderToDelivered = async (req: Request) => {
 };
 
 const updateStatusOrderToCancel = async (req: Request) => {
-  const order: any = await Order.findById(req.params.id);
+  const { id } = req.params;
+  const order: any = await Order.findById(id);
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   if (req.body.reasonCancel) order.reasonCancel = req.body.reasonCancel;
   order.canceledAt = Date.now();
   order.status = "canceled";
   order.statusCode = 4;
   const updatedOrder = await order.save();
+  const notify = {
+    user: order.user,
+    title: "Đã hủy",
+    desc: `Đơn hàng ${id} đã chuyển sang trạng thái đã hủy`,
+    image: "https://seeklogo.com/images/S/shopee-logo-065D1ADCB9-seeklogo.com.png",
+  };
+  addNewNotify(notify);
   const response = {
     message: "Hủy đơn hàng thành công!",
     data: updatedOrder,
