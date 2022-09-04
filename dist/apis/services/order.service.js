@@ -24,6 +24,11 @@ const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     if (orderItems && orderItems.length === 0) {
         throw new api_error_1.ApiError(404, "Giỏ hàng đang trống!");
     }
+    orderItems.forEach((item) => {
+        if ((item === null || item === void 0 ? void 0 : item.stock) <= 0) {
+            throw new api_error_1.ApiError(500, "Vui lòng xóa sản phẩm đã hết hàng khỏi đơn mua!");
+        }
+    });
     if (voucherCode) {
         const voucherDB = yield voucher_model_1.default.findOne({ code: voucherCode });
         if (Number(voucherDB.expirationDate) < Date.now() / 1000)
@@ -49,15 +54,12 @@ const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const savedOrder = yield order.save();
     for (let i = 0; i < orderItems.length; i++) {
         yield product_model_1.default.findOneAndUpdate({ _id: orderItems[i].product }, {
-            $inc: {
-                sold: parseInt(orderItems[i].quantity),
-                stock: -parseInt(orderItems[i].quantity),
-            },
+            $inc: { sold: parseInt(orderItems[i].quantity), stock: -parseInt(orderItems[i].quantity) },
         });
     }
     yield cart_model_1.default.deleteMany({ user: userId });
     const response = {
-        message: "Tạo đơn hàng thành công!",
+        message: "Thanh toán đơn hàng thành công!",
         data: savedOrder,
     };
     return response;

@@ -1,7 +1,7 @@
 "use strict";
 /** Thêm sản phẩm vào giỏ hàng
  * @swagger
- * /add-to-cart:
+ * /cart/add-to-cart:
  *  post:
  *      summary: Thêm sản phẩm vào giỏ hàng
  *      tags: [Cart]

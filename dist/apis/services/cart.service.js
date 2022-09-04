@@ -71,7 +71,7 @@ const getAllCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
         .populate({ path: "product", populate: { path: "category" } })
         .sort({ createdAt: -1 });
     const response = {
-        message: "Lấy đơn mua thành công",
+        message: "Lấy giỏ hàng thành công",
         data: carts,
     };
     return response;

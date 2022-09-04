@@ -63,7 +63,7 @@ const getAllCart = async (req: Request) => {
     .populate({ path: "product", populate: { path: "category" } })
     .sort({ createdAt: -1 });
   const response = {
-    message: "Lấy đơn mua thành công",
+    message: "Lấy giỏ hàng thành công",
     data: carts,
   };
   return response;

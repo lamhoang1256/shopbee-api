@@ -13,10 +13,14 @@
  *                type: object
  *                required:
  *                  - productId
+ *                  - orderId
  *                  - rating
  *                  - comment
  *                properties:
  *                   productId:
+ *                     type: string
+ *                     example: 630398b2844724923bb9719b
+ *                   orderId:
  *                     type: string
  *                     example: 630398b2844724923bb9719b
  *                   rating:

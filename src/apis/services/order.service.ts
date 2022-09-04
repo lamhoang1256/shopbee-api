@@ -23,6 +23,11 @@ const createNewOrder = async (req: Request) => {
   if (orderItems && orderItems.length === 0) {
     throw new ApiError(404, "Giỏ hàng đang trống!");
   }
+  orderItems.forEach((item: any) => {
+    if (item?.stock <= 0) {
+      throw new ApiError(500, "Vui lòng xóa sản phẩm đã hết hàng khỏi đơn mua!");
+    }
+  });
   if (voucherCode) {
     const voucherDB: any = await Voucher.findOne({ code: voucherCode });
     if (Number(voucherDB.expirationDate) < Date.now() / 1000)
@@ -50,16 +55,13 @@ const createNewOrder = async (req: Request) => {
     await Product.findOneAndUpdate(
       { _id: orderItems[i].product },
       {
-        $inc: {
-          sold: parseInt(orderItems[i].quantity),
-          stock: -parseInt(orderItems[i].quantity),
-        },
+        $inc: { sold: parseInt(orderItems[i].quantity), stock: -parseInt(orderItems[i].quantity) },
       },
     );
   }
   await Cart.deleteMany({ user: userId });
   const response = {
-    message: "Tạo đơn hàng thành công!",
+    message: "Thanh toán đơn hàng thành công!",
     data: savedOrder,
   };
   return response;
