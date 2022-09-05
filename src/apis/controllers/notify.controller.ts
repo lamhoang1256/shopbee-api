@@ -20,9 +20,16 @@ const getAllNotify = async (userId: string) => {
   return notifies;
 };
 
+const updateHaveSeenNotify = async (userId: string) => {
+  await Notify.updateMany({ user: userId }, { $set: { haveSeen: true } });
+  const updatedNotifies: any = await Notify.find({ user: userId }).sort({ createdAt: -1 });
+  return updatedNotifies;
+};
+
 const notifyController = {
   addNewNotify,
   getAllNotify,
+  updateHaveSeenNotify,
 };
 
 export default notifyController;

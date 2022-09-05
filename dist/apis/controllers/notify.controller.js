@@ -32,8 +32,14 @@ const getAllNotify = (userId) => __awaiter(void 0, void 0, void 0, function* () 
         yield notify_model_1.default.deleteOne({ _id: notifies[totalNotify - 1]._id });
     return notifies;
 });
+const updateHaveSeenNotify = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+    yield notify_model_1.default.updateMany({ user: userId }, { $set: { haveSeen: true } });
+    const updatedNotifies = yield notify_model_1.default.find({ user: userId }).sort({ createdAt: -1 });
+    return updatedNotifies;
+});
 const notifyController = {
     addNewNotify,
     getAllNotify,
+    updateHaveSeenNotify,
 };
 exports.default = notifyController;

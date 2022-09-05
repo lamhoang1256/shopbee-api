@@ -30,6 +30,10 @@ const socketLoaders = (app) => {
             const notifications = yield notify_controller_1.default.getAllNotify(userId);
             io.emit("notifications", notifications);
         }));
+        socket.on("handleHaveSeenNotify", (userId) => __awaiter(void 0, void 0, void 0, function* () {
+            const notifications = yield notify_controller_1.default.updateHaveSeenNotify(userId);
+            io.emit("notifications", notifications);
+        }));
         socket.on("disconnect", () => {
             socket_service_1.default.removeUser(socket.id);
             io.emit("users", socket_service_1.default.onlineUsers);

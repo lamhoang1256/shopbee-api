@@ -18,6 +18,10 @@ const socketLoaders = (app: Express) => {
       const notifications = await notifyController.getAllNotify(userId);
       io.emit("notifications", notifications);
     });
+    socket.on("handleHaveSeenNotify", async (userId: string) => {
+      const notifications = await notifyController.updateHaveSeenNotify(userId);
+      io.emit("notifications", notifications);
+    });
     socket.on("disconnect", () => {
       socketServices.removeUser(socket.id);
       io.emit("users", socketServices.onlineUsers);

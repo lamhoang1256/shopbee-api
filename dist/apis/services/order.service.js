@@ -62,7 +62,7 @@ const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
         image: (firstProductOrder === null || firstProductOrder === void 0 ? void 0 : firstProductOrder.image) ||
             "https://static.ybox.vn/2021/3/2/1617091741920-Shopee%20Logo%20png.png",
     };
-    notify_controller_1.default.addNewNotify(notify);
+    yield notify_controller_1.default.addNewNotify(notify);
     const response = {
         message: "Thanh toán đơn hàng thành công!",
         data: savedOrder,
@@ -193,7 +193,7 @@ const updateStatusOrderToProcessing = (req) => __awaiter(void 0, void 0, void 0,
         desc: `Đơn hàng <span class="notify-number">${id}</span> đang xử lí`,
         image: updatedOrder.orderItems[0].product.image,
     };
-    notify_controller_1.default.addNewNotify(notify);
+    yield notify_controller_1.default.addNewNotify(notify);
     const response = {
         message: "Chỉnh sửa trạng thái đang xử lý thành công!",
         data: updatedOrder,
@@ -218,7 +218,7 @@ const updateStatusOrderToShipping = (req) => __awaiter(void 0, void 0, void 0, f
         desc: `Đơn hàng <span class="notify-number">${id}</span> đang vận chuyển`,
         image: updatedOrder.orderItems[0].product.image,
     };
-    notify_controller_1.default.addNewNotify(notify);
+    yield notify_controller_1.default.addNewNotify(notify);
     const response = {
         message: "Chỉnh sửa trạng thái đang vận chuyển thành công!",
         data: updatedOrder,
@@ -243,7 +243,7 @@ const updateStatusOrderToDelivered = (req) => __awaiter(void 0, void 0, void 0, 
         desc: `Đơn hàng <span class="notify-number">${id}</span> đã giao hàng thành công`,
         image: updatedOrder.orderItems[0].product.image,
     };
-    notify_controller_1.default.addNewNotify(notify);
+    yield notify_controller_1.default.addNewNotify(notify);
     const response = {
         message: "Chỉnh sửa trạng thái đã giao hàng thành công!",
         data: updatedOrder,
@@ -270,7 +270,7 @@ const updateStatusOrderToCancel = (req) => __awaiter(void 0, void 0, void 0, fun
         desc: `Đơn hàng <span class="notify-number">${id}</span> đã hủy. ${order.reasonCancel ? `Lí do hủy: ${order.reasonCancel}` : ""}`,
         image: updatedOrder.orderItems[0].product.image,
     };
-    notify_controller_1.default.addNewNotify(notify);
+    yield notify_controller_1.default.addNewNotify(notify);
     const response = {
         message: "Hủy đơn hàng thành công!",
         data: updatedOrder,

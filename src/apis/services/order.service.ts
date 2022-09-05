@@ -65,7 +65,7 @@ const createNewOrder = async (req: Request) => {
       firstProductOrder?.image ||
       "https://static.ybox.vn/2021/3/2/1617091741920-Shopee%20Logo%20png.png",
   };
-  notifyController.addNewNotify(notify);
+  await notifyController.addNewNotify(notify);
   const response = {
     message: "Thanh toán đơn hàng thành công!",
     data: savedOrder,
@@ -192,7 +192,7 @@ const updateStatusOrderToProcessing = async (req: Request) => {
     desc: `Đơn hàng <span class="notify-number">${id}</span> đang xử lí`,
     image: updatedOrder.orderItems[0].product.image,
   };
-  notifyController.addNewNotify(notify);
+  await notifyController.addNewNotify(notify);
   const response = {
     message: "Chỉnh sửa trạng thái đang xử lý thành công!",
     data: updatedOrder,
@@ -217,7 +217,7 @@ const updateStatusOrderToShipping = async (req: Request) => {
     desc: `Đơn hàng <span class="notify-number">${id}</span> đang vận chuyển`,
     image: updatedOrder.orderItems[0].product.image,
   };
-  notifyController.addNewNotify(notify);
+  await notifyController.addNewNotify(notify);
   const response = {
     message: "Chỉnh sửa trạng thái đang vận chuyển thành công!",
     data: updatedOrder,
@@ -242,7 +242,7 @@ const updateStatusOrderToDelivered = async (req: Request) => {
     desc: `Đơn hàng <span class="notify-number">${id}</span> đã giao hàng thành công`,
     image: updatedOrder.orderItems[0].product.image,
   };
-  notifyController.addNewNotify(notify);
+  await notifyController.addNewNotify(notify);
   const response = {
     message: "Chỉnh sửa trạng thái đã giao hàng thành công!",
     data: updatedOrder,
@@ -270,7 +270,7 @@ const updateStatusOrderToCancel = async (req: Request) => {
     }`,
     image: updatedOrder.orderItems[0].product.image,
   };
-  notifyController.addNewNotify(notify);
+  await notifyController.addNewNotify(notify);
   const response = {
     message: "Hủy đơn hàng thành công!",
     data: updatedOrder,
