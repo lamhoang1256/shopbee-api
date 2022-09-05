@@ -12,38 +12,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addNewNotify = void 0;
-const expressLoaders_1 = require("../../loaders/expressLoaders");
+const app_1 = require("../../app");
 const notify_model_1 = __importDefault(require("../models/notify.model"));
-let onlineUsers = [];
-const addNewUser = (userId, socketId) => {
-    !onlineUsers.some((user) => user.userId === userId) && onlineUsers.push({ userId, socketId });
-};
-const removeUser = (socketId) => {
-    onlineUsers = onlineUsers.filter((user) => user.socketId !== socketId);
-};
-const getUser = (userId) => {
-    return onlineUsers.find((user) => user.userId === userId);
-};
+const socket_service_1 = __importDefault(require("../services/socket.service"));
 const addNewNotify = (notify) => __awaiter(void 0, void 0, void 0, function* () {
     const newNotify = new notify_model_1.default(notify);
     yield newNotify.save();
-    const receiver = getUser(notify.user.toString());
+    const receiver = socket_service_1.default.getUser(notify.user.toString());
     let notifies = yield notify_model_1.default.find({ user: notify.user }).sort({ createdAt: -1 });
     const totalNotify = notifies.length;
     if (totalNotify >= 10)
         yield notify_model_1.default.deleteOne({ _id: notifies[totalNotify - 1]._id });
-    expressLoaders_1.io.to(receiver.socketId).emit("notifies", notifies);
+    app_1.io.to(receiver.socketId).emit("notifications", notifies);
 });
-exports.addNewNotify = addNewNotify;
-const notifyController = (socket, io) => {
-    socket.on("newUser", (userId) => {
-        addNewUser(userId, socket.id);
-        io.emit("users", onlineUsers);
-    });
-    socket.on("disconnect", () => {
-        removeUser(socket.id);
-        io.emit("users", onlineUsers);
-    });
+const getAllNotify = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+    let notifies = yield notify_model_1.default.find({ user: userId }).sort({ createdAt: -1 });
+    const totalNotify = notifies.length;
+    if (totalNotify >= 10)
+        yield notify_model_1.default.deleteOne({ _id: notifies[totalNotify - 1]._id });
+    return notifies;
+});
+const notifyController = {
+    addNewNotify,
+    getAllNotify,
 };
 exports.default = notifyController;

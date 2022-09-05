@@ -1,14 +1,12 @@
 import { Request } from "express";
-import Order from "../models/order.model";
-import Shop from "../models/shop.model";
-import Notify from "../models/notify.model";
-import Product from "../models/product.model";
+import { IShop } from "../../@types/shop";
+import notifyController from "../controllers/notify.controller";
 import Cart from "../models/cart.model";
+import Order from "../models/order.model";
+import Product from "../models/product.model";
+import Shop from "../models/shop.model";
 import Voucher from "../models/voucher.model";
 import { ApiError } from "../utils/api-error";
-import { IShop } from "../../@types/shop";
-import { io } from "../../loaders/expressLoaders";
-import notifyController, { addNewNotify } from "../controllers/notify.controller";
 
 const createNewOrder = async (req: Request) => {
   const userId = req.user._id;
@@ -48,7 +46,7 @@ const createNewOrder = async (req: Request) => {
     total,
     methodPayment,
   });
-  const savedOrder = await order.save();
+  const savedOrder: any = await order.save();
   for (let i = 0; i < orderItems.length; i++) {
     await Product.findOneAndUpdate(
       { _id: orderItems[i].product },
@@ -57,7 +55,17 @@ const createNewOrder = async (req: Request) => {
       },
     );
   }
+  const firstProductOrder = await Product.findById(orderItems[0].product);
   await Cart.deleteMany({ user: userId });
+  const notify = {
+    user: req.user._id,
+    title: "Đã thanh toán",
+    desc: `Đơn hàng <span class="notify-number">${savedOrder._id}</span> đã được thanh toán`,
+    image:
+      firstProductOrder?.image ||
+      "https://static.ybox.vn/2021/3/2/1617091741920-Shopee%20Logo%20png.png",
+  };
+  notifyController.addNewNotify(notify);
   const response = {
     message: "Thanh toán đơn hàng thành công!",
     data: savedOrder,
@@ -169,7 +177,10 @@ const getSingleOrder = async (req: Request) => {
 
 const updateStatusOrderToProcessing = async (req: Request) => {
   const { id } = req.params;
-  const order: any = await Order.findById(id);
+  const order: any = await Order.findById(id).populate({
+    path: "orderItems",
+    populate: { path: "product" },
+  });
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   order.processingAt = Date.now();
   order.status = "processing";
@@ -178,10 +189,10 @@ const updateStatusOrderToProcessing = async (req: Request) => {
   const notify = {
     user: order.user,
     title: "Đang xử lí",
-    desc: `Đơn hàng ${id} đã chuyển sang trạng thái đang xử lí`,
-    image: "https://seeklogo.com/images/S/shopee-logo-065D1ADCB9-seeklogo.com.png",
+    desc: `Đơn hàng <span class="notify-number">${id}</span> đang xử lí`,
+    image: updatedOrder.orderItems[0].product.image,
   };
-  addNewNotify(notify);
+  notifyController.addNewNotify(notify);
   const response = {
     message: "Chỉnh sửa trạng thái đang xử lý thành công!",
     data: updatedOrder,
@@ -191,7 +202,10 @@ const updateStatusOrderToProcessing = async (req: Request) => {
 
 const updateStatusOrderToShipping = async (req: Request) => {
   const { id } = req.params;
-  const order: any = await Order.findById(id);
+  const order: any = await Order.findById(id).populate({
+    path: "orderItems",
+    populate: { path: "product" },
+  });
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   order.shippingAt = Date.now();
   order.status = "shipping";
@@ -200,10 +214,10 @@ const updateStatusOrderToShipping = async (req: Request) => {
   const notify = {
     user: order.user,
     title: "Đang vận chuyển",
-    desc: `Đơn hàng ${id} đã chuyển sang trạng thái đang vận chuyển`,
-    image: "https://seeklogo.com/images/S/shopee-logo-065D1ADCB9-seeklogo.com.png",
+    desc: `Đơn hàng <span class="notify-number">${id}</span> đang vận chuyển`,
+    image: updatedOrder.orderItems[0].product.image,
   };
-  addNewNotify(notify);
+  notifyController.addNewNotify(notify);
   const response = {
     message: "Chỉnh sửa trạng thái đang vận chuyển thành công!",
     data: updatedOrder,
@@ -213,7 +227,10 @@ const updateStatusOrderToShipping = async (req: Request) => {
 
 const updateStatusOrderToDelivered = async (req: Request) => {
   const { id } = req.params;
-  const order: any = await Order.findById(id);
+  const order: any = await Order.findById(id).populate({
+    path: "orderItems",
+    populate: { path: "product" },
+  });
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   order.deliveredAt = Date.now();
   order.status = "delivered";
@@ -222,10 +239,10 @@ const updateStatusOrderToDelivered = async (req: Request) => {
   const notify = {
     user: order.user,
     title: "Đã giao hàng",
-    desc: `Đơn hàng ${id} đã chuyển sang trạng thái đã giao hàng`,
-    image: "https://seeklogo.com/images/S/shopee-logo-065D1ADCB9-seeklogo.com.png",
+    desc: `Đơn hàng <span class="notify-number">${id}</span> đã giao hàng thành công`,
+    image: updatedOrder.orderItems[0].product.image,
   };
-  addNewNotify(notify);
+  notifyController.addNewNotify(notify);
   const response = {
     message: "Chỉnh sửa trạng thái đã giao hàng thành công!",
     data: updatedOrder,
@@ -235,7 +252,10 @@ const updateStatusOrderToDelivered = async (req: Request) => {
 
 const updateStatusOrderToCancel = async (req: Request) => {
   const { id } = req.params;
-  const order: any = await Order.findById(id);
+  const order: any = await Order.findById(id).populate({
+    path: "orderItems",
+    populate: { path: "product" },
+  });
   if (!order) throw new ApiError(404, "Không tìm thấy đơn hàng!");
   if (req.body.reasonCancel) order.reasonCancel = req.body.reasonCancel;
   order.canceledAt = Date.now();
@@ -245,10 +265,12 @@ const updateStatusOrderToCancel = async (req: Request) => {
   const notify = {
     user: order.user,
     title: "Đã hủy",
-    desc: `Đơn hàng ${id} đã chuyển sang trạng thái đã hủy`,
-    image: "https://seeklogo.com/images/S/shopee-logo-065D1ADCB9-seeklogo.com.png",
+    desc: `Đơn hàng <span class="notify-number">${id}</span> đã hủy. ${
+      order.reasonCancel ? `Lí do hủy: ${order.reasonCancel}` : ""
+    }`,
+    image: updatedOrder.orderItems[0].product.image,
   };
-  addNewNotify(notify);
+  notifyController.addNewNotify(notify);
   const response = {
     message: "Hủy đơn hàng thành công!",
     data: updatedOrder,
