@@ -9,10 +9,11 @@ const socketLoaders = (app: Express) => {
   const server = http.createServer(app);
   const io = new Server(server, { cors: { origin: "*", methods: ["GET", "POST"] } });
   io.on("connection", (socket) => {
-    console.log("User Connected " + socket.id);
-    socket.on("newUser", (userId: string) => {
+    socket.on("newUser", async (userId: string) => {
       socketServices.addNewUser(userId, socket.id);
+      const notifications = await notifyController.getAllNotify(userId);
       io.emit("users", socketServices.onlineUsers);
+      io.emit("notifications", notifications);
     });
     socket.on("getNotifications", async (userId: string) => {
       const notifications = await notifyController.getAllNotify(userId);

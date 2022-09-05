@@ -21,11 +21,12 @@ const socketLoaders = (app) => {
     const server = http_1.default.createServer(app);
     const io = new socket_io_1.Server(server, { cors: { origin: "*", methods: ["GET", "POST"] } });
     io.on("connection", (socket) => {
-        console.log("User Connected " + socket.id);
-        socket.on("newUser", (userId) => {
+        socket.on("newUser", (userId) => __awaiter(void 0, void 0, void 0, function* () {
             socket_service_1.default.addNewUser(userId, socket.id);
+            const notifications = yield notify_controller_1.default.getAllNotify(userId);
             io.emit("users", socket_service_1.default.onlineUsers);
-        });
+            io.emit("notifications", notifications);
+        }));
         socket.on("getNotifications", (userId) => __awaiter(void 0, void 0, void 0, function* () {
             const notifications = yield notify_controller_1.default.getAllNotify(userId);
             io.emit("notifications", notifications);
