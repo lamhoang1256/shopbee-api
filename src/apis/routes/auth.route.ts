@@ -9,12 +9,14 @@ authRoutes.post(
   "/sign-up",
   authMiddleware.signUpRules(),
   helpersMiddleware.entityValidator,
+  authMiddleware.rateLimitRequest.signUp,
   authControllers.signUp,
 );
 authRoutes.post(
   "/sign-in",
   authMiddleware.signInRules(),
   helpersMiddleware.entityValidator,
+  authMiddleware.rateLimitRequest.signIn,
   authControllers.signIn,
 );
 authRoutes.post("/logout", tokenMiddleware.verifyToken, authControllers.logOut);
