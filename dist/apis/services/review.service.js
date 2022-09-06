@@ -12,40 +12,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const status_1 = require("../constants/status");
 const product_model_1 = __importDefault(require("../models/product.model"));
 const review_model_1 = __importDefault(require("../models/review.model"));
 const api_error_1 = require("../utils/api-error");
 const getAllReviewProduct = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const reviews = yield review_model_1.default.find({ productId: req.params.id })
-        .populate({
-        path: "user",
-        select: "fullname avatar email",
-    })
+        .populate({ path: "user", select: "fullname avatar email" })
         .sort({ updatedAt: -1 });
-    const response = {
-        message: "Lấy tất cả nhận xét sản phẩm!",
-        data: reviews,
-    };
+    const response = { message: "Lấy tất cả nhận xét sản phẩm thành công!", data: reviews };
     return response;
 });
 const getAllReviewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const reviews = yield review_model_1.default.find({ orderId: req.params.id })
-        .populate({
-        path: "user",
-        select: "fullname avatar email",
-    })
+        .populate({ path: "user", select: "fullname avatar email" })
         .sort({ updatedAt: -1 });
-    const response = {
-        message: "Lấy tất cả nhận xét sản phẩm!",
-        data: reviews,
-    };
+    const response = { message: "Lấy tất cả nhận xét sản phẩm thành công!", data: reviews };
     return response;
 });
 const addNewReview = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const { rating, comment, productId, orderId } = req.body;
     const product = yield product_model_1.default.findById(productId);
     if (!product)
-        throw new api_error_1.ApiError(404, "Không tìm thấy sản phẩm!");
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_FOUND, "Không tìm thấy sản phẩm!");
     const review = {
         productId,
         orderId,
@@ -57,66 +46,57 @@ const addNewReview = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const savedReview = yield newReview.save();
     const reviewsDB = yield review_model_1.default.find({ productId }).lean();
     product.rating = reviewsDB.reduce((acc, item) => item.rating + acc, 0) / reviewsDB.length;
-    const savedProduct = yield product.save();
-    const response = {
-        message: "Thêm bình luận thành công!",
-        data: savedReview,
-    };
+    yield product.save();
+    const response = { message: "Thêm bình luận thành công!", data: savedReview };
     return response;
 });
 const updateReview = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const { rating, comment, productId } = req.body;
     const productDB = yield product_model_1.default.findById(productId);
     if (!productDB)
-        throw new api_error_1.ApiError(404, "Không tìm thấy sản phẩm!");
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_FOUND, "Không tìm thấy sản phẩm!");
     const reviewDB = yield review_model_1.default.findById(req.params.id);
     if (!reviewDB)
-        throw new api_error_1.ApiError(404, "Không tìm thấy bình luận!");
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_FOUND, "Không tìm thấy bình luận!");
     if (req.user._id !== reviewDB.user.toString()) {
-        throw new api_error_1.ApiError(404, "Bạn không thể chỉnh sửa bình luận của người khác!");
+        throw new api_error_1.ApiError(status_1.STATUS.UNPROCESSABLE_ENTITY, "Bạn không thể sửa bình luận của người khác!");
     }
     const updateReview = { comment, rating: Number(rating) };
     const updatedReview = yield reviewDB.updateOne({ $set: updateReview }, { new: true });
     const reviewsDB = yield review_model_1.default.find({ productId }).lean();
     if (reviewsDB.length > 0) {
-        productDB.rating =
-            reviewsDB.reduce((acc, item) => item.rating + acc, 0) / reviewsDB.length;
+        const totalReviews = reviewsDB.length;
+        const newRating = reviewsDB.reduce((acc, item) => item.rating + acc, 0) / totalReviews;
+        productDB.rating = newRating;
         yield productDB.save();
     }
-    const response = {
-        message: "Sửa bình luận thành công!",
-        data: updatedReview,
-    };
+    const response = { message: "Sửa bình luận thành công!", data: updatedReview };
     return response;
 });
 const getSingleReview = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const review = yield review_model_1.default.findById(req.params.id);
     if (!review)
-        throw new api_error_1.ApiError(404, "Không tìm thấy nhận xét!");
-    const response = {
-        message: "Lấy nhận xét thành công!",
-        data: review,
-    };
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_FOUND, "Không tìm thấy nhận xét!");
+    const response = { message: "Lấy nhận xét thành công!", data: review };
     return response;
 });
 const deleteReview = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const reviewDB = yield review_model_1.default.findById(req.params.id);
     if (!reviewDB)
-        throw new api_error_1.ApiError(404, "Không tìm thấy bình luận!");
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_FOUND, "Không tìm thấy bình luận!");
     if (req.user._id !== reviewDB.user.toString()) {
-        throw new api_error_1.ApiError(404, "Bạn không thể chỉnh sửa bình luận của người khác!");
+        throw new api_error_1.ApiError(status_1.STATUS.UNPROCESSABLE_ENTITY, "Bạn không thể xóa bình luận của người khác!");
     }
     const productDB = yield product_model_1.default.findById(reviewDB.productId);
-    const deletedReview = yield review_model_1.default.findByIdAndDelete(req.params.id);
+    yield review_model_1.default.findByIdAndDelete(req.params.id);
     const reviewsDB = yield review_model_1.default.find({ productId: reviewDB.productId });
     if (reviewsDB.length > 0) {
-        productDB.rating =
-            reviewsDB.reduce((acc, item) => item.rating + acc, 0) / reviewsDB.length;
+        const totalReviews = reviewsDB.length;
+        const newRating = reviewsDB.reduce((acc, item) => item.rating + acc, 0) / totalReviews;
+        productDB.rating = newRating;
         yield productDB.save();
     }
-    const response = {
-        message: "Xóa bình luận thành công!",
-    };
+    const response = { message: "Xóa bình luận thành công!" };
     return response;
 });
 const reviewServices = {

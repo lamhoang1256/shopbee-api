@@ -18,18 +18,7 @@ const product_model_1 = __importDefault(require("../models/product.model"));
 const voucher_model_1 = __importDefault(require("../models/voucher.model"));
 const shop_model_1 = __importDefault(require("../models/shop.model"));
 const api_error_1 = require("../utils/api-error");
-const addShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const countShops = yield shop_model_1.default.find().countDocuments();
-    if (countShops >= 1)
-        throw new api_error_1.ApiError(500, "Địa chỉ shop đã tồn tại!");
-    const newShop = new shop_model_1.default(req.body);
-    const savedShop = yield newShop.save();
-    const response = {
-        message: "Thêm mới thành công!",
-        data: savedShop,
-    };
-    return response;
-});
+const status_1 = require("../constants/status");
 const getOverviewDashboard = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const orders = yield order_model_1.default.find();
     const users = yield user_model_1.default.find();
@@ -42,7 +31,7 @@ const getOverviewDashboard = (req) => __awaiter(void 0, void 0, void 0, function
     const ordersCanceled = orders.filter((order) => order.status === "canceled");
     const revenue = ordersDelivered.reduce((prev, curr) => prev + curr.total, 0);
     const response = {
-        message: "Lấy thông tin dashboard thành công!",
+        message: "Lấy thông tin quản trị thành công!",
         data: {
             totalOrders: orders.length,
             totalOrdersWaiting: ordersWaiting.length,
@@ -58,35 +47,39 @@ const getOverviewDashboard = (req) => __awaiter(void 0, void 0, void 0, function
     };
     return response;
 });
+const addShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    const countShops = yield shop_model_1.default.find().countDocuments();
+    if (countShops >= 1)
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_ACCEPTABLE, "Thông tin shop đã tồn tại!");
+    const newShop = new shop_model_1.default(req.body);
+    const savedShop = yield newShop.save();
+    const response = { message: "Thêm thông tin shop thành công!", data: savedShop };
+    return response;
+});
 const getShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const shop = yield shop_model_1.default.findOne({});
-    if (!shop)
-        throw new api_error_1.ApiError(404, "Không tìm thấy shop!");
-    const response = {
-        message: "Lấy tất cả shop thành công!",
-        data: shop,
-    };
+    const shopInfo = yield shop_model_1.default.findOne({});
+    if (!shopInfo)
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_FOUND, "Không tìm thấy thông tin shop!");
+    const response = { message: "Lấy thông tin shop thành công!", data: shopInfo };
     return response;
 });
 const updateShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const shopInDB = yield shop_model_1.default.findOne({});
-    if (!shopInDB)
-        throw new api_error_1.ApiError(404, "Không tìm thấy shop!");
-    const updatedShop = yield shopInDB.updateOne({ $set: req.body }, { new: true });
+    const shopInfoDB = yield shop_model_1.default.findOne({});
+    if (!shopInfoDB)
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_FOUND, "Không tìm thấy thông tin shop!");
+    const updatedShop = yield shopInfoDB.updateOne({ $set: req.body }, { new: true });
     const response = {
-        message: "Chỉnh sửa shop thành công!",
+        message: "Cập nhật thông tin shop thành công!",
         data: updatedShop,
     };
     return response;
 });
 const deleteShopInfo = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    const shopInDB = yield shop_model_1.default.findOne({}).lean();
-    if (!shopInDB)
-        throw new api_error_1.ApiError(400, "Không tìm thấy shop!");
-    yield shop_model_1.default.findByIdAndDelete(shopInDB._id.toString());
-    const response = {
-        message: "Xóa shop thành công!",
-    };
+    const shopInfoDB = yield shop_model_1.default.findOne({}).lean();
+    if (!shopInfoDB)
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_FOUND, "Không tìm thấy thông tin shop!");
+    yield shop_model_1.default.findByIdAndDelete(shopInfoDB._id.toString());
+    const response = { message: "Xóa thông tin shop thành công!" };
     return response;
 });
 const shopServices = {

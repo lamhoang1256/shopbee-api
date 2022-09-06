@@ -12,54 +12,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const status_1 = require("../constants/status");
 const category_model_1 = __importDefault(require("../models/category.model"));
 const api_error_1 = require("../utils/api-error");
 const addNewCategory = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const newCategory = new category_model_1.default(req.body);
     const savedCategory = yield newCategory.save();
-    const response = {
-        message: "Thêm mới sản phẩm thành công!",
-        data: savedCategory,
-    };
+    const response = { message: "Thêm mới sản phẩm thành công!", data: savedCategory };
     return response;
 });
 const getAllCategory = () => __awaiter(void 0, void 0, void 0, function* () {
-    const categories = yield category_model_1.default.find().sort({
-        createdAt: -1,
-    });
-    const response = {
-        message: "Lấy tất cả danh mục thành công!",
-        data: categories,
-    };
+    const categories = yield category_model_1.default.find().sort({ createdAt: -1 });
+    const response = { message: "Lấy tất cả danh mục thành công!", data: categories };
     return response;
 });
 const getSingleCategory = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const category = yield category_model_1.default.findById(req.params.id);
     if (!category)
-        throw new api_error_1.ApiError(404, "Không tìm thấy danh mục!");
-    const response = {
-        message: "Lấy danh mục thành công!",
-        data: category,
-    };
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_FOUND, "Không tìm thấy danh mục!");
+    const response = { message: "Lấy danh mục thành công!", data: category };
     return response;
 });
 const deleteCategory = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const deleteCategory = yield category_model_1.default.findByIdAndDelete(req.params.id);
     if (!deleteCategory)
-        throw new api_error_1.ApiError(404, "Không tìm thấy danh mục!");
-    const response = {
-        message: "Xóa danh mục thành công!",
-    };
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_FOUND, "Không tìm thấy danh mục!");
+    const response = { message: "Xóa danh mục thành công!" };
     return response;
 });
 const updateCategory = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const category = category_model_1.default.findById(req.params.id);
     if (!category)
-        throw new api_error_1.ApiError(404, "Không tìm thấy danh mục!");
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_FOUND, "Không tìm thấy danh mục!");
     yield category.updateOne({ $set: req.body });
-    const response = {
-        message: "Chỉnh sửa danh mục thành công!",
-    };
+    const response = { message: "Chỉnh sửa danh mục thành công!" };
     return response;
 });
 const categoryServices = {

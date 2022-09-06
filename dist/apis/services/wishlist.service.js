@@ -37,10 +37,7 @@ const addToWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
             $addToSet: { wishlists: productId },
         });
     }
-    const response = {
-        message: "Đã thêm vào danh sách yêu thích!",
-        data: savedWishlist,
-    };
+    const response = { message: "Đã thêm vào danh sách yêu thích!", data: savedWishlist };
     return response;
 });
 const removeFromWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
@@ -48,10 +45,7 @@ const removeFromWishlist = (req) => __awaiter(void 0, void 0, void 0, function* 
     const updateWishlist = yield wishlist_model_1.default.findByIdAndUpdate(req.user._id, {
         $pull: { wishlists: productId },
     });
-    const response = {
-        message: "Đã xóa khỏi danh sách yêu thích!",
-        data: updateWishlist,
-    };
+    const response = { message: "Đã xóa khỏi danh sách yêu thích!", data: updateWishlist };
     return response;
 });
 const wishlistServices = {

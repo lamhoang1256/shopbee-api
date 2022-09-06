@@ -12,55 +12,44 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const status_1 = require("../constants/status");
 const banner_model_1 = __importDefault(require("../models/banner.model"));
 const api_error_1 = require("../utils/api-error");
 const getAllBanner = () => __awaiter(void 0, void 0, void 0, function* () {
     const banners = yield banner_model_1.default.find().sort({ createdAt: -1 });
-    const response = {
-        message: "Lấy tất cả banner thành công!",
-        data: banners,
-    };
+    const response = { message: "Lấy tất cả banner thành công!", data: banners };
     return response;
 });
 const getSingleBanner = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const banner = yield banner_model_1.default.findById(req.params.id);
     if (!banner)
-        throw new api_error_1.ApiError(404, "Không tìm thấy banner!");
-    const response = {
-        message: "Lấy banner thành công!",
-        data: banner,
-    };
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_FOUND, "Không tìm thấy banner!");
+    const response = { message: "Lấy banner thành công!", data: banner };
     return response;
 });
 const addNewBanner = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const countBanners = yield banner_model_1.default.find().countDocuments();
-    if (countBanners >= 6)
-        throw new api_error_1.ApiError(500, "Số lượng banner tối đa là 6!");
+    if (countBanners >= 6) {
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_ACCEPTABLE, "Số lượng banner tối đa là 6!");
+    }
     const newBanner = new banner_model_1.default(req.body);
     const savedBanner = yield newBanner.save();
-    const response = {
-        message: "Thêm mới banner thành công!",
-        data: savedBanner,
-    };
+    const response = { message: "Thêm mới banner thành công!", data: savedBanner };
     return response;
 });
 const deleteBanner = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const bannerInDB = yield banner_model_1.default.findByIdAndDelete(req.params.id).lean();
     if (!bannerInDB)
-        throw new api_error_1.ApiError(400, "Không tìm thấy banner!");
-    const response = {
-        message: "Xóa banner thành công!",
-    };
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_FOUND, "Không tìm thấy banner!");
+    const response = { message: "Xóa banner thành công!" };
     return response;
 });
 const updateBanner = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const banner = banner_model_1.default.findById(req.params.id);
     if (!banner)
-        throw new api_error_1.ApiError(404, "Không tìm thấy banner!");
+        throw new api_error_1.ApiError(status_1.STATUS.NOT_FOUND, "Không tìm thấy banner!");
     yield banner.updateOne({ $set: req.body });
-    const response = {
-        message: "Chỉnh sửa banner thành công!",
-    };
+    const response = { message: "Chỉnh sửa banner thành công!" };
     return response;
 });
 const bannnerServices = {
