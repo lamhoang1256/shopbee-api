@@ -25,10 +25,7 @@ const addToWishlist = async (req: Request) => {
       $addToSet: { wishlists: productId },
     });
   }
-  const response = {
-    message: "Đã thêm vào danh sách yêu thích!",
-    data: savedWishlist,
-  };
+  const response = { message: "Đã thêm vào danh sách yêu thích!", data: savedWishlist };
   return response;
 };
 
@@ -37,10 +34,7 @@ const removeFromWishlist = async (req: Request) => {
   const updateWishlist = await Wishlist.findByIdAndUpdate(req.user._id, {
     $pull: { wishlists: productId },
   });
-  const response = {
-    message: "Đã xóa khỏi danh sách yêu thích!",
-    data: updateWishlist,
-  };
+  const response = { message: "Đã xóa khỏi danh sách yêu thích!", data: updateWishlist };
   return response;
 };
 

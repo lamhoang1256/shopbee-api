@@ -5,32 +5,21 @@ import Product from "../models/product.model";
 import Voucher from "../models/voucher.model";
 import Shop from "../models/shop.model";
 import { ApiError } from "../utils/api-error";
-
-const addShopInfo = async (req: Request) => {
-  const countShops = await Shop.find().countDocuments();
-  if (countShops >= 1) throw new ApiError(500, "Địa chỉ shop đã tồn tại!");
-  const newShop = new Shop(req.body);
-  const savedShop = await newShop.save();
-  const response = {
-    message: "Thêm mới thành công!",
-    data: savedShop,
-  };
-  return response;
-};
+import { STATUS } from "../constants/status";
 
 const getOverviewDashboard = async (req: Request) => {
   const orders = await Order.find();
   const users = await User.find();
   const products = await Product.find();
   const vouchers = await Voucher.find();
-  const ordersWaiting: any = orders.filter((order) => order.status === "waiting");
-  const ordersProcessing: any = orders.filter((order) => order.status === "processing");
-  const ordersShipping: any = orders.filter((order) => order.status === "shipping");
-  const ordersDelivered: any = orders.filter((order) => order.status === "delivered");
-  const ordersCanceled: any = orders.filter((order) => order.status === "canceled");
+  const ordersWaiting = orders.filter((order) => order.status === "waiting");
+  const ordersProcessing = orders.filter((order) => order.status === "processing");
+  const ordersShipping = orders.filter((order) => order.status === "shipping");
+  const ordersDelivered = orders.filter((order) => order.status === "delivered");
+  const ordersCanceled = orders.filter((order) => order.status === "canceled");
   const revenue = ordersDelivered.reduce((prev: any, curr: any) => prev + curr.total, 0);
   const response = {
-    message: "Lấy thông tin dashboard thành công!",
+    message: "Lấy thông tin quản trị thành công!",
     data: {
       totalOrders: orders.length,
       totalOrdersWaiting: ordersWaiting.length,
@@ -47,34 +36,38 @@ const getOverviewDashboard = async (req: Request) => {
   return response;
 };
 
+const addShopInfo = async (req: Request) => {
+  const countShops = await Shop.find().countDocuments();
+  if (countShops >= 1) throw new ApiError(STATUS.NOT_ACCEPTABLE, "Thông tin shop đã tồn tại!");
+  const newShop = new Shop(req.body);
+  const savedShop = await newShop.save();
+  const response = { message: "Thêm thông tin shop thành công!", data: savedShop };
+  return response;
+};
+
 const getShopInfo = async (req: Request) => {
-  const shop = await Shop.findOne({});
-  if (!shop) throw new ApiError(404, "Không tìm thấy shop!");
-  const response = {
-    message: "Lấy tất cả shop thành công!",
-    data: shop,
-  };
+  const shopInfo = await Shop.findOne({});
+  if (!shopInfo) throw new ApiError(STATUS.NOT_FOUND, "Không tìm thấy thông tin shop!");
+  const response = { message: "Lấy thông tin shop thành công!", data: shopInfo };
   return response;
 };
 
 const updateShopInfo = async (req: Request) => {
-  const shopInDB: any = await Shop.findOne({});
-  if (!shopInDB) throw new ApiError(404, "Không tìm thấy shop!");
-  const updatedShop = await shopInDB.updateOne({ $set: req.body }, { new: true });
+  const shopInfoDB = await Shop.findOne({});
+  if (!shopInfoDB) throw new ApiError(STATUS.NOT_FOUND, "Không tìm thấy thông tin shop!");
+  const updatedShop = await shopInfoDB.updateOne({ $set: req.body }, { new: true });
   const response = {
-    message: "Chỉnh sửa shop thành công!",
+    message: "Cập nhật thông tin shop thành công!",
     data: updatedShop,
   };
   return response;
 };
 
 const deleteShopInfo = async (req: Request) => {
-  const shopInDB: any = await Shop.findOne({}).lean();
-  if (!shopInDB) throw new ApiError(400, "Không tìm thấy shop!");
-  await Shop.findByIdAndDelete(shopInDB._id.toString());
-  const response = {
-    message: "Xóa shop thành công!",
-  };
+  const shopInfoDB = await Shop.findOne({}).lean();
+  if (!shopInfoDB) throw new ApiError(STATUS.NOT_FOUND, "Không tìm thấy thông tin shop!");
+  await Shop.findByIdAndDelete(shopInfoDB._id.toString());
+  const response = { message: "Xóa thông tin shop thành công!" };
   return response;
 };
 
