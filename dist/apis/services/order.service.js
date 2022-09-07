@@ -56,7 +56,7 @@ const createNewOrder = (req) => __awaiter(void 0, void 0, void 0, function* () {
         const quantity = parseInt(orderItems[i].quantity);
         yield product_model_1.default.findOneAndUpdate({ _id: orderItems[i].product }, { $inc: { sold: quantity, stock: -quantity } });
     }
-    yield cart_model_1.default.deleteMany({ user: userId, product: { stock: { $gte: 0 } } });
+    yield cart_model_1.default.remove({ user: userId, product: { stock: { $gte: 0 } } });
     const firstProductOrder = yield product_model_1.default.findById(orderItems[0].product);
     const startTimeShipping = (0, helper_1.formatDateVN)(Date.now() + 3600 * 1000 * 48);
     const endTimeShipping = (0, helper_1.formatDateVN)(Date.now() + 3600 * 1000 * 96);
