@@ -52,11 +52,12 @@ const addToCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getAllCart = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    let carts = yield cart_model_1.default.find({ user: req.user._id })
+    const cartsDB = yield cart_model_1.default.find({ user: req.user._id })
         .populate({ path: "product", populate: { path: "category" } })
         .sort({ createdAt: -1 });
-    carts = carts.filter((cart) => cart.product.stock > 0);
-    const response = { message: "Lấy giỏ hàng thành công", data: carts };
+    const carts = cartsDB.filter((cart) => cart.product.stock > 0);
+    const cartsOutOfStock = cartsDB.filter((cart) => cart.product.stock <= 0);
+    const response = { message: "Lấy giỏ hàng thành công", data: { carts, cartsOutOfStock } };
     return response;
 });
 const deleteSingleCart = (req) => __awaiter(void 0, void 0, void 0, function* () {

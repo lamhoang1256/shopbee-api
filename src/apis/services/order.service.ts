@@ -57,7 +57,7 @@ const createNewOrder = async (req: Request) => {
       { $inc: { sold: quantity, stock: -quantity } },
     );
   }
-  await Cart.deleteMany({ user: userId });
+  await Cart.deleteMany({ user: userId, product: { stock: { $gte: 0 } } });
   const firstProductOrder = await Product.findById(orderItems[0].product);
   const startTimeShipping = formatDateVN(Date.now() + 3600 * 1000 * 48);
   const endTimeShipping = formatDateVN(Date.now() + 3600 * 1000 * 96);
