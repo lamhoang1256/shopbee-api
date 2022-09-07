@@ -12,6 +12,12 @@ voucherRoutes.get(
   helpersMiddleware.entityValidator,
   voucherControllers.getAllVoucher,
 );
+voucherRoutes.get(
+  "/discover",
+  voucherMiddleware.getAllVoucherRules(),
+  helpersMiddleware.entityValidator,
+  voucherControllers.getAllPublicVoucher,
+);
 voucherRoutes.post(
   "/save",
   tokenMiddleware.verifyToken,

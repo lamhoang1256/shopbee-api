@@ -19,6 +19,14 @@ const getAllVoucher = catchAsync(async (req: Request, res: Response) => {
   responseSuccess(res, shopAddressList);
 });
 
+// @desc    Lấy tất cả voucher public của shop
+// @route   GET /api/voucher/discover
+// @access  Public
+const getAllPublicVoucher = catchAsync(async (req: Request, res: Response) => {
+  const vouchers = await voucherServices.getAllPublicVoucher(req);
+  responseSuccess(res, vouchers);
+});
+
 // @desc    Sử dụng voucher
 // @route   GET /api/voucher
 // @access  Private
@@ -58,5 +66,6 @@ const shopControllers = {
   updateVoucher,
   deleteVoucher,
   saveVoucher,
+  getAllPublicVoucher,
 };
 export default shopControllers;

@@ -61,6 +61,30 @@ const getAllVoucher = async (req: Request) => {
   return response;
 };
 
+const getAllPublicVoucher = async (req: Request) => {
+  let { limit = 20, page = 1 } = req.query;
+  page = Number(page);
+  limit = Number(limit);
+  let condition: any = { expirationDate: { $gt: Date.now() }, isPublic: true };
+  const [vouchers, totalVouchers] = await Promise.all([
+    Voucher.find(condition)
+      .skip(page * limit - limit)
+      .limit(limit)
+      .sort({ updatedAt: -1 })
+      .select({ __v: 0 })
+      .lean(),
+    Voucher.find(condition).countDocuments().lean(),
+  ]);
+  if (!vouchers) throw new ApiError(STATUS.NOT_FOUND, "Không tìm thấy mã giảm giá!");
+  const totalPage = Math.ceil(totalVouchers / limit) || 1;
+  const pagination = { page, limit, totalPage };
+  const response = {
+    message: "Lấy tất cả voucher thành công!",
+    data: { vouchers, pagination },
+  };
+  return response;
+};
+
 const updateVoucher = async (req: Request) => {
   const updatedVoucher = await Voucher.findByIdAndUpdate(req.params.id, req.body);
   if (!updatedVoucher) throw new ApiError(STATUS.NOT_FOUND, "Mã giảm giá không hợp lệ!");
@@ -82,5 +106,6 @@ const voucherServices = {
   updateVoucher,
   deleteVoucher,
   saveVoucher,
+  getAllPublicVoucher,
 };
 export default voucherServices;

@@ -29,6 +29,13 @@ const getAllVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void
     const shopAddressList = yield voucher_service_1.default.getAllVoucher(req);
     (0, response_1.responseSuccess)(res, shopAddressList);
 }));
+// @desc    Lấy tất cả voucher public của shop
+// @route   GET /api/voucher/discover
+// @access  Public
+const getAllPublicVoucher = (0, catch_async_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const vouchers = yield voucher_service_1.default.getAllPublicVoucher(req);
+    (0, response_1.responseSuccess)(res, vouchers);
+}));
 // @desc    Sử dụng voucher
 // @route   GET /api/voucher
 // @access  Private
@@ -64,5 +71,6 @@ const shopControllers = {
     updateVoucher,
     deleteVoucher,
     saveVoucher,
+    getAllPublicVoucher,
 };
 exports.default = shopControllers;
