@@ -5,9 +5,10 @@ const getMyWishlist = async (req: Request) => {
   const wishlistsDB: any = await Wishlist.findOne({ user: req.user._id })
     .populate({ path: "wishlists" })
     .lean();
+  const wishlists = wishlistsDB?.wishlists ? wishlistsDB?.wishlists?.reverse() : [];
   const response = {
     message: "Lấy danh sách yêu thích thành công!",
-    data: wishlistsDB?.wishlists?.reverse(),
+    data: wishlists,
   };
   return response;
 };

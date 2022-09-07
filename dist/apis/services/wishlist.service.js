@@ -18,9 +18,10 @@ const getMyWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const wishlistsDB = yield wishlist_model_1.default.findOne({ user: req.user._id })
         .populate({ path: "wishlists" })
         .lean();
+    const wishlists = (wishlistsDB === null || wishlistsDB === void 0 ? void 0 : wishlistsDB.wishlists) ? (_a = wishlistsDB === null || wishlistsDB === void 0 ? void 0 : wishlistsDB.wishlists) === null || _a === void 0 ? void 0 : _a.reverse() : [];
     const response = {
         message: "Lấy danh sách yêu thích thành công!",
-        data: (_a = wishlistsDB === null || wishlistsDB === void 0 ? void 0 : wishlistsDB.wishlists) === null || _a === void 0 ? void 0 : _a.reverse(),
+        data: wishlists,
     };
     return response;
 });
