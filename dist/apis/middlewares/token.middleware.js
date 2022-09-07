@@ -16,6 +16,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const env_1 = __importDefault(require("../../configs/env"));
 const api_error_1 = require("../utils/api-error");
 const response_1 = require("../utils/response");
+const status_1 = require("../constants/status");
 const verifyToken = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const token = req.headers.authorization;
     if (token) {
@@ -27,13 +28,13 @@ const verifyToken = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
         }
         catch (err) {
             if ((err === null || err === void 0 ? void 0 : err.message) === "jwt expired") {
-                return (0, response_1.responseError)(new api_error_1.ApiError(401, "Token đã hết hạn!", err), res);
+                return (0, response_1.responseError)(new api_error_1.ApiError(status_1.STATUS.UNAUTHORIZED, "Token đã hết hạn!", err), res);
             }
-            (0, response_1.responseError)(new api_error_1.ApiError(401, "Token không hợp lệ!", err), res);
+            (0, response_1.responseError)(new api_error_1.ApiError(status_1.STATUS.UNAUTHORIZED, "Token không hợp lệ!", err), res);
         }
     }
     else {
-        (0, response_1.responseError)(new api_error_1.ApiError(401, "Bạn chưa đăng nhập!"), res);
+        (0, response_1.responseError)(new api_error_1.ApiError(status_1.STATUS.UNAUTHORIZED, "Bạn chưa đăng nhập!"), res);
     }
 });
 const verifyTokenAndAdmin = (req, res, next) => {
@@ -42,7 +43,7 @@ const verifyTokenAndAdmin = (req, res, next) => {
             next();
         }
         else {
-            return res.status(403).json("Bạn không đủ quyền truy cập!");
+            return res.status(status_1.STATUS.FORBIDDEN).json("Bạn không đủ quyền truy cập!");
         }
     });
 };

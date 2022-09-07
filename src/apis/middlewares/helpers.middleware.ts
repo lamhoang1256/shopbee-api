@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { validationResult, check, body } from "express-validator";
+import { STATUS } from "../constants/status";
 import { ApiError } from "../utils/api-error";
 import { responseError } from "../utils/response";
 import { isMongoId } from "../utils/validate";
@@ -28,7 +29,7 @@ const idValidator = (req: Request, res: Response, next: NextFunction) => {
     return result;
   }, {});
   const response: ApiError = {
-    status: 400,
+    status: STATUS.BAD_REQUEST,
     error,
     name: "",
     message: Object.values(error)[0] || "Lỗi",

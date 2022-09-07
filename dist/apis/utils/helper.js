@@ -8,6 +8,6 @@ exports.formatDateVN = formatDateVN;
 const randomNumber = () => Math.trunc(Math.random() * 10);
 exports.randomNumber = randomNumber;
 const genrateTrackingNum = (tracking = "GHNXXXXXXXXVN") => {
-    return tracking.replace(/X/g, exports.randomNumber.toString());
+    return tracking.replace(/X/g, (0, exports.randomNumber)().toString());
 };
 exports.genrateTrackingNum = genrateTrackingNum;

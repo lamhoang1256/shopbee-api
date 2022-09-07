@@ -3,6 +3,7 @@ import rateLimit from "express-rate-limit";
 import { Request, Response } from "express";
 import { responseError } from "../utils/response";
 import { ApiError } from "../utils/api-error";
+import { STATUS } from "../constants/status";
 
 const signUpRules = () => {
   return [
@@ -35,14 +36,14 @@ const rateLimitRequest = {
     windowMs: 60 * 1000, // 1 minutes
     max: 5,
     handler: function (req: Request, res: Response) {
-      responseError(new ApiError(429, "Thử lại sau 1 phút!"), res);
+      responseError(new ApiError(STATUS.TOO_MANY_REQUESTS, "Thử lại sau 1 phút!"), res);
     },
   }),
   signIn: rateLimit({
     windowMs: 60 * 1000, // 1 minutes
     max: 5,
     handler: function (req: Request, res: Response) {
-      responseError(new ApiError(429, "Thử lại sau 1 phút!"), res);
+      responseError(new ApiError(STATUS.TOO_MANY_REQUESTS, "Thử lại sau 1 phút!"), res);
     },
   }),
 };

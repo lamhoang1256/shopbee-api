@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_validator_1 = require("express-validator");
+const status_1 = require("../constants/status");
 const response_1 = require("../utils/response");
 const validate_1 = require("../utils/validate");
 const idRule = (...id) => {
@@ -22,7 +23,7 @@ const idValidator = (req, res, next) => {
         return result;
     }, {});
     const response = {
-        status: 400,
+        status: status_1.STATUS.BAD_REQUEST,
         error,
         name: "",
         message: Object.values(error)[0] || "Lỗi",

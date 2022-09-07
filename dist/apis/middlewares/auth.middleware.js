@@ -7,6 +7,7 @@ const express_validator_1 = require("express-validator");
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 const response_1 = require("../utils/response");
 const api_error_1 = require("../utils/api-error");
+const status_1 = require("../constants/status");
 const signUpRules = () => {
     return [
         (0, express_validator_1.body)("email")
@@ -36,14 +37,14 @@ const rateLimitRequest = {
         windowMs: 60 * 1000,
         max: 5,
         handler: function (req, res) {
-            (0, response_1.responseError)(new api_error_1.ApiError(429, "Thử lại sau 1 phút!"), res);
+            (0, response_1.responseError)(new api_error_1.ApiError(status_1.STATUS.TOO_MANY_REQUESTS, "Thử lại sau 1 phút!"), res);
         },
     }),
     signIn: (0, express_rate_limit_1.default)({
         windowMs: 60 * 1000,
         max: 5,
         handler: function (req, res) {
-            (0, response_1.responseError)(new api_error_1.ApiError(429, "Thử lại sau 1 phút!"), res);
+            (0, response_1.responseError)(new api_error_1.ApiError(status_1.STATUS.TOO_MANY_REQUESTS, "Thử lại sau 1 phút!"), res);
         },
     }),
 };

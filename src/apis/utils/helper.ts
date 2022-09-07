@@ -3,6 +3,7 @@ export const formatDateVN = (timestamp: string | number) => {
 };
 
 export const randomNumber = () => Math.trunc(Math.random() * 10);
+
 export const genrateTrackingNum = (tracking = "GHNXXXXXXXXVN") => {
-  return tracking.replace(/X/g, randomNumber.toString());
+  return tracking.replace(/X/g, randomNumber().toString());
 };
