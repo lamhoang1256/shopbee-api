@@ -14,12 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const wishlist_model_1 = __importDefault(require("../models/wishlist.model"));
 const getMyWishlist = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const wishlistsDB = yield wishlist_model_1.default.findOne({ user: req.user._id })
         .populate({ path: "wishlists" })
         .lean();
     const response = {
         message: "Lấy danh sách yêu thích thành công!",
-        data: wishlistsDB.wishlists.reverse(),
+        data: (_a = wishlistsDB === null || wishlistsDB === void 0 ? void 0 : wishlistsDB.wishlists) === null || _a === void 0 ? void 0 : _a.reverse(),
     };
     return response;
 });
