@@ -33,7 +33,7 @@ const signInRules = () => {
 const rateLimitRequest = {
   signUp: rateLimit({
     windowMs: 60 * 1000, // 1 minutes
-    max: 1,
+    max: 5,
     handler: function (req: Request, res: Response) {
       responseError(new ApiError(429, "Thử lại sau 1 phút!"), res);
     },

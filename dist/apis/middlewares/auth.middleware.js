@@ -34,7 +34,7 @@ const signInRules = () => {
 const rateLimitRequest = {
     signUp: (0, express_rate_limit_1.default)({
         windowMs: 60 * 1000,
-        max: 1,
+        max: 5,
         handler: function (req, res) {
             (0, response_1.responseError)(new api_error_1.ApiError(429, "Thử lại sau 1 phút!"), res);
         },
