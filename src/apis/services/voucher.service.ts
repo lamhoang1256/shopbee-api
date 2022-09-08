@@ -1,5 +1,7 @@
 import { Request } from "express";
+import { imageVoucherFreeship, imageVoucherShopbee } from "../constants/global";
 import { STATUS } from "../constants/status";
+import notifyController from "../controllers/notify.controller";
 import Voucher from "../models/voucher.model";
 import { ApiError } from "../utils/api-error";
 
@@ -21,7 +23,7 @@ const getSingleVoucher = async (req: Request) => {
 
 const saveVoucher = async (req: Request) => {
   const userId = req.user._id;
-  const voucher: any = await Voucher.findOne({ code: req.query.code });
+  const voucher = await Voucher.findOne({ code: req.query.code });
   if (!voucher) throw new ApiError(STATUS.NOT_FOUND, "Mã giảm giá không hợp lệ!");
   if (voucher.expirationDate < Date.now())
     throw new ApiError(STATUS.UNPROCESSABLE_ENTITY, "Mã giảm giá đã hết hạn!");
@@ -31,6 +33,13 @@ const saveVoucher = async (req: Request) => {
     throw new ApiError(STATUS.NOT_ACCEPTABLE, "Mã giảm giá đã có trong túi!");
   voucher.usersSave.push(userId);
   await voucher.save();
+  const notify = {
+    user: userId,
+    title: "Mã giảm giá",
+    desc: `Mã giảm giá ${voucher.code} đã được lưu vào kho voucher của bạn`,
+    image: voucher.isFreeship ? imageVoucherFreeship : imageVoucherShopbee,
+  };
+  await notifyController.addNewNotify(notify);
   const response = { message: "Lưu mã giảm giá thành công!", data: voucher };
   return response;
 };

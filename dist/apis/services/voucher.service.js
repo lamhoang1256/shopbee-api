@@ -12,7 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const global_1 = require("../constants/global");
 const status_1 = require("../constants/status");
+const notify_controller_1 = __importDefault(require("../controllers/notify.controller"));
 const voucher_model_1 = __importDefault(require("../models/voucher.model"));
 const api_error_1 = require("../utils/api-error");
 const addNewVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
@@ -44,6 +46,13 @@ const saveVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
         throw new api_error_1.ApiError(status_1.STATUS.NOT_ACCEPTABLE, "Mã giảm giá đã có trong túi!");
     voucher.usersSave.push(userId);
     yield voucher.save();
+    const notify = {
+        user: userId,
+        title: "Mã giảm giá",
+        desc: `Mã giảm giá ${voucher.code} đã được lưu vào kho voucher của bạn`,
+        image: voucher.isFreeship ? global_1.imageVoucherFreeship : global_1.imageVoucherShopbee,
+    };
+    yield notify_controller_1.default.addNewNotify(notify);
     const response = { message: "Lưu mã giảm giá thành công!", data: voucher };
     return response;
 });
