@@ -9,6 +9,7 @@ const voucherSchema = new mongoose.Schema(
     usersUsed: { type: Array, default: [] },
     usersSave: { type: Array, default: [] },
     isPublic: { type: Boolean, default: true },
+    isFreeship: { type: Boolean, default: false },
     expired: { type: Boolean, default: false },
   },
   { timestamps: true },

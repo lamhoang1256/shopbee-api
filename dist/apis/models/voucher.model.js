@@ -12,6 +12,7 @@ const voucherSchema = new mongoose_1.default.Schema({
     usersUsed: { type: Array, default: [] },
     usersSave: { type: Array, default: [] },
     isPublic: { type: Boolean, default: true },
+    isFreeship: { type: Boolean, default: false },
     expired: { type: Boolean, default: false },
 }, { timestamps: true });
 exports.default = mongoose_1.default.model("Voucher", voucherSchema);
