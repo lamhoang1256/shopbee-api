@@ -36,7 +36,7 @@ const saveVoucher = async (req: Request) => {
   const notify = {
     user: userId,
     title: "Mã giảm giá",
-    desc: `Mã giảm giá ${voucher.code} đã được lưu vào kho voucher của bạn`,
+    desc: `Mã giảm giá <span class="notify-code-voucher">${voucher.code}</span> đã được lưu vào kho voucher của bạn`,
     image: voucher.isFreeship ? imageVoucherFreeship : imageVoucherShopbee,
   };
   await notifyController.addNewNotify(notify);
