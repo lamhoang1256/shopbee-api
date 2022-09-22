@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { imageVoucherFreeship, imageVoucherShopbee } from "../constants/global";
+import { imageVoucherFreeship, imageVoucherShopbee } from "../constants/image";
 import { STATUS } from "../constants/status";
 import notifyController from "../controllers/notify.controller";
 import Voucher from "../models/voucher.model";

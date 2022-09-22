@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const global_1 = require("../constants/global");
+const image_1 = require("../constants/image");
 const status_1 = require("../constants/status");
 const notify_controller_1 = __importDefault(require("../controllers/notify.controller"));
 const voucher_model_1 = __importDefault(require("../models/voucher.model"));
@@ -50,7 +50,7 @@ const saveVoucher = (req) => __awaiter(void 0, void 0, void 0, function* () {
         user: userId,
         title: "Mã giảm giá",
         desc: `Mã giảm giá <span class="notify-code-voucher">${voucher.code}</span> đã được lưu vào kho voucher của bạn`,
-        image: voucher.isFreeship ? global_1.imageVoucherFreeship : global_1.imageVoucherShopbee,
+        image: voucher.isFreeship ? image_1.imageVoucherFreeship : image_1.imageVoucherShopbee,
     };
     yield notify_controller_1.default.addNewNotify(notify);
     const response = { message: "Lưu mã giảm giá thành công!", data: voucher };
