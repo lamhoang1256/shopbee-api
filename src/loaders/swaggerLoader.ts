@@ -12,9 +12,9 @@ const options = {
       description: "A simple api for ecommerce",
     },
     servers: [
-      { url: env.app.apiUrl },
+      { url: env.app.apiUrl + "/api" },
       { url: "http://localhost:8000/api" },
-      { url: "https://e-shopee-api.onrender.com/api" },
+      { url: "https://shopbee-api.herokuapp.com/api" },
     ],
     components: {
       securitySchemes: {
