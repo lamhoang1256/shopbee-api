@@ -12,7 +12,7 @@ const options = {
     },
     servers: [
       { url: "http://localhost:8000/api" },
-      { url: "https://shopbee-api.herokuapp.com/api" },
+      { url: "https://e-shopee-api.onrender.com/api" },
     ],
     components: {
       securitySchemes: {
