@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_jsdoc_1 = __importDefault(require("swagger-jsdoc"));
+const env_1 = __importDefault(require("../configs/env"));
 const options = {
     definition: {
         openapi: "3.0.0",
@@ -14,8 +15,9 @@ const options = {
             description: "A simple api for ecommerce",
         },
         servers: [
+            { url: env_1.default.app.apiUrl },
             { url: "http://localhost:8000/api" },
-            { url: "https://shopbee-api.herokuapp.com/api" },
+            { url: "https://e-shopee-api.onrender.com/api" },
         ],
         components: {
             securitySchemes: {

@@ -1,0 +1,11 @@
+"use strict";
+exports.__esModule = true;
+exports.io = exports.app = void 0;
+var expressLoaders_1 = require("./loaders/expressLoaders");
+var mongooseLoader_1 = require("./loaders/mongooseLoader");
+var socketLoader_1 = require("./loaders/socketLoader");
+var swaggerLoader_1 = require("./loaders/swaggerLoader");
+(0, mongooseLoader_1["default"])();
+exports.app = (0, expressLoaders_1["default"])();
+(0, swaggerLoader_1["default"])(exports.app);
+exports.io = (0, socketLoader_1["default"])(exports.app);

@@ -1,6 +1,7 @@
 import { Express } from "express";
 import swaggerUi from "swagger-ui-express";
 import swaggerJsDoc from "swagger-jsdoc";
+import env from "../configs/env";
 
 const options = {
   definition: {
@@ -11,6 +12,7 @@ const options = {
       description: "A simple api for ecommerce",
     },
     servers: [
+      { url: env.app.apiUrl },
       { url: "http://localhost:8000/api" },
       { url: "https://e-shopee-api.onrender.com/api" },
     ],
